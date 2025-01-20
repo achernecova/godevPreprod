@@ -16,12 +16,12 @@ jobs:
     name: tests
     steps:
       - name: Copy source code
-      uses: action/checkout@v4
+        uses: action/checkout@v4
       - name: Set up Python env
-      uses: action/setup-python@v5
-      with:
-        python-version: "3.10"
-      name: install dependencies
-      run: pip install -r requirements.txt
+        uses: action/setup-python@v5
+        with:
+          python-version: "3.10"
+      - name: install dependencies
+        run: pip install -r requirements.txt
       - name: Run tests
-      run: pytest -v
+        run: pytest -v

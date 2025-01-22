@@ -11,4 +11,5 @@ def driver():
     driver.implicitly_wait(3)
     print ("Before test")
     yield driver
-    driver.close()
+    #driver.close()
+    driver.quit()

@@ -1,4 +1,3 @@
-
 from pages.homePage import HomePage
 from pages.product import ProductPage
 

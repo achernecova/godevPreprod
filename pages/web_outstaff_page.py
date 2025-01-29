@@ -5,6 +5,7 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
+from page_elements.block_count_elements import CountElements
 from page_elements.meta_data_page import MetaData
 
 
@@ -30,6 +31,9 @@ class web_outstaff_page:
 
     def get_meta_data(self):
         return MetaData(self.driver)
+
+    def get_count_elements(self):
+        return CountElements(self.driver)
 
     def click_button_request_add(self):
         button_request = self.driver.find_element(By.XPATH, "(//button[@class='button outsource-button open-modal'])[1]")
@@ -85,6 +89,12 @@ class web_outstaff_page:
         assert self.project_bullits.text == bullits, f"Ожидался заголовок '{bullits}', но получен '{self.project_bullits.text}'"
         assert self.project_name.text == project_type, f"Ожидался заголовок '{project_type}', но получен '{self.project_name.text}'"
         assert self.project_price.text == price, f"Ожидался заголовок '{price}', но получен '{self.project_price.text}'"
+
+
+
+
+
+
 
     def benefits_types_of_it_what_to_choose_count_cards(self, project_type, count):
         if project_type == "benefits":

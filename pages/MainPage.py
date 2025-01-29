@@ -1,5 +1,6 @@
 from selenium.webdriver.support import expected_conditions as EC
 from page_elements import form_page
+from page_elements.block_count_elements import CountElements
 from page_elements.form_page import FormPage
 from page_elements.meta_data_page import MetaData
 
@@ -49,6 +50,9 @@ class MainPage:
 
     def get_popup_element(self):
         return PopupElement(self.driver)
+
+    def get_count_elements(self):
+        return CountElements(self.driver)
 
     def click_button_banner(self):
         button_banner = self.driver.find_element(By.XPATH, "//*[@class='banner']//button")
@@ -174,23 +178,6 @@ class MainPage:
         self.scroll_to_element(project)
         project.click()
 
-    def count_customer_reviews(self):
-        customer_reviews = self.driver.find_element(By.XPATH, "//*[@class='reviews-wrapper']")
-        self.scroll_to_element(customer_reviews)
-        count_card_reviews = self.driver.find_elements(By.XPATH, "//*[@class='review-card']")
-        count_card = len(count_card_reviews)  # Получаем количество элементов в списке
-        return count_card
-
-    def web_packages_count(self):
-        web_packages_block = self.driver.find_element(By.XPATH, "//*[@class='team']")
-        self.scroll_to_element(web_packages_block)
-        count_card_packages = self.driver.find_elements(By.XPATH, "//*[@class='team-card']")
-        count_card = len(count_card_packages)  # Получаем количество элементов в списке
-        return count_card
-
-
-
-
     def popup_success_displayed(self, timeout=10):
         try:
             # Ожидание видимости элемента с указанным XPath
@@ -201,9 +188,6 @@ class MainPage:
         except (NoSuchElementException, TimeoutException):
             # Если элемент не найден или не виден в течение указанного времени, возвращаем False
             return False
-
-
-
 
     def test_click_card_and_open_page(self, card_type, expected_url, expected_title):
         if card_type == "website_dev":

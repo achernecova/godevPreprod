@@ -12,11 +12,11 @@ def test_web_develop_page_title_descr_and_canonical(driver):
 def test_web_develop_page_count_card_how_me_make(driver):
     web_dev_page = WebDevelopPage(driver)
     web_dev_page.open()
-    count_card = web_dev_page.carousel_how_make()
-    assert count_card == 6, f"Получено количество карточек:  {count_card}"
+    blocks = web_dev_page.get_count_elements()
+    blocks.count_cards_assert("carousel_how_make", 6)
 
 def test_web_develop_page_count_card_types_of_websites(driver):
     web_dev_page = WebDevelopPage(driver)
     web_dev_page.open()
-    count_card = web_dev_page.types_of_websites_count_card()
-    assert count_card == 7, f"Получено количество карточек:  {count_card}"
+    blocks = web_dev_page.get_count_elements()
+    blocks.count_cards_assert("types_of_websites_count_card", 7)

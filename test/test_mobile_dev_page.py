@@ -36,5 +36,5 @@ def test_mobile_dev_page_add_request_in_faq(driver):
 def test_mobile_dev_page_count_card_advantages(driver):
     mobile_page = MobileDevPage(driver)
     mobile_page.open()
-    count_card = mobile_page.count_card_advantages()
-    assert count_card == 7, f"Получено количество карточек:  {count_card}"
+    blocks = mobile_page.get_count_elements()
+    blocks.count_cards_assert("count_card_advantages", 7)

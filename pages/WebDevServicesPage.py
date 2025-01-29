@@ -1,4 +1,6 @@
 from selenium.webdriver.common.by import By
+
+from page_elements.block_count_elements import CountElements
 from page_elements.meta_data_page import MetaData
 
 
@@ -20,4 +22,7 @@ class WebDevServicesPage:
     def get_title_page(self):
         title_page = self.driver.find_element(By.XPATH, "//h1")
         return title_page.text
+
+    def get_count_elements(self):
+        return CountElements(self.driver)
 

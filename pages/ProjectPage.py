@@ -1,10 +1,11 @@
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 
+from page_elements.block_count_elements import CountElements
 from page_elements.meta_data_page import MetaData
 
 
-class project_page:
+class ProjectPage:
 
     def __init__(self, driver):
         self.driver = driver
@@ -23,6 +24,9 @@ class project_page:
     def get_meta_data(self):
         return MetaData(self.driver)
 
+    def get_count_elements(self):
+        return CountElements(self.driver)
+
     def scroll_to_element(self, element):
         action = ActionChains(self.driver)
         action.move_to_element(element).perform()
@@ -37,9 +41,5 @@ class project_page:
         assert self.get_url() == expected_url, f"Ожидался URL '{expected_url}', но получен '{self.driver.current_url}'"
         assert self.get_title_page() == expected_title, f"Получен Title: {self.get_title_page()}"
 
-    def count_customer_reviews(self):
-        customer_reviews = self.driver.find_element(By.XPATH, "//*[@class='reviews-wrapper']")
-        self.scroll_to_element(customer_reviews)
-        count_card_reviews = self.driver.find_elements(By.XPATH, "//*[@class='review-card']")
-        count_card_count = len(count_card_reviews)  # Получаем количество элементов в списке
-        return count_card_count
+
+

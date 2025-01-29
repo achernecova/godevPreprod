@@ -1,6 +1,7 @@
 import pytest
 
-from pages.project_page import project_page
+from pages.ProjectPage import ProjectPage
+
 
 @pytest.mark.parametrize("project_type, expected_url, expected_title, index", [
     ("euro_VPN", "https://dev.godev.agency/projects/information-security-service/", "Information security service redesign", "1"),
@@ -10,13 +11,13 @@ from pages.project_page import project_page
     ("mint_link", "https://dev.godev.agency/projects/mint-links/", "Enhancing Mint Link’s MICE platform for optimal user engagement", "5")
 ])
 def test_project_page_click_project_and_open_pages(driver, project_type, expected_url, expected_title, index):
-    project_page_test = project_page(driver)
+    project_page_test = ProjectPage(driver)
     project_page_test.open()
     project_page_test.click_project(index)
     project_page_test.assert_data_page(expected_url, expected_title)
 
 def test_project_page_add_title_descr_canonical(driver):
-    project_page_test = project_page(driver)
+    project_page_test = ProjectPage(driver)
     project_page_test.open()
     form_page_test = project_page_test.get_meta_data()
     assert form_page_test.get_title_ceo_page() == "Web Development and Designs Portfolio - Godev", f"Получен Title:  {form_page_test.get_title_ceo_page()}"
@@ -24,6 +25,7 @@ def test_project_page_add_title_descr_canonical(driver):
     assert form_page_test.get_canonical_ceo_page() == "https://dev.godev.agency/projects/", f"Получен canonical:  {form_page_test.get_canonical_ceo_page()}"
 
 def test_project_page_count_card_reviews(driver):
-    project_page_test = project_page(driver)
+    project_page_test = ProjectPage(driver)
     project_page_test.open()
-    assert project_page_test.count_customer_reviews() == 3, f"Получено количество карточек:  {project_page_test.count_customer_reviews()}"
+    blocks = project_page_test.get_count_elements()
+    blocks.count_cards_assert("customer_reviews", 3)

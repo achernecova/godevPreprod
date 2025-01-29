@@ -37,4 +37,5 @@ def test_main_page_data_card_packages(driver, project_type, experience, bullits,
 def test_main_page_benefits_types_of_it_what_to_choose_count_cards(driver, project_type, count):
     main_page_test = web_outstaff_page(driver)
     main_page_test.open()
-    main_page_test.benefits_types_of_it_what_to_choose_count_cards(project_type, count)
+    blocks = main_page_test.get_count_elements()
+    blocks.count_cards_assert(project_type, count)

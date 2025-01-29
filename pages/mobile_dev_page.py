@@ -1,6 +1,7 @@
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 
+from page_elements.block_count_elements import CountElements
 from page_elements.meta_data_page import MetaData
 
 
@@ -61,10 +62,6 @@ class MobileDevPage:
         button_click = self.driver.find_element(By.XPATH, "//*[@class='request-offer-bottom']//button")
         button_click.send_keys("Тестовый комментарий")
 
-    def count_card_advantages(self):
-        carousel = self.driver.find_element(By.XPATH, "//*[@class='swiper-wrapper']")
-        self.scroll_to_element(carousel)
-        cards = self.driver.find_elements(By.XPATH, "//*[contains(@class, 'swiper-slide grabbable')]")
-        count_card = len(cards)  # Получаем количество элементов в списке
-        return count_card
+    def get_count_elements(self):
+        return CountElements(self.driver)
 

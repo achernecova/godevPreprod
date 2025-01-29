@@ -62,12 +62,14 @@ def test_main_page_click_project_and_open_pages(driver, project_type, expected_u
 def test_main_page_count_card_reviews(driver):
     main_page_test = MainPage(driver)
     main_page_test.open()
-    assert main_page_test.count_customer_reviews() == 3, f"Получено количество карточек:  {main_page_test.count_customer_reviews()}"
+    blocks = main_page_test.get_count_elements()
+    blocks.count_cards_assert("customer_reviews", 3)
 
 def test_main_page_count_card_packages(driver):
     main_page_test = MainPage(driver)
     main_page_test.open()
-    assert main_page_test.web_packages_count() == 9, f"Получено количество карточек:  {main_page_test.web_packages_count()}"
+    blocks = main_page_test.get_count_elements()
+    blocks.count_cards_assert("web_packages_count", 9)
 
 @pytest.mark.parametrize("project_type, experience, bullits, price, index", [
     ("E-Commerce", "3+ years of experience", "business / security / design", "30 $ / hour", "1"),

@@ -1,4 +1,4 @@
-from pages.homePage import HomePage
+from pages.home_page import HomePage
 from pages.product import ProductPage
 
 def test_open_s6(driver):

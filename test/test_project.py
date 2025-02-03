@@ -1,20 +1,18 @@
 import pytest
+from pages.project_page import ProjectPage
 
-from pages.ProjectPage import ProjectPage
-
-
-@pytest.mark.parametrize("project_type, expected_url, expected_title, index", [
-    ("euro_VPN", "https://dev.godev.agency/projects/information-security-service/", "Information security service redesign", "1"),
-    ("vegan_hotel", "https://dev.godev.agency/projects/vegan-hotel/", "Website development for a conceptual hotel in the Dolomites", "2"),
-    ("find_a_builder", "https://dev.godev.agency/projects/find-a-builder/", "Website development for London construction company", "3"),
-    ("sls", "https://dev.godev.agency/projects/swift-logistic-solutions/","Building a robust logistics platform for Swift Logistic Solutions", "4"),
-    ("mint_link", "https://dev.godev.agency/projects/mint-links/", "Enhancing Mint Link’s MICE platform for optimal user engagement", "5")
+@pytest.mark.parametrize("project_type, expected_url, expected_title", [
+    ("euro_VPN", "https://dev.godev.agency/projects/information-security-service/", "Information security service redesign"),
+    ("vegan_hotel", "https://dev.godev.agency/projects/vegan-hotel/", "Website development for a conceptual hotel in the Dolomites"),
+    ("find_a_builder", "https://dev.godev.agency/projects/find-a-builder/", "Website development for London construction company"),
+    ("sls", "https://dev.godev.agency/projects/swift-logistic-solutions/","Building a robust logistics platform for Swift Logistic Solutions"),
+    ("mint_link", "https://dev.godev.agency/projects/mint-links/", "Enhancing Mint Link’s MICE platform for optimal user engagement")
 ])
-def test_project_page_click_project_and_open_pages(driver, project_type, expected_url, expected_title, index):
+def test_project_page_click_project_and_pen_pages(driver, project_type, expected_url, expected_title):
     project_page_test = ProjectPage(driver)
     project_page_test.open()
-    project_page_test.click_project(index)
-    project_page_test.assert_data_page(expected_url, expected_title)
+    project_element = project_page_test.get_project_service_element()
+    project_element.test_click_card_and_open_page(project_type, expected_url, expected_title)
 
 def test_project_page_add_title_descr_canonical(driver):
     project_page_test = ProjectPage(driver)

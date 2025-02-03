@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 
 
-class project_find_a_builder:
+class ProjectFindFBuilder:
 
     def __init__(self, driver):
         self.driver = driver

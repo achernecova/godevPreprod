@@ -1,9 +1,9 @@
 import pytest
 
-from pages.web_outstaff_page import web_outstaff_page
+from pages.web_outstaff_page import WebOutstaffPage
 
 def test_web_outstaff_add_title_and_descr(driver):
-    web_outstaff_page_test = web_outstaff_page(driver)
+    web_outstaff_page_test = WebOutstaffPage(driver)
     web_outstaff_page_test.open()
     form_page_test = web_outstaff_page_test.get_meta_data()
     assert form_page_test.get_title_ceo_page() == "IT staff augmentation company in USA, cost of outsorce tech teams and software developers", f"Получен Title:  {form_page_test.get_title_ceo_page()}"
@@ -12,7 +12,7 @@ def test_web_outstaff_add_title_and_descr(driver):
 
 
 def test_web_outstaff_add_success_request(driver):
-    web_outstaff_page_test = web_outstaff_page(driver)
+    web_outstaff_page_test = WebOutstaffPage(driver)
     web_outstaff_page_test.open()
     web_outstaff_page_test.click_button_request_add()
 
@@ -25,7 +25,7 @@ def test_web_outstaff_add_success_request(driver):
     ("Testers", "3+ years of experience", "middle / middle+ / senior", "28$ / hour", "6")
 ])
 def test_main_page_data_card_packages(driver, project_type, experience, bullits, price, index):
-    main_page_test = web_outstaff_page(driver)
+    main_page_test = WebOutstaffPage(driver)
     main_page_test.open()
     main_page_test.check_packages_data(project_type, experience, bullits, price, index)
 
@@ -35,7 +35,7 @@ def test_main_page_data_card_packages(driver, project_type, experience, bullits,
     ("what_to_choose", 3)
 ])
 def test_main_page_benefits_types_of_it_what_to_choose_count_cards(driver, project_type, count):
-    main_page_test = web_outstaff_page(driver)
+    main_page_test = WebOutstaffPage(driver)
     main_page_test.open()
     blocks = main_page_test.get_count_elements()
     blocks.count_cards_assert(project_type, count)

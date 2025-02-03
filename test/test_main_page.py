@@ -1,13 +1,14 @@
 import time
 import pytest
-from pages.MainPage import MainPage
+
+from pages.main_page import MainPage
 
 def test_add_request_success_main_page(driver):
     main_page_test = MainPage(driver)
     main_page_test.open()
     main_page_test.click_button_banner()
-    popup_element_test = main_page_test.get_popup_element()
-    popup_element_test.add_request_success("Test Name", "test@example.com", "This is a test message.")
+    form_page_test = main_page_test.get_popup_element()
+    form_page_test.add_request_success("Test Name", "test@example.com", "This is a test message.")
 
 def test_fill_form_request_footer_main_page(driver):
     main_page_test = MainPage(driver)
@@ -39,25 +40,18 @@ def test_main_page_add_request_header(driver):
     ("website_design", "https://dev.godev.agency/services/website-design-and-development-services/", "Website design and development services"),
     ("outstaffing", "https://dev.godev.agency/services/outstaffing-and-outsourcing-of-it-specialists/", "IT Staff Augmentation"),
     ("b2b", "https://dev.godev.agency/services/website-development/b2b/", "B2B e-commerce website development"),
-    ("section_outstaffing", "https://dev.godev.agency/services/outstaffing-and-outsourcing-of-it-specialists/", "IT Staff Augmentation")
-
+    ("section_outstaffing", "https://dev.godev.agency/services/outstaffing-and-outsourcing-of-it-specialists/", "IT Staff Augmentation"),
+    ("euro_VPN", "https://dev.godev.agency/projects/information-security-service/", "Information security service redesign"),
+    ("vegan_hotel", "https://dev.godev.agency/projects/vegan-hotel/", "Website development for a conceptual hotel in the Dolomites"),
+    ("find_a_builder", "https://dev.godev.agency/projects/find-a-builder/", "Website development for London construction company"),
+    ("sls", "https://dev.godev.agency/projects/swift-logistic-solutions/", "Building a robust logistics platform for Swift Logistic Solutions"),
+    ("mint_link", "https://dev.godev.agency/projects/mint-links/", "Enhancing Mint Link’s MICE platform for optimal user engagement")
 ])
-def test_main_page_click_card_and_open_pages(driver, card_type, expected_url, expected_title):
+def test_main_page_click_services_and_project_and_open_pages(driver, card_type, expected_url, expected_title):
     main_page_test = MainPage(driver)
     main_page_test.open()
-    main_page_test.test_click_card_and_open_page(card_type, expected_url, expected_title)
-
-@pytest.mark.parametrize("project_type, expected_url, expected_title, index", [
-    ("euro_VPN", "https://dev.godev.agency/projects/information-security-service/", "Information security service redesign", "1"),
-    ("vegan_hotel", "https://dev.godev.agency/projects/vegan-hotel/", "Website development for a conceptual hotel in the Dolomites", "5"),
-    ("find_a_builder", "https://dev.godev.agency/projects/find-a-builder/", "Website development for London construction company", "2"),
-    ("sls", "https://dev.godev.agency/projects/swift-logistic-solutions/", "Building a robust logistics platform for Swift Logistic Solutions", "4"),
-    ("mint_link", "https://dev.godev.agency/projects/mint-links/", "Enhancing Mint Link’s MICE platform for optimal user engagement", "3")
-])
-def test_main_page_click_project_and_open_pages(driver, project_type, expected_url, expected_title, index):
-    main_page_test = MainPage(driver)
-    main_page_test.open()
-    main_page_test.test_click_project_and_open_page(project_type, expected_url, expected_title)
+    project_element = main_page_test.get_project_service_element()
+    project_element.test_click_card_and_open_page(card_type, expected_url, expected_title)
 
 def test_main_page_count_card_reviews(driver):
     main_page_test = MainPage(driver)

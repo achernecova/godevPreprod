@@ -30,3 +30,9 @@ class WebDevelopPage:
 
     def get_count_elements(self):
         return CountElements(self.driver)
+
+    def get_project_service_element(self):
+        from page_elements.project_service_element import ProjectServiceElement
+        return ProjectServiceElement(self.driver)
+
+

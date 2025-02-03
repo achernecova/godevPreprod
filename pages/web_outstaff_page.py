@@ -7,15 +7,17 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 from page_elements.block_count_elements import CountElements
 from page_elements.meta_data_page import MetaData
+from pages.base_page import BasePage
 
 
-class web_outstaff_page:
+class WebOutstaffPage(BasePage):
 
     def __init__(self, driver):
+        super().__init__(driver)
         self.driver = driver
 
     def open(self):
-        self.driver.get('https://dev.godev.agency/services/outstaffing-and-outsourcing-of-it-specialists/')
+        super().open('services/outstaffing-and-outsourcing-of-it-specialists/')  # Добавляем под-URL
 
     def get_url(self):
         current_url = self.driver.current_url
@@ -89,35 +91,5 @@ class web_outstaff_page:
         assert self.project_bullits.text == bullits, f"Ожидался заголовок '{bullits}', но получен '{self.project_bullits.text}'"
         assert self.project_name.text == project_type, f"Ожидался заголовок '{project_type}', но получен '{self.project_name.text}'"
         assert self.project_price.text == price, f"Ожидался заголовок '{price}', но получен '{self.project_price.text}'"
-
-
-
-
-
-
-
-    def benefits_types_of_it_what_to_choose_count_cards(self, project_type, count):
-        if project_type == "benefits":
-            block = self.driver.find_element(By.XPATH, "//*[@class='advant-section']")
-            self.scroll_to_element(block)
-            cards_block = self.driver.find_elements(By.XPATH, "//*[@class='advant-card']")
-            count_cards = len(cards_block)  # Получаем количество элементов в списке
-            print(count_cards)
-        elif project_type == "types_of_it":
-            block = self.driver.find_element(By.XPATH, "//*[@class='types-of-it']")
-            self.scroll_to_element(block)
-            cards_block = self.driver.find_elements(By.XPATH, "//*[@class='types-of-it-card']")
-            count_cards = len(cards_block)  # Получаем количество элементов в списке
-            print(count_cards)
-        elif project_type == "what_to_choose":
-            block = self.driver.find_element(By.XPATH, "//*[@class='choise-cards']")
-            self.scroll_to_element(block)
-            cards_block = self.driver.find_elements(By.XPATH, "//*[@class='choise-card']")
-            count_cards = len(cards_block)  # Получаем количество элементов в списке
-            print(count_cards)
-        else:
-            raise ValueError("Неверный тип карточки")
-        assert count_cards == count, f"Получено количество карточек:  {count_cards}"
-
 
 

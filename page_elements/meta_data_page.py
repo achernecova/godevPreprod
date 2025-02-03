@@ -5,8 +5,8 @@ class MetaData:
         self.driver = driver
 
     def get_title_ceo_page(self):
-        title_page_in_mobile_dev = self.driver.title
-        return title_page_in_mobile_dev
+        title_page_dev = self.driver.title
+        return title_page_dev
 
     def get_descr_ceo_page(self):
         description_element = self.driver.find_element(By.XPATH, "//meta[@name='description']")

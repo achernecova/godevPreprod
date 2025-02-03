@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 
 
-class project_vegan_hotel:
+class ProjectVeganHotel:
 
     def __init__(self, driver):
         self.driver = driver

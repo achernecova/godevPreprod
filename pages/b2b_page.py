@@ -6,6 +6,7 @@ from page_elements.block_count_elements import CountElements
 from page_elements.form_page import FormPage
 from page_elements.meta_data_page import MetaData
 from page_elements.popup_element import PopupElement
+
 from pages.base_page import BasePage
 
 
@@ -17,14 +18,6 @@ class B2BPage(BasePage):
 
     def open(self):
         super().open('services/website-development/b2b/')  # Добавляем под-URL
-
-    def get_url(self):
-        current_url = self.driver.current_url
-        return current_url
-
-    def get_title_page(self):
-        title_page = self.driver.find_element(By.XPATH, "//h1")
-        return title_page.text
 
     def get_form_page(self):
         return FormPage(self.driver)

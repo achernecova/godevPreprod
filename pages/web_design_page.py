@@ -11,11 +11,3 @@ class WebDesignPage(BasePage):
 
     def open(self):
         super().open('services/website-design-and-development-services/')  # Добавляем под-URL
-
-    def get_url(self):
-        current_url = self.driver.current_url
-        return current_url
-
-    def get_title_page(self):
-        title_page = self.driver.find_element(By.XPATH, "//h1")
-        return title_page.text

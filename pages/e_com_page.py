@@ -7,7 +7,6 @@ from page_elements.meta_data_page import MetaData
 from page_elements.popup_element import PopupElement
 from pages.base_page import BasePage
 
-
 class EComPage(BasePage):
 
     def __init__(self, driver):
@@ -16,14 +15,6 @@ class EComPage(BasePage):
 
     def open(self):
         super().open('services/website-development/e-commerce/')  # Добавляем под-URL
-
-    def get_url(self):
-        current_url = self.driver.current_url
-        return current_url
-
-    def get_title_page(self):
-        title_page = self.driver.find_element(By.XPATH, "//h1")
-        return title_page.text
 
     def get_meta_data(self):
         return MetaData(self.driver)

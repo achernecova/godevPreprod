@@ -24,8 +24,6 @@ class MenuElement(BasePage):
         "submenu_cms_locator": (By.XPATH, "//*[@href= 'https://dev.godev.agency/services/website-development/cms/']"),
         "submenu_framework_locator": (By.XPATH, "//*[@href= 'https://dev.godev.agency/services/website-development/framework/']"),
         "submenu_b2b_locator": (By.XPATH, "//*[@href= 'https://dev.godev.agency/services/website-development/b2b/']")
-        #
-
     }
 
     def click_menu_service(self):

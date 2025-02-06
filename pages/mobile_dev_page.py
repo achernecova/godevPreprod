@@ -28,14 +28,6 @@ class MobileDevPage(BasePage):
     def open(self):
         super().open('services/mobile-development/')  # Добавляем под-URL
 
-    def get_url(self):
-        current_url = self.driver.current_url
-        return current_url
-
-    def get_title_page(self):
-        title_page = self.driver.find_element(By.XPATH, "//h1")
-        return title_page.text
-
     def get_meta_data(self):
         return MetaData(self.driver)
 

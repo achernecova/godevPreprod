@@ -1,29 +1,21 @@
+import logging
+
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 
 from page_elements.block_count_elements import CountElements
 from page_elements.meta_data_page import MetaData
+from pages.base_page import BasePage
 
 
-class WebDevelopPage:
+class WebDevelopPage(BasePage):
 
     def __init__(self, driver):
+        super().__init__(driver)
         self.driver = driver
 
     def open(self):
-        self.driver.get('https://dev.godev.agency/services/website-development/')
-
-    def get_url(self):
-        current_url = self.driver.current_url
-        return current_url
-
-    def get_title_page(self):
-        title_page = self.driver.find_element(By.XPATH, "//h1")
-        return title_page.text
-
-    def scroll_to_element(self, element):
-        action = ActionChains(self.driver)
-        action.move_to_element(element).perform()
+        super().open('services/website-development/')  # Добавляем под-URL
 
     def get_meta_data(self):
         return MetaData(self.driver)
@@ -35,4 +27,11 @@ class WebDevelopPage:
         from page_elements.project_service_element import ProjectServiceElement
         return ProjectServiceElement(self.driver)
 
-
+    def click_more_packages_and_data_pages(self, index, page_url, page_title):
+        logging.info('move cursor to element')
+        self.team_card_more = self.driver.find_element(By.XPATH, "(//*[contains(@class, 'tile ')]//a[@class='more'])["+index+"]")
+        self.scroll_to_element(self.team_card_more)
+        self._click_element(self.team_card_more)
+        self.title_page = self.driver.find_element(By.XPATH, "//h1")
+        assert self.get_url() == page_url, f"Ожидался заголовок '{page_url}', но получен '{self.get_url()}'"
+        assert self.title_page.text == page_title, f"Ожидался заголовок '{page_title}', но получен '{self.title_page.text}'"

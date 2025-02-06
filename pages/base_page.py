@@ -45,5 +45,24 @@ class BasePage:
     def wait_for_element(self, locator, timeout=10):
         return WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located(locator))
 
+    def get_url(self):
+        current_url = self.driver.current_url
+        return current_url
+
+    def get_title_page(self):
+        title_page = self.driver.find_element(By.XPATH, "//h1")
+        return title_page.text
+
+    def popup_success_displayed(self, timeout=10):
+        try:
+            # Ожидание видимости элемента с указанным XPath
+            popup_success = WebDriverWait(self.driver, timeout).until(
+                EC.visibility_of_element_located((By.XPATH, "//*[@class='sendmail-popup success']"))
+            )
+            return popup_success.is_displayed()
+        except (NoSuchElementException, TimeoutException):
+            # Если элемент не найден или не виден в течение указанного времени, возвращаем False
+            return False
+
 
 

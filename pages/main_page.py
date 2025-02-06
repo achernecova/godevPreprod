@@ -1,16 +1,13 @@
 
 import logging
 
-from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from page_elements.block_count_elements import CountElements
 from page_elements.form_page import FormPage
 from page_elements.menu_element import MenuElement
 from page_elements.meta_data_page import MetaData
 from page_elements.popup_element import PopupElement
-from page_elements.project_service_element import ProjectServiceElement
+
 from pages.base_page import BasePage
 
 
@@ -28,14 +25,6 @@ class MainPage(BasePage):
     def open(self):
         super().open('')  # Добавляем под-URL
 
-    def get_url(self):
-        current_url = self.driver.current_url
-        return current_url
-
-    def get_title_page(self):
-        title_page = self.driver.find_element(By.XPATH, "//h1")
-        return title_page.text
-
     def get_form_page(self):
         return FormPage(self.driver)
 
@@ -52,6 +41,7 @@ class MainPage(BasePage):
         return CountElements(self.driver)
 
     def get_project_service_element(self):
+        from page_elements.project_service_element import ProjectServiceElement
         return ProjectServiceElement(self.driver)
 
     def check_packages_data(self, project_type, experience, bullits, price, index):
@@ -75,7 +65,7 @@ class MainPage(BasePage):
         logging.info('move cursor to element')
         self.team_card_more = self.driver.find_element(By.XPATH, "(//*[@class='team-card']//a[@class='more'])["+index+"]")
         self.scroll_to_element(self.team_card_more)
-        self.team_card_more.click()
+        self._click_element(self.team_card_more)
         self.title_page = self.driver.find_element(By.XPATH, "//h1")
         assert self.get_url() == page_url, f"Ожидался заголовок '{page_url}', но получен '{self.get_url()}'"
         assert self.title_page.text == page_title, f"Ожидался заголовок '{page_title}', но получен '{self.title_page.text}'"

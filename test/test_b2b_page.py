@@ -1,20 +1,24 @@
+import allure
 import pytest
 
 from pages.b2b_page import B2BPage
 
-
+@allure.feature('Количество элементов в блоке')
 def test_b2b_page_platforms_count_cards_assert(driver):
     b2b_page_test = B2BPage(driver)
     b2b_page_test.open()
     blocks = b2b_page_test.get_count_elements()
     blocks.count_cards_assert("platforms", 4)
 
+@allure.feature('Количество элементов в блоке')
 def test_b2b_page_benefits_count_cards_assert(driver):
     b2b_page_test = B2BPage(driver)
     b2b_page_test.open()
     blocks = b2b_page_test.get_count_elements()
     blocks.count_cards_assert("types_of_websites_count_card", 7)
 
+@allure.link(url='https://team-v5ka.testit.software/projects/664/tests/908', name='Корректно указаны title, description, canonical')
+@allure.feature('Добавление мета-тегов')
 def test_main_page_add_title_descr_and_canonical(driver):
     b2b_page_test = B2BPage(driver)
     b2b_page_test.open()
@@ -23,6 +27,7 @@ def test_main_page_add_title_descr_and_canonical(driver):
     assert form_page_test.get_descr_ceo_page() == "Transform your B2B ecommerce website with Godev's expert design strategies. Our web development services create high-converting platforms for success", f"Получен Title:  {form_page_test.get_descr_ceo_page()}"
     assert form_page_test.get_canonical_ceo_page() == "https://dev.godev.agency/services/website-development/b2b/", f"Получен canonical:  {form_page_test.get_canonical_ceo_page()}"
 
+@allure.feature('Открытие страниц проектов')
 @pytest.mark.parametrize("card_type, expected_url, expected_title", [
     ("euro_VPN", "https://dev.godev.agency/projects/information-security-service/", "Information security service redesign"),
     ("vegan_hotel", "https://dev.godev.agency/projects/vegan-hotel/", "Website development for a conceptual hotel in the Dolomites"),
@@ -34,7 +39,9 @@ def test_main_page_click_services_and_project_and_open_pages(driver, card_type, 
     b2b_page_test = B2BPage(driver)
     b2b_page_test.open()
     project_element = b2b_page_test.get_project_service_element()
-    project_element.test_click_card_and_open_page(card_type, expected_url, expected_title)
+    page = project_element.test_click_card_and_open_page(card_type, expected_url, expected_title)
+    assert driver.current_url == expected_url, f"Ожидался URL '{expected_url}', но получен '{driver.current_url}'"
+    assert page.get_title_page() == expected_title, f"Получен Title: {page.get_title_page()}"
 
 
 #Надо подумать - выносить код этот в отдельный pageElement или нет. Он используется еще в mainPage и b2b

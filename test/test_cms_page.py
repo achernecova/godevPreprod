@@ -1,7 +1,9 @@
+import allure
 import pytest
 
 from pages.cms_page import CMSPage
 
+@allure.feature('Добавление мета-тегов')
 def test_cms_page_add_title_descr_and_canonical(driver):
     cms_page_test = CMSPage(driver)
     cms_page_test.open()
@@ -10,6 +12,7 @@ def test_cms_page_add_title_descr_and_canonical(driver):
     assert form_page_test.get_descr_ceo_page() == "Unlock your website's potential with our custom CMS development services in the USA. Tailored solutions to meet your business needs, backed by years of Godev's experience", f"Получен Title:  {form_page_test.get_descr_ceo_page()}"
     assert form_page_test.get_canonical_ceo_page() == "https://dev.godev.agency/services/website-development/cms/", f"Получен canonical:  {form_page_test.get_canonical_ceo_page()}"
 
+@allure.feature('Открытие страниц проектов')
 @pytest.mark.parametrize("card_type, expected_url, expected_title", [
     ("euro_VPN", "https://dev.godev.agency/projects/information-security-service/", "Information security service redesign"),
     ("vegan_hotel", "https://dev.godev.agency/projects/vegan-hotel/", "Website development for a conceptual hotel in the Dolomites"),
@@ -21,26 +24,32 @@ def test_cms_page_click_services_and_project_and_open_pages(driver, card_type, e
     cms_page_test = CMSPage(driver)
     cms_page_test.open()
     project_element = cms_page_test.get_project_service_element()
-    project_element.test_click_card_and_open_page(card_type, expected_url, expected_title)
+    page = project_element.test_click_card_and_open_page(card_type, expected_url, expected_title)
+    assert driver.current_url == expected_url, f"Ожидался URL '{expected_url}', но получен '{driver.current_url}'"
+    assert page.get_title_page() == expected_title, f"Получен Title: {page.get_title_page()}"
 
+@allure.feature('Количество элементов в блоке')
 def test_cms_page_benefits_count_cards_assert(driver):
     cms_page_test = CMSPage(driver)
     cms_page_test.open()
     blocks = cms_page_test.get_count_elements()
     blocks.count_cards_assert("types_of_websites_count_card", 4)
 
+@allure.feature('Количество элементов в блоке')
 def test_cms_page_cms_services_cards_count_assert(driver):
     cms_page_test = CMSPage(driver)
     cms_page_test.open()
     blocks = cms_page_test.get_count_elements()
     blocks.count_cards_assert("cms_services_cards", 4)
 
+@allure.feature('Количество элементов в блоке')
 def test_cms_page_cms_types_of_it_count_assert(driver):
     cms_page_test = CMSPage(driver)
     cms_page_test.open()
     blocks = cms_page_test.get_count_elements()
     blocks.count_cards_assert("types_of_it", 3)
 
+@allure.feature('Количество элементов в блоке')
 def test_cms_page_platforms_count_cards_assert(driver):
     cms_page_test = CMSPage(driver)
     cms_page_test.open()
@@ -51,13 +60,16 @@ def test_cms_page_platforms_count_cards_assert(driver):
 @pytest.mark.parametrize("project_type, experience, bullits, price, index", [
     ("E-Commerce", "3+ years of experience", "business / security / design", "30 $ / hour", "1"),
     ("Corporate", "3+ years of experience", "design / affordable price", "35 $ / hour", "2"),
-    ("Online shops", "3+ years of experience", "business / security / design", "660 $ from", "3"),
-    ("B2B sites", "3+ years of experience", "business / security / design", "3300 $ from", "4"),
-    ("WordPress", "3+ years of experience", "design / affordable price", "390 $ from", "5"),
-    ("OpenCart", "3+ years of experience", "design / affordable price", "650 $ from", "6"),
-    ("Joomla", "3+ years of experience", "design / affordable price", "690 $ from", "7")
+    ("Landing", "3+ years of experience", "design / affordable price", "30 $ / hour", "3"),
+    ("Online shops", "3+ years of experience", "business / security / design", "660 $ from", "4"),
+    ("Web portals", "3+ years of experience", "workload / security / design", "2000 $ from", "5"),
+    ("B2B sites", "3+ years of experience", "business / security / design", "3300 $ from", "6"),
+    ("WordPress", "3+ years of experience", "design / affordable price", "390 $ from", "7"),
+    ("Joomla", "3+ years of experience", "design / affordable price", "650 $ from", "8"),
+    ("OpenCart", "3+ years of experience", "design / affordable price", "650 $ from", "9")
+
 ])
-def test_main_page_data_card_packages(driver, project_type, experience, bullits, price, index):
+def test_cms_page_data_card_packages(driver, project_type, experience, bullits, price, index):
     cms_page_test = CMSPage(driver)
     cms_page_test.open()
     cms_page_test.check_packages_data(project_type, experience, bullits, price, index)

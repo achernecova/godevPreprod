@@ -1,7 +1,19 @@
+import allure
 import pytest
+from allure_commons._allure import feature
 
 from pages.web_outstaff_page import WebOutstaffPage
 
+@feature('Успешная отправка заявки')
+def test_web_outstaff_add_success_request(driver):
+    web_outstaff_page_test = WebOutstaffPage(driver)
+    web_outstaff_page_test.open()
+    web_outstaff_page_test.click_button_outsource()
+    form_page_test = web_outstaff_page_test.get_popup_element()
+    form_page_test.add_request_success()
+    assert form_page_test.popup_success_displayed() == True, "Окно не появилось"
+
+@feature('Добавление мета-тегов')
 def test_web_outstaff_add_title_and_descr(driver):
     web_outstaff_page_test = WebOutstaffPage(driver)
     web_outstaff_page_test.open()
@@ -9,12 +21,6 @@ def test_web_outstaff_add_title_and_descr(driver):
     assert form_page_test.get_title_ceo_page() == "IT staff augmentation company in USA, cost of outsorce tech teams and software developers", f"Получен Title:  {form_page_test.get_title_ceo_page()}"
     assert form_page_test.get_descr_ceo_page() == "IT staff augmentation – hire tech teams and software developers for your projects with lower cost in USA. Software, databases, websites, applications, microservices, mobile applications", f"Получен Title:  {form_page_test.get_descr_ceo_page()}"
     assert form_page_test.get_canonical_ceo_page() == "https://dev.godev.agency/services/outstaffing-and-outsourcing-of-it-specialists/", f"Получен canonical:  {form_page_test.get_canonical_ceo_page()}"
-
-
-def test_web_outstaff_add_success_request(driver):
-    web_outstaff_page_test = WebOutstaffPage(driver)
-    web_outstaff_page_test.open()
-    web_outstaff_page_test.click_button_request_add()
 
 @pytest.mark.parametrize("project_type, experience, bullits, price, index", [
     ("Backend", "3+ years of experience", "middle / middle+ / senior", "30$ / hour", "1"),
@@ -29,6 +35,7 @@ def test_main_page_data_card_packages(driver, project_type, experience, bullits,
     main_page_test.open()
     main_page_test.check_packages_data(project_type, experience, bullits, price, index)
 
+@feature('Количество элементов в блоке')
 @pytest.mark.parametrize("project_type, count", [
     ("benefits", 6),
     ("types_of_it", 3),

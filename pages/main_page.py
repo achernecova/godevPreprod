@@ -1,7 +1,8 @@
-
+import json
 import logging
 
 from selenium.webdriver.common.by import By
+
 from page_elements.block_count_elements import CountElements
 from page_elements.form_page import FormPage
 from page_elements.menu_element import MenuElement
@@ -9,10 +10,16 @@ from page_elements.meta_data_page import MetaData
 from page_elements.popup_element import PopupElement
 
 from pages.base_page import BasePage
-
+from package_data import PackageData
 
 class MainPage(BasePage):
     logging.basicConfig(level=logging.INFO)
+
+    @classmethod
+    def load_package_data(cls, filename):
+        with open(filename) as f:
+            package_data_list = json.load(f)
+        return [PackageData(data) for data in package_data_list]
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -43,23 +50,6 @@ class MainPage(BasePage):
     def get_project_service_element(self):
         from page_elements.project_service_element import ProjectServiceElement
         return ProjectServiceElement(self.driver)
-
-    def check_packages_data(self, project_type, experience, bullits, price, index):
-        logging.info('move cursor to element')
-        team_card = self.driver.find_element(By.XPATH, f"(//*[@class='team-card'])[{index}]")
-        self.scroll_to_element(team_card)
-
-        attributes = {
-            'spec fs24': project_type,
-            'exp': experience,
-            'level': bullits,
-            'price': price
-        }
-
-        for attr, expected in attributes.items():
-            print(f"(//*[@class='team-card']//*[@class='{attr}'])[{index}]")
-            element = self.driver.find_element(By.XPATH, f"(//*[@class='team-card']//*[@class='{attr}'])[{index}]")
-            assert element.text == expected, f"Ожидался заголовок '{expected}', но получен '{element.text}'"
 
     def click_more_packages_and_data_pages(self, index, page_url, page_title):
         logging.info('move cursor to element')

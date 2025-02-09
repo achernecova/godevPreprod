@@ -1,3 +1,5 @@
+import json
+
 import allure
 import pytest
 from allure_commons._allure import feature
@@ -25,19 +27,25 @@ def test_e_com_page_our_proven_web_dev_count_cards_assert(driver):
     blocks = e_com_page_test.get_count_elements()
     blocks.count_cards_assert("our_proven_web_dev", 7)
 
-#Надо подумать - выносить код этот в отдельный pageElement или нет. Он используется еще в mainPage
-@pytest.mark.parametrize("project_type, bullits, price, index", [
-    ("E-commerce web development", "business / security / design", "30 $ / hour", "1"),
-    ("E-commerce web design", "design / affordable price", "22 $ / hour", "2"),
-    ("Online shops", "business / security / design", "660 $ from", "3"),
-    ("Search engine optimization", "experience / affordable price", "2000 $ / month", "4"),
-    ("Front-end development", "HTML / JavaScript / CSS", "30 $ / hour", "5"),
-    ("Back-end development", "experience / knowledge / microservices", "30 $ / hour", "6")
-])
-def test_e_com_page_data_card_packages(driver, project_type, bullits, price, index):
+
+# Загрузка данных из JSON файла
+with open('../package_card_data.json') as f:
+    data = json.load(f)
+filtered_data = [
+    item for item in data
+    if item['project_type'] in ['E-commerce web development', 'E-commerce web design', 'Online shops', 'Search engine optimization', 'Front-end development', 'Back-end development']
+]
+# Использование отфильтрованных данных в тестах
+@pytest.mark.parametrize("project_type, bullits, price",
+    [(d['project_type'], d['bullits'], d['price']) for d in filtered_data])
+def test_main_page_data_card_packages(driver, project_type, bullits, price):
     e_com_page_test = EComPage(driver)
     e_com_page_test.open()
-    e_com_page_test.check_packages_data_not_experience(project_type, bullits, price, index)
+    e_com_page_test.check_packages_data_not_experience(project_type, bullits, price)
+
+
+
+
 
 @allure.feature('Открытие страниц проектов')
 @pytest.mark.parametrize("card_type, expected_url, expected_title", [

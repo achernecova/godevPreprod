@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 
+from data_url import subURLs
 from page_elements.block_count_elements import CountElements
 from page_elements.form_page import FormPage
 from page_elements.menu_element import MenuElement
@@ -13,13 +14,14 @@ class ReviewsPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
+        self.subURL = subURLs.REVIEWS_PAGE
 
     def click_button_banner(self):
         click_button_banner = self.driver.find_element(By.XPATH, "//*[@class='banner']//button")
         click_button_banner.click()
 
     def open(self):
-        super().open('reviews/')  # Добавляем под-URL
+        super().open(self.subURL)  # Добавляем под-URL
 
     def get_form_page(self):
         return FormPage(self.driver)

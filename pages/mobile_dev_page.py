@@ -2,6 +2,7 @@ import logging
 
 from selenium.webdriver.common.by import By
 
+from data_url import subURLs
 from page_elements.block_count_elements import CountElements
 from page_elements.meta_data_page import MetaData
 from page_elements.popup_element import PopupElement
@@ -24,9 +25,10 @@ class MobileDevPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
+        self.subURL = subURLs.MOBILE_PAGE
 
     def open(self):
-        super().open('services/mobile-development/')  # Добавляем под-URL
+        super().open(self.subURL)  # Добавляем под-URL
 
     def get_meta_data(self):
         return MetaData(self.driver)

@@ -5,7 +5,6 @@ from allure_commons._allure import feature, story
 from pages.services_page import ServicesPage
 
 @feature('Открытие страниц услуг')
-@story('Story Name')
 @pytest.mark.parametrize("card_type, expected_url, expected_title", [
     ("mobile_dev", "https://dev.godev.agency/services/mobile-development/", "Application development services"),
     ("website_dev", "https://dev.godev.agency/services/website-development/", "Website development"),

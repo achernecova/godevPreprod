@@ -1,24 +1,27 @@
+import json
+
 import allure
 import pytest
+from allure_commons._allure import feature, link
 
 from pages.b2b_page import B2BPage
 
-@allure.feature('Количество элементов в блоке')
+@feature('Количество элементов в блоке')
 def test_b2b_page_platforms_count_cards_assert(driver):
     b2b_page_test = B2BPage(driver)
     b2b_page_test.open()
     blocks = b2b_page_test.get_count_elements()
     blocks.count_cards_assert("platforms", 4)
 
-@allure.feature('Количество элементов в блоке')
+@feature('Количество элементов в блоке')
 def test_b2b_page_benefits_count_cards_assert(driver):
     b2b_page_test = B2BPage(driver)
     b2b_page_test.open()
     blocks = b2b_page_test.get_count_elements()
     blocks.count_cards_assert("types_of_websites_count_card", 7)
 
-@allure.link(url='https://team-v5ka.testit.software/projects/664/tests/908', name='Корректно указаны title, description, canonical')
-@allure.feature('Добавление мета-тегов')
+@link(url='https://team-v5ka.testit.software/projects/664/tests/908', name='Корректно указаны title, description, canonical')
+@feature('Добавление мета-тегов')
 def test_main_page_add_title_descr_and_canonical(driver):
     b2b_page_test = B2BPage(driver)
     b2b_page_test.open()
@@ -27,7 +30,7 @@ def test_main_page_add_title_descr_and_canonical(driver):
     assert form_page_test.get_descr_ceo_page() == "Transform your B2B ecommerce website with Godev's expert design strategies. Our web development services create high-converting platforms for success", f"Получен Title:  {form_page_test.get_descr_ceo_page()}"
     assert form_page_test.get_canonical_ceo_page() == "https://dev.godev.agency/services/website-development/b2b/", f"Получен canonical:  {form_page_test.get_canonical_ceo_page()}"
 
-@allure.feature('Открытие страниц проектов')
+@feature('Открытие страниц проектов')
 @pytest.mark.parametrize("card_type, expected_url, expected_title", [
     ("euro_VPN", "https://dev.godev.agency/projects/information-security-service/", "Information security service redesign"),
     ("vegan_hotel", "https://dev.godev.agency/projects/vegan-hotel/", "Website development for a conceptual hotel in the Dolomites"),
@@ -44,17 +47,17 @@ def test_main_page_click_services_and_project_and_open_pages(driver, card_type, 
     assert page.get_title_page() == expected_title, f"Получен Title: {page.get_title_page()}"
 
 
-#Надо подумать - выносить код этот в отдельный pageElement или нет. Он используется еще в mainPage и b2b
-@pytest.mark.parametrize("project_type, experience, bullits, price, index", [
-    ("E-Commerce", "3+ years of experience", "business / security / design", "30 $ / hour", "1"),
-    ("Corporate", "3+ years of experience", "design / affordable price", "35 $ / hour", "2"),
-    ("Online shops", "3+ years of experience", "business / security / design", "660 $ from", "3"),
-    ("B2B sites", "3+ years of experience", "business / security / design", "3300 $ from", "4"),
-    ("WordPress", "3+ years of experience", "design / affordable price", "390 $ from", "5"),
-    ("OpenCart", "3+ years of experience", "design / affordable price", "650 $ from", "6"),
-    ("Joomla", "3+ years of experience", "design / affordable price", "690 $ from", "7")
-])
-def test_main_page_data_card_packages(driver, project_type, experience, bullits, price, index):
+# Загрузка данных из JSON файла
+with open('../package_card_data.json') as f:
+    data = json.load(f)
+filtered_data = [
+    item for item in data
+    if item['project_type'] in ['E-Commerce', 'Corporate', 'Online shops', 'B2B sites', 'WordPress', 'OpenCart', 'Joomla']
+]
+# Использование отфильтрованных данных в тестах
+@pytest.mark.parametrize("project_type, experience, bullits, price",
+    [(d['project_type'], d['experience'], d['bullits'], d['price']) for d in filtered_data])
+def test_main_page_data_card_packages(driver, project_type, experience, bullits, price):
     b2b_page_test = B2BPage(driver)
     b2b_page_test.open()
-    b2b_page_test.check_packages_data(project_type, experience, bullits, price, index)
+    b2b_page_test.check_packages_data(project_type, experience, bullits, price)

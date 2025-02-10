@@ -20,18 +20,19 @@ class PopupElement(BasePage):
 
     def input_name_in_banner(self):
         input_name = self.driver.find_element(By.XPATH, "//*[@class='request-offer-inputs']//input[@name='name']")
-        input_name.send_keys(self.fake.name())
+        input_name.send_keys("TEST" + self.fake.name())
 
     def input_email_in_banner(self):
         input_email = self.driver.find_element(By.XPATH, "//*[@class='request-offer-inputs']//input[@name='email']")
-        input_email.send_keys(self.fake.email())
+        input_email.send_keys("TEST" + self.fake.email())
 
     def input_comment_in_banner(self):
         input_comment = self.driver.find_element(By.XPATH, "//*[@class='form-textarea']//*[@placeholder='Comment']")
-        input_comment.send_keys(self.fake.text(max_nb_chars=500))
+        input_comment.send_keys("TEST" + self.fake.text(max_nb_chars=200))
 
     def click_button_in_banner(self):
-        self._click_element(self.driver.find_element(By.XPATH, "//*[@class='request-offer-bottom']//button"))
+        self.driver.find_element(By.XPATH, "//*[@class='request-offer-bottom']//button").click()
+        #self._click_element(self.driver.find_element(By.XPATH, "//*[@class='request-offer-bottom']//button"))
 
     def click_button_in_header(self):
         self._click_element(self.driver.find_element(By.XPATH, "//*[@class='right']//button"))

@@ -2,6 +2,7 @@ import logging
 
 from selenium.webdriver.common.by import By
 
+from constants import subURLs
 from page_elements.block_count_elements import CountElements
 from page_elements.form_page import FormPage
 from page_elements.meta_data_page import MetaData
@@ -13,9 +14,10 @@ class BlogPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
+        self.subURL = subURLs.BLOG_PAGE
 
     def open(self):
-        super().open('blog/')  # Добавляем под-URL
+        super().open(self.subURL)  # Добавляем под-URL
 
     def get_date_blog(self):
         date_blog = self.driver.find_element(By.XPATH, "//*[@class= 'blog-single-banner__date']")

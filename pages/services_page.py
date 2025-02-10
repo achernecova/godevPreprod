@@ -1,5 +1,5 @@
 #в процессе
-
+from constants import subURLs
 from page_elements.block_count_elements import CountElements
 from page_elements.form_page import FormPage
 from page_elements.menu_element import MenuElement
@@ -13,9 +13,10 @@ class ServicesPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
+        self.subURL = subURLs.SERVICES_PAGE
 
     def open(self):
-        super().open('services/')  # Добавляем под-URL
+        super().open(self.subURL)  # Добавляем под-URL
 
     def get_project_service_element(self):
         from page_elements.project_service_element import ProjectServiceElement

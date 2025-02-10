@@ -1,7 +1,10 @@
+import json
+
 import allure
 import pytest
 from allure_commons._allure import feature
 
+from constants import PROJECTS_TYPES
 from pages.reviews_page import ReviewsPage
 
 @feature('Количество элементов в блоке')
@@ -20,15 +23,21 @@ def test_reviews_page_add_title_descr_and_canonical(driver):
     assert form_page_test.get_descr_ceo_page() == "Reviews from our clients about web development with Godev", f"Получен Title:  {form_page_test.get_descr_ceo_page()}"
     assert form_page_test.get_canonical_ceo_page() == "https://dev.godev.agency/reviews/", f"Получен canonical:  {form_page_test.get_canonical_ceo_page()}"
 
+
+# Загрузка данных из JSON-файла
+try:
+    with open('../service_pages_data.json') as f:
+        test_data = json.load(f)
+except (FileNotFoundError, json.JSONDecodeError) as e:
+    raise RuntimeError('Error loading package card data: ' + str(e))
+# Фильтрация данных по card_type
+filtered_data = [
+    (d['card_type'], d['expected_url'], d['expected_title'])
+    for d in test_data
+    if d['card_type'] in PROJECTS_TYPES]
 @feature('Открытие страниц проектов')
-@pytest.mark.parametrize("card_type, expected_url, expected_title", [
-    ("euro_VPN", "https://dev.godev.agency/projects/information-security-service/", "Information security service redesign"),
-    ("vegan_hotel", "https://dev.godev.agency/projects/vegan-hotel/", "Website development for a conceptual hotel in the Dolomites"),
-    ("find_a_builder", "https://dev.godev.agency/projects/find-a-builder/", "Website development for London construction company"),
-    ("sls", "https://dev.godev.agency/projects/swift-logistic-solutions/", "Building a robust logistics platform for Swift Logistic Solutions"),
-    ("mint_link", "https://dev.godev.agency/projects/mint-links/", "Enhancing Mint Link’s MICE platform for optimal user engagement")
-])
-def test_main_page_click_services_and_project_and_open_pages(driver, card_type, expected_url, expected_title):
+@pytest.mark.parametrize("card_type, expected_url, expected_title", filtered_data)
+def test_reviews_page_click_services_and_project_and_open_pages(driver, card_type, expected_url, expected_title):
     reviews_page_test = ReviewsPage(driver)
     reviews_page_test.open()
     project_element = reviews_page_test.get_project_service_element()

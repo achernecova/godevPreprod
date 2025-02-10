@@ -2,6 +2,7 @@ import logging
 
 from selenium.webdriver.common.by import By
 
+from constants import subURLs
 from page_elements.block_count_elements import CountElements
 from page_elements.form_page import FormPage
 from page_elements.meta_data_page import MetaData
@@ -14,9 +15,10 @@ class CMSPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
+        self.subURL = subURLs.CMS_PAGE
 
     def open(self):
-        super().open('services/website-development/cms/')  # Добавляем под-URL
+        super().open(self.subURL)  # Добавляем под-URL
 
     def get_form_page(self):
         return FormPage(self.driver)
@@ -39,20 +41,6 @@ class CMSPage(BasePage):
         self.scroll_to_element(button_tariff)
         self._click_element(button_tariff)
 
-    def check_packages_data(self, project_type, experience, bullits, price, index):
-        logging.info('move cursor to element')
-        team_card = self.driver.find_element(By.XPATH, f"(//*[@class='team-card'])[{index}]")
-        self.scroll_to_element(team_card)
-        attributes = {
-            'spec fs24': project_type,
-            'exp': experience,
-            'level': bullits,
-            'price': price
-        }
-        for attr, expected in attributes.items():
-            print(f"(//*[@class='team-card']//*[@class='{attr}'])[{index}]")
-            element = self.driver.find_element(By.XPATH, f"(//*[@class='team-card']//*[@class='{attr}'])[{index}]")
-            assert element.text == expected, f"Ожидался заголовок '{expected}', но получен '{element.text}'"
 
 
 

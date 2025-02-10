@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 
+from constants import subURLs
 from page_elements.block_count_elements import CountElements
 from page_elements.meta_data_page import MetaData
 from pages.base_page import BasePage
@@ -10,9 +11,10 @@ class ProjectPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
+        self.subURL = subURLs.PROJECT_PAGE
 
     def open(self):
-        super().open('projects/')  # Добавляем под-URL
+        super().open(self.subURL)  # Добавляем под-URL
 
     def get_meta_data(self):
         return MetaData(self.driver)

@@ -1,42 +1,35 @@
-import requests
-from selenium import webdriver
+import os
 import pytest
-from selenium.webdriver.chrome.options import Options
+import allure
+from selenium import webdriver
 
-
-
-@pytest.fixture()
+# Фикстура для создания драйвера браузера
+@pytest.fixture(scope='function', autouse=True)
 def driver():
-    #options = Options()
-    #options.add_argument('--headless')
-    #driver = webdriver.Chrome(options=options)
-    driver = webdriver.Chrome()
-    driver.maximize_window()
-    driver.implicitly_wait(3)
-    print ("Before test")
-    yield driver
-    #driver.close()
-    driver.quit()
+    d = webdriver.Chrome()
+    d.maximize_window()
+    d.implicitly_wait(3)
+    yield d
+    d.quit()
 
-@pytest.fixture(scope="module")
-def testit_setup():
-    api_token = "T0FLQjNKMzdPd1A3b1NpYzN5"
-    base_url = "https://team-v5ka.testit.software"
-    testit = TestIT(api_token, base_url)
-    return testit
+def take_screenshot(driver, test_name):
+    print(f"Taking screenshot for: {test_name}...")
+    if not os.path.exists('screenshots'):
+        os.makedirs('screenshots')
+        print("Created screenshots directory.")
+
+    screenshot_path = f'screenshots/{test_name}.png'
+    try:
+        driver.save_screenshot(screenshot_path)
+        print(f"Screenshot saved to: {screenshot_path}")
+        allure.attach.file(screenshot_path, name='Screenshot', attachment_type=allure.attachment_type.PNG)
+    except Exception as e:
+        print(f'Failed to save screenshot: {e}')
 
 
-class TestIT:
-    def __init__(self, api_token, base_url):
-        self.api_token = api_token
-        self.base_url = base_url
-
-    def get_test_case(self, test_case_id):
-        headers = {
-            "Authorization": f"Bearer {self.api_token}"
-        }
-        response = requests.get(f"{self.base_url}/api/test-cases/{test_case_id}", headers=headers)
-        if response.status_code == 200:
-            return response.json()
-        else:
-            raise Exception(f"Failed to retrieve test case: {response.content}")
+# Вызов отладочной печати в pytest_runtest_makereport:
+def pytest_runtest_makereport(item, call):
+    if call.when == "call":
+        if call.excinfo:
+            print(f"Test {item.name} failed with exception: {call.excinfo}")
+            take_screenshot(item.funcargs['driver'], item.name)

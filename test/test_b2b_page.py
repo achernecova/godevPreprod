@@ -1,7 +1,12 @@
+import json
+
 import allure
 import pytest
 
+from constants import CARD_PACKAGES_TYPES, PROJECTS_TYPES
+from package_data import PackageData
 from pages.b2b_page import B2BPage
+
 
 @allure.feature('Количество элементов в блоке')
 def test_b2b_page_platforms_count_cards_assert(driver):
@@ -27,15 +32,21 @@ def test_main_page_add_title_descr_and_canonical(driver):
     assert form_page_test.get_descr_ceo_page() == "Transform your B2B ecommerce website with Godev's expert design strategies. Our web development services create high-converting platforms for success", f"Получен Title:  {form_page_test.get_descr_ceo_page()}"
     assert form_page_test.get_canonical_ceo_page() == "https://dev.godev.agency/services/website-development/b2b/", f"Получен canonical:  {form_page_test.get_canonical_ceo_page()}"
 
+
+try:
+    with open('../service_pages_data.json') as f:
+        test_data = json.load(f)
+except (FileNotFoundError, json.JSONDecodeError) as e:
+    raise RuntimeError('Error loading package card data: ' + str(e))
+# Фильтрация данных по card_type
+filtered_data = [
+    (d['card_type'], d['expected_url'], d['expected_title'])
+    for d in test_data
+    if d['card_type'] in PROJECTS_TYPES]
+# Загрузка данных из JSON-файла
 @allure.feature('Открытие страниц проектов')
-@pytest.mark.parametrize("card_type, expected_url, expected_title", [
-    ("euro_VPN", "https://dev.godev.agency/projects/information-security-service/", "Information security service redesign"),
-    ("vegan_hotel", "https://dev.godev.agency/projects/vegan-hotel/", "Website development for a conceptual hotel in the Dolomites"),
-    ("find_a_builder", "https://dev.godev.agency/projects/find-a-builder/", "Website development for London construction company"),
-    ("sls", "https://dev.godev.agency/projects/swift-logistic-solutions/", "Building a robust logistics platform for Swift Logistic Solutions"),
-    ("mint_link", "https://dev.godev.agency/projects/mint-links/", "Enhancing Mint Link’s MICE platform for optimal user engagement")
-])
-def test_main_page_click_services_and_project_and_open_pages(driver, card_type, expected_url, expected_title):
+@pytest.mark.parametrize("card_type, expected_url, expected_title", filtered_data)
+def test_b2b_page_click_services_and_project_and_open_pages(driver, card_type, expected_url, expected_title):
     b2b_page_test = B2BPage(driver)
     b2b_page_test.open()
     project_element = b2b_page_test.get_project_service_element()
@@ -44,17 +55,20 @@ def test_main_page_click_services_and_project_and_open_pages(driver, card_type, 
     assert page.get_title_page() == expected_title, f"Получен Title: {page.get_title_page()}"
 
 
-#Надо подумать - выносить код этот в отдельный pageElement или нет. Он используется еще в mainPage и b2b
-@pytest.mark.parametrize("project_type, experience, bullits, price, index", [
-    ("E-Commerce", "3+ years of experience", "business / security / design", "30 $ / hour", "1"),
-    ("Corporate", "3+ years of experience", "design / affordable price", "35 $ / hour", "2"),
-    ("Online shops", "3+ years of experience", "business / security / design", "660 $ from", "3"),
-    ("B2B sites", "3+ years of experience", "business / security / design", "3300 $ from", "4"),
-    ("WordPress", "3+ years of experience", "design / affordable price", "390 $ from", "5"),
-    ("OpenCart", "3+ years of experience", "design / affordable price", "650 $ from", "6"),
-    ("Joomla", "3+ years of experience", "design / affordable price", "690 $ from", "7")
-])
-def test_main_page_data_card_packages(driver, project_type, experience, bullits, price, index):
+# Ошибка в 3 параметрах - надо проговорить с Кариной.
+# Загрузка данных из json файла
+try:
+    with open('../package_card_data.json') as f:
+        package_data_list = json.load(f)
+except (FileNotFoundError, json.JSONDecodeError) as e:
+    raise RuntimeError('Error loading package card data: ' + str(e))
+# Фильтрация данных по конкретным project_type
+package_data_list = [
+    PackageData(**data) for data in package_data_list
+    if data['project_type'] in CARD_PACKAGES_TYPES  # Используем импортированную константу
+]
+@pytest.mark.parametrize("package_data", package_data_list)
+def test_main_page_data_card_packages(driver, package_data):
     b2b_page_test = B2BPage(driver)
     b2b_page_test.open()
-    b2b_page_test.check_packages_data(project_type, experience, bullits, price, index)
+    b2b_page_test.check_packages_data(package_data.project_type, package_data.experience, package_data.bullits, package_data.price)

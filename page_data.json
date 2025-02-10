@@ -1,0 +1,62 @@
+[
+        {
+            "project_type": "euro_VPN",
+            "experience": "3+ years of experience",
+            "bullits": "business / security / design",
+            "price": "30 $ / hour",
+            "index": "1"
+        },
+        {
+            "project_type": "vegan_hotel",
+            "experience": "3+ years of experience",
+            "bullits": "design / affordable price",
+            "price": "35 $ / hour",
+            "index": "2"
+        },
+        {
+            "project_type": "find_a_builder",
+            "experience": "3+ years of experience",
+            "bullits": "design / affordable price",
+            "price": "30 $ / hour",
+            "index": "3"
+        },
+        {
+            "project_type": "sls",
+            "experience": "3+ years of experience",
+            "bullits": "business / security / design",
+            "price": "660 $ from",
+            "index": "4"
+        },
+        {
+            "project_type": "mint_link",
+            "experience": "3+ years of experience",
+            "bullits": "business / security / design",
+            "price": "660 $ from",
+            "index": "4"
+        },
+
+
+
+        {
+            "project_type": "B2B",
+            "experience": "3+ years of experience",
+            "bullits": "business / security / design",
+            "price": "660 $ from",
+            "index": "4"
+        },
+        {
+            "project_type": "E_COM",
+            "experience": "3+ years of experience",
+            "bullits": "business / security / design",
+            "price": "660 $ from",
+            "index": "4"
+        },
+        {
+            "project_type": "FRAMEWORK",
+            "experience": "3+ years of experience",
+            "bullits": "business / security / design",
+            "price": "660 $ from",
+            "index": "4"
+        }
+
+]

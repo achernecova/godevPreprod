@@ -1,6 +1,9 @@
+import json
+
 import allure
 import pytest
 
+from constants import PROJECTS_TYPES_FRAMEWORK
 from pages.framework_page import FrameworkPage
 
 @allure.feature('Количество элементов в блоке')
@@ -54,16 +57,24 @@ def test_framework_page_add_title_descr_and_canonical(driver):
     assert form_page_test.get_descr_ceo_page() == "Explore top web development frameworks in the USA with Godev. Save time and enhance coding efficiency for your projects by leveraging powerful software infrastructure!", f"Получен Title:  {form_page_test.get_descr_ceo_page()}"
     assert form_page_test.get_canonical_ceo_page() == "https://dev.godev.agency/services/website-development/framework/", f"Получен canonical:  {form_page_test.get_canonical_ceo_page()}"
 
+# Загрузка данных из JSON-файла
+try:
+    with open('../service_pages_data.json') as f:
+        test_data = json.load(f)
+except (FileNotFoundError, json.JSONDecodeError) as e:
+    raise RuntimeError('Error loading package card data: ' + str(e))
+# Фильтрация данных по card_type
+filtered_data = [
+    (d['card_type'], d['expected_url'], d['expected_title'])
+    for d in test_data
+    if d['card_type'] in PROJECTS_TYPES_FRAMEWORK]
 @allure.feature('Открытие страниц проектов')
-@pytest.mark.parametrize("project_type, expected_url, expected_title", [
-    ("find_a_builder", "https://dev.godev.agency/projects/find-a-builder/", "Website development for London construction company"),
-    ("vegan_hotel", "https://dev.godev.agency/projects/vegan-hotel/", "Website development for a conceptual hotel in the Dolomites")
-])
-def test_framework_page_click_project_and_open_pages(driver, project_type, expected_url, expected_title):
+@pytest.mark.parametrize("card_type, expected_url, expected_title", filtered_data)
+def test_e_com_page_click_services_and_project_and_open_pages(driver, card_type, expected_url, expected_title):
     framework_page_test = FrameworkPage(driver)
     framework_page_test.open()
     project_element = framework_page_test.get_project_service_element()
-    page = project_element.test_click_card_and_open_page(project_type, expected_url, expected_title)
+    page = project_element.test_click_card_and_open_page(card_type, expected_url, expected_title)
     assert driver.current_url == expected_url, f"Ожидался URL '{expected_url}', но получен '{driver.current_url}'"
     assert page.get_title_page() == expected_title, f"Получен Title: {page.get_title_page()}"
 

@@ -6,13 +6,8 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 from pages.b2b_page import B2BPage
 from pages.e_com_page import EComPage
-from pages.euro_vpn_project import ProjectEuroVpn
 from pages.mobile_dev_page import MobileDevPage
-from pages.project_find_a_builder import ProjectFindFBuilder
-from pages.project_mint_link import ProjectMintLink
 from pages.project_page import ProjectPage
-from pages.project_sls import ProjectSls
-from pages.project_vegan_hotel import ProjectVeganHotel
 from pages.support_pages import SupportPage
 from pages.web_design_page import WebDesignPage
 from pages.web_dev_services_page import WebDevServicesPage

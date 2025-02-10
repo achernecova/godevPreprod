@@ -1,7 +1,10 @@
+import json
+
 import allure
 import pytest
 from allure_commons._allure import feature, link
 
+from constants import SUPPORT_PROJECTS_TYPES
 from pages.web_develop_page import WebDevelopPage
 
 @feature('Добавление мета-тегов')
@@ -53,3 +56,23 @@ def test_web_develop_page_click_project_open_page(driver, project_type, expected
     assert driver.current_url == expected_url, f"Ожидался URL '{expected_url}', но получен '{driver.current_url}'"
     assert page.get_title_page() == expected_title, f"Получен Title: {page.get_title_page()}"
 
+try:
+    with open('../service_pages_data.json') as f:
+        test_data = json.load(f)
+except (FileNotFoundError, json.JSONDecodeError) as e:
+    raise RuntimeError('Error loading package card data: ' + str(e))
+# Фильтрация данных по card_type
+filtered_data = [
+    (d['card_type'], d['expected_url'], d['expected_title'])
+    for d in test_data
+    if d['card_type'] in SUPPORT_PROJECTS_TYPES]
+# Загрузка данных из JSON-файла
+@allure.feature('Открытие страниц проектов')
+@pytest.mark.parametrize("card_type, expected_url, expected_title", filtered_data)
+def test_web_develop_page_click_project_open_page(driver, card_type, expected_url, expected_title):
+    support_page_test = WebDevelopPage(driver)
+    support_page_test.open()
+    support_element_test = support_page_test.get_project_service_element()
+    page = support_element_test.test_click_card_and_open_page(card_type, expected_url, expected_title)
+    assert driver.current_url == expected_url, f"Ожидался URL '{expected_url}', но получен '{driver.current_url}'"
+    assert page.get_title_page() == expected_title, f"Получен Title: {page.get_title_page()}"

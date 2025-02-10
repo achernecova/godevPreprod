@@ -1,7 +1,7 @@
 import allure
 from allure_commons._allure import link
 
-from data_url import URLs, subURLs
+from constants import URLs, subURLs
 from pages.main_page import MainPage
 
 @link(url='https://team-v5ka.testit.software/projects/664/tests/767', name='Проверка открытия страниц из верхнеуровнего меню - главная')

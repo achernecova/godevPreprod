@@ -3,15 +3,21 @@ import pytest
 
 import json
 
-from data_url import URLs, subURLs
+from constants import URLs, subURLs, DESIRED_PROJECT_TYPES
 from pages.main_page import MainPage
 from package_data import PackageData
 
-# Загрузка данных из JSON файла
-with open('../package_card_data.json') as f:
-    package_data_list = json.load(f)
-# Преобразование данных в нужный формат
-package_data_list = [PackageData(**data) for data in package_data_list]
+#загрузка данных из json файла
+try:
+    with open('../package_card_data.json') as f:
+        package_data_list = json.load(f)
+except (FileNotFoundError, json.JSONDecodeError) as e:
+    raise RuntimeError('Error loading package card data: ' + str(e))
+# Фильтрация данных по конкретным project_type
+package_data_list = [
+    PackageData(**data) for data in package_data_list
+    if data['project_type'] in DESIRED_PROJECT_TYPES  # Используем импортированную константу
+]
 @pytest.mark.parametrize("package_data", package_data_list)
 def test_main_page_data_card_packages(driver, package_data):
     main_page_test = MainPage(driver)
@@ -28,7 +34,6 @@ def test_main_page_click_services_and_project_and_open_pages(driver, card_type, 
     main_page_test.open()
     project_element = main_page_test.get_project_service_element()
     page = project_element.test_click_card_and_open_page(card_type, expected_url, expected_title)
-
     assert driver.current_url == expected_url, f"Ожидался URL '{expected_url}', но получен '{driver.current_url}'"
     assert page.get_title_page() == expected_title, f"Получен Title: {page.get_title_page()}"
 

@@ -1,7 +1,10 @@
+import json
+
 import allure
 import pytest
 from allure_commons._allure import feature
 
+from constants import PROJECTS_TYPES_ECOM, SUPPORT_PROJECTS_TYPES
 from pages.support_pages import SupportPage
 
 @feature('Количество элементов в блоке')
@@ -36,18 +39,24 @@ def test_support_page_add_request(driver):
     popup_element_test.add_request_success()
     assert popup_element_test.popup_success_displayed() == True, "Окно не появилось"
 
-@feature('Открытие страниц проектов')
-@pytest.mark.parametrize("project_type, expected_url, expected_title", [
-    ("euro_VPN", "https://dev.godev.agency/projects/information-security-service/", "Information security service redesign"),
-    ("mint_link", "https://dev.godev.agency/projects/mint-links/", "Enhancing Mint Link’s MICE platform for optimal user engagement"),
-    ("sls", "https://dev.godev.agency/projects/swift-logistic-solutions/","Building a robust logistics platform for Swift Logistic Solutions"),
-    ("vegan_hotel", "https://dev.godev.agency/projects/vegan-hotel/", "Website development for a conceptual hotel in the Dolomites")
-])
-def test_support_page_click_project_open_page(driver, project_type, expected_url, expected_title):
+try:
+    with open('../service_pages_data.json') as f:
+        test_data = json.load(f)
+except (FileNotFoundError, json.JSONDecodeError) as e:
+    raise RuntimeError('Error loading package card data: ' + str(e))
+# Фильтрация данных по card_type
+filtered_data = [
+    (d['card_type'], d['expected_url'], d['expected_title'])
+    for d in test_data
+    if d['card_type'] in SUPPORT_PROJECTS_TYPES]
+# Загрузка данных из JSON-файла
+@allure.feature('Открытие страниц проектов')
+@pytest.mark.parametrize("card_type, expected_url, expected_title", filtered_data)
+def test_support_page_click_services_and_project_and_open_pages(driver, card_type, expected_url, expected_title):
     support_page_test = SupportPage(driver)
     support_page_test.open()
     click_element_test = support_page_test.get_project_service_element()
-    page = click_element_test.test_click_card_and_open_page(project_type, expected_url, expected_title)
+    page = click_element_test.test_click_card_and_open_page(card_type, expected_url, expected_title)
     assert driver.current_url == expected_url, f"Ожидался URL '{expected_url}', но получен '{driver.current_url}'"
     assert page.get_title_page() == expected_title, f"Получен Title: {page.get_title_page()}"
 

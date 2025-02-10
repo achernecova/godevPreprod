@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 
-from data_url import subURLs
+from constants import subURLs
 from pages.base_page import BasePage
 
 

@@ -1,5 +1,5 @@
 #в процессе
-from data_url import subURLs
+from constants import subURLs
 from page_elements.block_count_elements import CountElements
 from page_elements.form_page import FormPage
 from page_elements.menu_element import MenuElement

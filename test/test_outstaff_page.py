@@ -4,6 +4,7 @@ import allure
 import pytest
 from allure_commons._allure import feature
 
+from constants import OUTSTAFF_PROJECT_TYPES
 from pages.web_outstaff_page import WebOutstaffPage
 
 @feature('Успешная отправка заявки')
@@ -37,12 +38,16 @@ def test_web_outstaff_add_title_and_descr(driver):
     assert form_page_test.get_canonical_ceo_page() == "https://dev.godev.agency/services/outstaffing-and-outsourcing-of-it-specialists/", f"Получен canonical:  {form_page_test.get_canonical_ceo_page()}"
 
 
-# Загрузка данных из JSON файла
-with open('../package_card_data.json') as f:
-    data = json.load(f)
+#загрузка данных из json файла
+try:
+    with open('../package_card_data.json') as f:
+        package_data_list = json.load(f)
+except (FileNotFoundError, json.JSONDecodeError) as e:
+    raise RuntimeError('Error loading package card data: ' + str(e))
+# Фильтрация данных по конкретным project_type
 filtered_data = [
-    item for item in data
-    if item['project_type'] in ['Backend', 'Mobile', 'Frontend', 'Analysts', 'Design', 'Testers']
+    item for item in package_data_list
+    if item['project_type'] in OUTSTAFF_PROJECT_TYPES
 ]
 # Использование отфильтрованных данных в тестах
 @pytest.mark.parametrize("project_type, experience, bullits, price",

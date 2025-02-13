@@ -1,11 +1,13 @@
 import json
+import os
 
-import allure
 import pytest
 from allure_commons._allure import feature
 
 from constants import OUTSTAFF_PROJECT_TYPES
 from pages.web_outstaff_page import WebOutstaffPage
+
+# тест с мета-тегами вынесен в main_page_test
 
 @feature('Успешная отправка заявки')
 def test_web_outstaff_add_success_request(driver):
@@ -28,22 +30,18 @@ def test_main_page_benefits_types_of_it_what_to_choose_count_cards(driver, proje
     blocks = main_page_test.get_count_elements()
     blocks.count_cards_assert(project_type, count)
 
-@feature('Добавление мета-тегов')
-def test_web_outstaff_add_title_and_descr(driver):
-    web_outstaff_page_test = WebOutstaffPage(driver)
-    web_outstaff_page_test.open()
-    form_page_test = web_outstaff_page_test.get_meta_data()
-    assert form_page_test.get_title_ceo_page() == "IT staff augmentation company in USA, cost of outsorce tech teams and software developers", f"Получен Title:  {form_page_test.get_title_ceo_page()}"
-    assert form_page_test.get_descr_ceo_page() == "IT staff augmentation – hire tech teams and software developers for your projects with lower cost in USA. Software, databases, websites, applications, microservices, mobile applications", f"Получен Title:  {form_page_test.get_descr_ceo_page()}"
-    assert form_page_test.get_canonical_ceo_page() == "https://dev.godev.agency/services/outstaffing-and-outsourcing-of-it-specialists/", f"Получен canonical:  {form_page_test.get_canonical_ceo_page()}"
-
-
-#загрузка данных из json файла
+# Загрузка данных из JSON-файла
+current_dir = os.path.dirname(__file__)
+file_path = os.path.join(current_dir, '..', 'package_card_data.json')
 try:
-    with open('../package_card_data.json') as f:
+    with open(file_path, encoding='utf-8') as f:  # кодировка UTF-8 при открытии файла
         package_data_list = json.load(f)
-except (FileNotFoundError, json.JSONDecodeError) as e:
-    raise RuntimeError('Error loading package card data: ' + str(e))
+except FileNotFoundError as e:
+    raise RuntimeError('Файл package_card_data.json не найден: ' + str(e))
+except json.JSONDecodeError as e:
+    raise RuntimeError('Ошибка при разборе JSON в package_card_data.json: ' + str(e))
+except Exception as e:  # Ловим все остальные ошибки
+    raise RuntimeError('Неизвестная ошибка при загрузке данных: ' + str(e))
 # Фильтрация данных по конкретным project_type
 filtered_data = [
     item for item in package_data_list

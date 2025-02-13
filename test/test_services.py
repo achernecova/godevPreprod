@@ -1,4 +1,5 @@
 import json
+import os
 
 import allure
 import pytest
@@ -7,12 +8,18 @@ from allure_commons._allure import feature, story
 from constants import PROJECTS_TYPES, CARD_B2B_TYPES
 from pages.services_page import ServicesPage
 
-    # Загрузка данных из JSON-файла
+# загрузка данных из json файла
+current_dir = os.path.dirname(__file__)
+file_path = os.path.join(current_dir, '..', 'service_pages_data.json')
 try:
-    with open('../service_pages_data.json') as f:
+    with open(file_path, encoding='utf-8') as f:
         test_data = json.load(f)
-except (FileNotFoundError, json.JSONDecodeError) as e:
-    raise RuntimeError('Error loading package card data: ' + str(e))
+except FileNotFoundError as e:
+    raise RuntimeError('Файл service_pages_data.json не найден: ' + str(e))
+except json.JSONDecodeError as e:
+    raise RuntimeError('Ошибка при разборе JSON в service_pages_data.json: ' + str(e))
+except Exception as e:  # Ловим все остальные ошибки
+    raise RuntimeError('Неизвестная ошибка при загрузке данных: ' + str(e))
 # Фильтрация данных по card_type
 filtered_data = [
     (d['card_type'], d['expected_url'], d['expected_title'])
@@ -29,11 +36,18 @@ def test_services_page_click_services_and_project_and_open_pages(driver, card_ty
     assert page.get_title_page() == expected_title, f"Получен Title: {page.get_title_page()}"
 
 
+#загрузка данных из json файла
+current_dir = os.path.dirname(__file__)
+file_path = os.path.join(current_dir, '..', 'service_pages_data.json')
 try:
-    with open('../service_pages_data.json') as f:
+    with open(file_path, encoding='utf-8') as f:
         test_data = json.load(f)
-except (FileNotFoundError, json.JSONDecodeError) as e:
-    raise RuntimeError('Error loading package card data: ' + str(e))
+except FileNotFoundError as e:
+    raise RuntimeError('Файл service_pages_data.json не найден: ' + str(e))
+except json.JSONDecodeError as e:
+    raise RuntimeError('Ошибка при разборе JSON в service_pages_data.json: ' + str(e))
+except Exception as e:  # Ловим все остальные ошибки
+    raise RuntimeError('Неизвестная ошибка при загрузке данных: ' + str(e))
 # Фильтрация данных по card_type
 filtered_data = [
     (d['card_type'], d['expected_url'], d['expected_title'])

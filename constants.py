@@ -17,7 +17,7 @@ class subURLs:
     SERVICES_PAGE = 'services/'
     SUPPORT_PAGE = 'services/tech-support/'
     WEBSITE_DEV = 'services/website-development/'
-    WEB_DEV = 'services/website-development/'
+    WEB_DEV = 'services/web-development/'
 
     EURO_VPN = 'projects/information-security-service/'
     FIND_A_BUILDER = 'projects/find-a-builder/'

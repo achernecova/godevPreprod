@@ -21,7 +21,7 @@ class MainPage(BasePage):
             package_data_list = json.load(f)
         return [PackageData(data) for data in package_data_list]
 
-    def __init__(self, driver):
+    def __init__(self, driver: object) -> object:
         super().__init__(driver)
         self.driver = driver
 

@@ -1,4 +1,5 @@
 import json
+import os
 
 import allure
 import pytest
@@ -32,9 +33,17 @@ def test_main_page_add_title_descr_and_canonical(driver):
     assert form_page_test.get_descr_ceo_page() == "Godev is a leading web development company in the USA. We specialize in custom web design, web applications, app and web development services", f"Получен Title:  {form_page_test.get_descr_ceo_page()}"
     assert form_page_test.get_canonical_ceo_page() == "https://godev.agency/", f"Получен canonical:  {form_page_test.get_canonical_ceo_page()}"
 
-# Загрузка данных из JSON-файла
-with open('../service_pages_data.json') as f:
-    test_data = json.load(f)
+current_dir = os.path.dirname(__file__)
+file_path = os.path.join(current_dir, '..', 'service_pages_data.json')
+try:
+    with open(file_path, encoding='utf-8') as f:
+        test_data = json.load(f)
+except FileNotFoundError as e:
+    raise RuntimeError('Файл service_pages_data.json не найден: ' + str(e))
+except json.JSONDecodeError as e:
+    raise RuntimeError('Ошибка при разборе JSON в service_pages_data.json: ' + str(e))
+except Exception as e:  # Ловим все остальные ошибки
+    raise RuntimeError('Неизвестная ошибка при загрузке данных: ' + str(e))
 @link(url='https://team-v5ka.testit.software/projects/664/tests/746',name='Отображение блока IT staff augmentation и переход на страницу')
 @feature('Открытие страниц услуг')
 @pytest.mark.parametrize("card_type, expected_url, expected_title",
@@ -70,12 +79,19 @@ def test_cms_page_cms_services_cards_count_assert(driver):
     blocks = cms_page_test.get_count_elements()
     blocks.count_cards_assert("cms_services_cards", 4)
 
-#Загрузка данных из json файла
+
+
+current_dir = os.path.dirname(__file__)
+file_path = os.path.join(current_dir, '..', 'package_card_data.json')
 try:
-    with open('../package_card_data.json') as f:
+    with open(file_path, encoding='utf-8') as f:
         data = json.load(f)
-except (FileNotFoundError, json.JSONDecodeError) as e:
-    raise RuntimeError('Error loading package card data: ' + str(e))
+except FileNotFoundError as e:
+    raise RuntimeError('Файл service_pages_data.json не найден: ' + str(e))
+except json.JSONDecodeError as e:
+    raise RuntimeError('Ошибка при разборе JSON в service_pages_data.json: ' + str(e))
+except Exception as e:  # Ловим все остальные ошибки
+    raise RuntimeError('Неизвестная ошибка при загрузке данных: ' + str(e))
 filtered_data = [
     item for item in data
     if item['project_type'] in ECOM_PAGE_TYPES
@@ -88,12 +104,18 @@ def test_ecom_page_data_card_packages(driver, project_type, bullits, price):
     e_com_page_test.open()
     e_com_page_test.check_packages_data_not_experience(project_type, bullits, price)
 
-#загрузка данных из json файла
+
+current_dir = os.path.dirname(__file__)
+file_path = os.path.join(current_dir, '..', 'package_card_data.json')
 try:
-    with open('../package_card_data.json') as f:
+    with open(file_path, encoding='utf-8') as f:
         package_data_list = json.load(f)
-except (FileNotFoundError, json.JSONDecodeError) as e:
-    raise RuntimeError('Error loading package card data: ' + str(e))
+except FileNotFoundError as e:
+    raise RuntimeError('Файл service_pages_data.json не найден: ' + str(e))
+except json.JSONDecodeError as e:
+    raise RuntimeError('Ошибка при разборе JSON в service_pages_data.json: ' + str(e))
+except Exception as e:  # Ловим все остальные ошибки
+    raise RuntimeError('Неизвестная ошибка при загрузке данных: ' + str(e))
 # Фильтрация данных по конкретным project_type
 filtered_data = [
     item for item in package_data_list

@@ -4,14 +4,7 @@ from allure_commons._allure import feature
 
 from pages.web_dev_services_page import WebDevServicesPage
 
-@feature('Добавление мета-тегов')
-def test_web_dev_serv_page_add_title_descr_and_canonical(driver):
-    web_dev_serv_page = WebDevServicesPage(driver)
-    web_dev_serv_page.open()
-    data_meta_page_test = web_dev_serv_page.get_meta_data()
-    assert data_meta_page_test.get_title_ceo_page() == "Web Development Services in USA, Custom Website and Web App Development Solutions | Godev", f"Получен Title:  {data_meta_page_test.get_title_ceo_page()}"
-    assert data_meta_page_test.get_descr_ceo_page() == "Looking for expert web development services in the USA? Godev offers high-quality, custom website development and responsive web design solutions tailored to your needs.", f"Получен Title:  {data_meta_page_test.get_descr_ceo_page()}"
-    assert data_meta_page_test.get_canonical_ceo_page() == "https://dev.godev.agency/services/web-development/", f"Получен canonical:  {data_meta_page_test.get_canonical_ceo_page()}"
+# тест с мета-тегами вынесен в main_page_test
 
 @feature('Количество элементов в блоке')
 def test_web_dev_serv_page_count_card_services(driver):

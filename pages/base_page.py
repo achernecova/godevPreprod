@@ -98,3 +98,4 @@ class BasePage:
             assert element.text == expected, f"Ожидался заголовок '{expected}', но получен '{element.text}'"
 
 
+

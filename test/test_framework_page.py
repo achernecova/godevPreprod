@@ -1,10 +1,13 @@
 import json
+import os
 
 import allure
 import pytest
 
 from constants import PROJECTS_TYPES_FRAMEWORK
 from pages.framework_page import FrameworkPage
+
+# тест с мета-тегами вынесен в main_page_test
 
 @allure.feature('Количество элементов в блоке')
 def test_framework_page_count_card_reviews(driver):
@@ -48,21 +51,18 @@ def test_framework_page_count_card_back_end_frameworks(driver):
     blocks = framework_page_test.get_count_elements()
     blocks.count_cards_assert("back_end_frameworks", 5)
 
-@allure.feature('Добавление мета-тегов')
-def test_framework_page_add_title_descr_and_canonical(driver):
-    framework_page_test = FrameworkPage(driver)
-    framework_page_test.open()
-    form_page_test = framework_page_test.get_meta_data()
-    assert form_page_test.get_title_ceo_page() == "Web Development on Frameworks in the USA: website development in Godev", f"Получен Title:  {form_page_test.get_title_ceo_page()}"
-    assert form_page_test.get_descr_ceo_page() == "Explore top web development frameworks in the USA with Godev. Save time and enhance coding efficiency for your projects by leveraging powerful software infrastructure!", f"Получен Title:  {form_page_test.get_descr_ceo_page()}"
-    assert form_page_test.get_canonical_ceo_page() == "https://dev.godev.agency/services/website-development/framework/", f"Получен canonical:  {form_page_test.get_canonical_ceo_page()}"
-
-# Загрузка данных из JSON-файла
+#Загрузка данных из json файла
+current_dir = os.path.dirname(__file__)
+file_path = os.path.join(current_dir, '..', 'service_pages_data.json')
 try:
-    with open('../service_pages_data.json') as f:
+    with open(file_path, encoding='utf-8') as f:
         test_data = json.load(f)
-except (FileNotFoundError, json.JSONDecodeError) as e:
-    raise RuntimeError('Error loading package card data: ' + str(e))
+except FileNotFoundError as e:
+    raise RuntimeError('Файл service_pages_data.json не найден: ' + str(e))
+except json.JSONDecodeError as e:
+    raise RuntimeError('Ошибка при разборе JSON в service_pages_data.json: ' + str(e))
+except Exception as e:  # Ловим все остальные ошибки
+    raise RuntimeError('Неизвестная ошибка при загрузке данных: ' + str(e))
 # Фильтрация данных по card_type
 filtered_data = [
     (d['card_type'], d['expected_url'], d['expected_title'])

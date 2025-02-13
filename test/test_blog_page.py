@@ -4,16 +4,7 @@ from allure_commons._allure import feature, link
 
 from pages.blog_page import BlogPage
 
-
-@link(url=' ', name='Корректно указаны title, description, canonical')
-@feature('Добавление мета-тегов')
-def test_blog_page_add_title_descr_and_canonical(driver):
-    blog_page_test = BlogPage(driver)
-    blog_page_test.open()
-    form_page_test = blog_page_test.get_meta_data()
-    assert form_page_test.get_title_ceo_page() == " ", f"Получен Title:  {form_page_test.get_title_ceo_page()}"
-    assert form_page_test.get_descr_ceo_page() == " ", f"Получен descr:  {form_page_test.get_descr_ceo_page()}"
-    assert form_page_test.get_canonical_ceo_page() == "https://dev.godev.agency/blog/", f"Получен canonical:  {form_page_test.get_canonical_ceo_page()}"
+# тест с мета-тегами вынесен в main_page_test
 
 @feature('Количество элементов в блоке')
 def test_blog_page_count_cards_right(driver):

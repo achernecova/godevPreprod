@@ -28,11 +28,16 @@ class FormPage:
 
     def fill_form(self):
         self.get_form_section()
-        close_modal = self.driver.find_element(*self.locators["close_modal"]).click()# Убедитесь, что форма загружена
-        topping_click = self.driver.find_element(*self.locators["topping_click"]).click()
-        name_input = self.driver.find_element(*self.locators["name_input"]).send_keys(self.fake.name())
-        email_input = self.driver.find_element(*self.locators["email_input"]).send_keys(self.fake.email())
-        message_input = self.driver.find_element(*self.locators["message_input"]).send_keys(self.fake.text(max_nb_chars=300))
+        close_modal = self.driver.find_element(*self.locators["close_modal"])
+        close_modal.click()
+        topping_click = self.driver.find_element(*self.locators["topping_click"])
+        topping_click.click()
+        name_input = self.driver.find_element(*self.locators["name_input"])
+        name_input.send_keys(self.fake.name())
+        email_input = self.driver.find_element(*self.locators["email_input"])
+        email_input.send_keys(self.fake.email())
+        message_input = self.driver.find_element(*self.locators["message_input"])
+        message_input.send_keys(self.fake.text(max_nb_chars=300))
         submit_button = self.driver.find_element(*self.locators["submit_button"])
         submit_button.click()
 

@@ -33,7 +33,7 @@ class EComPage(BasePage):
 
     def check_packages_data_not_experience(self, project_type, bullits, price):
         logging.info('move cursor to element')
-        index_mapping = self.create_index_mapping()
+        index_mapping = self.create_index_mapping_not_experience()
         if project_type not in index_mapping:
             raise ValueError(f"Project type {project_type} not found on the page.")
         index = index_mapping[project_type]

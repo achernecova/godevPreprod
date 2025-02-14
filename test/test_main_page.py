@@ -1,32 +1,18 @@
-import os
-
 from allure_commons._allure import link, feature
 import pytest
 
-from utils.data_loader import load_package_data, load_service_data
+from utils.data_loader import load_package_data_main
 from utils.page_factory import get_page_instance
 from pages.main_page import MainPage
 
 # Загрузка данных из JSON-файла с фильтрацией
-load_package_data = load_package_data()
+load_package_data = load_package_data_main()
 @pytest.mark.parametrize("package_data", load_package_data)
 def test_main_page_data_card_packages(driver, package_data):
     main_page_test = MainPage(driver)
     main_page_test.open()
     main_page_test.check_packages_data(package_data.project_type, package_data.experience, package_data.bullits,
                                        package_data.price)
-
-# Загрузка данных из JSON-файла
-test_data = load_service_data()
-@pytest.mark.parametrize("card_type, expected_url, expected_title",
-                         [(d['card_type'], d['expected_url'], d['expected_title']) for d in test_data])
-def test_main_page_click_services_and_project_and_open_pages(driver, card_type, expected_url, expected_title):
-    main_page_test = MainPage(driver)
-    main_page_test.open()
-    project_element = main_page_test.get_project_service_element()
-    page = project_element.test_click_card_and_open_page(card_type, expected_url, expected_title)
-    assert driver.current_url == expected_url, f"Ожидался URL '{expected_url}', но получен '{driver.current_url}'"
-    assert page.get_title_page() == expected_title, f"Получен Title: {page.get_title_page()}"
 
 
 @feature('Успешная отправка заявки')
@@ -55,7 +41,7 @@ def test_main_page_add_request_header(driver):
     main_page_test.click_button_banner()
     popup_element_test = main_page_test.get_popup_element()
     popup_element_test.add_request_success()
-    assert popup_element_test.popup_success_displayed() == True, "Окно не появилось"
+    assert popup_element_test.popup_success_displayed() == True, "Окно подтверждения не появилось"
 
 
 @link(url='https://team-v5ka.testit.software/projects/664/tests/759', name='Отображение блока Customer Reviews')
@@ -95,7 +81,7 @@ def test_page_meta_data(driver, meta_data):
       name='Отображение блока App and Web Development Services и переходы на страницы')
 @feature('Открытие страниц услуг')
 def test_main_page_click_more_packages_and_data_pages(driver, test_data):
-    for index, page_url, page_title in test_data:
-        main_page_test = MainPage(driver)
-        main_page_test.open()
-        main_page_test.click_more_packages_and_data_pages(index, page_url, page_title)
+    index, page_url, page_title = test_data
+    main_page_test = MainPage(driver)
+    main_page_test.open()
+    main_page_test.click_more_packages_and_data_pages(index, page_url, page_title)

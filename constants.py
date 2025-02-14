@@ -37,14 +37,16 @@ DESIRED_PROJECT_TYPES = {
     "Joomla"
 }
 
-CARD_B2B_TYPES = {
-    "mobile_dev",
-    "website_dev",
-    "support",
-    "web_development",
-    "e_commerce",
-    "website_design",
-    "outstaffing"
+CMS_PAGE_TYPES = {
+    "E-Commerce",
+    "Corporate",
+    "Landing",
+    "Online shops",
+    "Web portals",
+    "B2B sites",
+    "WordPress",
+    'Joomla',
+    'OpenCart'
 }
 
 CARD_PACKAGES_TYPES = {
@@ -55,6 +57,16 @@ CARD_PACKAGES_TYPES = {
     "WordPress",
     "OpenCart",
     "Joomla"
+}
+
+CARD_B2B_TYPES = {
+    "mobile_dev",
+    "website_dev",
+    "support",
+    "web_development",
+    "e_commerce",
+    "website_design",
+    "outstaffing"
 }
 
 PROJECTS_TYPES = {
@@ -83,19 +95,6 @@ PROJECTS_TYPES_FRAMEWORK = {
     "vegan_hotel",
     "find_a_builder"
 }
-
-CMS_PAGE_TYPES = {
-    "E-Commerce",
-    "Corporate",
-    "Landing",
-    "Online shops",
-    "Web portals",
-    "B2B sites",
-    "WordPress",
-    'Joomla',
-    'OpenCart'
-}
-
 
 ECOM_PAGE_TYPES = {
     "E-commerce web development",

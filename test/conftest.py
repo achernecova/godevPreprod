@@ -114,18 +114,26 @@ def take_screenshot(driver, test_name):
     except Exception as e:
         print(f'Failed to save screenshot: {e}')
 
-# Вызов отладочной печати в pytest_runtest_makereport:
+# Вызов отладочной печати
 def pytest_runtest_makereport(item, call):
     if call.when == "call":
         if call.excinfo:
             print(f"Test {item.name} failed with exception: {call.excinfo}")
             take_screenshot(item.funcargs['driver'], item.name)
 
-@pytest.fixture
-def test_data():
-    return [
+@pytest.fixture(params=[
         ("1", URLs.MAIN_PAGE + subURLs.E_COM_PAGE, "E-commerce web development for scalable business growth"),
         ("2", URLs.MAIN_PAGE + subURLs.B2B_PAGE, "B2B e-commerce website development"),
         ("3", URLs.MAIN_PAGE + subURLs.FRAMEWORK_PAGE, "What is a framework and why it’s essential for web development")
-    ]
+    ])
+def test_data(request):
+    return request.param
+
+@pytest.fixture(params=[
+    ("1", URLs.MAIN_PAGE + subURLs.B2B_PAGE, "B2B e-commerce website development"),
+    ("2", URLs.MAIN_PAGE + subURLs.CMS_PAGE, "Custom CMS development service"),
+    ("3", URLs.MAIN_PAGE + subURLs.FRAMEWORK_PAGE, "What is a framework and why it’s essential for web development")
+])
+def test_data_cards(request):
+    return request.param
 

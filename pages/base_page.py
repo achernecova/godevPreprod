@@ -76,6 +76,14 @@ class BasePage:
             index_mapping[project_type] = index  # предполагая, что project_type уникален
         return index_mapping
 
+    def create_index_mapping_not_experience(self):
+        index_mapping = {}
+        elements = self.driver.find_elements(By.CLASS_NAME, 'team-card')
+        for index, element in enumerate(elements):
+            project_type = element.find_element(By.CSS_SELECTOR, '.spec.fs22').text.strip()
+            index_mapping[project_type] = index  # предполагая, что project_type уникален
+        return index_mapping
+
     def check_packages_data(self, project_type, experience, bullits, price):
         logging.info('move cursor to element')
         index_mapping = self.create_index_mapping()
@@ -96,6 +104,3 @@ class BasePage:
             element = self.driver.find_element(By.XPATH, f"(//*[@class='team-card']//*[@class='{attr}'])[{index+1}]")
             print(element.text)
             assert element.text == expected, f"Ожидался заголовок '{expected}', но получен '{element.text}'"
-
-
-

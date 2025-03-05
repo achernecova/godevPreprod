@@ -2,6 +2,7 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 
 from pages.base_page import BasePage
+from test.locators import Locators
 
 
 class MenuElement(BasePage):
@@ -23,7 +24,8 @@ class MenuElement(BasePage):
         "submenu_e_com_locator": (By.XPATH, "//*[@href= 'https://dev.godev.agency/services/website-development/e-commerce/']"),
         "submenu_cms_locator": (By.XPATH, "//*[@href= 'https://dev.godev.agency/services/website-development/cms/']"),
         "submenu_framework_locator": (By.XPATH, "//*[@href= 'https://dev.godev.agency/services/website-development/framework/']"),
-        "submenu_b2b_locator": (By.XPATH, "//*[@href= 'https://dev.godev.agency/services/website-development/b2b/']")
+        "submenu_b2b_locator": (By.XPATH, "//*[@href= 'https://dev.godev.agency/services/website-development/b2b/']"),
+        "submenu_landing_locator": (By.XPATH, "//*[@href= '/services/development-of-a-landing-page/']")
     }
 
     def click_menu_service(self):
@@ -99,3 +101,14 @@ class MenuElement(BasePage):
         action.move_to_element(menu_service_locator).perform()
         action.move_to_element(submenu_web_site_dev_locator).perform()
         self._click_element(self.locators["submenu_b2b_locator"])
+
+
+    def click_submenu_landing(self):
+        menu_service_locator = self.wait_for_element(self.locators["menu_service_locator"])
+        submenu_web_site_dev_locator = self.wait_for_element(self.locators["submenu_web_site_dev_locator"])
+        action = ActionChains(self.driver)
+        action.move_to_element(menu_service_locator).perform()
+        action.move_to_element(submenu_web_site_dev_locator).perform()
+        element = self.driver.find_element(*Locators.button_landing_locator)
+        element.click()
+        #self._click_element(element)

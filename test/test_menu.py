@@ -109,3 +109,12 @@ def test_submenu_b2b_click_and_open_page(driver):
     menu_elements.click_submenu_b2b()
     assert driver.current_url == URLs.MAIN_PAGE+subURLs.B2B_PAGE, f"Ожидался URL '{URLs.MAIN_PAGE+subURLs.B2B_PAGE}, но получен '{driver.get_url()}'"
 
+
+@link(url='https://team-v5ka.testit.software/projects/664/tests/769', name='Проверка открытия меню второго уровня - сабменю landing')
+def test_submenu_landing_click_and_open_page(driver):
+    main_page_test = MainPage(driver)
+    main_page_test.open()
+    menu_elements = main_page_test.get_menu_element()
+    menu_elements.click_submenu_landing()
+    assert driver.current_url == URLs.MAIN_PAGE+subURLs.LANDING, f"Ожидался URL '{URLs.MAIN_PAGE+subURLs.LANDING}, но получен '{driver.get_url()}'"
+

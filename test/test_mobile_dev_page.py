@@ -31,3 +31,17 @@ def test_mobile_dev_page_count_card_advantages(driver):
     mobile_page.open()
     blocks = mobile_page.get_count_elements()
     blocks.count_cards_assert("count_card_advantages", 7)
+
+
+@feature('Проверка данных в карточках блока Benefits for business from creating a mobile application и We specialize in')
+def test_mobile_page_why_do_you_need_data_assert(driver):
+    mobile_page = MobileDevPage(driver)
+    mobile_page.open()
+    mobile_page.get_data_card_how_it_staff_mobile()
+
+
+@feature('Проверка данных в FAQ')
+def test_mobile_page_faq_data_assert(driver):
+    mobile_page = MobileDevPage(driver)
+    mobile_page.open()
+    mobile_page.get_data_faq_card()

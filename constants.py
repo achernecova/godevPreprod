@@ -18,6 +18,7 @@ class subURLs:
     SUPPORT_PAGE = 'services/tech-support/'
     WEBSITE_DEV = 'services/website-development/'
     WEB_DEV = 'services/web-development/'
+    LANDING = 'services/development-of-a-landing-page/'
 
     EURO_VPN = 'projects/information-security-service/'
     FIND_A_BUILDER = 'projects/find-a-builder/'
@@ -52,8 +53,8 @@ CMS_PAGE_TYPES = {
 CARD_PACKAGES_TYPES = {
     "E-Commerce",
     "Corporate",
-    "Online Shops",
-    "B2B Sites",
+    "Online shops",
+    "B2B sites",
     "WordPress",
     "OpenCart",
     "Joomla"
@@ -112,4 +113,9 @@ OUTSTAFF_PROJECT_TYPES = {
     "Analysts",
     "Design",
     "Testers"
+}
+
+DATA_TEXT_IN_BLOCK = {
+    "Selecting the right staff expansion partner is crucial to your project’s success. Godev is a top-tier provider of staff augmentation services with several key advantages:",
+    "We provide job placement services to meet all your IT staff needs.  Understanding these types helps in selecting the best approach for your project"
 }

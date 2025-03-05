@@ -1,14 +1,17 @@
 import logging
 
+import requests
+from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
 
-from constants import subURLs
+from constants import subURLs, URLs
 from page_elements.block_count_elements import CountElements
 from page_elements.form_page import FormPage
 from page_elements.meta_data_page import MetaData
 from page_elements.popup_element import PopupElement
 
 from pages.base_page import BasePage
+from utils.data_loader import load_file
 
 
 class B2BPage(BasePage):
@@ -37,3 +40,20 @@ class B2BPage(BasePage):
         from page_elements.project_service_element import ProjectServiceElement
         return ProjectServiceElement(self.driver)
 
+
+
+    def get_data_card_b2b(self):
+        url = URLs.MAIN_PAGE + subURLs.B2B_PAGE  # Укажите нужный URL
+        self.get_data_card_(self.get_card_data, 'data_card_block_packages.json',
+                                             'b2b_card_data', url)
+
+# метод для черно-белых карточек
+    def get_data_card_tiles_b2b(self):
+        url = URLs.MAIN_PAGE + subURLs.B2B_PAGE  # Укажите нужный URL
+        self.get_data_card_with_type_project(self.get_card_data_tiles, 'data_card_block_packages.json', 'tiles_section_card_data_b2b', url)
+
+
+# метод для черно-белых карточек с кружками и порядковыми номерами
+    def get_data_card_how_it_staff_b2b(self):
+        url = URLs.MAIN_PAGE + subURLs.B2B_PAGE  # Укажите нужный URL
+        self.get_data_card_with_type_project(self.get_card_data_tiles_card, 'section_how_it_staff_tiles.json', 'how_it_staff_b2b', url)

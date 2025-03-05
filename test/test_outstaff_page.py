@@ -1,18 +1,23 @@
-import json
-import os
 
 import pytest
 from allure_commons._allure import feature
 
-from constants import OUTSTAFF_PROJECT_TYPES
 from pages.web_outstaff_page import WebOutstaffPage
-from utils.data_loader import load_package_data_outstaff
 
 
 # тест с мета-тегами вынесен в main_page_test
 
 @feature('Успешная отправка заявки')
 def test_web_outstaff_add_success_request(driver):
+    web_outstaff_page_test = WebOutstaffPage(driver)
+    web_outstaff_page_test.open()
+    web_outstaff_page_test.click_button_outsource()
+    form_page_test = web_outstaff_page_test.get_popup_element()
+    form_page_test.add_request_success()
+    assert form_page_test.popup_success_displayed() == True, "Окно не появилось"
+
+@feature('Успешная отправка заявки из блока Outstaffing and outsourcing of IT-teams')
+def test_web_outstaff_get_text(driver):
     web_outstaff_page_test = WebOutstaffPage(driver)
     web_outstaff_page_test.open()
     web_outstaff_page_test.click_button_outsource()
@@ -33,13 +38,44 @@ def test_main_page_benefits_types_of_it_what_to_choose_count_cards(driver, proje
     blocks.count_cards_assert(project_type, count)
 
 
-# Использование отфильтрованных данных в тестах
-filtered_data = load_package_data_outstaff()
-@pytest.mark.parametrize("project_type, experience, bullits, price",
-    [(d['project_type'], d['experience'], d['bullits'], d['price']) for d in filtered_data])
-def test_outstaff_page_data_card_packages(driver, project_type, experience, bullits, price):
+# либо тут проверку делать на заголовок и текст либо в другим похожим тестом.
+def test_description_contains_value(driver):
     outstaff_page_test = WebOutstaffPage(driver)
     outstaff_page_test.open()
-    outstaff_page_test.check_packages_data(project_type, experience, bullits, price)
+    outstaff_page_test.get_data_carousel()
 
 
+def test_outstaff_team_and_spec_assert_data(driver):
+    outstaff_page_test = WebOutstaffPage(driver)
+    outstaff_page_test.open()
+    outstaff_page_test.get_data_team_and_spec()
+
+
+
+@feature('Проверка данных в карточках блока Why Godev is the right staff augmentation partner')
+def test_outstaff_page_benefits_count_cards_assert(driver):
+    outstaff_page_test = WebOutstaffPage(driver)
+    outstaff_page_test.open()
+    outstaff_page_test.get_data_card_tiles_outstaff()
+
+
+@feature('Проверка данных в карточках блока How IT staff augmentation works')
+def test_support_page_why_do_you_need_data_assert(driver):
+    outstaff_page_test = WebOutstaffPage(driver)
+    outstaff_page_test.open()
+    outstaff_page_test.get_data_card_how_it_staff_outstaff()
+
+
+
+@feature('Проверка данных в FAQ')
+def test_outstaff_page_faq_data_assert(driver):
+    outstaff_page_test = WebOutstaffPage(driver)
+    outstaff_page_test.open()
+    outstaff_page_test.get_data_faq_card_new()
+
+
+@feature('Проверка данных в Benefits of team augmentation services')
+def test_outstaff_page_web_development_process_data_assert(driver):
+    outstaff_page_test = WebOutstaffPage(driver)
+    outstaff_page_test.open()
+    outstaff_page_test.get_data_advant_carousel_card()

@@ -4,139 +4,159 @@
             "experience": "3+ years of experience",
             "bullits": "business / security / design",
             "price": "30 $ / hour",
-            "index": "1"
+            "index": "1",
+            "text": "We can integrate e-commerce elements into existing websites or develop a brand-new site that will allow your customers to order directly from you"
         },
         {
             "project_type": "Corporate",
             "experience": "3+ years of experience",
             "bullits": "design / affordable price",
             "price": "35 $ / hour",
-            "index": "2"
+            "index": "2",
+            "text": "We develop corporate websites that will introduce visitors to your business in order to establish a web presence for your company"
         },
         {
             "project_type": "Landing",
             "experience": "3+ years of experience",
             "bullits": "design / affordable price",
             "price": "30 $ / hour",
-            "index": "3"
+            "index": "3",
+            "text": "We perform a thorough analysis of your business to develop a landing page that will be specifically tailored for your target audience, resulting in better lead generation"
         },
         {
             "project_type": "Online Shops",
             "experience": "3+ years of experience",
             "bullits": "business / security / design",
             "price": "660 $ from",
-            "index": "4"
+            "index": "4",
+            "text": "Our developers can create full-fledged online shops that would either feature only your business or allow you to invite other vendors to offer their goods and services there"
         },
         {
             "project_type": "Web Portals",
             "experience": "3+ years of experience",
             "bullits": "workload / security / design",
             "price": "2000 $ from",
-            "index": "5"
+            "index": "5",
+            "text": "We create web portals that provide the users with all the required information, and we focus on making navigation as easy as possible"
         },
         {
             "project_type": "B2B Sites",
             "experience": "3+ years of experience",
             "bullits": "business / security / design",
             "price": "3300 $ from",
-            "index": "6"
+            "index": "6",
+            "text": "Our team can develop a B2B website for any needs ranging from communication to performing transactions between the companies"
         },
         {
             "project_type": "WordPress",
             "experience": "3+ years of experience",
             "bullits": "design / affordable price",
             "price": "390 $ from",
-            "index": "7"
+            "index": "7",
+            "text": "WordPress serves as a robust platform for ecommerce, enabling b2b companies to create scalable websites. We develop websites that effectively integrate with existing ERP systems. Our design team collaborates closely with your sales team to define your business goals, ensuring the final product meets the unique needs of b2b customers"
         },
         {
             "project_type": "Framework-Based Sites",
             "experience": "3+ years of experience",
             "bullits": "workload / security / design",
             "price": "33 $ / hour",
-            "index": "8"
+            "index": "8",
+            "text": "Depending on your project, our developers can use any of the popular frameworks to make an advanced and comprehensive website tailored for your business"
         },
         {
             "project_type": "Joomla",
             "experience": "3+ years of experience",
             "bullits": "design / affordable price",
             "price": "650 $ from",
-            "index": "9"
+            "index": "9",
+            "text": "Similar to WordPress, we can make a website on Joomla, adding customized elements and configuring the CMS for you"
         },
         {
             "project_type": "E-commerce web development",
             "experience": "3+ years of experience",
             "bullits": "business / security / design",
             "price": "30 $ / hour",
-            "index": "10"
+            "index": "10",
+            "text": " "
         },
         {
             "project_type": "E-commerce web design",
             "experience": "3+ years of experience",
             "bullits": "design / affordable price",
             "price": "22 $ / hour",
-            "index": "11"
+            "index": "11",
+            "text": " "
         },
         {
             "project_type": "Search engine optimization",
             "experience": "3+ years of experience",
             "bullits": "experience / affordable price",
             "price": "2000 $ / month",
-            "index": "12"
+            "index": "12",
+            "text": " "
         },
         {
             "project_type": "Front-end development",
             "experience": "3+ years of experience",
             "bullits": "HTML / JavaScript / CSS",
             "price": "30 $ / hour",
-            "index": "13"
+            "index": "13",
+            "text": " "
         },
         {
             "project_type": "Back-end development",
             "experience": "3+ years of experience",
             "bullits": "experience / knowledge / microservices",
             "price": "30 $ / hour",
-            "index": "14"
+            "index": "14",
+            "text": " "
         },
         {
             "project_type": "Backend",
             "experience": "3+ years of experience",
             "bullits": "middle / middle+ / senior",
             "price": "30$ / hour",
-            "index": "15"
+            "index": "15",
+            "text": " "
         },
         {
             "project_type": "Mobile",
             "experience": "3+ years of experience",
             "bullits": "middle / middle+ / senior",
             "price": "35$ / hour",
-            "index": "16"
+            "index": "16",
+            "text": " "
         },
         {
             "project_type": "Frontend",
             "experience": "3+ years of experience",
             "bullits": "middle / middle+ / senior",
             "price": "30$ / hour",
-            "index": "17"
+            "index": "17",
+            "text": " "
         },
         {
             "project_type": "Analysts",
             "experience": "3+ years of experience",
             "bullits": "middle / middle+ / senior",
             "price": "26$ / hour",
-            "index": "18"
+            "index": "18",
+            "text": " "
         },
         {
             "project_type": "Design",
             "experience": "3+ years of experience",
             "bullits": "middle / middle+ / senior",
             "price": "22$ / hour",
-            "index": "19"
+            "index": "19",
+            "text": " "
         },
         {
             "project_type": "Testers",
             "experience": "3+ years of experience",
             "bullits": "middle / middle+ / senior",
             "price": "28$ / hour",
-            "index": "20"
+            "index": "20",
+            "text": " "
         }
 ]

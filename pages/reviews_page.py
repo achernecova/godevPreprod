@@ -8,6 +8,7 @@ from page_elements.meta_data_page import MetaData
 from page_elements.popup_element import PopupElement
 
 from pages.base_page import BasePage
+from test.locators import Locators
 
 
 class ReviewsPage(BasePage):
@@ -15,10 +16,6 @@ class ReviewsPage(BasePage):
         super().__init__(driver)
         self.driver = driver
         self.subURL = subURLs.REVIEWS_PAGE
-
-    def click_button_banner(self):
-        click_button_banner = self.driver.find_element(By.XPATH, "//*[@class='banner']//button")
-        click_button_banner.click()
 
     def open(self):
         super().open(self.subURL)  # Добавляем под-URL

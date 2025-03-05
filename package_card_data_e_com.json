@@ -1,0 +1,39 @@
+[
+        {
+            "project_type": "E-commerce web development",
+            "bullits": "business / security / design",
+            "price": "30 $ / hour",
+            "index": "1"
+        },
+        {
+            "project_type": "E-commerce web design",
+            "bullits": "design / affordable price",
+            "price": "22 $ / hour",
+            "index": "2"
+        },
+        {
+            "project_type": "Online shops",
+            "bullits": "business / security / design",
+            "price": "660 $ from",
+            "index": "3"
+        },
+        {
+            "project_type": "Search engine optimization",
+            "bullits": "experience / affordable price",
+            "price": "2000 $ / month",
+            "index": "4"
+        },
+        {
+            "project_type": "Front-end development",
+            "bullits": "HTML / JavaScript / CSS",
+            "price": "30 $ / hour",
+            "index": "5"
+        },
+        {
+            "project_type": "Back-end development",
+            "bullits": "experience / knowledge / microservices",
+            "price": "30 $ / hour",
+            "index": "6"
+        }
+
+]

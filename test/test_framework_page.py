@@ -57,7 +57,7 @@ def test_e_com_page_click_services_and_project_and_open_pages(driver, card_type,
     framework_page_test = FrameworkPage(driver)
     framework_page_test.open()
     project_element = framework_page_test.get_project_service_element()
-    page = project_element.test_click_card_and_open_page(card_type, expected_url, expected_title)
+    page = project_element.test_click_card_and_open_page(card_type)
     assert driver.current_url == expected_url, f"Ожидался URL '{expected_url}', но получен '{driver.current_url}'"
     assert page.get_title_page() == expected_title, f"Получен Title: {page.get_title_page()}"
 
@@ -72,3 +72,17 @@ def test_framework_page_table_data_assert(driver, index, price_left_title, price
     framework_page_test = FrameworkPage(driver)
     framework_page_test.open()
     framework_page_test.get_data_block_price(index, price_left_title, price_left_text, price_right_title, price_right_text)
+
+
+@allure.feature('Проверка данных в карточках блока Advantages of development on frameworks')
+def test_framework_page_why_do_you_need_data_assert(driver):
+    framework_page_test = FrameworkPage(driver)
+    framework_page_test.open()
+    framework_page_test.get_data_card_how_it_staff_framework()
+
+
+@allure.feature('Проверка данных в FAQ')
+def test_framework_page_faq_data_assert(driver):
+    framework_page_test = FrameworkPage(driver)
+    framework_page_test.open()
+    framework_page_test.get_data_faq_card()

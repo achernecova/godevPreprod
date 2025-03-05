@@ -5,6 +5,9 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from faker import Faker
 
+from test.locators import Locators
+
+
 class FormPage:
     def __init__(self, driver):
         self.driver = driver
@@ -21,24 +24,24 @@ class FormPage:
     }
 
     def get_form_section(self):
-        element = self.driver.find_element(*self.locators["element"])
+        element = self.driver.find_element(*Locators.section_form_element_locator)
         action = ActionChains(self.driver)
         action.move_to_element(element).perform()
         return element
 
     def fill_form(self):
         self.get_form_section()
-        close_modal = self.driver.find_element(*self.locators["close_modal"])
+        close_modal = self.driver.find_element(*Locators.close_modal_locator)
         close_modal.click()
-        topping_click = self.driver.find_element(*self.locators["topping_click"])
+        topping_click = self.driver.find_element(*Locators.topping_click_locator)
         topping_click.click()
-        name_input = self.driver.find_element(*self.locators["name_input"])
+        name_input = self.driver.find_element(*Locators.name_input_locator)
         name_input.send_keys(self.fake.name())
-        email_input = self.driver.find_element(*self.locators["email_input"])
+        email_input = self.driver.find_element(*Locators.email_input_locator)
         email_input.send_keys(self.fake.email())
-        message_input = self.driver.find_element(*self.locators["message_input"])
+        message_input = self.driver.find_element(*Locators.message_input_locator)
         message_input.send_keys(self.fake.text(max_nb_chars=300))
-        submit_button = self.driver.find_element(*self.locators["submit_button"])
+        submit_button = self.driver.find_element(*Locators.submit_button_locator)
         submit_button.click()
 
 
@@ -51,7 +54,7 @@ class FormPage:
         try:
             # Ожидание видимости элемента с указанным XPath
             popup_success = WebDriverWait(self.driver, timeout).until(
-                EC.visibility_of_element_located((By.XPATH, "//*[@class='sendmail-popup success']"))
+                EC.visibility_of_element_located(Locators.popup_success)
             )
             return popup_success.is_displayed()
         except (NoSuchElementException, TimeoutException):

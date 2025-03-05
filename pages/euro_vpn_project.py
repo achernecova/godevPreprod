@@ -1,4 +1,4 @@
-from selenium.webdriver.common.by import By
+from test.locators import Locators
 
 
 class ProjectEuroVpn:
@@ -10,5 +10,5 @@ class ProjectEuroVpn:
         self.driver.get('https://dev.godev.agency/projects/information-security-service/')
 
     def get_title_page(self):
-        title_page = self.driver.find_element(By.XPATH, "//h1")
+        title_page = self.driver.find_element(*Locators.title_page)
         return title_page.text

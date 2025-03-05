@@ -93,6 +93,12 @@ def driver():
         "title": "Website Development Company in USA, Leading Web Design and Development Services Godev",
         "description": "Discover Godev, a leading web development company in the USA, offering top-notch web design and development services to elevate your online business. Professional web developers with 10+ years of experience.",
         "canonical": URLs.MAIN_PAGE+subURLs.WEBSITE_DEV
+    },
+    {
+        "page": "landing",
+        "title": "Mastering Landing Page Design in USA, Top Development Services in Godev",
+        "description": "Unlock the secrets to effective landing page design in the USA with Godev's top development services. Generate more leads and enhance conversions today!",
+        "canonical": URLs.MAIN_PAGE+subURLs.LANDING
     }
 
 ])

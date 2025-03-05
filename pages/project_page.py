@@ -4,6 +4,7 @@ from constants import subURLs
 from page_elements.block_count_elements import CountElements
 from page_elements.meta_data_page import MetaData
 from pages.base_page import BasePage
+from test.locators import Locators
 
 
 class ProjectPage(BasePage):
@@ -28,9 +29,9 @@ class ProjectPage(BasePage):
 
     def click_project(self, index):
         print('move cursor to element')
-        project = self.driver.find_element(By.XPATH, "(//*[@class='projects-title'])["+index+"]")
+        project = self.driver.find_element(*Locators.get_project_locator(index))
         self.scroll_to_element(project)
-        project.click()
+        self._click_element(project)
 
     def assert_data_page(self, expected_url, expected_title):
         assert self.get_url() == expected_url, f"Ожидался URL '{expected_url}', но получен '{self.driver.current_url}'"

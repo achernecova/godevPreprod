@@ -1,11 +1,9 @@
+import re
 
 from faker import Faker
-from selenium.common import NoSuchElementException, TimeoutException
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 from pages.base_page import BasePage
+from test.locators import Locators
 
 
 class PopupElement(BasePage):
@@ -16,29 +14,39 @@ class PopupElement(BasePage):
         self.driver = driver
 
     def click_topping_dev_banner(self):
-        self._click_element(self.driver.find_element(By.XPATH, "//label[@class='topping'][@for='t11']"))
+        click_topping = self.driver.find_element(*Locators.topping_dev_button_locator)
+        click_topping.click()
 
     def input_name_in_banner(self):
-        input_name = self.driver.find_element(By.XPATH, "//*[@class='request-offer-inputs']//input[@name='name']")
-        input_name.send_keys("TEST" + self.fake.name())
+        input_name = self.driver.find_element(*Locators.input_name_locator)
+        input_name.send_keys('TEST' + self.fake.name())
 
     def input_email_in_banner(self):
-        input_email = self.driver.find_element(By.XPATH, "//*[@class='request-offer-inputs']//input[@name='email']")
-        input_email.send_keys("TEST" + self.fake.email())
+        input_email = self.driver.find_element(*Locators.input_email_locator)
+
+        # Генерируем email и убираем пробелы и тире
+        email = self.fake.email()
+        email = re.sub(r'\s+', '', email)  # Удаляем все пробелы из email
+        email = re.sub(r'-', '', email)  # Удаляем все тире из email
+
+        # Проверяем, что email не содержит пробелов или тире
+        if ' ' in email or '-' in email:
+            print("Сгенерированный email содержит пробелы или тире, генерируем заново.")
+            email = self.fake.email()  # Генерируем email заново, если есть пробелы или тире
+
+        input_email.send_keys('TEST' + email)
 
     def input_comment_in_banner(self):
-        input_comment = self.driver.find_element(By.XPATH, "//*[@class='form-textarea']//*[@placeholder='Comment']")
-        input_comment.send_keys("TEST" + self.fake.text(max_nb_chars=200))
+        input_comment = self.driver.find_element(*Locators.input_comment_locator)
+        input_comment.send_keys('TEST' + self.fake.text(max_nb_chars=200))
 
     def click_button_in_banner(self):
-        self.driver.find_element(By.XPATH, "//*[@class='request-offer-bottom']//button").click()
-        #self._click_element(self.driver.find_element(By.XPATH, "//*[@class='request-offer-bottom']//button"))
-
-    def click_button_in_header(self):
-        self._click_element(self.driver.find_element(By.XPATH, "//*[@class='right']//button"))
+        button_click = self.driver.find_element(*Locators.button_click_locator)
+        button_click.click()
 
     def click_topping_analysts_banner(self):
-        self._click_element(self.driver.find_element(By.XPATH, "//label[@class='topping'][@for='t14']"))
+        topping_analysts = self.driver.find_element(*Locators.topping_analysts_locator)
+        topping_analysts.click()
 
     def add_request_success(self):
         self.close_modal_popup()

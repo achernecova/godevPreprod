@@ -1,0 +1,669 @@
+{
+  "web_site_develop_card_data": {
+    "title": "Website Packages",
+    "text_title": "We develop websites in a wide range of niches creating digital solutions that are tailored to the needs of your business. We approach every client individually, making sure the resulting website perfectly reflects your vision",
+    "descriptions": [
+          {
+       "project_type": "E-Commerce",
+       "exp": "3+ years of experience",
+       "level": "business / security / design",
+       "price": "30 $/ hour",
+       "index": "1",
+       "text": "Whether you want our web development agency Godev can integrate e-commerce elements into existing websites or develop a brand-new site that allows customers to order directly from you"
+     },
+      {
+       "project_type": "Corporate",
+       "exp": "3+ years of experience",
+       "level": "design / affordable price",
+       "price": "35 $/ hour",
+       "index": "2",
+       "text": "Corporate websites are created to showcase your business to visitors, helping to establish a strong online presence for the company"
+     },
+      {
+       "project_type": "Landing",
+       "exp": "3+ years of experience",
+       "level": "design / affordable price",
+       "price": "30 $/ hour",
+       "index": "3",
+       "text": "We perform a thorough analysis of your business to develop a landing page that will be specifically tailored for your target audience, resulting in better lead generation"
+     },
+      {
+       "project_type": "Online shops",
+       "exp": "3+ years of experience",
+       "level": "business / security / design",
+       "price": "660 $from",
+       "index": "4",
+       "text": "Our developers can create full-fledged online shops that would either feature only your business or allow you to invite other vendors to offer their goods and services there"
+     },
+      {
+       "project_type": "Web portals",
+       "exp": "3+ years of experience",
+       "level": "workload / security / design",
+       "price": "2000 $from",
+       "index": "5",
+       "text": "We create web portals that provide the users with all the required information, and we focus on making navigation as easy as possible"
+     },
+      {
+       "project_type": "B2B sites",
+       "exp": "3+ years of experience",
+       "level": "business / security / design",
+       "price": "3300 $from",
+       "index": "6",
+       "text": "Our team can develop a B2B website for any needs ranging from communication to performing transactions between the companies"
+     },
+      {
+       "project_type": "WordPress",
+       "exp": "3+ years of experience",
+       "level": "design / affordable price",
+       "price": "390 $from",
+       "index": "7",
+       "text": "We can make your custom website on WordPress, which allows you to easily access the admin panel and modify it based on your needs later, as well as to seamlessly update the content of your site"
+     },
+      {
+       "project_type": "Framework-Based Sites",
+       "exp": "3+ years of experience",
+       "level": "workload / security / design",
+       "price": "33 $ / hour",
+       "index": "8",
+       "text": "Depending on your project, our developers can use any of the popular frameworks to make an advanced and comprehensive website tailored for your business"
+     },
+      {
+       "project_type": "Joomla",
+       "exp": "3+ years of experience",
+       "level": "design / affordable price",
+       "price": "650 $from",
+       "index": "9",
+       "text": "Similar to WordPress, we can make a website on Joomla, adding customized elements and configuring the CMS for you"
+     }
+    ]
+  },
+
+  "cms_card_data": {
+    "title": "Customer Reviews",
+    "descriptions": [
+          {
+       "project_type": "E-Commerce",
+       "exp": "3+ years of experience",
+       "level": "business / security / design",
+       "price": "30 $/ hour",
+       "index": "1",
+       "text": "We can integrate e-commerce elements into existing websites or develop a brand-new site that will allow your customers to order directly from you"
+     },
+      {
+       "project_type": "Corporate",
+       "exp": "3+ years of experience",
+       "level": "design / affordable price",
+       "price": "35 $/ hour",
+       "index": "2",
+       "text": "We develop corporate websites that will introduce visitors to your business in order to establish a web presence for your company"
+     },
+      {
+       "project_type": "Landing",
+       "exp": "3+ years of experience",
+       "level": "design / affordable price",
+       "price": "30 $/ hour",
+       "index": "3",
+       "text": "We perform a thorough analysis of your business to develop a landing page that will be specifically tailored for your target audience, resulting in better lead generation"
+     },
+      {
+       "project_type": "Online shops",
+       "exp": "3+ years of experience",
+       "level": "business / security / design",
+       "price": "660 $from",
+       "index": "4",
+       "text": "Our developers can create full-fledged online shops that would either feature only your business or allow you to invite other vendors to offer their goods and services there"
+     },
+      {
+       "project_type": "Web portals",
+       "exp": "3+ years of experience",
+       "level": "workload / security / design",
+       "price": "2000 $from",
+       "index": "5",
+       "text": "We create web portals that provide the users with all the required information, and we focus on making navigation as easy as possible"
+     },
+      {
+       "project_type": "B2B sites",
+       "exp": "3+ years of experience",
+       "level": "business / security / design",
+       "price": "3300 $from",
+       "index": "6",
+       "text": "Our team can develop a B2B website for any needs ranging from communication to performing transactions between the companies"
+     },
+      {
+       "project_type": "WordPress",
+       "exp": "3+ years of experience",
+       "level": "design / affordable price",
+       "price": "390 $from",
+       "index": "7",
+       "text": "We can make your custom website on WordPress, which will allow you to easily access the admin panel and modify it based on your needs later as well as to seamlessly update the content of your site"
+     },
+      {
+       "project_type": "Joomla",
+       "exp": "3+ years of experience",
+       "level": "design / affordable price",
+       "price": "650 $from",
+       "index": "8",
+       "text": "Joomla serves as an excellent document management system, ensuring that custom content management is both interactive and user-friendly. This software is particularly noted for its ease-of-use and responsive design capabilities"
+     },
+      {
+       "project_type": "OpenCart",
+       "exp": "3+ years of experience",
+       "level": "design / affordable price",
+       "price": "650 $from",
+       "index": "9",
+       "text": "As a leading CMS in the e-commerce industry, OpenCart offers tools to help create a website that is both responsive and cost-effective. If you’re looking to automate web development  processes, OpenCart is an excellent choice"
+     }
+    ]
+  },
+
+  "b2b_card_data": {
+    "title": "Website packages",
+    "descriptions": [
+     {
+       "project_type": "E-Commerce",
+       "exp": "3+ years of experience",
+       "level": "business / security / design",
+       "price": "30 $/ hour",
+       "index": "1",
+       "text": "We can integrate e-commerce elements into existing websites or develop a brand-new site that will allow your customers to order directly from you"
+     },
+      {
+       "project_type": "Corporate",
+       "exp": "3+ years of experience",
+       "level": "design / affordable price",
+       "price": "35 $/ hour",
+       "index": "2",
+       "text": "We develop corporate websites that will introduce visitors to your business in order to establish a web presence for your company"
+     },
+      {
+       "project_type": "Online shops",
+       "exp": "3+ years of experience",
+       "level": "business / security / design",
+       "price": "660 $from",
+       "index": "3",
+       "text": "Our developers can create full-fledged online shops that would either feature only your business or allow you to invite other vendors to offer their goods and services there"
+     },
+      {
+       "project_type": "B2B sites",
+       "exp": "3+ years of experience",
+       "level": "business / security / design",
+       "price": "3300 $from",
+       "index": "4",
+       "text": "By integrating ecommerce software with robust back-end capabilities, businesses can effectively manage product information and automate processes. Leveraging third-party ecommerce systems and ERP integrations can significantly enhance the ecommerce capabilities of a B2B platform, ultimately empowering the sales team to maximize their outreach and efficiency"
+     },
+      {
+       "project_type": "WordPress",
+       "exp": "3+ years of experience",
+       "level": "design / affordable price",
+       "price": "390 $from",
+       "index": "5",
+       "text": "WordPress serves as a robust platform for ecommerce, enabling b2b companies to create scalable websites. We develop websites that effectively integrate with existing ERP systems. Our design team collaborates closely with your sales team to define your business goals, ensuring the final product meets the unique needs of b2b customers"
+     },
+      {
+       "project_type": "OpenCart",
+       "exp": "3+ years of experience",
+       "level": "design / affordable price",
+       "price": "650 $from",
+       "index": "6",
+       "text": "As a leading CMS in the e-commerce industry, OpenCart offers tools to help create a B2B website that is both responsive and cost-effective. If you’re looking to automate web development processes, OpenCart is an excellent choice"
+     },
+      {
+       "project_type": "Joomla",
+       "exp": "3+ years of experience",
+       "level": "design / affordable price",
+       "price": "690 $from",
+       "index": "7",
+       "text": "Joomla serves as an excellent document management system, ensuring that custom content management is both interactive and user-friendly. This software is particularly noted for its ease-of-use and responsive design capabilities"
+     }
+    ]
+  },
+
+  "outstaff_card_data": {
+    "title": "Team and specialists",
+    "descriptions": [
+     {
+       "index": "1",
+       "direction": "Backend",
+       "exp": "3+ years of experience",
+       "level": "middle / middle+ / senior",
+       "price": "30$/ hour",
+       "text": "Symfony, Laravel, Yii, Zend, Codeigniter, CakePHP, Golang, C#, Python, Git , Node.js, MySQL, PostgreSQL, MongoDB, Rest, Docker"
+     },
+     {
+       "index": "2",
+       "direction": "Mobile",
+       "exp": "3+ years of experience",
+       "level": "middle / middle+ / senior",
+       "price": "35$/ hour",
+       "text": "React Native, Flutter"
+     },
+      {
+       "index": "3",
+       "direction": "Frontend",
+       "exp": "3+ years of experience",
+       "level": "middle / middle+ / senior",
+       "price": "30$/ hour",
+       "text": "JavaScript, TypeScript, React.js, Vue.js, Angular, Java, Spring, Spring Boot, HTML 5, CSS 3, LESS/SASS/SCSS"
+     },
+      {
+       "index": "4",
+       "direction": "Analysts",
+       "exp": "3+ years of experience",
+       "level": "middle / middle+ / senior",
+       "price": "26$/ hour",
+       "text": "Atlassian (Confluence, Jira), redmine, UML, BPMB: draw.io,  postman, soapUi, dataGrip, Balsamiq"
+     },
+      {
+       "index": "5",
+       "direction": "Design",
+       "exp": "3+ years of experience",
+       "level": "middle / middle+ / senior",
+       "price": "22$/ hour",
+       "text": "Figma, Illustrator, Photoshop, Sketch"
+     },
+      {
+       "index": "6",
+       "direction": "Testers",
+       "exp": "3+ years of experience",
+       "level": "middle / middle+ / senior",
+       "price": "28$/ hour",
+       "text": "Selenium/Selenide, testing API (SOAP/REST), autotesting"
+     }
+    ]
+  },
+
+  "website_design_card_data": {
+    "title": "Website packages",
+    "descriptions": [
+     {
+       "index": "1",
+       "project_type": "Website design",
+       "level": "mobile friendly / UX / UI",
+       "price": "22 $/ hour",
+       "text": "Figma, Illustrator, Photoshop, Sketch"
+     },
+     {
+       "index": "2",
+       "project_type": "Web development",
+       "level": "landing / e-commerce / portals",
+       "price": "660 $from",
+       "text": "Frameworks, Golang, Python, PHP, CMS, JavaScript, HTML 5, CSS 3"
+     },
+      {
+       "index": "3",
+       "project_type": "CMS WordPress",
+       "level": "affordable price",
+       "price": "390 $from",
+       "text": "REST API, WPGraphQL"
+     }
+    ]
+  },
+
+  "e_com_card_data": {
+    "title": "Website packages",
+    "descriptions": [
+     {
+       "index": "1",
+       "project_type": "E-commerce web development",
+       "level": "business / security / design",
+       "price": "30 $/ hour"
+     },
+     {
+       "index": "2",
+       "project_type": "E-commerce web design",
+       "level": "design / affordable price",
+       "price": "22 $/ hour"
+     },
+      {
+       "index": "3",
+       "project_type": "Online shops",
+       "level": "business / security / design",
+       "price": "660 $from"
+     },
+      {
+       "index": "4",
+       "project_type": "Search engine optimization",
+       "level": "experience / affordable price",
+       "price": "2000 $/ month"
+     },
+      {
+       "index": "5",
+       "project_type": "Front-end development",
+       "level": "HTML / JavaScript / CSS",
+       "price": "30 $/ hour"
+     },
+      {
+       "index": "5",
+       "project_type": "Back-end development",
+       "level": "experience / knowledge / microservices",
+       "price": "30 $/ hour"
+     }
+    ]
+  },
+
+  "tiles_section_card_data": {
+    "title": "Comprehensive E-commerce services",
+    "text_title": "At Godev, we provide end-to-end ecommerce web development services tailored to meet the unique needs of your business",
+    "descriptions": [
+     {
+       "index": "1",
+       "project_type": "Custom e-commerce store development",
+       "text": "We build scalable and secure online stores that cater to both B2B and B2C markets, providing a seamless shopping experience for all customers and increasing your market reach"
+     },
+     {
+       "index": "2",
+       "project_type": "UX and UI optimization",
+       "text": "Our focus on UX and UI design enhances the consumer journey, making navigation intuitive and engaging, which boosts conversion rates and encourages repeat business"
+     },
+      {
+       "index": "3",
+       "project_type": "SEO and digital marketing",
+       "text": "As a digital marketing agency, we optimize your site for search engines and integrate marketing strategies to increase visibility, drive organic traffic, and improve your online presence"
+     },
+      {
+       "index": "4",
+       "project_type": "Responsive web design",
+       "text": "Our web design ensures optimal viewing and interaction across all mobile devices, enhancing usability and ensuring that your site looks great on any screen size"
+     },
+      {
+       "index": "5",
+       "project_type": "Secure payment gateways",
+       "text": "Our developers can use any of the popular frameworks in the foundation of your website. Depending on your needs and preferences, we will use a framework to optimize the speed and functionality of the resulting site"
+     },
+      {
+       "index": "6",
+       "project_type": "Advanced analytics and reporting",
+       "text": "We integrate analytics tools to help you track performance, understand customer behavior, and make data-driven decisions to grow your business"
+     },
+      {
+       "index": "7",
+       "project_type": "Integration with leading E-commerce platforms",
+       "text": "We work with top ecommerce platforms and ecommerce software like Shopify, Magento, and WooCommerce to provide robust functionality and flexibility, tailored to your business needs"
+     }
+    ]
+  },
+
+  "tiles_section_card_data_main": {
+    "title": "Digital Agency Godev",
+    "text_title": "Selecting the right staff augmentation partner is crucial to your project’s success. Godev is a top-tier provider of staff augmentation services with several key advantages:",
+    "descriptions": [
+     {
+       "index": "1",
+       "project_type": "IT expertise",
+       "text": "Our agency was launched in 2010 and has been steadily building its reputation for the last thirteen years"
+     },
+     {
+       "index": "2",
+       "project_type": "Global Talent Pool",
+       "text": "We have now grown to have more than 80 full-time employees and have completed more than 400 different projects"
+     },
+      {
+       "index": "3",
+       "project_type": "Expertise in diverse industries",
+       "text": "We are experienced in almost all niches of online business, as our previous customers include a popular VPN provider, a car rental in Dubai, an online jewelry store, and even a freight exchange platform"
+     },
+      {
+       "index": "4",
+       "project_type": "Fast start",
+       "text": "We are committed to bringing your vision to life in order to deliver the exact experience you want your customers to have"
+     }
+    ]
+  },
+
+  "tiles_section_card_data_outstaff": {
+    "title": "Why Godev is the right staff augmentation partner",
+    "text_title": "Selecting the right staff expansion partner is crucial to your project’s success. Godev is a top-tier provider of staff augmentation services with several key advantages:",
+    "descriptions": [
+     {
+       "index": "1",
+       "project_type": "IT expertise",
+       "text": "To work together effectively and fast start, we prioritize regular and open communication with your team members and guarantee the timely sharing of the most up-to-date project information"
+     },
+     {
+       "index": "2",
+       "project_type": "Global Talent Pool",
+       "text": "Godev has access to a vast network of IT professionals worldwide. This ensures you can find the right talent, regardless of location, to meet your project requirements"
+     },
+      {
+       "index": "3",
+       "project_type": "Expertise in diverse industries",
+       "text": "Discover effective solutions at minimum cost. Godev has developed skills to work with companies across various sectors, delivering high-quality solutions tailored to each client’s needs"
+     },
+      {
+       "index": "4",
+       "project_type": "Flexible collaboration duration",
+       "text": "We offer both short-term and long-term team extensions. You can hire our experts for a limited time project or for ongoing work without any time limits"
+     },
+      {
+       "index": "5",
+       "project_type": "Seamless integration with your team",
+       "text": "To work together effectively and fast start, we prioritize regular and open communication with your team members and guarantee the timely sharing of the most up-to-date project information"
+     },
+      {
+       "index": "6",
+       "project_type": "Fast start",
+       "text": "Skilled development teams and IT experts are ready to start working right now. It’s an excellent solution for a startup and big company, which appreciate time and cost"
+     }
+    ]
+  },
+
+  "tiles_section_card_data_cms": {
+    "title": "Benefits of using content management systems",
+    "text_title": "Content management systems streamline the process of managing and updating website content, allowing you to easily create, edit, and publish articles or posts without any frontend and backend website development knowledge",
+    "descriptions": [
+     {
+       "index": "1",
+       "project_type": "Easy to learn",
+       "text": "Content management systems enhance productivity by enabling non-technical users to manage website content independently. This reduces the dependency on developers for routine updates, saving time and resources"
+     },
+     {
+       "index": "2",
+       "project_type": "Agile SEO optimization",
+       "text": "With a CMS, you can easily implement the best SEO practices, helping your website rank better in search engines. Built-in tools and plugins make optimizing content for search engines straightforward and efficient, resulting in better discoverability and lead generation for your business"
+     },
+      {
+       "index": "3",
+       "project_type": "Collaborative features",
+       "text": "Content management systems improve collaboration by allowing multiple users to access and edit content with defined roles and permissions. This ensures a more organized workflow and efficient project management"
+     },
+      {
+       "index": "4",
+       "project_type": "Further scaling",
+       "text": "They offer scalability, allowing your website to grow as your business evolves without a complete overhaul. You can easily add new features, pages, and functionalities as your requirements change"
+     }
+    ]
+  },
+
+  "tiles_section_card_data_b2b": {
+    "title": "Benefits of a B2B e-commerce solution from Godev",
+    "text_title": "Partnering with Godev for your B2B eCommerce development offers numerous advantages:",
+    "descriptions": [
+     {
+       "index": "1",
+       "project_type": "Customized web design",
+       "text": "We create visually appealing and user-friendly designs that reflect your brand identity and enhance user experience"
+     },
+     {
+       "index": "2",
+       "project_type": "Digital marketing support",
+       "text": "Our services extend to digital marketing, helping you reach a broader audience and drive engagement through targeted campaigns"
+     },
+      {
+       "index": "3",
+       "project_type": "Ongoing support and maintenance",
+       "text": "Our commitment doesn’t end with the launch; we provide continuous support and maintenance to keep your website running smoothly"
+     },
+      {
+       "index": "4",
+       "project_type": "Search engine optimization (SEO)",
+       "text": "We implement effective SEO strategies to improve your website’s visibility and attract more qualified leads"
+     },
+      {
+       "index": "5",
+       "project_type": "Security",
+       "text": "We prioritize the security of your website, implementing robust measures to protect sensitive data and ensure compliance with industry standards"
+     },
+      {
+       "index": "6",
+       "project_type": "Seamless integration",
+       "text": "Our solutions ensure smooth integration with existing systems, including payment gateways, inventory management, and CRM platforms, streamlining your operations"
+     },
+      {
+       "index": "7",
+       "project_type": "Scalability",
+       "text": "Our solutions are designed to grow with your business, accommodating increased traffic and expanding product lines without compromising performance"
+     }
+    ]
+  },
+
+  "tiles_section_card_data_website": {
+    "title": "Types of websites we work with",
+    "text_title": "Our team of 80 web developers is ready to help you in all popular niches. Let us go through the main types of websites we can create",
+    "descriptions": [
+     {
+       "index": "1",
+       "project_type": "Landing pages",
+       "text": "Our web development team puts huge effort into design and optimization of landing pages, ensuring a positive first impression from the visitors and granting high conversion rates"
+     },
+     {
+       "index": "2",
+       "project_type": "Online stores",
+       "text": "We build professional shopping platforms that are comfortable both for vendors and customers. Depending on the niche of your online store, we will create a custom layout and architecture that will match the needs of your visitors"
+     },
+      {
+       "index": "3",
+       "project_type": "Portals",
+       "text": "Our specialists are always ready to deliver high quality web portals with sophisticated yet intuitive infrastructure that allows the visitors to access the information and engage with the content easily"
+     },
+      {
+       "index": "4",
+       "project_type": "B2B sites",
+       "text": "We create B2B sites for all purposes, starting with introducing product catalogs and ending with CRM integration for optimizing the interactions with other companies. Our web designers and developers will make sure the resulting collaboration is efficient and tailored to your specific niche or task"
+     },
+      {
+       "index": "5",
+       "project_type": "CMS sites",
+       "text": "We develop professional websites with custom user interface (UI) with all the popular content management systems (CMS). This will allow you to avoid your fresh site feeling generic, while offering the same comfort of managing site content. It’s a cheaper solution compared to developing websites on frameworks"
+     },
+      {
+       "index": "6",
+       "project_type": "Cloud solutions",
+       "text": "Our team can integrate various cloud-based solutions to your new website. Opting-in for cloud services will dramatically reduce the operational costs with a seamless integration to your business"
+     },
+      {
+       "index": "7",
+       "project_type": "Framework sites",
+       "text": "Our developers can use any of the popular frameworks in the foundation of your website. Depending on your needs and preferences, we will use a framework to optimize the speed and functionality of the resulting site"
+     }
+    ]
+  },
+
+  "tiles_section_card_data_webdev": {
+    "title": "Advantages of choosing Godev for website development",
+    "descriptions": [
+     {
+       "index": "1",
+       "project_type": "Individual solutions",
+       "text": "Godev builds websites and online apps that match the goals of your business. We research every niche thoroughly and implement all the features and specifications you request"
+     },
+     {
+       "index": "2",
+       "project_type": "Latest technologies",
+       "text": "Godev integrates the latest tech innovations to craft websites that look and feel modern. Our team works with all programming languages and Content Management Systems, constantly keeping up with every update"
+     },
+      {
+       "index": "3",
+       "project_type": "Ongoing support",
+       "text": "After our services are delivered, we continue providing support for the projects. Our help desk is on call 24/7, always ready to quickly resolve any technical issues or assist with implementing new functionality"
+     },
+      {
+       "index": "4",
+       "project_type": "Flexible and scalable",
+       "text": "Software produced by Godev serves as a stable foundation that can be easily expanded on in the future. All the elements required for further expansion are laid down during the architecture planning stage, making it easier to implement additional functions or accommodate heavier traffic"
+     }
+    ]
+  },
+
+  "tiles_section_card_data_support": {
+    "title": "Benefits of choosing Godev",
+    "text_title": "Our professional web development team has been in the market for 13 years now, earning top-rated scores among clients. There are several key benefits that make our development company stand out when it comes to website support or application maintenance",
+    "descriptions": [
+     {
+       "index": "1",
+       "project_type": "IT expertise",
+       "text": "Our professional team has been working in the IT market for 13 years, with experience in website development, mobile applications, software development, and technical support for numerous projects. We oversees maintenance and provides technical support"
+     },
+     {
+       "index": "2",
+       "project_type": "Integration of new features",
+       "text": "Our wide range of services includes post-launch integration of new features. Whenever a need for something fresh arises, our frontend development and back-end development teams are always ready to jump on the task and have it finished according to your vision in no time. These are the same specialists developing the websites in the first place, meaning they will already be familiar with the architecture of your particular site"
+     },
+      {
+       "index": "3",
+       "project_type": "Optimization",
+       "text": "In case any performance issues arise with the website, we immediately look into them, whether it is to polish the responsive design of the user interface (UI) or improving the loading speeds of specific pages. We perform both desktop and mobile optimization for all the websites we launch"
+     },
+      {
+       "index": "4",
+       "project_type": "Reputation",
+       "text": "Our agency has been in business since 2010, and we have completed more than 400 different projects throughout these years. The websites we have launched continue to bring millions of visitors to their owners, many of whom have been collaborating with us for years now"
+     },
+      {
+       "index": "5",
+       "project_type": "Saving time",
+       "text": "Our team takes over all the maintenance tasks, saving you time and effort on managing it yourself. And while we take over the majority of the responsibilities, we still follow your creative vision when adding new features or polishing the existing ones. This approach allows us to collaborate together to achieve the desired result in the most time-efficient manner"
+     },
+      {
+       "index": "6",
+       "project_type": "Saving money",
+       "text": "We have an optimized process of website maintenance, allowing you to save money on hiring your own specialists. The support is performed by the same developers who create the websites, meaning they already know the architecture and infrastructure of its core systems"
+     },
+      {
+       "index": "7",
+       "project_type": "Reliability",
+       "text": "We are available at all times and never hesitate to help you out no matter the issue. Whether it is a bug, an access problem, or a new feature request, you can rely on our team to complete the task quickly and efficiently"
+     },
+      {
+       "index": "8",
+       "project_type": "Easy communication",
+       "text": "We are on call 24/7, meaning you can both easily have developers working on an urgent issue or simply contact us regarding a less urgent matter at any time. We are always willing to listen to your ideas and come up with suggestions that will help bring them to life according to your vision"
+     }
+    ]
+  },
+
+  "tile_squad": {
+    "title_section": "Boost your business with a landing page",
+    "descriptions": [
+     {
+       "index": "1",
+       "project_type": "Express yourself",
+       "text": "If you don’t have a website, convey information about your goods and services effectively through a landing page"
+     },
+     {
+       "index": "2",
+       "project_type": "Test your hypothesis",
+       "text": "Validate your ideas with minimal risks"
+     },
+      {
+       "index": "3",
+       "project_type": "Collect the contacts",
+       "text": "We help to gather the leads for their following processing"
+     },
+      {
+       "index": "4",
+       "project_type": "Sell the product",
+       "text": "Attract attention to a particular product"
+     },
+      {
+       "index": "5",
+       "project_type": "Raise status",
+       "text": "An opportunity to place the website on your business card or in the advertisement, which increases trust"
+     },
+      {
+       "index": "6",
+       "project_type": "Improve the image",
+       "text": "We create a high-quality and unforgettable web-image for your business"
+     }
+    ]
+  }
+}

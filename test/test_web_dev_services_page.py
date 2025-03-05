@@ -33,3 +33,18 @@ def test_web_dev_serv_page_data_card_packages(driver, index, project_type, price
     blocks = web_dev_serv_page.get_count_elements()
     blocks.check_packages_data_services(index, project_type, price)
 
+
+
+@allure.feature('Проверка данных в карточках блока Advantages of choosing Godev for website development')
+def test_web_dev_serv_page_benefits_count_cards_assert(driver):
+    web_dev_serv_page = WebDevServicesPage(driver)
+    web_dev_serv_page.open()
+    web_dev_serv_page.get_data_card_tiles_webdev()
+
+
+
+@allure.feature('Проверка данных в FAQ')
+def test_web_dev_serv_page_faq_data_assert(driver):
+    web_dev_serv_page = WebDevServicesPage(driver)
+    web_dev_serv_page.open()
+    web_dev_serv_page.get_data_faq_card()

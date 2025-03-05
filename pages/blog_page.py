@@ -8,6 +8,7 @@ from page_elements.form_page import FormPage
 from page_elements.meta_data_page import MetaData
 from page_elements.popup_element import PopupElement
 from pages.base_page import BasePage
+from test.locators import Locators
 
 
 class BlogPage(BasePage):
@@ -20,7 +21,7 @@ class BlogPage(BasePage):
         super().open(self.subURL)  # Добавляем под-URL
 
     def get_date_blog(self):
-        date_blog = self.driver.find_element(By.XPATH, "//*[@class= 'blog-single-banner__date']")
+        date_blog = self.driver.find_element(*Locators.date_blog)
         return date_blog.text
 
     def get_form_page(self):
@@ -45,12 +46,12 @@ class BlogPage(BasePage):
         self.close_modal_popup()
 
         block_class = 'blog__block-right' if side == 'right' else 'blog__block-left--item'
-        element = self.driver.find_element(By.XPATH, f"(//*[contains(@class, '{block_class}')])[{index}]")
+        element = self.driver.find_element(*Locators.get_click_block_class_and_index_locator(block_class, index))
 
         self.scroll_to_element(element)
-        self._click_element(element)
+        element.click()
 
-        title_page = self.driver.find_element(By.XPATH, "//h1")
+        title_page = self.driver.find_element(*Locators.title_page)
 
         assert self.get_url() == page_url, f"Ожидался URL '{page_url}', но получен '{self.get_url()}'"
         assert title_page.text == page_title, f"Ожидался заголовок '{page_title}', но получен '{title_page.text}'"

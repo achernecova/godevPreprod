@@ -1,0 +1,75 @@
+[
+        {
+            "project_type": "E-Commerce",
+            "experience": "3+ years of experience",
+            "bullits": "business / security / design",
+            "price": "30 $ / hour",
+            "index": "1",
+            "text": "We can integrate e-commerce elements into existing websites or develop a brand-new site that will allow your customers to order directly from you"
+        },
+        {
+            "project_type": "Corporate",
+            "experience": "3+ years of experience",
+            "bullits": "design / affordable price",
+            "price": "35 $ / hour",
+            "index": "2",
+            "text": "We develop corporate websites that will introduce visitors to your business in order to establish a web presence for your company"
+        },
+        {
+            "project_type": "Landing",
+            "experience": "3+ years of experience",
+            "bullits": "design / affordable price",
+            "price": "30 $ / hour",
+            "index": "3",
+            "text": "We perform a thorough analysis of your business to develop a landing page that will be specifically tailored for your target audience, resulting in better lead generation"
+        },
+        {
+            "project_type": "Online shops",
+            "experience": "3+ years of experience",
+            "bullits": "business / security / design",
+            "price": "660 $ from",
+            "index": "4",
+            "text": "Our developers can create full-fledged online shops that would either feature only your business or allow you to invite other vendors to offer their goods and services there"
+        },
+        {
+            "project_type": "Web portals",
+            "experience": "3+ years of experience",
+            "bullits": "workload / security / design",
+            "price": "2000 $ from",
+            "index": "5",
+            "text": "We create web portals that provide the users with all the required information, and we focus on making navigation as easy as possible"
+        },
+        {
+            "project_type": "B2B sites",
+            "experience": "3+ years of experience",
+            "bullits": "business / security / design",
+            "price": "3300 $ from",
+            "index": "6",
+            "text": "Our team can develop a B2B website for any needs ranging from communication to performing transactions between the companies"
+        },
+        {
+            "project_type": "WordPress",
+            "experience": "3+ years of experience",
+            "bullits": "design / affordable price",
+            "price": "390 $ from",
+            "index": "7",
+            "text": "We can make your custom website on WordPress, which will allow you to easily access the admin panel and modify it based on your needs later as well as to seamlessly update the content of your site"
+        },
+        {
+            "project_type": "Joomla",
+            "experience": "3+ years of experience",
+            "bullits": "design / affordable price",
+            "price": "650 $ from",
+            "index": "9",
+            "text": "Joomla serves as an excellent document management system, ensuring that custom content management is both interactive and user-friendly. This software is particularly noted for its ease-of-use and responsive design capabilities"
+        },
+        {
+            "project_type": "OpenCart",
+            "experience": "3+ years of experience",
+            "bullits": "design / affordable price",
+            "price": "650 $ from",
+            "index": "9",
+            "text": "As a leading CMS in the e-commerce industry, OpenCart offers tools to help create a website that is both responsive and cost-effective. If you’re looking to automate web development processes, OpenCart is an excellent choice"
+        }
+
+]

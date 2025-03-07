@@ -53,7 +53,6 @@ def test_cms_page_click_services_and_project_and_open_pages(driver, card_type, e
 def test_main_page_data_card_packages(driver):
     cms_page_test = CMSPage(driver)
     cms_page_test.open()
-    #cms_page_test.get_data_card_cms()
     cms_page_test.get_data_card_cms()
 
 
@@ -69,3 +68,22 @@ def test_support_page_why_do_you_need_data_assert(driver):
     cms_page_test = CMSPage(driver)
     cms_page_test.open()
     cms_page_test.get_data_card_how_it_staff_cms()
+
+
+@allure.feature('Успешная отправка заявки')
+def test_b2b_page_add_request_success(driver):
+    cms_page_test = CMSPage(driver)
+    cms_page_test.open()
+    cms_page_test.click_button_banner()
+    form_page_test = cms_page_test.get_popup_element()
+    form_page_test.add_request_success()
+    assert form_page_test.popup_success_displayed() == True, 'Окно подтверждения не появилось'
+
+
+@allure.feature('Успешная отправка заявки из футера')
+def test_b2b_page_fill_form_request_footer(driver):
+    cms_page_test = CMSPage(driver)
+    cms_page_test.open()
+    form_page_test = cms_page_test.get_form_page()
+    form_page_test.fill_form()
+    assert form_page_test.popup_success_displayed() == True, 'Окно подтверждения не появилось'

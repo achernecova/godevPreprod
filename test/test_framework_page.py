@@ -85,4 +85,4 @@ def test_framework_page_why_do_you_need_data_assert(driver):
 def test_framework_page_faq_data_assert(driver):
     framework_page_test = FrameworkPage(driver)
     framework_page_test.open()
-    framework_page_test.get_data_faq_card()
+    framework_page_test.get_data_faq_card_new()

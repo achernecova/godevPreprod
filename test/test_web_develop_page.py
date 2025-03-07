@@ -72,3 +72,10 @@ def test_outstaff_page_web_development_process_data_assert(driver):
     web_dev_page_test = WebDevelopPage(driver)
     web_dev_page_test.open()
     web_dev_page_test.get_data_advant_carousel_card()
+
+
+@feature('Проверка данных в карусели с отзывами')
+def test_main_page_count_card_reviews(driver):
+    web_dev_page_test = WebDevelopPage(driver)
+    web_dev_page_test.open()
+    web_dev_page_test.get_data_review()

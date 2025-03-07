@@ -63,10 +63,10 @@ def test_main_page_get_title_carousel(driver):
 
 
 @feature('Проверка данных в карусели с отзывами')
-def test_main_page_count_card_reviews222(driver):
+def test_main_page_count_card_reviews(driver):
     main_page_test = MainPage(driver)
     main_page_test.open()
-    main_page_test.get_data_carousel_reviews()
+    main_page_test.get_data_review()
 
 
 @feature('Количество элементов в блоке')

@@ -159,8 +159,14 @@ class WebOutstaffPage(BasePage):
 # метод для черно-белых карточек
     def get_data_card_tiles_outstaff(self):
         url = URLs.MAIN_PAGE + subURLs.OUTSTAFFING  # Укажите нужный URL
-        self.get_data_card_with_type_project(self.get_card_data_tiles, 'data_card_block_packages.json',
-                                'tiles_section_card_data_outstaff', url)
+        self.get_data_card_with_type_project(
+            'data_card_block_packages.json',
+            self.get_data_faq_tiles_new,
+            'tiles_section_card_data_outstaff',
+            "//*[contains(@class, 'tile w-')]",
+            ".//h3",
+            ".//span",
+            url)
 
 
 # метод для черно-белых карточек с кружками и порядковыми номерами
@@ -172,7 +178,14 @@ class WebOutstaffPage(BasePage):
 # метод для faq
     def get_data_faq_card_new(self):
         url = URLs.MAIN_PAGE + subURLs.OUTSTAFFING  # Укажите нужный URL
-        self.get_data_card_with_type_project(self.get_data_faq, 'faq_block_data.json', 'faq_outstaff', url)
+        self.get_data_card_with_type_project(
+            'faq_block_data.json',
+            self.get_data_faq_tiles_new,
+            'faq_outstaff',
+            "//*[@class='accordeon-body']",
+            ".//*[@class='accordeon-question']",
+            ".//*[@class='accordeon-subject-text']",
+            url)
 
 
 # метод для карусели адвант

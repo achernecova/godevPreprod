@@ -125,8 +125,14 @@ class EComPage(BasePage):
         # метод для черно-белых карточек
     def get_data_card_tiles_e_com(self):
         url = URLs.MAIN_PAGE + subURLs.E_COM_PAGE  # Укажите нужный URL
-        self.get_data_card_with_type_project(self.get_card_data_tiles, 'data_card_block_packages.json',
-                                    'tiles_section_card_data', url)
+        self.get_data_card_with_type_project(
+            'data_card_block_packages.json',
+            self.get_data_faq_tiles_new,
+            'tiles_section_card_data_e_com',
+            "//*[contains(@class, 'tile w-')]",
+            ".//h3",
+            ".//span",
+            url)
 
 # метод для карусели адвант
     def get_data_advant_carousel_card(self):

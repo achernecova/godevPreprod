@@ -11,6 +11,7 @@ from page_elements.meta_data_page import MetaData
 from page_elements.popup_element import PopupElement
 
 from pages.base_page import BasePage
+from test.locators import Locators
 from utils.data_loader import load_file
 
 
@@ -40,7 +41,9 @@ class B2BPage(BasePage):
         from page_elements.project_service_element import ProjectServiceElement
         return ProjectServiceElement(self.driver)
 
-
+    def click_button_banner(self):
+        click_button_banner = self.driver.find_element(*Locators.button_banner_page)
+        click_button_banner.click()
 
     def get_data_card_b2b(self):
         url = URLs.MAIN_PAGE + subURLs.B2B_PAGE  # Укажите нужный URL
@@ -50,10 +53,23 @@ class B2BPage(BasePage):
 # метод для черно-белых карточек
     def get_data_card_tiles_b2b(self):
         url = URLs.MAIN_PAGE + subURLs.B2B_PAGE  # Укажите нужный URL
-        self.get_data_card_with_type_project(self.get_card_data_tiles, 'data_card_block_packages.json', 'tiles_section_card_data_b2b', url)
-
+        self.get_data_card_with_type_project(
+            'data_card_block_packages.json',
+            self.get_data_faq_tiles_new,
+            'tiles_section_card_data_b2b',
+            "//*[contains(@class, 'tile w-')]",
+            ".//h3",
+            ".//span",
+            url)
 
 # метод для черно-белых карточек с кружками и порядковыми номерами
     def get_data_card_how_it_staff_b2b(self):
         url = URLs.MAIN_PAGE + subURLs.B2B_PAGE  # Укажите нужный URL
-        self.get_data_card_with_type_project(self.get_card_data_tiles_card, 'section_how_it_staff_tiles.json', 'how_it_staff_b2b', url)
+        self.get_data_card_with_type_project(
+            'section_how_it_staff_tiles.json',
+            self.get_data_faq_tiles_new,
+            'how_it_staff_b2b',
+            "//*[@class='card']",
+            ".//h3[@class='card-title']",
+            './/p',
+            url)

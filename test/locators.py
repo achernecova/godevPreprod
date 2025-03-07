@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 
 class Locators:
     click_button_banner = (By.XPATH, "//*[@class='banner']//button")
+    button_banner_page = (By.XPATH,"//*[@class='banner has-descr']//button")
     title_page = (By.XPATH, '//h1')
     title_element = (By.XPATH, "//*[@class='section-title half slider-controls']")
     close_modal = (By.XPATH, "//*[@class='close-modal']")
@@ -50,6 +51,8 @@ class Locators:
     button_project_euro_VPN_locator = (By.XPATH, "//*[@href='https://dev.godev.agency/projects/information-security-service/']")
 
     button_landing_locator = (By.XPATH, "//*[@href='/services/development-of-a-landing-page/']")
+
+    button_rates_locator = (By.XPATH, "(//a[@class='button open-modal'])[1]")
 
 
     XPATH_MAP = {

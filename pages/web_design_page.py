@@ -94,4 +94,11 @@ class WebDesignPage(BasePage):
 # метод для faq
     def get_data_faq_card(self):
         url = URLs.MAIN_PAGE + subURLs.DESIGN_PAGE  # Укажите нужный URL
-        self.get_data_card_with_type_project(self.get_data_faq, 'faq_block_data.json', 'faq_design', url)
+        self.get_data_card_with_type_project(
+            'faq_block_data.json',
+            self.get_data_faq_tiles_new,
+            'faq_design',
+            "//*[@class='accordeon-body']",
+            ".//*[@class='accordeon-question']",
+            ".//*[@class='accordeon-subject-text']",
+            url)

@@ -57,7 +57,6 @@ class MainPage(BasePage):
         assert self.get_url() == page_url, f"Ожидался заголовок '{page_url}', но получен '{self.get_url()}'"
         assert self.title_page.text == page_title, f"Ожидался заголовок '{page_title}', но получен '{self.title_page.text}'"
 
-
     def get_data_title_carousel(self):
         # грузим данные из json
         data = load_file('carousel_of_review.json')
@@ -74,7 +73,6 @@ class MainPage(BasePage):
         assert reviews_wrapper['title'] in title_block_from_page, \
             f"Заголовок не найден на странице: {reviews_wrapper['title']}"
 
-
     # тянем данные из названия блока
     def get_title_block_from_page(self, url):
         title_element = self.driver.find_element(*Locators.title_element)
@@ -87,71 +85,38 @@ class MainPage(BasePage):
             logging.error('Ошибка!!! Заголовок не найден.')
             return 'Ошибка!!!'
 
+    # получение данных с карточек с отзывами
+    def get_data_review(self):
+        url = URLs.MAIN_PAGE
+        self.get_data_review_(self.get_reviews_data_from_page, 'carousel_of_review.json',
+                              'reviews-wrapper', url)
 
-    # Объединяем три метода в один
-    def get_reviews_data_from_page(self, url):
-        response = requests.get(url)
-        response.raise_for_status()  # Проверка на ошибки
-        soup = BeautifulSoup(response.text, 'html.parser')
-
-        # Извлечение всех элементов с классом 'review-card'
-        reviews_data = []
-        type_section = soup.find_all(class_='review-card')
-
-        for section in type_section:
-            # Извлечение текста отзыва
-            text = section.find(class_='review-text').get_text(strip=True)
-            # Извлечение названия организации
-            author_company = section.find(class_='author-company').get_text(strip=True)
-            # Извлечение имени автора
-            author_name = section.find(class_='author-name').get_text(strip=True)
-
-            reviews_data.append({
-                'text': text,
-                'author_company': author_company,
-                'author_name': author_name
-            })
-
-        return reviews_data
-
-    # переделываем метод
-    def get_data_carousel_reviews(self):
-        # Загрузите данные из JSON
-        data = load_file('carousel_of_review.json')
-
-        # получаем данные из блока карусели на странице
-        reviews_data_from_page = self.get_reviews_data_from_page(URLs.MAIN_PAGE)
-        logging.info(f'Полученные данные с страницы: {reviews_data_from_page}')
-
-        # смотрим, что каждое описание из JSON присутствует на странице
-        descriptions = data['reviews-wrapper']['descriptions']
-        logging.info(f'Заголовок из JSON: {str(descriptions)}')
-
-        for desc in descriptions:
-            print("Компания: " + str({desc['author_company']}))
-            print("Автор: " + str({desc['author_name']}))
-            print("Текст отзыва: " + str({desc['text']}))
-            assert desc['text'] in [review['text'] for review in reviews_data_from_page], f"Текст не найден на странице: {desc['text']}"
-            assert desc['author_company'].strip() in [review['author_company'] for review in reviews_data_from_page], f"Организация не найдена на странице: {desc['author_company']}"
-            assert desc['author_name'] in [review['author_name'] for review in reviews_data_from_page], f"Автор не найден на странице: {desc['author_name']}"
-
-
-
-# метод для черно-белых карточек
+    # метод для черно-белых карточек
     def get_data_card_tiles_main(self):
         url = URLs.MAIN_PAGE  # Укажите нужный URL
-        self.get_data_card_with_type_project(self.get_card_data_tiles, 'data_card_block_packages.json',
-                                    'tiles_section_card_data_main', url)
+        self.get_data_card_with_type_project(
+            'data_card_block_packages.json',
+            self.get_data_faq_tiles_new,
+            'tiles_section_card_data_main',
+            "//*[contains(@class, 'tile w-')]",
+            ".//h3",
+            ".//span",
+            url)
 
-# метод для черно-белых карточек с кружками и порядковыми номерами
+    # метод для черно-белых карточек с кружками и порядковыми номерами
     def get_data_card_how_it_staff_main(self):
         url = URLs.MAIN_PAGE  # Укажите нужный URL
-        self.get_data_card_with_type_project(self.get_card_data_tiles_card, 'section_how_it_staff_tiles.json',
-                                    'how_it_staff_main', url)
+        self.get_data_card_with_type_project(
+            'section_how_it_staff_tiles.json',
+            self.get_card_data_tiles_card,
+            'how_it_staff_main',
+            "//*[@class='card']",
+            './/p',
+            ".//h3[@class='card-title']",
+            url)
 
-
-
-# метод для карусели адвант
+    # метод для карусели адвант
     def get_data_advant_carousel_card(self):
         url = URLs.MAIN_PAGE
-        self.get_data_advant_carousel(self.get_data_advant_section_carousel,'advant_section_carousel.json','advant_section', url)
+        self.get_data_advant_carousel(self.get_data_advant_section_carousel, 'advant_section_carousel.json',
+                                      'advant_section', url)

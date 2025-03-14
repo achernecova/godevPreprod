@@ -81,7 +81,7 @@ def test_b2b_page_add_request_success(driver):
 
 
 @allure.feature('Успешная отправка заявки из футера')
-def test_b2b_page_fill_form_request_footer(driver):
+def test_cms_page_fill_form_request_footer(driver):
     cms_page_test = CMSPage(driver)
     cms_page_test.open()
     form_page_test = cms_page_test.get_form_page()

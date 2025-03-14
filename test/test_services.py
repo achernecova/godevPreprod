@@ -24,3 +24,41 @@ def test_services_page_count_card_advantages_of_working(driver):
     blocks = services_page_test.get_count_elements()
     blocks.count_cards_assert("adv_item", 6)
 
+
+@feature('Проверка заголовка в блоке Services')
+def test_main_page_app_and_web_title_assert(driver):
+    services_page_test = ServicesPage(driver)
+    services_page_test.open()
+    title_block = services_page_test.get_title_block_app_and_web_development_services()
+    assert title_block == 'Services', f"Получен Title:  {title_block}"
+
+@feature('Проверка данных в карточках блока App and Web Development Services')
+def test_landing_page_why_do_you_need_data_assert(driver):
+    services_page_test = ServicesPage(driver)
+    services_page_test.open()
+    services_page_test.get_data_card_app_and_web_services_service()
+
+@feature('Проверка данных в карточках блока Advantages of working with us')
+def test_landing_page_why_do_you_need_data_assert(driver):
+    services_page_test = ServicesPage(driver)
+    services_page_test.open()
+    services_page_test.get_data_card_app_and_web_services_advant()
+
+
+@feature('Успешная отправка заявки из баннера')
+def test_add_request_success_services_page(driver):
+    services_page_test = ServicesPage(driver)
+    services_page_test.open()
+    services_page_test.click_button_banner()
+    form_page_test = services_page_test.get_popup_element()
+    form_page_test.add_request_success()
+    assert form_page_test.popup_success_displayed() == True, 'Окно подтверждения не появилось'
+
+
+@feature('Успешная отправка заявки из футера')
+def test_fill_form_request_footer_services_page(driver):
+    services_page_test = ServicesPage(driver)
+    services_page_test.open()
+    form_page_test = services_page_test.get_form_page()
+    form_page_test.fill_form()
+    assert form_page_test.popup_success_displayed() == True, 'Окно подтверждения не появилось'

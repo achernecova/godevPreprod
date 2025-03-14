@@ -8,7 +8,7 @@ from utils.data_loader import load_service_data_web_dev
 
 # тест с мета-тегами вынесен в main_page_test
 
-@feature('Количество элементов в блоке')
+@feature('Количество элементов в блоке How we make websites')
 def test_web_develop_page_count_card_how_me_make(driver):
     web_dev_page = WebDevelopPage(driver)
     web_dev_page.open()
@@ -16,12 +16,13 @@ def test_web_develop_page_count_card_how_me_make(driver):
     blocks.count_cards_assert("carousel_how_make", 6)
 
 
-@feature('Количество элементов в блоке')
+@feature('Количество элементов в блоке Types of websites we work with')
 def test_web_develop_page_count_card_types_of_websites(driver):
     web_dev_page = WebDevelopPage(driver)
     web_dev_page.open()
     blocks = web_dev_page.get_count_elements()
     blocks.count_cards_assert("types_of_websites_count_card", 7)
+
 
     # скрытие констант в фикстуру
 @feature('Переходы на страницы из карточек')
@@ -45,11 +46,11 @@ def test_web_dev_click_services_and_project_and_open_pages(driver, card_type, ex
     assert page.get_title_page() == expected_title, f"Получен Title: {page.get_title_page()}"
 
 
+@allure.feature('Проверка данных в карточках блока Website Packages')
 def test_website_page_data_card_packages_new(driver):
     web_dev_page_test = WebDevelopPage(driver)
     web_dev_page_test.open()
     web_dev_page_test.get_data_card_website()
-
 
 
 @allure.feature('Проверка данных в карточках блока Types of websites we work with')
@@ -57,14 +58,6 @@ def test_website_page_benefits_count_cards_assert(driver):
     web_dev_page_test = WebDevelopPage(driver)
     web_dev_page_test.open()
     web_dev_page_test.get_data_card_tiles_website()
-
-
-@allure.feature('Проверка данных в FAQ')
-def test_website_page_faq_data_assert(driver):
-    web_dev_page_test = WebDevelopPage(driver)
-    web_dev_page_test.open()
-    web_dev_page_test.get_data_faq_card()
-
 
 
 @feature('Проверка данных в Benefits of team augmentation services')
@@ -79,3 +72,21 @@ def test_main_page_count_card_reviews(driver):
     web_dev_page_test = WebDevelopPage(driver)
     web_dev_page_test.open()
     web_dev_page_test.get_data_review()
+
+
+@allure.feature('Проверка данных в FAQ')
+def test_website_page_faq_data_assert(driver):
+    web_dev_page_test = WebDevelopPage(driver)
+    web_dev_page_test.open()
+    web_dev_page_test.get_data_faq_card()
+
+
+@feature('Успешная отправка заявки из FAQ')
+def test_mobile_dev_page_add_request_in_faq(driver):
+    web_dev_page_test = WebDevelopPage(driver)
+    web_dev_page_test.open()
+    web_dev_page_test.click_button_in_faq()
+    popup_modal_page = web_dev_page_test.get_popup()
+    popup_modal_page.add_request_success()
+    success = popup_modal_page.popup_success_displayed()
+    assert success == True, f"Не появилось окно успешности "

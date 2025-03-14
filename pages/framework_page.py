@@ -1,12 +1,13 @@
 import logging
 
+import allure
+
 from constants import subURLs, URLs
 from page_elements.block_count_elements import CountElements
 from page_elements.meta_data_page import MetaData
 
 from pages.base_page import BasePage
 from test.locators import Locators
-from utils.data_loader import load_file
 
 
 class FrameworkPage(BasePage):
@@ -17,8 +18,17 @@ class FrameworkPage(BasePage):
         self.driver = driver
         self.subURL = subURLs.FRAMEWORK_PAGE
 
-    def open(self):
-        super().open(self.subURL)  # Добавляем под-URL
+
+    @allure.step("Открытие мобильной страницы по URL: services/website-development/framework/")
+    def open(self, sub_url=None):
+        """Открывает мобильную страницу. Если sub_url не передан, используется subURL по умолчанию."""
+        if sub_url is None:  # Если sub_url не указан, используем стандартный
+            sub_url = self.subURL
+
+        allure.step(f"Открытие мобильной страницы по URL: {sub_url}")
+        logging.info(f"Открываем страницу: {sub_url}")
+        super().open(sub_url)  # Вызов метода open() из базового класса с под-URL
+
 
     def get_meta_data(self):
         return MetaData(self.driver)
@@ -31,8 +41,8 @@ class FrameworkPage(BasePage):
         return ProjectServiceElement(self.driver)
 
     def get_data_block_price(self, index, price_left_title, price_left_text, price_right_title, price_right_text):
-        team_card = self.driver.find_element(*Locators.team_card)
-        self.scroll_to_element(team_card)
+        #team_card = self.driver.find_element(*Locators.team_card)
+        self.scroll_to_element(Locators.team_card)
         price_left_title_locator = self.driver.find_elements(*Locators.price_left_title_locator)
         price_left_text_locator = self.driver.find_elements(*Locators.price_left_text_locator)
         price_right_title_locator = self.driver.find_elements(*Locators.price_right_title_locator)
@@ -50,8 +60,14 @@ class FrameworkPage(BasePage):
     # метод для черно-белых карточек с кружками и порядковыми номерами
     def get_data_card_how_it_staff_framework(self):
         url = URLs.MAIN_PAGE + subURLs.FRAMEWORK_PAGE  # Укажите нужный URL
-        self.get_data_card_with_type_project(self.get_card_data_tiles_card, 'section_how_it_staff_tiles.json',
-                                             'how_it_staff_framework', url)
+        self.get_data_card_with_type_project(
+            'section_how_it_staff_tiles.json',
+            self.get_card_data_tiles_card,
+            'how_it_staff_framework',
+            "//*[@class='card']",
+            './/p',
+            ".//h3[@class='card-title']",
+            url)
 
         # метод для faq
     def get_data_faq_card_new(self):
@@ -64,3 +80,25 @@ class FrameworkPage(BasePage):
             ".//*[@class='accordeon-question']",
             ".//*[@class='accordeon-subject-text']",
             url)
+
+    def get_data_card_advant_of_outsource_frame(self):
+        url = URLs.MAIN_PAGE+subURLs.FRAMEWORK_PAGE  # Укажите нужный URL
+        self.get_data_card_with_type_project(
+            'section_how_it_staff_tiles.json',
+            self.get_card_data_tiles_card,
+            'advantages_of_outsourcing_framework',
+            "//*[@class='advantages-outsourcing__item']",
+            ".//*[@class='advantages-outsourcing__text']" ,
+            ".//*[@class='advantages-outsourcing__title']" ,
+            url)
+
+        # метод для карусели адвант
+    def get_data_advant_carousel_card(self):
+        url = URLs.MAIN_PAGE + subURLs.FRAMEWORK_PAGE  # Укажите нужный URL
+        self.get_data_advant_carousel(self.get_data_advant_section_carousel, 'advant_section_carousel.json',
+                                          'advant_section_framework', url)
+
+    def get_data_advant_card(self):
+        url = URLs.MAIN_PAGE + subURLs.FRAMEWORK_PAGE  # Укажите нужный URL
+        self.get_data_advant_carousel(self.get_data_advant_section_card, 'advant_section_carousel.json',
+                                          'advant_card_framework', url)

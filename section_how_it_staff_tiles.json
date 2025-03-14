@@ -1,4 +1,34 @@
 {
+    "advantages_of_working_with_us": {
+    "title": "Advantages of working with us",
+    "descriptions": [
+     {
+       "project_type": "Extensive experience",
+       "text": "We have already developed websites and apps for 13 years"
+     },
+      {
+       "project_type": "Individual approach",
+       "text": "We take into consideration your goals and business features"
+     },
+      {
+       "project_type": "Security",
+       "text": "We sign an NDA"
+     },
+      {
+       "project_type": "Convenient cooperation formats",
+       "text": "Full-time specialists, project work, T&M"
+     },
+      {
+       "project_type": "Control and transparency",
+       "text": "We collaborate with you at each stage of work, answer all your questions, provide prompt feedback"
+     },
+      {
+       "project_type": "Guarantees",
+       "text": "We take responsibility for the result of our work and ensure the excellent quality just in time"
+     }
+    ]
+  },
+
     "how_it_staff_support": {
     "title": "Why do you need maintenance?",
     "text_title": "Our team assumes responsibility for all maintenance tasks, thereby saving you valuable time and effort that would otherwise be required for management of these tasks",
@@ -241,6 +271,174 @@
        "text": "Optimized landing page design and development ensures a seamless user experience, boosting customer confidence and action rates"
      }
     ]
-  }
+  },
 
+    "app_and_web_services_main": {
+    "title": "App and Web Development Services",
+    "text_section": "With a development team of 80 in-house specialists, we provide a variety of services related to online business practices, starting from web design and ending with creating brand-new downloadable apps",
+    "descriptions": [
+      {
+       "project_type": "Custom web design",
+       "text": "We create a custom website tailored to your specific needs, whether it is an online store, an informational web portal, or just a landing page that serves as a virtual visiting card for your business"
+     },
+      {
+       "project_type": "Web applications",
+       "text": "Our team can develop a web app that would fulfill all the needs of your enterprise. The software will be fully customizable, allowing you to bring your exact vision to life"
+     },
+      {
+       "project_type": "Mobile applications",
+       "text": "Our development agency creates downloadable apps for mobile devices to make your business easier to access on the go. We work with Android, iOS, and other portable operating systems"
+     },
+      {
+       "project_type": "Web development",
+       "text": "We provide other web development services depending on your individual needs. We can redesign an app’s interface, optimize a new website, or help you configure the CMS"
+     },
+      {
+       "project_type": "Support and maintenance",
+       "text": "We will ensure the uninterrupted operation of your website or application. Quick execution of content tasks, antivirus protection, version backups, software updates, design and code revision"
+     },
+      {
+       "project_type": "Software development",
+       "text": "Our team provides other software development services depending on your needs, starting with creating web applications and ending with developing other interactive elements for your website"
+     },
+      {
+       "project_type": "Web development services",
+       "text": "Godev builds websites seamlessly combining flawless visuals with powerful features, impressing the visitors with aesthetics. We also create individual web products of any kind to match the demands of your company"
+     },
+      {
+       "project_type": "E-commerce web development",
+       "text": "Elevate your online business with customized e-commerce solutions designed to maximize sales, enhance user experience, and drive sustainable growth"
+     },
+      {
+       "project_type": "Website design and development services",
+       "text": "Godev delivers the full scope of services, carefully crafting and customizing the designs to make eye-pleasing and high-performance platforms for our clients. We approach every project individually, adjusting every detail to fit the brand’s unique image"
+     },
+      {
+       "project_type": "Outstaffing and outsourcing",
+       "text": "Scaling digital teams. Convenient cooperation format and transparent approach"
+     },
+      {
+       "project_type": "B2B sites",
+       "text": "In the rapidly evolving digital landscape, a robust B2B website is essential for businesses aiming to enhance their online presence and drive growth. At Godev, a leading B2B eCommerce agency in the USA, we specialize in crafting tailored web development solutions that align with your business objectives"
+     }
+    ]
+  },
+
+    "app_and_web_services_service": {
+    "title": "App and Web Development Services",
+    "text_section": "With a development team of 80 in-house specialists, we provide a variety of services related to online business practices, starting from web design and ending with creating brand-new downloadable apps",
+    "descriptions": [
+      {
+       "project_type": "Custom web design",
+       "text": "We create a custom website tailored to your specific needs, whether it is an online store, an informational web portal, or just a landing page that serves as a virtual visiting card for your business"
+     },
+      {
+       "project_type": "Web applications",
+       "text": "Our team can develop a web app that would fulfill all the needs of your enterprise. The software will be fully customizable, allowing you to bring your exact vision to life"
+     },
+      {
+       "project_type": "Mobile applications",
+       "text": "Our development agency creates downloadable apps for mobile devices to make your business easier to access on the go. We work with Android, iOS, and other portable operating systems"
+     },
+      {
+       "project_type": "Web development",
+       "text": "We provide other web development services depending on your individual needs. We can redesign an app’s interface, optimize a new website, or help you configure the CMS"
+     },
+      {
+       "project_type": "Support and maintenance",
+       "text": "We will ensure the uninterrupted operation of your website or application. Quick execution of content tasks, antivirus protection, version backups, software updates, design and code revision"
+     },
+      {
+       "project_type": "Software development",
+       "text": "Our team provides other software development services depending on your needs, starting with creating web applications and ending with developing other interactive elements for your website"
+     },
+      {
+       "project_type": "Web development services",
+       "text": "Godev builds websites seamlessly combining flawless visuals with powerful features, impressing the visitors with aesthetics. We also create individual web products of any kind to match the demands of your company"
+     },
+      {
+       "project_type": "E-commerce web development",
+       "text": "Elevate your online business with customized e-commerce solutions designed to maximize sales, enhance user experience, and drive sustainable growth"
+     },
+      {
+       "project_type": "Website design and development services",
+       "text": "Godev delivers the full scope of services, carefully crafting and customizing the designs to make eye-pleasing and high-performance platforms for our clients. We approach every project individually, adjusting every detail to fit the brand’s unique image"
+     },
+      {
+       "project_type": "Outstaffing and outsourcing",
+       "text": "Scaling digital teams. Convenient cooperation format and transparent approach"
+     }
+    ]
+  },
+
+    "convenient_cooperation_outstaff": {
+    "title": "Convenient cooperation formats for increased benefits and efficiency",
+    "descriptions": [
+      {
+       "project_type": "FTE",
+       "text": " "
+     },
+      {
+       "project_type": "T&M",
+       "text": "Hourly wage"
+     },
+      {
+       "project_type": "Mixed",
+       "text": "if acquired employees are insufficient"
+     },
+      {
+       "project_type": "Project work",
+       "text": "Involve a specialist with required skills for a specific project"
+     }
+
+    ]
+  },
+    "advantages_of_outsourcing_framework": {
+    "title": "Advantages of outsourcing for web development on frameworks",
+    "text": "Outsourcing web development to a specialized company like Godev presents several advantages:",
+    "descriptions": [
+      {
+       "project_type": "Cost savings",
+       "text": "Reduces expenses associated with hiring, training, and maintaining an in-house development team, allowing businesses to allocate resources more effectively"
+     },
+      {
+       "project_type": "Expertise access",
+       "text": "Provides access to professional developers with extensive experience in various development frameworks, ensuring high-quality outcomes"
+     },
+      {
+       "project_type": "Focus on core activities",
+       "text": "Enables businesses to concentrate on their core competencies while the technical aspects of development are managed externally"
+     },
+      {
+       "project_type": "Scalability and flexibility",
+       "text": "Offers the ability to scale the development team up or down based on project requirements, providing flexibility to meet changing needs"
+     },
+      {
+       "project_type": "Quality assurance",
+       "text": "Professional outsourcing firms implement rigorous testing and quality control measures, reducing the likelihood of bugs and enhancing reliability"
+     }
+    ]
+  },
+
+    "convenient_of_outstaffing": {
+    "title": "Convenient cooperation formats for increased benefits and efficiency",
+    "descriptions": [
+      {
+       "project_type": "FTE",
+       "text": "Acquire full-time equivalent staff"
+     },
+      {
+       "project_type": "T&M",
+       "text": "Hourly wage"
+     },
+      {
+       "project_type": "Mixed",
+       "text": "if acquired employees are insufficient"
+     },
+      {
+       "project_type": "Project work",
+       "text": "Involve a specialist with required skills for a specific project"
+     }
+    ]
+  }
 }

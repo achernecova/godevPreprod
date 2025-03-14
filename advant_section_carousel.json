@@ -211,5 +211,58 @@
         "advant_text": "Installation on domain and hosting, connecting services, introduction of digital instruments in your business"
       }
     ]
+  },
+
+  "advant_section_framework": {
+    "title": "Limitations of frameworks",
+    "text": "Despite their benefits, frameworks have certain limitations",
+    "descriptions": [
+      {
+       "advant_title": "Learning curve",
+       "advant_text": "Mastering a new framework can be time-consuming, especially if it has a complex architecture or unique conventions"
+     },
+      {
+       "advant_title": "Inflexibility",
+       "advant_text": "Relying heavily on a framework may limit the ability to implement custom solutions, as developers must adhere to predefined structures and practices"
+     },
+      {
+       "advant_title": "Performance overhead",
+       "advant_text": "Some frameworks introduce additional layers of code, which can impact performance, particularly in dynamic applications requiring high speed"
+     },
+      {
+       "advant_title": "Version compatibility",
+       "advant_text": "Updates to a framework can lead to compatibility issues with existing codebases, potentially causing bugs or requiring significant refactoring"
+     },
+      {
+       "advant_title": "Dependency risks",
+       "advant_text": "Dependence on a specific framework may pose risks if support diminishes or if it becomes obsolete, affecting the application’s longevity"
+     }
+    ]
+  },
+    "advant_card_framework": {
+    "title": "Why choose Godev",
+    "text": "Godev stands out as a premier choice for outsourcing web development on frameworks:",
+    "descriptions": [
+      {
+       "advant_title": "Timely delivery",
+       "advant_text": "Committed to efficiency, projects are completed within agreed timelines without compromising on quality, helping you bring products to market faster"
+     },
+      {
+       "advant_title": "Continuous support",
+       "advant_text": "Beyond development, Godev offers ongoing support and maintenance, ensuring that your application continues to perform optimally"
+     },
+      {
+       "advant_title": "Experienced developers",
+       "advant_text": "Our team possesses deep expertise in a range of frameworks, including Django, Ruby on Rails, Laravel, and Angular, ensuring that we can meet diverse project needs"
+     },
+      {
+       "advant_title": "Customized solutions",
+       "advant_text": "Services are tailored to align with your business logic and objectives, delivering solutions that are compatible with your existing systems and future goals"
+     },
+      {
+       "advant_title": "Quality and reliability",
+       "advant_text": "By implementing best practices and adhering to industry standards, we ensure that the applications developed are robust, scalable, and secure"
+     }
+    ]
   }
 }

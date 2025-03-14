@@ -1,3 +1,6 @@
+import logging
+
+import allure
 from selenium.webdriver.common.by import By
 
 from constants import URLs, subURLs
@@ -12,9 +15,18 @@ class WebDevServicesPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
+        self.subURL = subURLs.WEB_DEV
 
-    def open(self):
-        super().open('services/web-development/')  # Добавляем под-URL
+
+    @allure.step("Открытие страницы лендинга по URL: services/web-development/")
+    def open(self, sub_url=None):
+        """Открывает мобильную страницу. Если sub_url не передан, используется subURL по умолчанию."""
+        if sub_url is None:  # Если sub_url не указан, используем стандартный
+            sub_url = self.subURL
+        allure.step(f"Открытие мобильной страницы по URL: {sub_url}")
+        logging.info(f"Открываем страницу: {sub_url}")
+        super().open(sub_url)  # Вызов метода open() из базового класса с под-URL
+
 
     def get_meta_data(self):
         return MetaData(self.driver)

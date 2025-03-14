@@ -1,4 +1,5 @@
 import logging
+import allure
 
 from constants import subURLs, URLs
 from page_elements.block_count_elements import CountElements
@@ -16,8 +17,18 @@ class MobileDevPage(BasePage):
         self.driver = driver
         self.subURL = subURLs.MOBILE_PAGE
 
-    def open(self):
-        super().open(self.subURL)  # Добавляем под-URL
+    @allure.step("Открытие мобильной страницы по URL: services/mobile-development/")
+    def open(self, sub_url=None):
+        """Открывает мобильную страницу. Если sub_url не передан, используется subURL по умолчанию."""
+        if sub_url is None:  # Если sub_url не указан, используем стандартный
+            sub_url = self.subURL
+
+        allure.step(f"Открытие мобильной страницы по URL: {sub_url}")
+
+        logging.info(f"Открываем страницу: {sub_url}")
+        super().open(sub_url)  # Вызов метода open() из базового класса с под-URL
+
+
 
     def get_meta_data(self):
         return MetaData(self.driver)
@@ -28,21 +39,43 @@ class MobileDevPage(BasePage):
     def get_popup(self):
         return PopupElement(self.driver)
 
-    def click_button_banner(self):
-        button_banner = self.wait_for_element(Locators.button_banner_locator)
-        self.scroll_to_element(button_banner)
-        self._click_element(button_banner)
 
-    def click_button_in_card_select(self):
-        button_in_card_select = self.wait_for_element(Locators.button_in_card_select_locator)
-        self.scroll_to_element(button_in_card_select)
-        button_in_card_select.click()
+    def click_button_get_in_touch(self):
+        try:
+            button = self.scroll_new(Locators.button_in_card_select_locator)
+            if button and button.is_displayed() and button.is_enabled():
+                self.driver.execute_script("arguments[0].click();", button)  # Используем JavaScript для клика
+            else:
+                print("Button is not available for clicking.")
+        except Exception as e:
+            print(f"Error clicking button: {str(e)}")
+            raise  # Повторно выбрасываем исключение для дальнейшей обработки
+
+
 
     def click_button_in_faq(self):
-        button_in_faq = self.wait_for_element(Locators.button_in_faq_locator)
-        self.scroll_to_element(button_in_faq)
-        button_in_faq.click()
+        try:
+            button = self.scroll_new(Locators.button_in_faq_locator)
+            if button and button.is_displayed() and button.is_enabled():
+                self.driver.execute_script("arguments[0].click();", button)  # Используем JavaScript для клика
+            else:
+                print("Button is not available for clicking.")
+        except Exception as e:
+            print(f"Error clicking button: {str(e)}")
+            raise  # Повторно выбрасываем исключение для дальнейшей обработки
 
+
+    @allure.step("Скролл до кнопки Get in touch в блоке Development cost")
+    def click_button_in_develop_table(self):
+        try:
+            button = self.scroll_new(Locators.button_in_card_select_locator)
+            if button and button.is_displayed() and button.is_enabled():
+                self.driver.execute_script("arguments[0].click();", button)  # Используем JavaScript для клика
+            else:
+                print("Button is not available for clicking.")
+        except Exception as e:
+            print(f"Error clicking button: {str(e)}")
+            raise  # Повторно выбрасываем исключение для дальнейшей обработки
 
 
 # метод для черно-белых карточек с кружками и порядковыми номерами
@@ -68,3 +101,21 @@ class MobileDevPage(BasePage):
             ".//*[@class='accordeon-question']",
             ".//*[@class='accordeon-subject-text']",
             url)
+
+
+    # Метод для получения заголовка блока
+    @allure.step("Получение заголовка из блока What we do")
+    def get_title_block_what_we_do(self):
+        # Сначала сделаем скролл к элементу
+        self.scroll_to_element(Locators.title_block_app_and_web_development_services_locator)
+        title = self.get_title_block_from_page_all(Locators.title_block_app_and_web_development_services_locator)
+        return title
+
+
+    # тянем данные из названия блока App and Web Development Services
+    @allure.step("Получение текста из блока What we do")
+    def get_text_block_what_we_do(self):
+        self.scroll_to_element(Locators.title_block_website_design_locator)
+        text = self.get_text_block_from_page_all(Locators.title_block_website_design_locator)
+        return text
+

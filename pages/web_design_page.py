@@ -1,11 +1,13 @@
 import logging
 
+import allure
 import requests
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
 
 from constants import subURLs, URLs
 from pages.base_page import BasePage
+from test.locators import Locators
 from utils.data_loader import load_file
 
 
@@ -16,8 +18,16 @@ class WebDesignPage(BasePage):
         self.driver = driver
         self.subURL = subURLs.DESIGN_PAGE
 
-    def open(self):
-        super().open(self.subURL)  # Добавляем под-URL
+
+
+    @allure.step("Открытие страницы лендинга по URL: services/website-design-and-development-services/")
+    def open(self, sub_url=None):
+        """Открывает мобильную страницу. Если sub_url не передан, используется subURL по умолчанию."""
+        if sub_url is None:  # Если sub_url не указан, используем стандартный
+            sub_url = self.subURL
+        allure.step(f"Открытие мобильной страницы по URL: {sub_url}")
+        logging.info(f"Открываем страницу: {sub_url}")
+        super().open(sub_url)  # Вызов метода open() из базового класса с под-URL
 
 
 
@@ -86,8 +96,14 @@ class WebDesignPage(BasePage):
     # метод для черно-белых карточек с кружками и порядковыми номерами
     def get_data_card_how_it_staff_design(self):
         url = URLs.MAIN_PAGE + subURLs.DESIGN_PAGE  # Укажите нужный URL
-        self.get_data_card_with_type_project(self.get_card_data_tiles_card, 'section_how_it_staff_tiles.json',
-                                    'how_it_staff_design', url)
+        self.get_data_card_with_type_project(
+            'section_how_it_staff_tiles.json',
+            self.get_card_data_tiles_card,
+            'how_it_staff_design',
+            "//*[@class='card']",
+            './/p',
+            ".//h3[@class='card-title']",
+            url)
 
 
 
@@ -102,3 +118,47 @@ class WebDesignPage(BasePage):
             ".//*[@class='accordeon-question']",
             ".//*[@class='accordeon-subject-text']",
             url)
+
+    # Метод для получения заголовка блока
+    def get_title_block_website_dev(self):
+        # Сначала сделаем скролл к элементу
+        self.scroll_to_element(Locators.title_block_website_dev_locator)
+        title = self.get_title_block_from_page_all(Locators.title_block_website_dev_locator)
+        return title
+
+
+    # тянем данные из названия блока App and Web Development Services
+    def get_text_block_website_dev(self):
+        self.scroll_to_element(Locators.text_block_website_dev_locator)
+        text = self.get_text_block_from_page_all(Locators.text_block_website_dev_locator)
+        return text
+
+
+    # Метод для получения заголовка блока
+    def get_title_block_website_design(self):
+        # Сначала сделаем скролл к элементу
+        self.scroll_to_element(Locators.title_block_website_design_locator)
+        title = self.get_title_block_from_page_all(Locators.title_block_website_design_locator)
+        return title
+
+
+    # тянем данные из названия блока App and Web Development Services
+    def get_text_block_website_design(self):
+        self.scroll_to_element(Locators.text_block_website_design_locator)
+        text = self.get_text_block_from_page_all(Locators.text_block_website_design_locator)
+        return text
+
+
+    # Метод для получения заголовка блока
+    def get_title_block_custom_design_solutions(self):
+        # Сначала сделаем скролл к элементу
+        self.scroll_to_element(Locators.title_block_custom_design_solutions_locator)
+        title = self.get_title_block_from_page_all(Locators.title_block_custom_design_solutions_locator)
+        return title
+
+
+    # тянем данные из названия блока App and Web Development Services
+    def get_text_block_custom_design_solutions(self):
+        self.scroll_to_element(Locators.text_block_custom_design_solutions_locator)
+        text = self.get_text_block_from_page_all(Locators.text_block_custom_design_solutions_locator)
+        return text

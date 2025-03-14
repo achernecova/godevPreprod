@@ -1,3 +1,6 @@
+import logging
+
+import allure
 from selenium.webdriver.common.by import By
 
 from constants import subURLs, URLs
@@ -17,8 +20,16 @@ class SupportPage(BasePage):
         self.driver = driver
         self.subURL = subURLs.SUPPORT_PAGE
 
-    def open(self):
-        super().open(self.subURL)  # Добавляем под-URL
+
+    @allure.step("Открытие страницы лендинга по URL: services/tech-support/")
+    def open(self, sub_url=None):
+        """Открывает мобильную страницу. Если sub_url не передан, используется subURL по умолчанию."""
+        if sub_url is None:  # Если sub_url не указан, используем стандартный
+            sub_url = self.subURL
+        allure.step(f"Открытие мобильной страницы по URL: {sub_url}")
+        logging.info(f"Открываем страницу: {sub_url}")
+        super().open(sub_url)  # Вызов метода open() из базового класса с под-URL
+
 
     def get_form_page(self):
         return FormPage(self.driver)
@@ -37,10 +48,15 @@ class SupportPage(BasePage):
         return ProjectServiceElement(self.driver)
 
     def click_button_tariff_table(self):
-        button_tariff = self.driver.find_element(*Locators.button_tariff)
-        self.scroll_to_element(button_tariff)
-        self._click_element(button_tariff)
-
+        try:
+            button_tariff = self.scroll_new(Locators.button_tariff)
+            if button_tariff and button_tariff.is_displayed() and button_tariff.is_enabled():
+                self.driver.execute_script("arguments[0].click();", button_tariff)  # Используем JavaScript для клика
+            else:
+                print("Button is not available for clicking.")
+        except Exception as e:
+            print(f"Error clicking button: {str(e)}")
+            raise  # Повторно выбрасываем исключение для дальнейшей обработки
 
 # метод для черно-белых карточек
     def get_data_card_tiles_support(self):
@@ -57,9 +73,15 @@ class SupportPage(BasePage):
 
 # метод для черно-белых карточек с кружками и порядковыми номерами
     def get_data_card_how_it_staff_support(self):
-        url = URLs.MAIN_PAGE+subURLs.MOBILE_PAGE  # Укажите нужный URL
-        self.get_data_card_with_type_project(self.get_card_data_tiles_card, 'section_how_it_staff_tiles.json',
-                                    'how_it_staff_support', url)
+        url = URLs.MAIN_PAGE+subURLs.SUPPORT_PAGE  # Укажите нужный URL
+        self.get_data_card_with_type_project(
+            'section_how_it_staff_tiles.json',
+            self.get_card_data_tiles_card,
+            'how_it_staff_support',
+            "//*[@class='card']",
+            './/p',
+            ".//h3[@class='card-title']",
+            url)
 
 # метод для faq
     def get_data_faq_card(self):

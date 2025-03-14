@@ -15,12 +15,13 @@ class Locators:
     button_tariff = (By.XPATH, "(//*[@class='service-last-row']//button)[1]")
     team_card = (By.XPATH, "//*[@class='price-frameworks']")
     button_in_card_select_locator = (By.XPATH, "//*[@class='info-card selected']//button")
-    button_in_faq_locator = (By.XPATH, "//*[@class='faq-section']//button")
+    #button_in_faq_locator = (By.XPATH, "//*[@class='faq-section']//button")
+    button_in_faq_locator = (By.XPATH, "//*[text()='Ask a Question']")
     input_name_locator = (By.XPATH, "//*[@class='request-offer-inputs']//input[@name='name']")
     input_email_locator = (By.XPATH, "//*[@class='request-offer-inputs']//input[@name='email']")
     input_comment_locator = (By.XPATH, "//*[@class='form-textarea']//*[@placeholder='Comment']")
     button_click_locator = (By.XPATH, "//*[@class='request-offer-bottom']//button")
-    button_banner_locator = (By.XPATH, "//*[@class='banner']//button")
+    button_banner_services = (By.XPATH, "//*[@class='banner-button button open-modal']")
     topping_dev_button_locator = (By.XPATH, "//label[@class='topping'][@for='t11']")
     topping_analysts_locator = (By.XPATH, "//label[@class='topping'][@for='t14']")
     button_request = (By.XPATH, "(//button[@class='button outsource-button open-modal'])[1]")
@@ -28,32 +29,42 @@ class Locators:
     get_text_block = (By.XPATH, "//*[@class='tiles-section']//*[contains(@class, 'section-descr')]")
     get_text_block_type_section = (By.XPATH, "//*[@class='type-section']//*[contains(@class, 'section-descr')]")
     get_title_block = (By.XPATH, "//*[@class='type-section']//h2")
-
     price_left_title_locator = (By.XPATH, "(//*[@class='price-frameworks__left']//*[@class='price-frameworks__title'])")
-
     price_left_text_locator =  (By.XPATH, "//*[@class='price-frameworks__left']//*[@class='price-frameworks__text']")
     price_right_title_locator =  (By.XPATH, "//*[@class='price-frameworks__right']//*[@class='price-frameworks__title']")
     price_right_text_locator = (By.XPATH, "//*[@class='price-frameworks__right']//*[@class='price-frameworks__text']")
-
     section_form_element_locator = (By.XPATH, "//section[@class='section-form']")
     topping_click_locator = (By.XPATH, "//label[@class='topping'][@for='t1']")
-    close_modal_locator = (By.XPATH, "//*[@class='close-modal']")
     menu_contacts_locator = (By.XPATH, "//*[@class='menu-wrapper']//a[@href= 'https://dev.godev.agency/contacts/']")
     name_input_locator = (By.XPATH, "//*[@class='section-form']//input[@name='name']")
     email_input_locator = (By.XPATH, "//*[@class='section-form']//input[@name='email']")
     message_input_locator = (By.XPATH, "//*[@class='section-form']//*[@name='description']")
     submit_button_locator = (By.XPATH, "//*[@class='section-form']//*[@class='button']")
-
     button_project_mint_link_locator = (By.XPATH, "//*[@href='https://dev.godev.agency/projects/mint-links/']")
     button_project_sls_locator = (By.XPATH, "//*[@href='https://dev.godev.agency/projects/swift-logistic-solutions/']")
     button_project_find_a_builder_locator = (By.XPATH, "//*[@href='https://dev.godev.agency/projects/find-a-builder/']")
     button_project_vegan_hotel_locator = (By.XPATH, "//*[@href='https://dev.godev.agency/projects/vegan-hotel/']")
     button_project_euro_VPN_locator = (By.XPATH, "//*[@href='https://dev.godev.agency/projects/information-security-service/']")
-
     button_landing_locator = (By.XPATH, "//*[@href='/services/development-of-a-landing-page/']")
-
     button_rates_locator = (By.XPATH, "(//a[@class='button open-modal'])[1]")
+    title_rates_locator = (By.XPATH, "//h2[@class='section-title max-content']")
+    title_convenient_locator = (By.XPATH, "//*[@class='work']//*[@class='section-title max-content']")
 
+    title_convenient_card_locator = (By.XPATH, "//*[@class='work']//*[@class='h3']")
+
+    title_block_app_and_web_development_services_locator = (By.XPATH, "//section[@id='services']//h2")
+    text_block_app_and_web_development_services_locator = (By.XPATH, "//section[@id='services']//*[contains(@class, 'section-descr')]")
+    title_block_website_dev_locator = (By.XPATH, "//section[@class='advant-section']//h2")
+    text_block_website_dev_locator = (By.XPATH, "//section[@class='advant-section']//*[contains(@class, 'section-descr ')]")
+    title_block_website_design_locator = (By.XPATH, "//section[@id='projects']//h2")
+    text_block_website_design_locator = (By.XPATH, "//section[@id='projects']//*[contains(@class, 'section-descr')]")
+    title_block_custom_design_solutions_locator = (By.XPATH, "//*[@class='how-it-staff']//*[@class='section-title half']")
+    text_block_custom_design_solutions_locator = (By.XPATH, "//*[@class='how-it-staff']//*[@class='section-descr fs16px half']")
+    text_block_it_staff_locator = (By.XPATH, "//*[@class='how-it-staff']//*[@class='section-descr  short']")
+    title_block_digital_agency_godev_locator = (By.XPATH, "//section[@class='tiles-section']//*[contains(@class, 'section-title half')]")
+    text_block_digital_agency_godev_locator = (By.XPATH, "//section[@class='tiles-section']//*[contains(@class, 'section-descr ')]")
+    button_get_in_touch_locator = (By.XPATH, "(//button[@class='get-in-touch-btn open-modal'])[1]")
+    block_get_in_touch_locator = (By.XPATH,"(//*[@class='get-in-touch-wrapper'])[1]")
 
     XPATH_MAP = {
         "blocks": "//*[@class='web-dev-services']",
@@ -67,9 +78,7 @@ class Locators:
         "customer_reviews": "//*[@class='review-card']",
         "web_packages_count": "//*[@class='team-card']",
         "types_of_websites_count_card": "//*[contains(@class, 'tile w-')]",
-
         "why_godev_outstaff_partner": "//*[@class='tiles-section']//*[contains(@class, 'section-descr')]",
-
         "advantages_cards_tiles_count": "//*[@class='cards-tiles col-2']//*[@class='card']",
         "carousel_how_make": "//*[contains(@class, 'swiper-slide grabbable ')]",
         "count_card_advantages": "//*[contains(@class, 'swiper-slide grabbable')]",
@@ -106,7 +115,9 @@ class Locators:
 
     @staticmethod
     def get_check_packages_data_not_experience_locator(index):
-        return (By.XPATH, f"(//*[@class='team-card'])[{index + 1}]")
+        locator = (By.XPATH, f"//div[contains(@class='team-card')][{index + 1}]")  # Пример
+        print(f"Locator returned: {locator}")  # Для отладки
+        return locator
 
     @staticmethod
     def get_project_locator(index):

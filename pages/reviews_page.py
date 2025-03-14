@@ -1,3 +1,6 @@
+import logging
+
+import allure
 from selenium.webdriver.common.by import By
 
 from constants import subURLs
@@ -17,8 +20,16 @@ class ReviewsPage(BasePage):
         self.driver = driver
         self.subURL = subURLs.REVIEWS_PAGE
 
-    def open(self):
-        super().open(self.subURL)  # Добавляем под-URL
+
+    @allure.step("Открытие страницы лендинга по URL: reviews/")
+    def open(self, sub_url=None):
+        """Открывает мобильную страницу. Если sub_url не передан, используется subURL по умолчанию."""
+        if sub_url is None:  # Если sub_url не указан, используем стандартный
+            sub_url = self.subURL
+        allure.step(f"Открытие мобильной страницы по URL: {sub_url}")
+        logging.info(f"Открываем страницу: {sub_url}")
+        super().open(sub_url)  # Вызов метода open() из базового класса с под-URL
+
 
     def get_form_page(self):
         return FormPage(self.driver)

@@ -15,7 +15,7 @@ def test_main_page_data_card_packages(driver, package_data):
                                        package_data.price, package_data.text)
 
 
-@feature('Успешная отправка заявки')
+@feature('Успешная отправка заявки из баннера')
 def test_add_request_success_main_page(driver):
     main_page_test = MainPage(driver)
     main_page_test.open()
@@ -25,7 +25,7 @@ def test_add_request_success_main_page(driver):
     assert form_page_test.popup_success_displayed() == True, 'Окно подтверждения не появилось'
 
 
-@feature('Успешная отправка заявки')
+@feature('Успешная отправка заявки из футера')
 def test_fill_form_request_footer_main_page(driver):
     main_page_test = MainPage(driver)
     main_page_test.open()
@@ -34,11 +34,11 @@ def test_fill_form_request_footer_main_page(driver):
     assert form_page_test.popup_success_displayed() == True, 'Окно подтверждения не появилось'
 
 
-@feature('Успешная отправка заявки')
+@feature('Успешная отправка заявки из блока Get in touch')
 def test_main_page_add_request_header(driver):
     main_page_test = MainPage(driver)
     main_page_test.open()
-    main_page_test.click_button_banner()
+    main_page_test.click_button_get_in_touch()
     popup_element_test = main_page_test.get_popup_element()
     popup_element_test.add_request_success()
     assert popup_element_test.popup_success_displayed() == True, 'Окно подтверждения не появилось'
@@ -103,7 +103,6 @@ def test_main_page_click_more_packages_and_data_pages(driver, test_data):
     main_page_test.click_more_packages_and_data_pages(index, page_url, page_title)
 
 
-
 @feature('Проверка данных в карточках блока Digital Agency Godev')
 def test_main_page_benefits_count_cards_assert(driver):
     main_page_test = MainPage(driver)
@@ -124,3 +123,74 @@ def test_main_page_web_development_process_data_assert(driver):
     main_page_test.open()
     main_page_test.get_data_advant_carousel_card()
 
+
+@feature('Проверка заголовка и текста в блоке App and Web Development Services')
+def test_main_page_app_and_web_title_assert(driver):
+    main_page_test = MainPage(driver)
+    main_page_test.open()
+    errors = []
+    title_block = main_page_test.get_title_block_app_and_web_development_services()
+    if title_block != 'App and Web Development Services':
+        errors.append(f"Ошибка заголовка. Получен Title: {title_block}")
+    text_block = main_page_test.get_text_block_app_and_web_development_services()
+    if text_block != 'With a development team of 80 in-house specialists, we provide a variety of services related to online business practices, starting from web design and ending with creating brand-new downloadable apps':
+        errors.append(f"Ошибка текста. Получен текст: {text_block}")
+        # Если есть ошибки, выводим их
+    if errors:
+        pytest.fail("\n".join(errors))
+
+
+@feature('Проверка заголовка и текста в блоке IT staff augmentation')
+def test_main_page_it_staff_title_assert(driver):
+    main_page_test = MainPage(driver)
+    main_page_test.open()
+    errors = []
+    title_block = main_page_test.get_title_block_it_staff()
+    if title_block != 'IT staff augmentation':
+        errors.append(f"Ошибка заголовка. Получен Title: {title_block}")
+    text_block = main_page_test.get_text_block_it_staff()
+    if text_block != 'Godev offers outsourcing services: allow yourself more. Experienced programmers at affordable prices: Middle and Senior levels':
+        errors.append(f"Ошибка текста. Получен текст: {text_block}")
+        # Если есть ошибки, выводим их
+    if errors:
+        pytest.fail("\n".join(errors))
+
+
+@feature('Проверка заголовка и текста в блоке Web Development Process')
+def test_main_page_web_dev_process_title_assert(driver):
+    main_page_test = MainPage(driver)
+    main_page_test.open()
+    errors = []
+    title_block = main_page_test.get_title_block_web_dev_process()
+    if title_block != 'Web Development Process':
+        errors.append(f"Ошибка заголовка. Получен Title: {title_block}")
+    text_block = main_page_test.get_text_block_web_dev_process()
+    if text_block != 'Godev has a comprehensive approach to creating software for our clients. Let us break down the main stages of the development cycle for a web application':
+        errors.append(f"Ошибка текста. Получен текст: {text_block}")
+        # Если есть ошибки, выводим их
+    if errors:
+        pytest.fail("\n".join(errors))
+
+
+
+@feature('Проверка заголовка и текста в блоке Digital Agency Godev')
+def test_main_page_digital_agency_godev_title_assert(driver):
+    main_page_test = MainPage(driver)
+    main_page_test.open()
+    errors = []
+    title_block = main_page_test.get_title_block_digital_agency_godev()
+    if title_block != 'Digital Agency Godev':
+        errors.append(f"Ошибка заголовка. Получен Title: {title_block}")
+    text_block = main_page_test.get_text_block_digital_agency_godev()
+    if text_block != 'Selecting the right staff augmentation partner is crucial to your project’s success. Godev is a top-tier provider of staff augmentation services with several key advantages:':
+        errors.append(f"Ошибка текста. Получен текст: {text_block}")
+        # Если есть ошибки, выводим их
+    if errors:
+        pytest.fail("\n".join(errors))
+
+
+@feature('Проверка данных в карточках блока App and Web Development Services')
+def test_landing_page_why_do_you_need_data_assert(driver):
+    main_page_test = MainPage(driver)
+    main_page_test.open()
+    main_page_test.get_data_card_app_and_web_services_main()

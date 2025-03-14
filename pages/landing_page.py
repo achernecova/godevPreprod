@@ -1,7 +1,8 @@
 import logging
 
-import requests
-from bs4 import BeautifulSoup
+import allure
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 from page_elements.popup_element import PopupElement
 from pages.base_page import BasePage
@@ -9,7 +10,7 @@ from constants import URLs, subURLs
 from page_elements.block_count_elements import CountElements
 from page_elements.meta_data_page import MetaData
 from test.locators import Locators
-from utils.data_loader import load_file
+
 
 
 class LandingPage(BasePage):
@@ -17,9 +18,18 @@ class LandingPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
+        self.subURL = subURLs.LANDING
 
-    def open(self):
-        super().open('services/development-of-a-landing-page/')  # Добавляем под-URL
+
+    @allure.step("Открытие страницы лендинга по URL: /services/development-of-a-landing-page/")
+    def open(self, sub_url=None):
+        """Открывает мобильную страницу. Если sub_url не передан, используется subURL по умолчанию."""
+        if sub_url is None:  # Если sub_url не указан, используем стандартный
+            sub_url = self.subURL
+        allure.step(f"Открытие мобильной страницы по URL: {sub_url}")
+        logging.info(f"Открываем страницу: {sub_url}")
+        super().open(sub_url)  # Вызов метода open() из базового класса с под-URL
+
 
     def get_meta_data(self):
         return MetaData(self.driver)
@@ -32,10 +42,17 @@ class LandingPage(BasePage):
 
 
         # метод для цветных карточек
+    @allure.step("Получение данных из блока Boost your business with a landing page")
     def get_data_card_tile_squad(self):
         url = URLs.MAIN_PAGE + subURLs.LANDING  # Укажите нужный URL
-        self.get_data_card_with_type_project(self.get_card_data_tile_squad, 'data_card_block_packages.json',
-                                                 'tile_squad', url)
+        self.get_data_card_with_type_project(
+            'data_card_block_packages.json',
+            self.get_card_data_tiles_card,
+            'tile_squad',
+            "//*[@class='tile-squad-item card']",
+            './/h3',
+            ".//*[@class='tile-squad-descr']",
+            url)
 
 
         # метод для черно-белых карточек с кружками и порядковыми номерами
@@ -49,6 +66,7 @@ class LandingPage(BasePage):
             './/p',
             ".//h3[@class='card-title']",
             url)
+
 
         # метод для карусели адвант
     def get_data_advant_carousel_card(self):
@@ -87,7 +105,15 @@ class LandingPage(BasePage):
         return ProjectServiceElement(self.driver)
 
 
+    @allure.step("Кликаем по кнопке Get in touch в блоке Rates")
     def click_button_rates_landing(self):
+        self.close_modal_popup()
+        self.scroll_to_element(Locators.title_rates_locator)
         button = self.driver.find_element(*Locators.button_rates_locator)
-        self.scroll_to_element(button)
-        button.click()
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(Locators.button_rates_locator)
+        )
+        if self.driver.execute_script("return arguments[0].getBoundingClientRect().height > 0;", button):
+            self.driver.execute_script("arguments[0].click();", button)  # Клик через JS
+        else:
+            print("Элемент недоступен для клика")

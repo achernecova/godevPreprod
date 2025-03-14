@@ -31,7 +31,7 @@ class FormPage:
 
     def fill_form(self):
         self.get_form_section()
-        close_modal = self.driver.find_element(*Locators.close_modal_locator)
+        close_modal = self.driver.find_element(*Locators.close_modal)
         close_modal.click()
         topping_click = self.driver.find_element(*Locators.topping_click_locator)
         topping_click.click()

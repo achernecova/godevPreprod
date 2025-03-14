@@ -13,6 +13,7 @@ def test_e_com_page_how_we_make_web_count_cards_assert(driver):
     blocks = e_com_page_test.get_count_elements()
     blocks.count_cards_assert('how_we_make_web', 5)
 
+
 @allure.feature('Количество элементов в блоке')
 def test_e_com_page_our_proven_web_dev_count_cards_assert(driver):
     e_com_page_test = EComPage(driver)
@@ -33,14 +34,10 @@ def test_e_com_page_click_services_and_project_and_open_pages(driver, card_type,
     assert page.get_title_page() == expected_title, f'Получен Title: {page.get_title_page()}'
 
 
-
-def test_main_page_data_card_packages(driver):
+def test_e_com_page_data_card_packages(driver):
     ecom_page_test = EComPage(driver)
     ecom_page_test.open()
     ecom_page_test.get_data_card_e_com()
-
-
-
 
 
 @feature('Количество элементов в блоке с черно-белыми карточками')
@@ -56,7 +53,6 @@ def test_e_com_page_benefits_cards_data_assert(driver):
     e_com_page_test = EComPage(driver)
     e_com_page_test.open()
     e_com_page_test.get_data_card_tiles_e_com()
-
 
 
 @feature('Проверка данных в карточках блока Web Development Process')

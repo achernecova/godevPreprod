@@ -1,17 +1,15 @@
 import logging
 
-import requests
-from bs4 import BeautifulSoup
+import allure
 from selenium.webdriver.support import expected_conditions as EC
-
 from selenium.webdriver.support.wait import WebDriverWait
 
 from constants import URLs, subURLs
 from page_elements.block_count_elements import CountElements
 from page_elements.meta_data_page import MetaData
+from page_elements.popup_element import PopupElement
 from pages.base_page import BasePage
 from test.locators import Locators
-from utils.data_loader import load_file
 
 
 class WebDevelopPage(BasePage):
@@ -20,9 +18,18 @@ class WebDevelopPage(BasePage):
         super().__init__(driver)
         self.team_card_more = None
         self.driver = driver
+        self.subURL = subURLs.WEBSITE_DEV
 
-    def open(self):
-        super().open('services/website-development/')  # Добавляем под-URL
+
+    @allure.step("Открытие страницы лендинга по URL: services/website-development/")
+    def open(self, sub_url=None):
+        """Открывает мобильную страницу. Если sub_url не передан, используется subURL по умолчанию."""
+        if sub_url is None:  # Если sub_url не указан, используем стандартный
+            sub_url = self.subURL
+        allure.step(f"Открытие мобильной страницы по URL: {sub_url}")
+        logging.info(f"Открываем страницу: {sub_url}")
+        super().open(sub_url)  # Вызов метода open() из базового класса с под-URL
+
 
     def get_meta_data(self):
         return MetaData(self.driver)
@@ -34,86 +41,60 @@ class WebDevelopPage(BasePage):
         from page_elements.project_service_element import ProjectServiceElement
         return ProjectServiceElement(self.driver)
 
+
     def click_more_packages_and_data_pages(self, index, page_url, page_title):
         logging.info('move cursor to element')
+
         wait = WebDriverWait(self.driver, 10)
 
         # Убедитесь, что элемент доступен
-        self.team_card_more = wait.until(EC.presence_of_element_located(Locators.get_button_more_locator(index)))
+        locator = Locators.get_button_more_locator(index)
+        self.team_card_more = wait.until(EC.presence_of_element_located(locator))
+
         if not self.team_card_more:
-            raise ValueError(f"Кнопка 'больше' по индексу {index} не найдена.")
+            raise ValueError(f"Кнопка 'More' по индексу {index} не найдена.")
 
-        self.scroll_to_element(self.team_card_more)
-        self.team_card_more.click()
+        element = self.scroll_new(locator)  # Передаем locator вместо элемента
 
+        # Используем JavaScript для клика по элементу
+        self.driver.execute_script("arguments[0].click();", element)
 
         title_page = self.get_title_page()  # title_page теперь строка
         assert self.get_url() == page_url, f"Ожидался URL '{page_url}', но получен '{self.get_url()}'"
         assert title_page == page_title, f"Ожидался заголовок '{page_title}', но получен '{title_page}'"
 
 
- # переделываем метод
+    def click_button_in_faq(self):
+        try:
+            button_in_faq = self.scroll_new(Locators.button_in_faq_locator)
+            if button_in_faq and button_in_faq.is_displayed() and button_in_faq.is_enabled():
+                self.driver.execute_script("arguments[0].click();", button_in_faq)  # Используем JavaScript для клика
+            else:
+                print("Button is not available for clicking.")
+        except Exception as e:
+            print(f"Error clicking button: {str(e)}")
+            raise  # Повторно выбрасываем исключение для дальнейшей обработки
+
+    def get_popup(self):
+        return PopupElement(self.driver)
+
     def get_data_card_website(self):
-        # Загрузите данные из JSON
-        data = load_file('data_card_block_packages.json')
+        url = URLs.MAIN_PAGE + subURLs.WEBSITE_DEV  # Укажите нужный URL
+        self.get_data_card_(self.get_card_data, 'data_card_block_packages.json',
+                            'web_site_develop_card_data', url)
 
-        # Получаем данные из блока карусели на странице
-        card_data_data_from_page = self.get_card_data(URLs.MAIN_PAGE + subURLs.WEBSITE_DEV)
-
-        # Выводим полученные данные с веб-страницы
-        print("Полученные данные с веб-страницы:")
-        for review in card_data_data_from_page:
-            print(review)
-
-        # Смотрим, что каждое описание из cms_card_data присутствует на странице
-        descriptions = data['web_site_develop_card_data']['descriptions']
-
-        # Выводим данные из JSON
-        print("Данные из JSON:")
-        for desc in descriptions:
-            print(desc)
-
-        errors = []  # Список для хранения ошибок
-
-        for desc in descriptions:
-            # Обработаем каждое описание из b2b_card_data
-            # Проверяем все
-            found = any(
-                review['project_type'].strip() == desc['project_type'].strip() and
-                review['exp'].strip() == desc['exp'].strip() and
-                review['level'].strip() == desc['level'].strip() and
-                review['price'].strip() == desc['price'].strip() and
-                review['text'].strip() == desc['text'].strip()
-                for review in card_data_data_from_page
-            )
-
-            if not found:
-                errors.append(
-                    f"Данные из JSON не найдены на странице для: {desc['project_type']} | {desc['exp']} | {desc['level']} | {desc['price']} | {desc['text']}")
-
-        # Если есть ошибки, выводим их
-        if errors:
-            print("Ошибки:")
-            for error in errors:
-                print(error)
-            # Можно также вызвать исключение, если это необходимо
-            raise AssertionError("Некоторые данные не были найдены на странице.")
-
-
-
-# метод для карусели адвант
+    # метод для карусели адвант
     def get_data_advant_carousel_card(self):
-        url = URLs.MAIN_PAGE+subURLs.WEBSITE_DEV  # Укажите нужный URL
-        self.get_data_advant_carousel(self.get_data_advant_section_carousel, 'advant_section_carousel.json' , 'advant_section_website', url)
+        url = URLs.MAIN_PAGE + subURLs.WEBSITE_DEV  # Укажите нужный URL
+        self.get_data_advant_carousel(self.get_data_advant_section_carousel, 'advant_section_carousel.json',
+                                      'advant_section_website', url)
 
-
-# получение данных с карточек с отзывами
+    # получение данных с карточек с отзывами
     def get_data_review(self):
         url = URLs.MAIN_PAGE + subURLs.WEBSITE_DEV
         self.get_data_review_(self.get_reviews_data_from_page, 'carousel_of_review.json', 'reviews-wrapper', url)
 
-
-# метод для faq
+    # метод для faq
     def get_data_faq_card(self):
         url = URLs.MAIN_PAGE + subURLs.WEBSITE_DEV  # Укажите нужный URL
         self.get_data_card_with_type_project(
@@ -125,8 +106,7 @@ class WebDevelopPage(BasePage):
             ".//*[@class='accordeon-subject-text']",
             url)
 
-
-# метод для черно-белых карточек
+    # метод для черно-белых карточек
     def get_data_card_tiles_website(self):
         url = URLs.MAIN_PAGE + subURLs.WEBSITE_DEV  # Укажите нужный URL
         self.get_data_card_with_type_project(

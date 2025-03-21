@@ -19,24 +19,89 @@ jobs:
       with:
         python-version: '3.10'
         
+    - name: Debug information
+      run: |
+        echo "Current directory:"
+        pwd
+        echo "Directory contents:"
+        ls -la
+        echo "Python version:"
+        python --version
+        echo "Chrome version:"
+        google-chrome --version || echo "Chrome not installed"
+        echo "ChromeDriver location:"
+        which chromedriver || echo "ChromeDriver not found"
+        
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
+        echo "Installing requirements:"
         pip install -r requirements.txt
+        echo "Installed packages:"
+        pip list
         
+    - name: Check environment variables
+      run: |
+        if [ -f .env ]; then
+          echo "ENV file exists"
+          cat .env
+        else
+          echo "No ENV file found"
+        fi
+        
+    - name: Install Chrome and ChromeDriver
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y google-chrome-stable
+        CHROME_VERSION=$(google-chrome --version | awk '{print $3}' | awk -F'.' '{print $1}')
+        CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
+        wget -N "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
+        unzip -o chromedriver_linux64.zip
+        chmod +x chromedriver
+        sudo mv chromedriver /usr/local/bin/
+        echo "Chrome and ChromeDriver installed"
+        google-chrome --version
+        chromedriver --version
+
     - name: Run tests
       run: |
-        pytest
+        echo "Starting tests with tag fill_form_request_footer..."
+        pytest -v -m fill_form_request_footer --tb=long --full-trace > test_output.log 2>&1
+        cat test_output.log
         
     - name: Store test results
       if: always()
-      uses: actions/upload-artifact@v4  # Обновил версию до v4
+      uses: actions/upload-artifact@v4
       with:
         name: test-results
         path: |
           test-results/
           allure-results/
+          test_output.log
         retention-days: 30
+
+    - name: Generate Allure Report
+      uses: simple-elf/allure-report-action@master
+      if: always()
+      with:
+        allure_results: allure-results
+        allure_history: allure-history
+        keep_reports: 20
+        
+    - name: Store Allure Report
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: allure-report
+        path: allure-report/
+        retention-days: 30
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/main'
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./allure-report
 
     - name: Send Telegram Notification
       if: always()
@@ -45,6 +110,22 @@ jobs:
         to: ${{ secrets.TELEGRAM_CHAT_ID }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
-          🤖 Test Execution Status: ${{ job.status }}
+          🤖 Test Execution Report
+          
           Repository: ${{ github.repository }}
           Branch: ${{ github.ref_name }}
+          
+          Status: ${{ job.status }}
+          
+          Commit Message: ${{ github.event.head_commit.message }}
+          
+          🔍 Test Results: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          
+          ${{ job.status == 'success' && '✅ All tests passed!' || '❌ Some tests failed!' }}
+          
+          📊 Allure Report:
+          ${{ github.server_url }}/${{ github.repository }}/allure-report/
+          
+          👤 Triggered by: ${{ github.actor }}
+          
+          Time: ${{ github.event.head_commit.timestamp }}

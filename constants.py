@@ -1,4 +1,3 @@
-
 DESIRED_PROJECT_TYPES = {
     "E-Commerce",
     "Corporate",

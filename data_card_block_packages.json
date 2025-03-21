@@ -60,10 +60,10 @@
         "text": "We can make your custom website on WordPress, which allows you to easily access the admin panel and modify it based on your needs later, as well as to seamlessly update the content of your site"
       },
       {
-        "project_type": "Framework-Based Sites",
+        "project_type": "Framework-Based sites",
         "exp": "3+ years of experience",
         "level": "workload / security / design",
-        "price": "33 $ / hour",
+        "price": "33 $/ hour",
         "index": "8",
         "text": "Depending on your project, our developers can use any of the popular frameworks to make an advanced and comprehensive website tailored for your business"
       },
@@ -77,6 +77,7 @@
       }
     ]
   },
+
   "cms_card_data": {
     "title": "Customer Reviews",
     "descriptions": [
@@ -209,7 +210,7 @@
         "project_type": "Joomla",
         "exp": "3+ years of experience",
         "level": "design / affordable price",
-        "price": "690 $from",
+        "price": "650 $from",
         "index": "7",
         "text": "Joomla serves as an excellent document management system, ensuring that custom content management is both interactive and user-friendly. This software is particularly noted for its ease-of-use and responsive design capabilities"
       }
@@ -617,6 +618,98 @@
       }
     ]
   },
+  "tiles_section_card_data_mobile": {
+    "title": "Stages of creating a mobile application",
+    "text_title": "The process of creating a mobile project involves several crucial steps. Each step is designed to ensure that your app is developed efficiently and meets your business objectives. Here are the main stages involved in creating a successful application:",
+    "descriptions": [
+      {
+        "index": "1",
+        "project_type": "Analysis of the market and competitors",
+        "text": "We begin by defining the scope of your e-commerce project and identifying your business goals. This helps create a solid foundation for the development phase"
+      },
+      {
+        "index": "2",
+        "project_type": "Technical specification",
+        "text": "We describe the structure, design and functionality. Identification of important points"
+      },
+      {
+        "index": "3",
+        "project_type": "Prototype",
+        "text": "Consideration of architecture and logic"
+      },
+      {
+        "index": "4",
+        "project_type": "Design",
+        "text": "We will create a unique UX/UI interface design that meets your requirements and those of your business sector. Our team is committed to developing a user-friendly and engaging application design that will provide a seamless user experience"
+      },
+      {
+        "index": "5",
+        "project_type": "Development",
+        "text": "Frontend and backend development. Using core mobile technologies, we start building your app on the selected development platform. We focus on scalability, functionality, and performance"
+      },
+      {
+        "index": "6",
+        "project_type": "Testing",
+        "text": "Once the app is developed, we conduct comprehensive testing to ensure that it is bug-free and performs well under various conditions"
+      },
+      {
+        "index": "7",
+        "project_type": "Deployment",
+        "text": "After testing, we launch the app on the App Store and Google Play, ensuring it’s accessible to your users"
+      },
+      {
+        "index": "8",
+        "project_type": "Support",
+        "text": "After the launch, we offer continuous support and maintenance, ensuring your app remains updated and functional over time"
+      }
+    ]
+  },
+  "tiles_section_card_data_d2c": {
+    "title": "Our Advantages",
+    "text_title": "At Godev, we pride ourselves on delivering exceptional D2C eCommerce solutions that align with your business objectives.",
+    "descriptions": [
+      {
+        "index": "1",
+        "project_type": "Tailored Solutions. ",
+        "text": "We understand that each brand is unique. Our team crafts customized strategies to meet your specific needs and goals."
+      },
+      {
+        "index": "2",
+        "project_type": "Expertise in Web Design. ",
+        "text": "Our experienced designers create visually appealing and user-friendly interfaces that enhance the customer journey."
+      },
+      {
+        "index": "3",
+        "project_type": "Comprehensive Digital Marketing Services. ",
+        "text": "From SEO to social media campaigns, we offer a full suite of services to boost your online presence and conversion rates."
+      },
+      {
+        "index": "4",
+        "project_type": "Focus on Conversion Optimization.",
+        "text": "We implement proven techniques to maximize conversion rates, turning visitors into loyal customers."
+      },
+      {
+        "index": "5",
+        "project_type": "Seamless Integration.",
+        "text": "Our solutions integrate smoothly with various sales channels, ensuring a cohesive brand experience."
+      },
+      {
+        "index": "6",
+        "project_type": "Scalable Platforms.",
+        "text": "We build ecommerce websites that grow with your business, accommodating increasing traffic and expanding product lines."
+      },
+      {
+        "index": "7",
+        "project_type": "Ongoing Support.",
+        "text": "Our commitment doesn't end at launch. We provide continuous support to ensure your platform remains up-to-date and efficient."
+      },
+      {
+        "index": "8",
+        "project_type": "Proven Track Record.",
+        "text": "With a portfolio of successful projects, we have a history of delivering results that exceed client expectations."
+      }
+    ]
+  },
   "tile_squad": {
     "title_section": "Boost your business with a landing page",
     "descriptions": [
@@ -652,6 +745,7 @@
       }
     ]
   },
+
   "tiles_section_card_data_landing": {
     "title": "Godev’s advantages",
     "text_title": "Godev specializes in creating landing pages for your business that drive results. Here’s what sets us apart:",

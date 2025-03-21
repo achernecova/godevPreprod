@@ -1,9 +1,9 @@
 #в процессе
 import logging
+import os
 
 import allure
 
-from constants import subURLs, URLs
 from page_elements.block_count_elements import CountElements
 from page_elements.form_page import FormPage
 from page_elements.menu_element import MenuElement
@@ -18,7 +18,7 @@ class ServicesPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
-        self.subURL = subURLs.SERVICES_PAGE
+        self.subURL = os.getenv('SERVICES_PAGE', 'services/')
 
 
     @allure.step("Открытие страницы лендинга по URL: services/")
@@ -64,7 +64,7 @@ class ServicesPage(BasePage):
 
 
     def get_data_card_app_and_web_services_service(self):
-        url = URLs.MAIN_PAGE+subURLs.SERVICES_PAGE  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('SERVICES_PAGE', 'services/')
         self.get_data_card_with_type_project(
             'section_how_it_staff_tiles.json',
             self.get_card_data_tiles_card,
@@ -75,7 +75,7 @@ class ServicesPage(BasePage):
             url)
 
     def get_data_card_app_and_web_services_advant(self):
-        url = URLs.MAIN_PAGE+subURLs.SERVICES_PAGE  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('SERVICES_PAGE', 'services/')
         self.get_data_card_with_type_project(
             'section_how_it_staff_tiles.json',
             self.get_card_data_tiles_card,

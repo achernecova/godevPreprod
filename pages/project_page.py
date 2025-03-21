@@ -1,8 +1,8 @@
 import logging
+import os
 
 import allure
 
-from constants import subURLs, URLs
 from page_elements.block_count_elements import CountElements
 from page_elements.meta_data_page import MetaData
 from pages.base_page import BasePage
@@ -14,9 +14,10 @@ class ProjectPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
-        self.subURL = subURLs.PROJECT_PAGE
+        self.subURL = os.getenv('PROJECT_PAGE', 'projects/')
 
-    @allure.step("Открытие мобильной страницы по URL: services/mobile-development/")
+
+    @allure.step("Открытие мобильной страницы по URL: projects/")
     def open(self, sub_url=None):
         """Открывает мобильную страницу. Если sub_url не передан, используется subURL по умолчанию."""
         if sub_url is None:  # Если sub_url не указан, используем стандартный
@@ -49,6 +50,6 @@ class ProjectPage(BasePage):
 
         # получение данных с карточек с отзывами
     def get_data_review(self):
-        url = URLs.MAIN_PAGE + subURLs.PROJECT_PAGE
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('PROJECT_PAGE', 'projects/')
         self.get_data_review_(self.get_reviews_data_from_page, 'carousel_of_review.json',
                                   'reviews-wrapper', url)

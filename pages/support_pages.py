@@ -1,9 +1,8 @@
 import logging
+import os
 
 import allure
-from selenium.webdriver.common.by import By
 
-from constants import subURLs, URLs
 from page_elements.block_count_elements import CountElements
 from page_elements.form_page import FormPage
 from page_elements.meta_data_page import MetaData
@@ -18,8 +17,11 @@ class SupportPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
-        self.subURL = subURLs.SUPPORT_PAGE
+        self.subURL = os.getenv('SUPPORT_PAGE', 'services/tech-support/')
 
+
+    def get_popup(self):
+        return PopupElement(self.driver)
 
     @allure.step("Открытие страницы лендинга по URL: services/tech-support/")
     def open(self, sub_url=None):
@@ -60,7 +62,7 @@ class SupportPage(BasePage):
 
 # метод для черно-белых карточек
     def get_data_card_tiles_support(self):
-        url = URLs.MAIN_PAGE+subURLs.SUPPORT_PAGE  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('SUPPORT_PAGE', 'services/tech-support/')
         self.get_data_card_with_type_project(
             'data_card_block_packages.json',
             self.get_data_faq_tiles_new,
@@ -73,7 +75,7 @@ class SupportPage(BasePage):
 
 # метод для черно-белых карточек с кружками и порядковыми номерами
     def get_data_card_how_it_staff_support(self):
-        url = URLs.MAIN_PAGE+subURLs.SUPPORT_PAGE  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('SUPPORT_PAGE', 'services/tech-support/')
         self.get_data_card_with_type_project(
             'section_how_it_staff_tiles.json',
             self.get_card_data_tiles_card,
@@ -85,7 +87,7 @@ class SupportPage(BasePage):
 
 # метод для faq
     def get_data_faq_card(self):
-        url = URLs.MAIN_PAGE + subURLs.SUPPORT_PAGE  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('SUPPORT_PAGE', 'services/tech-support/')
         self.get_data_card_with_type_project(
             'faq_block_data.json',
             self.get_data_faq_tiles_new,

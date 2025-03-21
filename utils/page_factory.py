@@ -1,6 +1,7 @@
 from pages.b2b_page import B2BPage
 from pages.blog_page import BlogPage
 from pages.cms_page import CMSPage
+from pages.d2c_page import D2C
 from pages.framework_page import FrameworkPage
 from pages.landing_page import LandingPage
 from pages.main_page import MainPage
@@ -21,7 +22,7 @@ def get_page_instance(page_name, driver):
         "cms": CMSPage,
         "b2b": B2BPage,
         "mobile": MobileDevPage,
-        "blog": BlogPage,
+        #"blog": BlogPage,
         "framework": FrameworkPage,
         "outstaff": WebOutstaffPage,
         "project_page": ProjectPage,
@@ -29,7 +30,8 @@ def get_page_instance(page_name, driver):
         "support": SupportPage,
         "web_dev_serv": WebDevServicesPage,
         "web_dev": WebDevelopPage,
-        "landing": LandingPage
+        "landing": LandingPage,
+        #"d2c": D2C
     }
     try:
         return page_classes[page_name](driver)

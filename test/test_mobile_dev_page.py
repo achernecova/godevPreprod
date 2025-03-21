@@ -1,3 +1,4 @@
+import pytest
 from allure_commons._allure import feature
 
 from pages.mobile_dev_page import MobileDevPage
@@ -14,6 +15,7 @@ def test_mobile_dev_page_add_request_in_card_select(driver):
     success = popup_modal_page.popup_success_displayed()
     assert success == True , f"Не появилось окно успешности "
 
+@pytest.mark.fill_form_request_faq
 @feature('Успешная отправка заявки из FAQ')
 def test_mobile_dev_page_add_request_in_faq(driver):
     mobile_page = MobileDevPage(driver)
@@ -71,3 +73,33 @@ def test_mobile_dev_page_add_request_in_dev_coast(driver):
     popup_modal_page.add_request_success()
     success = popup_modal_page.popup_success_displayed()
     assert success == True, f"Не появилось окно успешности "
+
+
+@feature('Проверка данных в карточках блока Stages of creating a mobile application')
+def test_support_page_benefits_count_cards_assert(driver):
+    mobile_page = MobileDevPage(driver)
+    mobile_page.open()
+    mobile_page.get_data_card_tiles_mobile()
+
+
+@feature('Проверка данных в карточках блока Advantages of cooperation with us')
+def test_e_com_page_web_development_process_data_assert(driver):
+    mobile_page = MobileDevPage(driver)
+    mobile_page.open()
+    mobile_page.get_data_advant_carousel_card()
+
+@feature('Проверка заголовка в блоке Stages of creating')
+def test_mobile_page_stages_of_creating_title_assert(driver):
+    mobile_page = MobileDevPage(driver)
+    mobile_page.open()
+    title_block = mobile_page.get_title_block_stages_of_creating()
+    assert title_block == 'Stages of creating a mobile application', f"Получен Title:  {title_block}"
+
+
+@feature('Проверка текста в блоке Stages of creating')
+def test_mobile_page_stages_of_creating_text_assert(driver):
+    mobile_page = MobileDevPage(driver)
+    mobile_page.open()
+    text_block = mobile_page.get_text_block_stages_of_creating()
+    assert text_block == 'The process of creating a mobile project involves several crucial steps. Each step is designed to ensure that your app is developed efficiently and meets your business objectives. Here are the main stages involved in creating a successful application:', f"Получен Title:  {text_block}"
+

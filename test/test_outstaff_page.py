@@ -72,8 +72,9 @@ def test_outstaff_page_faq_data_assert(driver):
     outstaff_page_test.open()
     outstaff_page_test.get_data_faq_card_new()
 
+@pytest.mark.fill_form_request_faq
 @feature('Успешная отправка заявки из FAQ')
-def test_mobile_dev_page_add_request_in_faq(driver):
+def test_outstaff_dev_page_add_request_in_faq(driver):
     outstaff_page_test = WebOutstaffPage(driver)
     outstaff_page_test.open()
     outstaff_page_test.click_button_in_faq()

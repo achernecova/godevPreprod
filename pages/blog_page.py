@@ -1,11 +1,10 @@
 import logging
+import os
 
 import allure
 from selenium.common import ElementClickInterceptedException
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
-from constants import subURLs
 from page_elements.block_count_elements import CountElements
 from page_elements.form_page import FormPage
 from page_elements.meta_data_page import MetaData
@@ -18,8 +17,7 @@ class BlogPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
-        self.subURL = subURLs.BLOG_PAGE
-
+        self.subURL = os.getenv('BLOG_PAGE', 'blog/')  # Значение по умолчанию
 
 
     @allure.step("Открытие страницы лендинга по URL: blog/")

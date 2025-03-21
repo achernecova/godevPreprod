@@ -1,10 +1,10 @@
 import logging
+import os
 import time
 
 import allure
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from constants import URLs
 from page_elements.block_count_elements import CountElements
 from page_elements.form_page import FormPage
 from page_elements.menu_element import MenuElement
@@ -120,19 +120,19 @@ class MainPage(BasePage):
 
     # получение данных с карточек с отзывами
     def get_data_review(self):
-        url = URLs.MAIN_PAGE
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/')
         self.get_data_review_(self.get_reviews_data_from_page, 'carousel_of_review.json',
                               'reviews-wrapper', url)
 
     # метод для карусели адвант
     def get_data_advant_carousel_card(self):
-        url = URLs.MAIN_PAGE
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/')
         self.get_data_advant_carousel(self.get_data_advant_section_carousel, 'advant_section_carousel.json',
                                       'advant_section', url)
 
     # метод для черно-белых карточек
     def get_data_card_tiles_main(self):
-        url = URLs.MAIN_PAGE  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/')  # Укажите нужный URL
         self.get_data_card_with_type_project(
             'data_card_block_packages.json',
             self.get_data_faq_tiles_new,
@@ -144,7 +144,7 @@ class MainPage(BasePage):
 
     # метод для черно-белых карточек с кружками и порядковыми номерами
     def get_data_card_how_it_staff_main(self):
-        url = URLs.MAIN_PAGE  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/')  # Укажите нужный URL
         self.get_data_card_with_type_project(
             'section_how_it_staff_tiles.json',
             self.get_card_data_tiles_card,
@@ -165,7 +165,7 @@ class MainPage(BasePage):
     @allure.step(
         "Проверяем текст из карусели")
     def get_text_block(self, locator):
-        self.scroll_to_element(locator)
+        #self.scroll_new(locator)
         text = self.get_text_block_from_page_all(locator)
         return text
 
@@ -208,7 +208,7 @@ class MainPage(BasePage):
 
 
     def get_data_card_app_and_web_services_main(self):
-        url = URLs.MAIN_PAGE  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/')  # Укажите нужный URL
         self.get_data_card_with_type_project(
             'section_how_it_staff_tiles.json',
             self.get_card_data_tiles_card,

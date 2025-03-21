@@ -47,42 +47,43 @@ def test_web_dev_click_services_and_project_and_open_pages(driver, card_type, ex
 
 
 @allure.feature('Проверка данных в карточках блока Website Packages')
-def test_website_page_data_card_packages_new(driver):
+def test_web_develop_page_data_card_packages_new(driver):
     web_dev_page_test = WebDevelopPage(driver)
     web_dev_page_test.open()
     web_dev_page_test.get_data_card_website()
 
 
 @allure.feature('Проверка данных в карточках блока Types of websites we work with')
-def test_website_page_benefits_count_cards_assert(driver):
+def test_web_develop_page_benefits_count_cards_assert(driver):
     web_dev_page_test = WebDevelopPage(driver)
     web_dev_page_test.open()
     web_dev_page_test.get_data_card_tiles_website()
 
 
 @feature('Проверка данных в Benefits of team augmentation services')
-def test_outstaff_page_web_development_process_data_assert(driver):
+def test_web_develop_page_web_development_process_data_assert(driver):
     web_dev_page_test = WebDevelopPage(driver)
     web_dev_page_test.open()
     web_dev_page_test.get_data_advant_carousel_card()
 
 
 @feature('Проверка данных в карусели с отзывами')
-def test_main_page_count_card_reviews(driver):
+def test_web_develop_page_count_card_reviews(driver):
     web_dev_page_test = WebDevelopPage(driver)
     web_dev_page_test.open()
     web_dev_page_test.get_data_review()
 
 
 @allure.feature('Проверка данных в FAQ')
-def test_website_page_faq_data_assert(driver):
+def test_web_develop_page_faq_data_assert(driver):
     web_dev_page_test = WebDevelopPage(driver)
     web_dev_page_test.open()
     web_dev_page_test.get_data_faq_card()
 
 
+@pytest.mark.fill_form_request_faq
 @feature('Успешная отправка заявки из FAQ')
-def test_mobile_dev_page_add_request_in_faq(driver):
+def test_web_develop_page_add_request_in_faq(driver):
     web_dev_page_test = WebDevelopPage(driver)
     web_dev_page_test.open()
     web_dev_page_test.click_button_in_faq()

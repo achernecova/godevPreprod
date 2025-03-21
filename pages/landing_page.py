@@ -1,4 +1,5 @@
 import logging
+import os
 
 import allure
 from selenium.webdriver.support.wait import WebDriverWait
@@ -6,7 +7,6 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from page_elements.popup_element import PopupElement
 from pages.base_page import BasePage
-from constants import URLs, subURLs
 from page_elements.block_count_elements import CountElements
 from page_elements.meta_data_page import MetaData
 from test.locators import Locators
@@ -18,8 +18,7 @@ class LandingPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
-        self.subURL = subURLs.LANDING
-
+        self.subURL = os.getenv('LANDING', 'services/development-of-a-landing-page/')  # Значение по умолчанию
 
     @allure.step("Открытие страницы лендинга по URL: /services/development-of-a-landing-page/")
     def open(self, sub_url=None):
@@ -44,7 +43,7 @@ class LandingPage(BasePage):
         # метод для цветных карточек
     @allure.step("Получение данных из блока Boost your business with a landing page")
     def get_data_card_tile_squad(self):
-        url = URLs.MAIN_PAGE + subURLs.LANDING  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('LANDING', 'services/development-of-a-landing-page/')
         self.get_data_card_with_type_project(
             'data_card_block_packages.json',
             self.get_card_data_tiles_card,
@@ -57,7 +56,7 @@ class LandingPage(BasePage):
 
         # метод для черно-белых карточек с кружками и порядковыми номерами
     def get_data_card_how_it_staff_landing(self):
-        url = URLs.MAIN_PAGE+subURLs.LANDING  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('LANDING', 'services/development-of-a-landing-page/')
         self.get_data_card_with_type_project(
             'section_how_it_staff_tiles.json',
             self.get_card_data_tiles_card,
@@ -70,13 +69,13 @@ class LandingPage(BasePage):
 
         # метод для карусели адвант
     def get_data_advant_carousel_card(self):
-        url = URLs.MAIN_PAGE+subURLs.LANDING
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('LANDING', 'services/development-of-a-landing-page/')
         self.get_data_advant_carousel(self.get_data_advant_section_carousel,'advant_section_carousel.json', 'advant_section_landing', url)
 
 
         # метод для черно-белых карточек
     def get_data_card_tiles_landing(self):
-        url = URLs.MAIN_PAGE+subURLs.LANDING  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('LANDING', 'services/development-of-a-landing-page/')
         self.get_data_card_with_type_project(
             'data_card_block_packages.json',
             self.get_data_faq_tiles_new,
@@ -89,13 +88,13 @@ class LandingPage(BasePage):
 
         # метод для карточек в блоке rates
     def get_data_card_rates_landing(self):
-        url = URLs.MAIN_PAGE+subURLs.LANDING  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('LANDING', 'services/development-of-a-landing-page/')
         self.get_data_card_with_type_project_rates(self.get_card_data_rates, 'data_card_block_packages.json',
                                                  'card_data_rates_landing', url)
 
         # получение данных с карточек с отзывами
     def get_data_review_landing(self):
-        url = URLs.MAIN_PAGE + subURLs.LANDING
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('LANDING', 'services/development-of-a-landing-page/')
         self.get_data_review_(self.get_reviews_data_from_page, 'carousel_of_review.json',
                                   'reviews-wrapper', url)
 

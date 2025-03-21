@@ -3,7 +3,7 @@ import pytest
 
 from pages.b2b_page import B2BPage
 from utils.data_loader import load_service_data_review
-
+from unittest.mock import patch
 
 # тест с мета-тегами вынесен в main_page_test
 
@@ -65,12 +65,14 @@ def test_b2b_page_add_request_success(driver):
     form_page_test.add_request_success()
     assert form_page_test.popup_success_displayed() == True, 'Окно подтверждения не появилось'
 
-
+@pytest.mark.fill_form_request_footer
 @allure.feature('Успешная отправка заявки из футера')
+#@patch('path.to.your.recaptcha_verification_function', return_value=True)
 def test_b2b_page_fill_form_request_footer(driver):
     b2b_page_test = B2BPage(driver)
     b2b_page_test.open()
     form_page_test = b2b_page_test.get_form_page()
     form_page_test.fill_form()
+    #form_page_test.click_button_add_request()
     assert form_page_test.popup_success_displayed() == True, 'Окно подтверждения не появилось'
 

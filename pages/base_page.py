@@ -1,18 +1,17 @@
 import logging
+import os
 import time
 
 import allure
-import driver
+
 from lxml import html
 import requests
 from bs4 import BeautifulSoup
-from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 
-from constants import URLs
 from test.locators import Locators
 from utils.data_loader import load_file
 
@@ -21,11 +20,11 @@ class BasePage:
     logging.basicConfig(level=logging.INFO)
 
     def __init__(self, driver):
-        self.URL = URLs.MAIN_PAGE
+        self.URL = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/')  # Значение по умолчанию
         self.driver = driver
 
     def open(self, suburl=''):
-        self.driver.get(URLs.MAIN_PAGE + suburl)
+        self.driver.get(self.URL + suburl)
 
     @allure.step("Закрытие окна кеш-куки")
     def close_modal_popup(self):
@@ -352,12 +351,15 @@ class BasePage:
         for section in type_section:
             project_type_element = section.xpath(".//*[@class='tarif-name']//span/text()")
             project_type = project_type_element[0].strip() if project_type_element else 'Не найдено'
+
             price_section = section.xpath(".//*[@class='tarif-price']//span/text()")
             price_text = price_section[0].strip() if price_section else 'Не найдено'
             price_text = price_text.replace('\u2028', '').replace('\n', ' ').replace('\r', '')
+
             price_section_text = section.xpath(".//*[@class='tarif-descr']//span/text()")
             text = price_section_text[0].strip() if price_section_text else 'Не найдено'
             text = text.replace('\u2028', '').replace('\n', ' ').replace('\r', '').replace('â\x80\x99', '’')
+
             logging.info(f"project_type: {project_type}, price: {price_text}, text: {text}")
             team_data.append({
                 'project_type': project_type,
@@ -390,6 +392,7 @@ class BasePage:
             })
         return reviews_data
 
+
     # проверка данных с карусели с отзывами
     @allure.step("Проверяем данные из карусели с отзывами на корректность")
     def get_data_review_(self, url_method, file_load, json_key, url):
@@ -413,6 +416,7 @@ class BasePage:
                                                       reviews_data_from_page], f"Организация не найдена на странице: {desc['author_company']}"
             assert desc['author_name'] in [review['author_name'] for review in
                                            reviews_data_from_page], f"Автор не найден на странице: {desc['author_name']}"
+
 
     # метод для извлечения данных для faq - для всех страниц
     @allure.step("Получаем данные из блока FAQ")
@@ -517,6 +521,7 @@ class BasePage:
             )
             assert found, f"Данные из JSON не найдены на странице для: {desc['advant_title']} | {desc['advant_text']} "
 
+
     @allure.step("Получаем заголовок блока")
     def get_title_block_from_page_all(self, locator):
         method, value = locator
@@ -529,18 +534,33 @@ class BasePage:
             logging.error('Ошибка!!! Заголовок не найден.')
             return 'Ошибка!!!'
 
-    # тянем текст из блока App and Web Development Services
+    def click_button_in_faq(self):
+        try:
+            button = self.scroll_new(Locators.button_in_faq_locator)
+            if button and button.is_displayed() and button.is_enabled():
+                self.driver.execute_script("arguments[0].click();", button)  # Используем JavaScript для клика
+            else:
+                print("Button is not available for clicking.")
+        except Exception as e:
+            print(f"Error clicking button: {str(e)}")
+            raise  # Повторно выбрасываем исключение для дальнейшей обработки
+
+    # тянем текст из блока
     @allure.step("Получаем текст блока")
     def get_text_block_from_page_all(self, locator):
         method, value = locator
-        text_element = self.driver.find_element(method, value)
-        if text_element is not None:
+        try:
+            # Выведем HTML для отладки
+            #print(self.driver.page_source)
+
+            text_element = self.driver.find_element(method, value)
             text = text_element.text.strip()
-            logging.info(f"Заголовок на странице: '{text}'")
+            logging.info(f"Текст на странице: '{text}'")
             return text
-        else:
-            logging.error('Ошибка!!! Заголовок не найден.')
+        except:
+            logging.error('Ошибка!!! Текст не найден.')
             return 'Ошибка!!!'
+
 
    # метод для извлечения данных для карточек из карусели
     @allure.step("Получаем данные из карточек блока")
@@ -577,3 +597,14 @@ class BasePage:
                 'advant_text': text
             })
         return team_data
+
+
+def setup_logging(self):
+    logging.basicConfig(
+        level=logging.INFO,  # Уровень логирования
+        format='%(asctime)s - %(levelname)s - %(message)s',  # Формат сообщения
+        handlers=[
+            logging.FileHandler("app.log"),  # Запись логов в файл
+            logging.StreamHandler()  # Вывод логов в консоль
+        ]
+    )

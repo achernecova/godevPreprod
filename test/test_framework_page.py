@@ -95,6 +95,18 @@ def test_framework_page_faq_data_assert(driver):
     framework_page_test.open()
     framework_page_test.get_data_faq_card_new()
 
+@pytest.mark.fill_form_request_faq
+@allure.feature('Успешная отправка заявки из FAQ')
+def test_framework_page_add_request_in_faq(driver):
+    framework_page_test = FrameworkPage(driver)
+    framework_page_test.open()
+    framework_page_test.click_button_in_faq()
+    popup_modal_page = framework_page_test.get_popup()
+    popup_modal_page.add_request_success()
+    success = popup_modal_page.popup_success_displayed()
+    assert success == True, f"Не появилось окно успешности "
+
+
 @allure.feature('Проверка данных в карточках блока Advantages of outsourcing for web')
 def test_framework_page_why_do_you_need_data_assert(driver):
     framework_page_test = FrameworkPage(driver)

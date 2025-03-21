@@ -1,12 +1,11 @@
 import logging
+import os
 import re
 
 import allure
 import requests
 from bs4 import BeautifulSoup
-from selenium.webdriver.common.by import By
 
-from constants import subURLs, URLs
 from page_elements.block_count_elements import CountElements
 from page_elements.meta_data_page import MetaData
 from page_elements.popup_element import PopupElement
@@ -20,8 +19,7 @@ class EComPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
-        self.subURL = subURLs.E_COM_PAGE
-
+        self.subURL = os.getenv('E_COM_PAGE', 'services/website-development/e-commerce/')  # Значение по умолчанию
 
     @allure.step("Открытие страницы лендинга по URL: services/website-development/e-commerce/")
     def open(self, sub_url=None):
@@ -31,7 +29,6 @@ class EComPage(BasePage):
         allure.step(f"Открытие мобильной страницы по URL: {sub_url}")
         logging.info(f"Открываем страницу: {sub_url}")
         super().open(sub_url)  # Вызов метода open() из базового класса с под-URL
-
 
     def get_meta_data(self):
         return MetaData(self.driver)
@@ -65,14 +62,15 @@ class EComPage(BasePage):
             logging.info(f"Заголовок на странице: " + element.text)
             assert element.text == expected, f"Ожидался заголовок '{expected}', но получен '{element.text}'"
 
-
-  # переделываем метод
+    # переделываем метод
     def get_data_card_e_com(self):
         # Загрузите данные из JSON
         data = load_file('data_card_block_packages.json')
 
         # Получаем данные из блока карусели на странице
-        card_data_data_from_page = self.get_card_data(URLs.MAIN_PAGE + subURLs.E_COM_PAGE)
+        card_data_data_from_page = self.get_card_data(
+            os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('E_COM_PAGE',
+                                                                            'services/website-development/e-commerce/'))
 
         # Выводим полученные данные с веб-страницы
         print("Полученные данные с веб-страницы:")
@@ -98,7 +96,6 @@ class EComPage(BasePage):
             )
 
             assert found, f"Данные из JSON не найдены на странице для: {desc['project_type']} | {desc['level']} | {desc['price']} "
-
 
     def get_card_data(self, url):
         response = requests.get(url)
@@ -128,12 +125,10 @@ class EComPage(BasePage):
 
         return team_data
 
-
-
-
         # метод для черно-белых карточек
     def get_data_card_tiles_e_com(self):
-        url = URLs.MAIN_PAGE + subURLs.E_COM_PAGE  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('E_COM_PAGE',
+                                                                              'services/website-development/e-commerce/')
         self.get_data_card_with_type_project(
             'data_card_block_packages.json',
             self.get_data_faq_tiles_new,
@@ -143,10 +138,9 @@ class EComPage(BasePage):
             ".//span",
             url)
 
-# метод для карусели адвант
+    # метод для карусели адвант
     def get_data_advant_carousel_card(self):
-        url = URLs.MAIN_PAGE+subURLs.E_COM_PAGE  # Укажите нужный URL
-        self.get_data_advant_carousel(self.get_data_advant_section_carousel,'advant_section_carousel.json' , 'advant_section_e_com', url)
-
-
-
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('E_COM_PAGE',
+                                                                              'services/website-development/e-commerce/')
+        self.get_data_advant_carousel(self.get_data_advant_section_carousel, 'advant_section_carousel.json',
+                                      'advant_section_e_com', url)

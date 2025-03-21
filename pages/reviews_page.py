@@ -1,9 +1,8 @@
 import logging
+import os
 
 import allure
-from selenium.webdriver.common.by import By
 
-from constants import subURLs
 from page_elements.block_count_elements import CountElements
 from page_elements.form_page import FormPage
 from page_elements.menu_element import MenuElement
@@ -11,14 +10,14 @@ from page_elements.meta_data_page import MetaData
 from page_elements.popup_element import PopupElement
 
 from pages.base_page import BasePage
-from test.locators import Locators
+
 
 
 class ReviewsPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
-        self.subURL = subURLs.REVIEWS_PAGE
+        self.subURL = os.getenv('REVIEWS_PAGE', 'reviews/')  # Значение по умолчанию
 
 
     @allure.step("Открытие страницы лендинга по URL: reviews/")

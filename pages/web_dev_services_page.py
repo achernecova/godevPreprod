@@ -1,13 +1,12 @@
 import logging
+import os
 
 import allure
-from selenium.webdriver.common.by import By
 
-from constants import URLs, subURLs
 from page_elements.block_count_elements import CountElements
 from page_elements.meta_data_page import MetaData
+from page_elements.popup_element import PopupElement
 from pages.base_page import BasePage
-from utils.data_loader import load_file
 
 
 class WebDevServicesPage(BasePage):
@@ -15,8 +14,10 @@ class WebDevServicesPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
-        self.subURL = subURLs.WEB_DEV
+        self.subURL = os.getenv('WEB_DEV', 'services/web-development/')
 
+    def get_popup(self):
+        return PopupElement(self.driver)
 
     @allure.step("Открытие страницы лендинга по URL: services/web-development/")
     def open(self, sub_url=None):
@@ -37,7 +38,7 @@ class WebDevServicesPage(BasePage):
 
         # метод для черно-белых карточек
     def get_data_card_tiles_webdev(self):
-        url = URLs.MAIN_PAGE + subURLs.WEB_DEV  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('WEB_DEV', 'services/web-development/')
         self.get_data_card_with_type_project(
             'data_card_block_packages.json',
             self.get_data_faq_tiles_new,
@@ -49,7 +50,7 @@ class WebDevServicesPage(BasePage):
 
 # метод для faq
     def get_data_faq_card(self):
-        url = URLs.MAIN_PAGE + subURLs.WEB_DEV  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('WEB_DEV', 'services/web-development/')
         self.get_data_card_with_type_project(
             'faq_block_data.json',
             self.get_data_faq_tiles_new,

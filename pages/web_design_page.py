@@ -1,11 +1,11 @@
 import logging
+import os
 
 import allure
 import requests
 from bs4 import BeautifulSoup
-from selenium.webdriver.common.by import By
 
-from constants import subURLs, URLs
+from page_elements.popup_element import PopupElement
 from pages.base_page import BasePage
 from test.locators import Locators
 from utils.data_loader import load_file
@@ -16,9 +16,10 @@ class WebDesignPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
-        self.subURL = subURLs.DESIGN_PAGE
+        self.subURL = os.getenv('DESIGN_PAGE', 'services/website-design-and-development-services/')
 
-
+    def get_popup(self):
+        return PopupElement(self.driver)
 
     @allure.step("Открытие страницы лендинга по URL: services/website-design-and-development-services/")
     def open(self, sub_url=None):
@@ -37,7 +38,7 @@ class WebDesignPage(BasePage):
         data = load_file('data_card_block_packages.json')
 
         # Получаем данные из блока карусели на странице
-        card_data_data_from_page = self.get_card_data(URLs.MAIN_PAGE + subURLs.DESIGN_PAGE)
+        card_data_data_from_page = self.get_card_data(os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('DESIGN_PAGE', 'services/website-design-and-development-services/'))
 
         # Выводим полученные данные с веб-страницы
         print("Полученные данные с веб-страницы:")
@@ -95,7 +96,7 @@ class WebDesignPage(BasePage):
 
     # метод для черно-белых карточек с кружками и порядковыми номерами
     def get_data_card_how_it_staff_design(self):
-        url = URLs.MAIN_PAGE + subURLs.DESIGN_PAGE  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('DESIGN_PAGE', 'services/website-design-and-development-services/')
         self.get_data_card_with_type_project(
             'section_how_it_staff_tiles.json',
             self.get_card_data_tiles_card,
@@ -109,7 +110,7 @@ class WebDesignPage(BasePage):
 
 # метод для faq
     def get_data_faq_card(self):
-        url = URLs.MAIN_PAGE + subURLs.DESIGN_PAGE  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('DESIGN_PAGE', 'services/website-design-and-development-services/')
         self.get_data_card_with_type_project(
             'faq_block_data.json',
             self.get_data_faq_tiles_new,

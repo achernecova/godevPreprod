@@ -1,11 +1,8 @@
 import logging
+import os
 
 import allure
-import requests
-from bs4 import BeautifulSoup
-from selenium.webdriver.common.by import By
 
-from constants import subURLs, URLs
 from page_elements.block_count_elements import CountElements
 from page_elements.form_page import FormPage
 from page_elements.meta_data_page import MetaData
@@ -13,7 +10,6 @@ from page_elements.popup_element import PopupElement
 
 from pages.base_page import BasePage
 from test.locators import Locators
-from utils.data_loader import load_file
 
 
 class B2BPage(BasePage):
@@ -21,7 +17,7 @@ class B2BPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
-        self.subURL = subURLs.B2B_PAGE
+        self.subURL = os.getenv('FRAMEWORK_PAGE', 'services/website-development/b2b/')  # Значение по умолчанию
 
 
     @allure.step("Открытие страницы лендинга по URL: services/website-development/b2b/")
@@ -54,13 +50,13 @@ class B2BPage(BasePage):
         click_button_banner.click()
 
     def get_data_card_b2b(self):
-        url = URLs.MAIN_PAGE + subURLs.B2B_PAGE  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('B2B_PAGE', 'services/website-development/b2b/')  # Укажите нужный URL
         self.get_data_card_(self.get_card_data, 'data_card_block_packages.json',
                                              'b2b_card_data', url)
 
 # метод для черно-белых карточек
     def get_data_card_tiles_b2b(self):
-        url = URLs.MAIN_PAGE + subURLs.B2B_PAGE  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('B2B_PAGE', 'services/website-development/b2b/')  # Укажите нужный URL
         self.get_data_card_with_type_project(
             'data_card_block_packages.json',
             self.get_data_faq_tiles_new,
@@ -72,7 +68,7 @@ class B2BPage(BasePage):
 
 # метод для черно-белых карточек с кружками и порядковыми номерами
     def get_data_card_how_it_staff_b2b(self):
-        url = URLs.MAIN_PAGE + subURLs.B2B_PAGE  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('B2B_PAGE', 'services/website-development/b2b/')  # Укажите нужный URL
         self.get_data_card_with_type_project(
             'section_how_it_staff_tiles.json',
             self.get_data_faq_tiles_new,

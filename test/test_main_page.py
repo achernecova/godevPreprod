@@ -1,9 +1,9 @@
-from allure_commons._allure import link, feature
 import pytest
+from allure_commons._allure import link, feature
 
+from pages.main_page import MainPage
 from utils.data_loader import load_package_data_main
 from utils.page_factory import get_page_instance
-from pages.main_page import MainPage
 
 # Загрузка данных из JSON-файла с фильтрацией
 load_package_data = load_package_data_main()
@@ -25,6 +25,7 @@ def test_add_request_success_main_page(driver):
     assert form_page_test.popup_success_displayed() == True, 'Окно подтверждения не появилось'
 
 
+@pytest.mark.fill_form_request_footer
 @feature('Успешная отправка заявки из футера')
 def test_fill_form_request_footer_main_page(driver):
     main_page_test = MainPage(driver)
@@ -32,6 +33,7 @@ def test_fill_form_request_footer_main_page(driver):
     form_page_test = main_page_test.get_form_page()
     form_page_test.fill_form()
     assert form_page_test.popup_success_displayed() == True, 'Окно подтверждения не появилось'
+
 
 
 @feature('Успешная отправка заявки из блока Get in touch')
@@ -194,3 +196,5 @@ def test_landing_page_why_do_you_need_data_assert(driver):
     main_page_test = MainPage(driver)
     main_page_test.open()
     main_page_test.get_data_card_app_and_web_services_main()
+
+

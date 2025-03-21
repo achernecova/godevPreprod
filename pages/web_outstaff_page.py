@@ -1,4 +1,5 @@
 import logging
+import os
 
 import allure
 import requests
@@ -6,7 +7,7 @@ from bs4 import BeautifulSoup
 from faker import Faker
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from constants import URLs, subURLs
+
 from page_elements.block_count_elements import CountElements
 from page_elements.meta_data_page import MetaData
 from page_elements.popup_element import PopupElement
@@ -20,7 +21,7 @@ class WebOutstaffPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
-        self.subURL = subURLs.OUTSTAFFING
+        self.subURL = os.getenv('OUTSTAFFING', 'services/outstaffing-and-outsourcing-of-it-specialists/')
 
 
     @allure.step("Открытие страницы лендинга по URL: services/outstaffing-and-outsourcing-of-it-specialists/")
@@ -61,7 +62,7 @@ class WebOutstaffPage(BasePage):
         data = load_file('carousel_types_of_it.json')
 
         # получаем описание из блока карусели на странице
-        descriptions_from_page = self.get_descriptions_from_page(URLs.MAIN_PAGE + subURLs.OUTSTAFFING)
+        descriptions_from_page = self.get_descriptions_from_page(os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('OUTSTAFFING', 'services/outstaffing-and-outsourcing-of-it-specialists/'))
 
         # проверяем, что каждое описание из JSON присутствует на странице
         descriptions = data['tiles_section']['descriptions']
@@ -115,7 +116,7 @@ class WebOutstaffPage(BasePage):
         data = load_file('data_card_block_packages.json')
 
         # Получаем данные из блока карусели на странице
-        card_data_data_from_page = self.get_card_data(URLs.MAIN_PAGE + subURLs.OUTSTAFFING)
+        card_data_data_from_page = self.get_card_data(os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('OUTSTAFFING', 'services/outstaffing-and-outsourcing-of-it-specialists/'))
         logging.info(f'Полученные данные с страницы: {card_data_data_from_page}')
 
         # Смотрим, что каждое описание из outstaff_card_data присутствует на странице
@@ -175,7 +176,7 @@ class WebOutstaffPage(BasePage):
 
 # метод для черно-белых карточек
     def get_data_card_tiles_outstaff(self):
-        url = URLs.MAIN_PAGE + subURLs.OUTSTAFFING  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('OUTSTAFFING', 'services/outstaffing-and-outsourcing-of-it-specialists/')
         self.get_data_card_with_type_project(
             'data_card_block_packages.json',
             self.get_data_faq_tiles_new,
@@ -188,7 +189,7 @@ class WebOutstaffPage(BasePage):
 
 # метод для черно-белых карточек с кружками и порядковыми номерами
     def get_data_card_how_it_staff_outstaff(self):
-        url = URLs.MAIN_PAGE + subURLs.OUTSTAFFING  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('OUTSTAFFING', 'services/outstaffing-and-outsourcing-of-it-specialists/')
         self.get_data_card_with_type_project(
             'section_how_it_staff_tiles.json',
             self.get_card_data_tiles_card,
@@ -200,7 +201,7 @@ class WebOutstaffPage(BasePage):
 
         # метод для черно-белых карточек с кружками и порядковыми номерами
     def get_data_card_convenient_outstaff(self):
-        url = URLs.MAIN_PAGE + subURLs.OUTSTAFFING  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('OUTSTAFFING', 'services/outstaffing-and-outsourcing-of-it-specialists/')
         self.get_data_card_with_type_project(
             'section_how_it_staff_tiles.json',
             self.get_card_data_tiles_card,
@@ -212,7 +213,7 @@ class WebOutstaffPage(BasePage):
 
 # метод для faq
     def get_data_faq_card_new(self):
-        url = URLs.MAIN_PAGE + subURLs.OUTSTAFFING  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('OUTSTAFFING', 'services/outstaffing-and-outsourcing-of-it-specialists/')
         self.get_data_card_with_type_project(
             'faq_block_data.json',
             self.get_data_faq_tiles_new,
@@ -225,7 +226,7 @@ class WebOutstaffPage(BasePage):
 
 # метод для карусели адвант
     def get_data_advant_carousel_card(self):
-        url = URLs.MAIN_PAGE+subURLs.OUTSTAFFING  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('OUTSTAFFING', 'services/outstaffing-and-outsourcing-of-it-specialists/')
         self.get_data_advant_carousel(self.get_data_advant_section_carousel,'advant_section_carousel.json' , 'advant_section_outstaff', url)
 
 

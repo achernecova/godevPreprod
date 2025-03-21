@@ -35,6 +35,17 @@ def test_design_page_faq_data_assert(driver):
     design_page_test.open()
     design_page_test.get_data_faq_card()
 
+@pytest.mark.fill_form_request_faq
+@allure.feature('Успешная отправка заявки из FAQ')
+def test_design_page_add_request_in_faq(driver):
+    design_page_test = WebDesignPage(driver)
+    design_page_test.open()
+    design_page_test.click_button_in_faq()
+    popup_modal_page = design_page_test.get_popup()
+    popup_modal_page.add_request_success()
+    success = popup_modal_page.popup_success_displayed()
+    assert success == True, f"Не появилось окно успешности "
+
 
 @allure.feature('Проверка заголовка и текста в блоке Website development')
 def test_design_page_app_and_web_title_assert(driver):

@@ -39,6 +39,7 @@ class Locators:
     name_input_locator = (By.XPATH, "//*[@class='section-form']//input[@name='name']")
     email_input_locator = (By.XPATH, "//*[@class='section-form']//input[@name='email']")
     message_input_locator = (By.XPATH, "//*[@class='section-form']//*[@name='description']")
+    phone_input_locator = (By.XPATH, "//*[@class='section-form']//*[@name='phone']")
     submit_button_locator = (By.XPATH, "//*[@class='section-form']//*[@class='button']")
     button_project_mint_link_locator = (By.XPATH, "//*[@href='https://dev.godev.agency/projects/mint-links/']")
     button_project_sls_locator = (By.XPATH, "//*[@href='https://dev.godev.agency/projects/swift-logistic-solutions/']")
@@ -54,13 +55,19 @@ class Locators:
 
     title_block_app_and_web_development_services_locator = (By.XPATH, "//section[@id='services']//h2")
     text_block_app_and_web_development_services_locator = (By.XPATH, "//section[@id='services']//*[contains(@class, 'section-descr')]")
+
     title_block_website_dev_locator = (By.XPATH, "//section[@class='advant-section']//h2")
     text_block_website_dev_locator = (By.XPATH, "//section[@class='advant-section']//*[contains(@class, 'section-descr ')]")
+
+    title_block_stages_of_creating_locator = (By.XPATH, "//*[@class='tiles-section']//h2")
+    text_block_stages_of_creating_locator = (By.XPATH, "//*[@class='tiles-section']//*[contains(@class, 'section-descr ')]")
+
     title_block_website_design_locator = (By.XPATH, "//section[@id='projects']//h2")
     text_block_website_design_locator = (By.XPATH, "//section[@id='projects']//*[contains(@class, 'section-descr')]")
+
     title_block_custom_design_solutions_locator = (By.XPATH, "//*[@class='how-it-staff']//*[@class='section-title half']")
     text_block_custom_design_solutions_locator = (By.XPATH, "//*[@class='how-it-staff']//*[@class='section-descr fs16px half']")
-    text_block_it_staff_locator = (By.XPATH, "//*[@class='how-it-staff']//*[@class='section-descr  short']")
+    text_block_it_staff_locator = (By.XPATH, "//*[@class='how-it-staff']//*[@class='section-descr short']")
     title_block_digital_agency_godev_locator = (By.XPATH, "//section[@class='tiles-section']//*[contains(@class, 'section-title half')]")
     text_block_digital_agency_godev_locator = (By.XPATH, "//section[@class='tiles-section']//*[contains(@class, 'section-descr ')]")
     button_get_in_touch_locator = (By.XPATH, "(//button[@class='get-in-touch-btn open-modal'])[1]")

@@ -1,10 +1,11 @@
 import logging
+import os
 
 import allure
 
-from constants import subURLs, URLs
 from page_elements.block_count_elements import CountElements
 from page_elements.meta_data_page import MetaData
+from page_elements.popup_element import PopupElement
 
 from pages.base_page import BasePage
 from test.locators import Locators
@@ -16,8 +17,10 @@ class FrameworkPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
-        self.subURL = subURLs.FRAMEWORK_PAGE
+        self.subURL = os.getenv('FRAMEWORK_PAGE', 'services/website-development/framework/')  # Значение по умолчанию
 
+    def get_popup(self):
+        return PopupElement(self.driver)
 
     @allure.step("Открытие мобильной страницы по URL: services/website-development/framework/")
     def open(self, sub_url=None):
@@ -41,7 +44,6 @@ class FrameworkPage(BasePage):
         return ProjectServiceElement(self.driver)
 
     def get_data_block_price(self, index, price_left_title, price_left_text, price_right_title, price_right_text):
-        #team_card = self.driver.find_element(*Locators.team_card)
         self.scroll_to_element(Locators.team_card)
         price_left_title_locator = self.driver.find_elements(*Locators.price_left_title_locator)
         price_left_text_locator = self.driver.find_elements(*Locators.price_left_text_locator)
@@ -59,7 +61,7 @@ class FrameworkPage(BasePage):
 
     # метод для черно-белых карточек с кружками и порядковыми номерами
     def get_data_card_how_it_staff_framework(self):
-        url = URLs.MAIN_PAGE + subURLs.FRAMEWORK_PAGE  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('FRAMEWORK_PAGE', 'services/website-development/framework/')
         self.get_data_card_with_type_project(
             'section_how_it_staff_tiles.json',
             self.get_card_data_tiles_card,
@@ -71,7 +73,7 @@ class FrameworkPage(BasePage):
 
         # метод для faq
     def get_data_faq_card_new(self):
-        url = URLs.MAIN_PAGE + subURLs.FRAMEWORK_PAGE  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('FRAMEWORK_PAGE', 'services/website-development/framework/')
         self.get_data_card_with_type_project(
             'faq_block_data.json',
             self.get_data_faq_tiles_new,
@@ -82,7 +84,7 @@ class FrameworkPage(BasePage):
             url)
 
     def get_data_card_advant_of_outsource_frame(self):
-        url = URLs.MAIN_PAGE+subURLs.FRAMEWORK_PAGE  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('FRAMEWORK_PAGE', 'services/website-development/framework/')
         self.get_data_card_with_type_project(
             'section_how_it_staff_tiles.json',
             self.get_card_data_tiles_card,
@@ -94,11 +96,11 @@ class FrameworkPage(BasePage):
 
         # метод для карусели адвант
     def get_data_advant_carousel_card(self):
-        url = URLs.MAIN_PAGE + subURLs.FRAMEWORK_PAGE  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('FRAMEWORK_PAGE', 'services/website-development/framework/')
         self.get_data_advant_carousel(self.get_data_advant_section_carousel, 'advant_section_carousel.json',
                                           'advant_section_framework', url)
 
     def get_data_advant_card(self):
-        url = URLs.MAIN_PAGE + subURLs.FRAMEWORK_PAGE  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('FRAMEWORK_PAGE', 'services/website-development/framework/')
         self.get_data_advant_carousel(self.get_data_advant_section_card, 'advant_section_carousel.json',
                                           'advant_card_framework', url)

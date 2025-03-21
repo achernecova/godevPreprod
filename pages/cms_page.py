@@ -1,8 +1,8 @@
 import logging
+import os
 
 import allure
 
-from constants import subURLs, URLs
 from page_elements.block_count_elements import CountElements
 from page_elements.form_page import FormPage
 from page_elements.meta_data_page import MetaData
@@ -16,7 +16,7 @@ class CMSPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
-        self.subURL = subURLs.CMS_PAGE
+        self.subURL = os.getenv('CMS_PAGE', 'services/website-development/cms/')  # Значение по умолчанию
 
     @allure.step("Открытие страницы лендинга по URL: services/website-development/cms/")
     def open(self, sub_url=None):
@@ -48,12 +48,12 @@ class CMSPage(BasePage):
         return ProjectServiceElement(self.driver)
 
     def get_data_card_cms(self):
-        url = URLs.MAIN_PAGE + subURLs.CMS_PAGE  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('CMS_PAGE', 'services/website-development/cms/')  # Укажите нужный URL
         self.get_data_card_(self.get_card_data, 'data_card_block_packages.json',
                             'cms_card_data', url)
 
     def get_data_card_tiles_cms(self):
-        url = URLs.MAIN_PAGE + subURLs.CMS_PAGE  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('CMS_PAGE', 'services/website-development/cms/')  # Укажите нужный URL
         self.get_data_card_with_type_project(
             'data_card_block_packages.json',
             self.get_data_faq_tiles_new,
@@ -65,7 +65,7 @@ class CMSPage(BasePage):
 
     # метод для черно-белых карточек с кружками и порядковыми номерами
     def get_data_card_how_it_staff_cms(self):
-        url = URLs.MAIN_PAGE + subURLs.CMS_PAGE  # Укажите нужный URL
+        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('CMS_PAGE', 'services/website-development/cms/')  # Укажите нужный URL
         self.get_data_card_with_type_project(
             'section_how_it_staff_tiles.json',
             self.get_card_data_tiles_card,

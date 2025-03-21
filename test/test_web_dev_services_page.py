@@ -48,3 +48,14 @@ def test_web_dev_serv_page_faq_data_assert(driver):
     web_dev_serv_page = WebDevServicesPage(driver)
     web_dev_serv_page.open()
     web_dev_serv_page.get_data_faq_card()
+
+@pytest.mark.fill_form_request_faq
+@feature('Успешная отправка заявки из FAQ')
+def test_outstaff_dev_page_add_request_in_faq(driver):
+    web_dev_serv_page = WebDevServicesPage(driver)
+    web_dev_serv_page.open()
+    web_dev_serv_page.click_button_in_faq()
+    popup_modal_page = web_dev_serv_page.get_popup()
+    popup_modal_page.add_request_success()
+    success = popup_modal_page.popup_success_displayed()
+    assert success == True, f"Не появилось окно успешности "

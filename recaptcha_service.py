@@ -8,7 +8,7 @@ class RecaptchaService:
             token = driver.execute_script("""
                 return new Promise((resolve) => {
                     grecaptcha.ready(function() {
-                        grecaptcha.execute('6LfePVsqAAAAAMismLuj32QWt9_Rox5KOoq0MU8M', {action: 'submit'})
+                        grecaptcha.execute('6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI', {action: 'submit'})
                             .then(function(token) {
                                 resolve(token);
                             });
@@ -22,7 +22,7 @@ class RecaptchaService:
 
     @staticmethod
     def verify_recaptcha(recaptcha_response):
-        secret_key = "6LfePVsqAAAAAMismLuj32QWt9_Rox5KOoq0MU8M"
+        secret_key = "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
         payload = {
             'secret': secret_key,
             'response': recaptcha_response

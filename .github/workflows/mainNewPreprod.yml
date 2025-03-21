@@ -36,46 +36,31 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
+        pip install selenium webdriver-manager
         echo "Installing requirements:"
         pip install -r requirements.txt
         echo "Installed packages:"
         pip list
         
-    - name: Check environment variables
+    - name: Install Chrome
       run: |
-        if [ -f .env ]; then
-          echo "ENV file exists"
-          cat .env
-        else
-          echo "No ENV file found"
-        fi
-        
-    - name: Setup Chrome
-      uses: browser-actions/setup-chrome@v1
-      with:
-        chrome-version: stable
-    
-    - name: Setup ChromeDriver
-      uses: browser-actions/setup-chromedriver@v1
-      with:
-        drivers: chrome
-        
-    - name: Check browser versions
-      run: |
+        sudo apt-get update
+        sudo apt-get install -y chromium-browser
         echo "Chrome version:"
-        google-chrome --version
-        echo "ChromeDriver version:"
-        chromedriver --version
+        chromium-browser --version
 
     - name: Run tests
+      env:
+        CI: true
+        HEADLESS: true
       run: |
         echo "Starting tests..."
         if [ "${{ github.event.inputs.test_tag }}" != "" ]; then
           echo "Running tests with tag: ${{ github.event.inputs.test_tag }}"
-          pytest -v -m "${{ github.event.inputs.test_tag }}" --tb=long --full-trace > test_output.log 2>&1
+          pytest -v -m "${{ github.event.inputs.test_tag }}" --headless --tb=long --full-trace > test_output.log 2>&1
         else
           echo "Running all tests"
-          pytest -v --tb=long --full-trace > test_output.log 2>&1
+          pytest -v --headless --tb=long --full-trace > test_output.log 2>&1
         fi
         cat test_output.log
         

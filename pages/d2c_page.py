@@ -18,7 +18,7 @@ class D2C(BasePage):
     def __init__(self, driver: object) -> object:
         super().__init__(driver)
         self.driver = driver
-        self.subURL = os.getenv('CMS_PAGE', 'services/website-development/cms/')  # Значение по умолчанию
+        self.subURL = os.getenv('D2C', 'services/website-development/d2c/')  # Значение по умолчанию
 
     @allure.step(
         "Кликаем по кнопке в баннере")
@@ -42,7 +42,7 @@ class D2C(BasePage):
         return CountElements(self.driver)
 
 
-    @allure.step("Открытие страницы лендинга по URL: /services/website-development/cms/")
+    @allure.step("Открытие страницы лендинга по URL: /services/website-development/d2c/")
     def open(self, sub_url=None):
         """Открывает мобильную страницу. Если sub_url не передан, используется subURL по умолчанию."""
         if sub_url is None:  # Если sub_url не указан, используем стандартный

@@ -16,7 +16,7 @@ def test_add_request_success_d2c_page(driver):
     assert form_page_test.popup_success_displayed() == True, 'Окно подтверждения не появилось'
 
 
-@pytest.mark.fill_form_request_footer
+#@pytest.mark.fill_form_request_footer
 @feature('Успешная отправка заявки из футера')
 def test_fill_form_request_footer_d2c_page(driver):
     d2c_page_test = D2C(driver)

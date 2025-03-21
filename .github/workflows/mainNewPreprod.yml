@@ -1,11 +1,16 @@
 name: Run Automated Tests
 
 on:
+  workflow_dispatch:
+    inputs:
+      test_tag:
+        description: 'Test tag to run (leave empty to run all tests)'
+        required: false
+        default: 'fill_form_request_footer'
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-  workflow_dispatch:
 
 jobs:
   test:
@@ -27,10 +32,6 @@ jobs:
         ls -la
         echo "Python version:"
         python --version
-        echo "Chrome version:"
-        google-chrome --version || echo "Chrome not installed"
-        echo "ChromeDriver location:"
-        which chromedriver || echo "ChromeDriver not found"
         
     - name: Install dependencies
       run: |
@@ -49,24 +50,33 @@ jobs:
           echo "No ENV file found"
         fi
         
-    - name: Install Chrome and ChromeDriver
+    - name: Setup Chrome
+      uses: browser-actions/setup-chrome@v1
+      with:
+        chrome-version: stable
+    
+    - name: Setup ChromeDriver
+      uses: browser-actions/setup-chromedriver@v1
+      with:
+        drivers: chrome
+        
+    - name: Check browser versions
       run: |
-        sudo apt-get update
-        sudo apt-get install -y google-chrome-stable
-        CHROME_VERSION=$(google-chrome --version | awk '{print $3}' | awk -F'.' '{print $1}')
-        CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
-        wget -N "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
-        unzip -o chromedriver_linux64.zip
-        chmod +x chromedriver
-        sudo mv chromedriver /usr/local/bin/
-        echo "Chrome and ChromeDriver installed"
+        echo "Chrome version:"
         google-chrome --version
+        echo "ChromeDriver version:"
         chromedriver --version
 
     - name: Run tests
       run: |
-        echo "Starting tests with tag fill_form_request_footer..."
-        pytest -v -m fill_form_request_footer --tb=long --full-trace > test_output.log 2>&1
+        echo "Starting tests..."
+        if [ "${{ github.event.inputs.test_tag }}" != "" ]; then
+          echo "Running tests with tag: ${{ github.event.inputs.test_tag }}"
+          pytest -v -m "${{ github.event.inputs.test_tag }}" --tb=long --full-trace > test_output.log 2>&1
+        else
+          echo "Running all tests"
+          pytest -v --tb=long --full-trace > test_output.log 2>&1
+        fi
         cat test_output.log
         
     - name: Store test results

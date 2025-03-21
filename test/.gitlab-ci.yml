@@ -1,0 +1,117 @@
+name: Run Automated Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        
+    - name: Install Chrome
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y google-chrome-stable
+        
+    - name: Install ChromeDriver
+      run: |
+        CHROME_VERSION=$(google-chrome --version | cut -d ' ' -f3 | cut -d '.' -f1)
+        CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
+        curl -L "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip" -o chromedriver.zip
+        unzip chromedriver.zip
+        chmod +x chromedriver
+        sudo mv chromedriver /usr/local/bin/
+        
+    - name: Cache pip packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+          
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        
+    - name: Create env file
+      run: |
+        echo "MAIN_PAGE=${{ secrets.MAIN_PAGE }}" > .env
+        echo "PROD_PAGE=${{ secrets.PROD_PAGE }}" >> .env
+        
+    - name: Run tests
+      env:
+        CHROME_OPTIONS: "--headless --no-sandbox --disable-dev-shm-usage"
+      run: |
+        pytest --alluredir=allure-results
+        
+    - name: Get Allure history
+      uses: actions/checkout@v3
+      if: always()
+      continue-on-error: true
+      with:
+        ref: gh-pages
+        path: gh-pages
+        
+    - name: Generate Allure Report
+      uses: simple-elf/allure-report-action@master
+      if: always()
+      with:
+        allure_results: allure-results
+        allure_history: allure-history
+        keep_reports: 20
+        
+    - name: Store Allure Report
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: allure-report
+        path: allure-report/
+        retention-days: 30
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/main'
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./allure-report
+
+    - name: Send Telegram Notification
+      if: always()
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_CHAT_ID }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        message: |
+          🤖 Test Execution Report
+          
+          Repository: ${{ github.repository }}
+          Branch: ${{ github.ref_name }}
+          
+          Status: ${{ job.status }}
+          
+          Commit Message: ${{ github.event.head_commit.message }}
+          
+          🔍 Test Results:
+          View detailed report: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          
+          ${{ job.status == 'success' && '✅ All tests passed!' || '❌ Some tests failed!' }}
+          
+          📊 Allure Report:
+          ${{ github.server_url }}/${{ github.repository }}/allure-report/
+          
+          👤 Triggered by: ${{ github.actor }}
+          
+          Time: ${{ github.event.head_commit.timestamp }}

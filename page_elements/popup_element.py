@@ -70,7 +70,7 @@ class PopupElement(BasePage):
 
     @allure.step("Полное заполнение заявки")
     def add_request_success(self):
-        #self.close_modal_popup()
+        self.close_modal_popup()
         self.click_topping_dev_banner()
         self.click_topping_analysts_banner()
         self.input_name_in_banner()

@@ -6,14 +6,51 @@ import allure
 import requests
 from dotenv import load_dotenv
 from selenium import webdriver
-
+from selenium.webdriver.chrome.options import Options
 
 
 # Фикстура для создания драйвера браузера
+def pytest_addoption(parser):
+    parser.addoption('--headless',
+                     action='store_true',
+                     default=None,
+                     help='Run tests in headless mode')
+
+
 @pytest.fixture(scope='function', autouse=True)
-def driver():
-    d = webdriver.Chrome()
-    d.maximize_window()
+def driver(request):
+    chrome_options = Options()
+
+    # Проверяем условия для headless режима
+    run_headless = (
+            request.config.getoption('--headless') or  # параметр --headless
+            os.getenv('CI') or  # CI/CD окружение
+            os.getenv('HEADLESS')  # переменная окружения
+    )
+
+    if run_headless:
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--disable-dev-shm-usage')
+        chrome_options.add_argument('--window-size=1920,1080')  # фиксированный размер в headless
+
+    # Общие опции
+    chrome_options.add_argument('--disable-notifications')
+    chrome_options.add_argument('--disable-infobars')
+    chrome_options.add_argument('--start-maximized')
+
+    # Дополнительные опции для CI/CD
+    if os.getenv('CI'):
+        chrome_options.add_argument('--disable-gpu')
+        chrome_options.add_argument('--disable-extensions')
+        chrome_options.add_argument('--disable-dev-tools')
+
+    # Инициализация драйвера
+    d = webdriver.Chrome(options=chrome_options)
+
+    if not run_headless:
+        d.maximize_window()
+
     d.implicitly_wait(3)
     yield d
     d.quit()

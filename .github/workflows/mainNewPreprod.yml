@@ -15,6 +15,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.event.pull_request == null)
     
     steps:
     - uses: actions/checkout@v3
@@ -32,6 +33,7 @@ jobs:
         ls -la
         echo "Python version:"
         python --version
+        echo "Event name: ${{ github.event_name }}"
         
     - name: Install dependencies
       run: |
@@ -57,12 +59,11 @@ jobs:
         echo "Starting tests..."
         if [ "${{ github.event.inputs.test_tag }}" != "" ]; then
           echo "Running tests with tag: ${{ github.event.inputs.test_tag }}"
-          pytest -v -m "${{ github.event.inputs.test_tag }}" --headless --tb=long --full-trace > test_output.log 2>&1
+          pytest -v -m "${{ github.event.inputs.test_tag }}" --headless --tb=long --full-trace --capture=tee-sys | tee test_output.log || true
         else
           echo "Running all tests"
-          pytest -v --headless --tb=long --full-trace > test_output.log 2>&1
+          pytest -v --headless --tb=long --full-trace --capture=tee-sys | tee test_output.log || true
         fi
-        cat test_output.log
         
     - name: Store test results
       if: always()

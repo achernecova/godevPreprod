@@ -3,7 +3,8 @@ import pytest
 
 from pages.cms_page import CMSPage
 from utils.data_loader import load_service_data_review
-from unittest.mock import patch
+
+
 # тест с мета-тегами вынесен в main_page_test
 
 @allure.feature('Количество элементов в блоке')
@@ -13,6 +14,7 @@ def test_cms_page_benefits_count_cards_assert(driver):
     blocks = cms_page_test.get_count_elements()
     blocks.count_cards_assert('types_of_websites_count_card', 4)
 
+@pytest.mark.prod_test
 @allure.feature('Количество элементов в блоке')
 def test_cms_page_cms_services_cards_count_assert(driver):
     cms_page_test = CMSPage(driver)
@@ -36,9 +38,9 @@ def test_cms_page_platforms_count_cards_assert(driver):
 
 
 # Загрузка данных из JSON-файла
-filtered_data = load_service_data_review()
+@pytest.mark.prod_test
 @allure.feature('Проверка открытия страниц проектов')
-@pytest.mark.parametrize('card_type, expected_url, expected_title', filtered_data)
+@pytest.mark.parametrize('card_type, expected_url, expected_title', load_service_data_review())
 def test_cms_page_click_services_and_project_and_open_pages(driver, card_type, expected_url, expected_title):
     cms_page_test = CMSPage(driver)
     cms_page_test.open()
@@ -55,7 +57,7 @@ def test_main_page_data_card_packages(driver):
     cms_page_test.open()
     cms_page_test.get_data_card_cms()
 
-
+@pytest.mark.prod_test
 @allure.feature('Проверка данных в карточках блока Digital Benefits of using content management systems')
 def test_e_com_page_benefits_count_cards_assert(driver):
     cms_page_test = CMSPage(driver)
@@ -79,6 +81,7 @@ def test_b2b_page_add_request_success(driver):
     form_page_test.add_request_success()
     assert form_page_test.popup_success_displayed() == True, 'Окно подтверждения не появилось'
 
+@pytest.mark.prod_test
 @pytest.mark.fill_form_request_footer
 @allure.feature('Успешная отправка заявки из футера')
 #@patch('path.to.your.recaptcha_verification_function', return_value=True)

@@ -6,18 +6,17 @@ import allure
 from page_elements.block_count_elements import CountElements
 from page_elements.meta_data_page import MetaData
 from page_elements.popup_element import PopupElement
-from pages.base_page import BasePage
+from pages.base_page import BasePage, put_a_secret
 from test.locators import Locators
 
 
 class MobileDevPage(BasePage):
     logging.basicConfig(level=logging.INFO)
 
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver = driver
-        self.subURL = os.getenv('MOBILE_PAGE', 'services/mobile-development/')  # Значение по умолчанию
 
+    def __init__(self, driver, base_url=None):
+        super().__init__(driver, base_url)  # Передаем base_url в базовый класс
+        self.subURL = os.getenv('MOBILE_PAGE', 'services/mobile-development/')  # Значение по умолчанию
 
     @allure.step("Открытие мобильной страницы по URL: services/mobile-development/")
     def open(self, sub_url=None):
@@ -98,7 +97,9 @@ class MobileDevPage(BasePage):
 
 # метод для черно-белых карточек
     def get_data_card_tiles_mobile(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('MOBILE_PAGE', 'services/mobile-development/')
+        # Получаем базовый URL с помощью функции put_a_secret
+        base_url = put_a_secret()
+        url = base_url + os.getenv('MOBILE_PAGE', 'services/mobile-development/')
         self.get_data_card_with_type_project(
             'data_card_block_packages.json',
             self.get_data_faq_tiles_new,
@@ -110,14 +111,16 @@ class MobileDevPage(BasePage):
 
     # метод для карусели адвант
     def get_data_advant_carousel_card(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('MOBILE_PAGE', 'services/mobile-development/')
+        base_url = put_a_secret()
+        url = base_url + os.getenv('MOBILE_PAGE', 'services/mobile-development/')
         self.get_data_advant_carousel(self.get_data_advant_section_carousel, 'advant_section_carousel.json',
                                       'advant_card_mobile', url)
 
 
 # метод для черно-белых карточек с кружками и порядковыми номерами
     def get_data_card_how_it_staff_mobile(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('MOBILE_PAGE', 'services/mobile-development/')
+        base_url = put_a_secret()
+        url = base_url + os.getenv('MOBILE_PAGE', 'services/mobile-development/')
         self.get_data_card_with_type_project(
             'section_how_it_staff_tiles.json',
             self.get_card_data_tiles_card,
@@ -129,7 +132,8 @@ class MobileDevPage(BasePage):
 
 # метод для faq
     def get_data_faq_card(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('MOBILE_PAGE', 'services/mobile-development/')
+        base_url = put_a_secret()
+        url = base_url + os.getenv('MOBILE_PAGE', 'services/mobile-development/')
         self.get_data_card_with_type_project(
             'faq_block_data.json',
             self.get_data_faq_tiles_new,

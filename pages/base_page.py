@@ -1,16 +1,14 @@
 import logging
 import os
-import time
 
 import allure
-
-from lxml import html
 import requests
 from bs4 import BeautifulSoup
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from lxml import html
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
 from test.locators import Locators
 from utils.data_loader import load_file
@@ -19,17 +17,22 @@ from utils.data_loader import load_file
 class BasePage:
     logging.basicConfig(level=logging.INFO)
 
-    def __init__(self, driver):
-        self.URL = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/')  # Значение по умолчанию
+    def __init__(self, driver, base_url=None):
+        # Если base_url не передан, используем значение из переменной окружения
+        self.URL = base_url or os.getenv('PROD_PAGE', 'https://godev.agency/')  # Значение по умолчанию
         self.driver = driver
 
     def open(self, suburl=''):
-        self.driver.get(self.URL + suburl)
+        full_url = self.URL + suburl
+        logging.info(f"Открываем страницу: {full_url}")
+        self.driver.get(full_url)
+
 
     @allure.step("Закрытие окна кеш-куки")
     def close_modal_popup(self):
         close_modal = self.driver.find_element(*Locators.close_modal)
         close_modal.click()
+
 
     @allure.step("Клик по элементу")
     def _click_element(self, locator: tuple[str, str]):
@@ -54,6 +57,7 @@ class BasePage:
         )
         return element  # Возвращаем элемент
 
+
     # Метод для скролла до элемента
     @allure.step("Скролл до элемента")
     def scroll_to_element(self, locator):
@@ -77,19 +81,23 @@ class BasePage:
         # Клик по кнопке через js
         # self.driver.execute_script("arguments[0].click();", click_button)
 
+
     @allure.step("Ожидаем пока элемент станет видимым")
     def wait_for_element(self, locator, timeout=10):
         return WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located(locator))
+
 
     @allure.step("Получение текущего урла")
     def get_url(self):
         current_url = self.driver.current_url
         return current_url
 
+
     @allure.step("Получение заголовка")
     def get_title_page(self):
         title_page = self.driver.find_element(*Locators.title_page)
         return title_page.text
+
 
     @allure.step("Получение признака отображения окна успешности отправки заявки")
     def popup_success_displayed(self, timeout=10):
@@ -103,6 +111,7 @@ class BasePage:
             # Если элемент не найден или не виден в течение указанного времени, возвращаем False
             return False
 
+
     def create_index_mapping(self):
         index_mapping = {}
         elements = self.driver.find_elements(*Locators.elements_in_card)
@@ -112,6 +121,7 @@ class BasePage:
         print("Индекс маппинг:", index_mapping)  # Отладочное сообщение
         return index_mapping
 
+
     def create_index_mapping_not_experience(self):
         index_mapping = {}
         elements = self.driver.find_elements(*Locators.elements_in_card)
@@ -119,6 +129,7 @@ class BasePage:
             project_type = element.find_element(*Locators.project_type_not_experience).text.strip()
             index_mapping[project_type] = index  # предполагая, что project_type уникален
         return index_mapping
+
 
     # проверка карточек с экспириенсем, буллитами, ценой и текстом
     @allure.step("Проверка списка данных из блока с экспириенсем, буллитами, ценой и текстом")
@@ -133,7 +144,7 @@ class BasePage:
             raise ValueError(f"Index {index} is out of bounds. Project type: {project_type}")
         # Используем правильный локатор
         locator = (By.XPATH, f"//*[contains(@class, 'team-card')][{index + 1}]")
-        team_card_new = self.driver.find_element(*locator)
+        #team_card_new = self.driver.find_element(*locator)
         # Теперь передаем локатор в scroll_to_element
         self.scroll_to_element(locator)
         attributes = {
@@ -599,7 +610,7 @@ class BasePage:
         return team_data
 
 
-def setup_logging(self):
+def setup_logging():
     logging.basicConfig(
         level=logging.INFO,  # Уровень логирования
         format='%(asctime)s - %(levelname)s - %(message)s',  # Формат сообщения
@@ -608,3 +619,15 @@ def setup_logging(self):
             logging.StreamHandler()  # Вывод логов в консоль
         ]
     )
+
+
+def put_a_secret():
+    # Получаем значение окружения
+    environment = os.getenv('ENVIRONMENT', 'production')  # Значение по умолчанию - development (второе значение - production)
+    # Определяем базовый URL в зависимости от окружения
+    if environment == 'production':
+        base_url = os.getenv('PROD_PAGE', 'https://godev.agency/')  # Значение по умолчанию для прод окружения
+    else:
+        base_url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/')  # Значение по умолчанию для дев окружения
+    return base_url
+

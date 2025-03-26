@@ -8,17 +8,15 @@ from page_elements.form_page import FormPage
 from page_elements.meta_data_page import MetaData
 from page_elements.popup_element import PopupElement
 
-from pages.base_page import BasePage
+from pages.base_page import BasePage, put_a_secret
 from test.locators import Locators
 
 
 class SupportPage(BasePage):
 
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver = driver
+    def __init__(self, driver, base_url=None):
+        super().__init__(driver, base_url)  # Передаем base_url в базовый класс
         self.subURL = os.getenv('SUPPORT_PAGE', 'services/tech-support/')
-
 
     def get_popup(self):
         return PopupElement(self.driver)
@@ -62,7 +60,9 @@ class SupportPage(BasePage):
 
 # метод для черно-белых карточек
     def get_data_card_tiles_support(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('SUPPORT_PAGE', 'services/tech-support/')
+        # Получаем базовый URL с помощью функции put_a_secret
+        base_url = put_a_secret()
+        url = base_url + os.getenv('SUPPORT_PAGE', 'services/tech-support/')
         self.get_data_card_with_type_project(
             'data_card_block_packages.json',
             self.get_data_faq_tiles_new,
@@ -75,7 +75,8 @@ class SupportPage(BasePage):
 
 # метод для черно-белых карточек с кружками и порядковыми номерами
     def get_data_card_how_it_staff_support(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('SUPPORT_PAGE', 'services/tech-support/')
+        base_url = put_a_secret()
+        url = base_url + os.getenv('SUPPORT_PAGE', 'services/tech-support/')
         self.get_data_card_with_type_project(
             'section_how_it_staff_tiles.json',
             self.get_card_data_tiles_card,
@@ -87,7 +88,8 @@ class SupportPage(BasePage):
 
 # метод для faq
     def get_data_faq_card(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('SUPPORT_PAGE', 'services/tech-support/')
+        base_url = put_a_secret()
+        url = base_url + os.getenv('SUPPORT_PAGE', 'services/tech-support/')
         self.get_data_card_with_type_project(
             'faq_block_data.json',
             self.get_data_faq_tiles_new,

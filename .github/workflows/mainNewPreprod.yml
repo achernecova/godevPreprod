@@ -6,7 +6,7 @@ on:
       test_tag:
         description: 'Test tag to run (leave empty to run all tests)'
         required: false
-        default: 'fill_form_request_footer'
+        default: 'prod_test'
   push:
     branches: [ main ]
   pull_request:
@@ -23,7 +23,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.10'
+        python-version: '3.13'
         
     - name: Debug information
       run: |
@@ -115,13 +115,13 @@ jobs:
           
           Commit Message: ${{ github.event.head_commit.message }}
           
-          🔍 Test Results: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          Test Results: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           
-          ${{ job.status == 'success' && '✅ All tests passed!' || '❌ Some tests failed!' }}
+          ${{ job.status == 'success' && ' All tests passed!' || ' Some tests failed!' }}
           
-          📊 Allure Report:
+          Allure Report:
           ${{ github.server_url }}/${{ github.repository }}/allure-report/
           
-          👤 Triggered by: ${{ github.actor }}
+          Triggered by: ${{ github.actor }}
           
           Time: ${{ github.event.head_commit.timestamp }}

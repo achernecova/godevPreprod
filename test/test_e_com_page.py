@@ -21,10 +21,8 @@ def test_e_com_page_our_proven_web_dev_count_cards_assert(driver):
     blocks = e_com_page_test.get_count_elements()
     blocks.count_cards_assert('our_proven_web_dev', 7)
 
-
-#Загрузка данных из json файла
-filtered_data = load_service_data_e_com()
-@pytest.mark.parametrize('card_type, expected_url, expected_title', filtered_data)
+@pytest.mark.prod_test
+@pytest.mark.parametrize('card_type, expected_url, expected_title', load_service_data_e_com())
 def test_e_com_page_click_services_and_project_and_open_pages(driver, card_type, expected_url, expected_title):
     e_com_page_test = EComPage(driver)
     e_com_page_test.open()
@@ -47,14 +45,14 @@ def test_e_com_page_benefits_count_cards_assert(driver):
     blocks = e_com_page_test.get_count_elements()
     blocks.count_cards_assert('types_of_websites_count_card', 7)
 
-
+@pytest.mark.prod_test
 @feature('Проверка данных в карточках блока Comprehensive E-commerce services')
 def test_e_com_page_benefits_cards_data_assert(driver):
     e_com_page_test = EComPage(driver)
     e_com_page_test.open()
     e_com_page_test.get_data_card_tiles_e_com()
 
-
+@pytest.mark.prod_test
 @feature('Проверка данных в карточках блока Web Development Process')
 def test_e_com_page_web_development_process_data_assert(driver):
     e_com_page_test = EComPage(driver)

@@ -12,20 +12,20 @@ class MenuElement(BasePage):
         self.driver = driver
 
     locators = {
-        "menu_service_locator": (By.XPATH, "//*[@class='menu-wrapper']//a[@href= 'https://dev.godev.agency/services/']"),
-        "menu_project_locator": (By.XPATH, "//*[@class='menu-wrapper']//a[@href= 'https://dev.godev.agency/projects/']"),
-        "menu_reviews_locator": (By.XPATH, "//*[@class='menu-wrapper']//a[@href= 'https://dev.godev.agency/reviews/']"),
-        "menu_contacts_locator": (By.XPATH, "//*[@class='menu-wrapper']//a[@href= 'https://dev.godev.agency/contacts/']"),
-        "submenu_outstaff_outsource_locator": (By.XPATH, "//*[@href= 'https://dev.godev.agency/services/outstaffing-and-outsourcing-of-it-specialists/']"),
-        "submenu_mobile_development_locator": (By.XPATH, "//*[@href= 'https://dev.godev.agency/services/mobile-development/']"),
-        "submenu_web_site_dev_locator": (By.XPATH, "//*[@href= 'https://dev.godev.agency/services/website-development/']"),
-        "submenu_web_development_locator": (By.XPATH, "//*[@href= 'https://dev.godev.agency/services/web-development/']"),
-        "submenu_tech_support_locator": (By.XPATH, "//*[@href= 'https://dev.godev.agency/services/tech-support/']"),
-        "submenu_e_com_locator": (By.XPATH, "//*[@href= 'https://dev.godev.agency/services/website-development/e-commerce/']"),
-        "submenu_cms_locator": (By.XPATH, "//*[@href= 'https://dev.godev.agency/services/website-development/cms/']"),
-        "submenu_framework_locator": (By.XPATH, "//*[@href= 'https://dev.godev.agency/services/website-development/framework/']"),
-        "submenu_b2b_locator": (By.XPATH, "//*[@href= 'https://dev.godev.agency/services/website-development/b2b/']"),
-        "submenu_landing_locator": (By.XPATH, "//*[@href= '/services/development-of-a-landing-page/']")
+        "menu_service_locator": (By.XPATH, "//*[@class='menu-wrapper']//a[contains(@href, '/services/')]"),
+        "menu_project_locator": (By.XPATH, "//*[@class='menu-wrapper']//a[contains(@href, '/projects/')]"),
+        "menu_reviews_locator": (By.XPATH, "//*[@class='menu-wrapper']//a[contains(@href, '/reviews/')]"),
+        "menu_contacts_locator": (By.XPATH, "//*[@class='menu-wrapper']//a[contains(@href, '/contacts/')]"),
+        "submenu_outstaff_outsource_locator": (By.XPATH, "//*[contains(@href, '/services/outstaffing-and-outsourcing-of-it-specialists/')]"),
+        "submenu_mobile_development_locator": (By.XPATH, "//*[contains(@href, '/services/mobile-development/')]"),
+        "submenu_web_site_dev_locator": (By.XPATH, "//*[contains(@href, '/services/website-development/')]"),
+        "submenu_web_development_locator": (By.XPATH, "//*[contains(@href, '/services/web-development/')]"),
+        "submenu_tech_support_locator": (By.XPATH, "//*[contains(@href, '/services/tech-support/')]"),
+        "submenu_e_com_locator": (By.XPATH, "//*[contains(@href, '/services/website-development/e-commerce/')]"),
+        "submenu_cms_locator": (By.XPATH, "//*[contains(@href, '/services/website-development/cms/')]"),
+        "submenu_framework_locator": (By.XPATH, "//*[contains(@href, '/services/website-development/framework/')]"),
+        "submenu_b2b_locator": (By.XPATH, "//*[contains(@href, '/services/website-development/b2b/')]"),
+        "submenu_landing_locator": (By.XPATH, "//*[contains(@href, '/services/development-of-a-landing-page/')]")
     }
 
     def click_menu_service(self):

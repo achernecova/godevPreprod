@@ -7,7 +7,7 @@ from page_elements.block_count_elements import CountElements
 from page_elements.meta_data_page import MetaData
 from page_elements.popup_element import PopupElement
 
-from pages.base_page import BasePage
+from pages.base_page import BasePage, put_a_secret
 from test.locators import Locators
 
 
@@ -61,7 +61,9 @@ class FrameworkPage(BasePage):
 
     # метод для черно-белых карточек с кружками и порядковыми номерами
     def get_data_card_how_it_staff_framework(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('FRAMEWORK_PAGE', 'services/website-development/framework/')
+        base_url = put_a_secret()
+        url = base_url + os.getenv('FRAMEWORK_PAGE', 'services/website-development/framework/')
+
         self.get_data_card_with_type_project(
             'section_how_it_staff_tiles.json',
             self.get_card_data_tiles_card,
@@ -71,9 +73,11 @@ class FrameworkPage(BasePage):
             ".//h3[@class='card-title']",
             url)
 
+
         # метод для faq
     def get_data_faq_card_new(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('FRAMEWORK_PAGE', 'services/website-development/framework/')
+        base_url = put_a_secret()
+        url = base_url + os.getenv('FRAMEWORK_PAGE', 'services/website-development/framework/')
         self.get_data_card_with_type_project(
             'faq_block_data.json',
             self.get_data_faq_tiles_new,
@@ -83,8 +87,10 @@ class FrameworkPage(BasePage):
             ".//*[@class='accordeon-subject-text']",
             url)
 
+
     def get_data_card_advant_of_outsource_frame(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('FRAMEWORK_PAGE', 'services/website-development/framework/')
+        base_url = put_a_secret()
+        url = base_url + os.getenv('FRAMEWORK_PAGE', 'services/website-development/framework/')
         self.get_data_card_with_type_project(
             'section_how_it_staff_tiles.json',
             self.get_card_data_tiles_card,
@@ -94,13 +100,16 @@ class FrameworkPage(BasePage):
             ".//*[@class='advantages-outsourcing__title']" ,
             url)
 
+
         # метод для карусели адвант
     def get_data_advant_carousel_card(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('FRAMEWORK_PAGE', 'services/website-development/framework/')
+        base_url = put_a_secret()
+        url = base_url + os.getenv('FRAMEWORK_PAGE', 'services/website-development/framework/')
         self.get_data_advant_carousel(self.get_data_advant_section_carousel, 'advant_section_carousel.json',
                                           'advant_section_framework', url)
 
     def get_data_advant_card(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('FRAMEWORK_PAGE', 'services/website-development/framework/')
+        base_url = put_a_secret()
+        url = base_url + os.getenv('FRAMEWORK_PAGE', 'services/website-development/framework/')
         self.get_data_advant_carousel(self.get_data_advant_section_card, 'advant_section_carousel.json',
                                           'advant_card_framework', url)

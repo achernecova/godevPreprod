@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 from page_elements.block_count_elements import CountElements
 from page_elements.meta_data_page import MetaData
 from page_elements.popup_element import PopupElement
-from pages.base_page import BasePage
+from pages.base_page import BasePage, put_a_secret
 from test.locators import Locators
 from utils.data_loader import load_file
 
@@ -67,10 +67,12 @@ class EComPage(BasePage):
         # Загрузите данные из JSON
         data = load_file('data_card_block_packages.json')
 
+        base_url = put_a_secret()
+        url = base_url + os.getenv('LANDING', 'services/development-of-a-landing-page/')
+
         # Получаем данные из блока карусели на странице
         card_data_data_from_page = self.get_card_data(
-            os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('E_COM_PAGE',
-                                                                            'services/website-development/e-commerce/'))
+            url + os.getenv('E_COM_PAGE', 'services/website-development/e-commerce/'))
 
         # Выводим полученные данные с веб-страницы
         print("Полученные данные с веб-страницы:")
@@ -127,8 +129,8 @@ class EComPage(BasePage):
 
         # метод для черно-белых карточек
     def get_data_card_tiles_e_com(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('E_COM_PAGE',
-                                                                              'services/website-development/e-commerce/')
+        base_url = put_a_secret()
+        url = base_url + os.getenv('E_COM_PAGE', 'services/website-development/e-commerce/')
         self.get_data_card_with_type_project(
             'data_card_block_packages.json',
             self.get_data_faq_tiles_new,
@@ -140,7 +142,7 @@ class EComPage(BasePage):
 
     # метод для карусели адвант
     def get_data_advant_carousel_card(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('E_COM_PAGE',
-                                                                              'services/website-development/e-commerce/')
+        base_url = put_a_secret()
+        url = base_url + os.getenv('E_COM_PAGE', 'services/website-development/e-commerce/')
         self.get_data_advant_carousel(self.get_data_advant_section_carousel, 'advant_section_carousel.json',
                                       'advant_section_e_com', url)

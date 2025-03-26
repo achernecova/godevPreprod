@@ -31,6 +31,7 @@ def test_web_outstaff_get_text(driver):
     ("types_of_it", 3),
     ("what_to_choose", 3)
 ])
+@pytest.mark.prod_test
 def test_main_page_benefits_types_of_it_what_to_choose_count_cards(driver, project_type, count):
     main_page_test = WebOutstaffPage(driver)
     main_page_test.open()
@@ -44,7 +45,7 @@ def test_description_contains_value(driver):
     outstaff_page_test.open()
     outstaff_page_test.get_data_carousel()
 
-
+@pytest.mark.prod_test
 def test_outstaff_team_and_spec_assert_data(driver):
     outstaff_page_test = WebOutstaffPage(driver)
     outstaff_page_test.open()
@@ -53,6 +54,7 @@ def test_outstaff_team_and_spec_assert_data(driver):
 
 
 @feature('Проверка данных в карточках блока Why Godev is the right staff augmentation partner')
+@pytest.mark.prod_test
 def test_outstaff_page_benefits_count_cards_assert(driver):
     outstaff_page_test = WebOutstaffPage(driver)
     outstaff_page_test.open()
@@ -74,6 +76,7 @@ def test_outstaff_page_faq_data_assert(driver):
 
 @pytest.mark.fill_form_request_faq
 @feature('Успешная отправка заявки из FAQ')
+@pytest.mark.prod_test
 def test_outstaff_dev_page_add_request_in_faq(driver):
     outstaff_page_test = WebOutstaffPage(driver)
     outstaff_page_test.open()
@@ -84,6 +87,7 @@ def test_outstaff_dev_page_add_request_in_faq(driver):
     assert success == True, f"Не появилось окно успешности "
 
 @feature('Проверка данных в Benefits of team augmentation services')
+@pytest.mark.prod_test
 def test_outstaff_page_web_development_process_data_assert(driver):
     outstaff_page_test = WebOutstaffPage(driver)
     outstaff_page_test.open()
@@ -111,6 +115,7 @@ def test_outstaff_page_convenient_assert(driver):
         pytest.fail("\n".join(errors))
 
 @feature('Проверка данных в карточках блока Convenient cooperation formats for increased benefits and efficiency')
+@pytest.mark.prod_test
 def test_main_page_convenient_data_assert(driver):
     outstaff_page_test = WebOutstaffPage(driver)
     outstaff_page_test.open()

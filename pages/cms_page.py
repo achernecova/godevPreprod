@@ -7,7 +7,7 @@ from page_elements.block_count_elements import CountElements
 from page_elements.form_page import FormPage
 from page_elements.meta_data_page import MetaData
 from page_elements.popup_element import PopupElement
-from pages.base_page import BasePage
+from pages.base_page import BasePage, put_a_secret
 from test.locators import Locators
 
 
@@ -48,12 +48,14 @@ class CMSPage(BasePage):
         return ProjectServiceElement(self.driver)
 
     def get_data_card_cms(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('CMS_PAGE', 'services/website-development/cms/')  # Укажите нужный URL
+        base_url = put_a_secret()
+        url = base_url + os.getenv('CMS_PAGE', 'services/website-development/cms/')
         self.get_data_card_(self.get_card_data, 'data_card_block_packages.json',
                             'cms_card_data', url)
 
     def get_data_card_tiles_cms(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('CMS_PAGE', 'services/website-development/cms/')  # Укажите нужный URL
+        base_url = put_a_secret()
+        url = base_url + os.getenv('CMS_PAGE', 'services/website-development/cms/')
         self.get_data_card_with_type_project(
             'data_card_block_packages.json',
             self.get_data_faq_tiles_new,
@@ -65,7 +67,8 @@ class CMSPage(BasePage):
 
     # метод для черно-белых карточек с кружками и порядковыми номерами
     def get_data_card_how_it_staff_cms(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('CMS_PAGE', 'services/website-development/cms/')  # Укажите нужный URL
+        base_url = put_a_secret()
+        url = base_url + os.getenv('CMS_PAGE', 'services/website-development/cms/')
         self.get_data_card_with_type_project(
             'section_how_it_staff_tiles.json',
             self.get_card_data_tiles_card,

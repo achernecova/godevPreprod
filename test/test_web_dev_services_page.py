@@ -7,6 +7,7 @@ from pages.web_dev_services_page import WebDevServicesPage
 # тест с мета-тегами вынесен в main_page_test
 
 @feature('Количество элементов в блоке')
+@pytest.mark.prod_test
 def test_web_dev_serv_page_count_card_services(driver):
     web_dev_serv_page = WebDevServicesPage(driver)
     web_dev_serv_page.open()
@@ -27,6 +28,7 @@ def test_web_dev_serv_page_count_card_services(driver):
     (10, "Web App security", "100 $\nfrom "),
     (11, "Testing", "28 $\n/ hour")
 ])
+@pytest.mark.prod_test
 def test_web_dev_serv_page_data_card_packages(driver, index, project_type, price):
     web_dev_serv_page = WebDevServicesPage(driver)
     web_dev_serv_page.open()
@@ -36,6 +38,7 @@ def test_web_dev_serv_page_data_card_packages(driver, index, project_type, price
 
 
 @allure.feature('Проверка данных в карточках блока Advantages of choosing Godev for website development')
+@pytest.mark.prod_test
 def test_web_dev_serv_page_benefits_count_cards_assert(driver):
     web_dev_serv_page = WebDevServicesPage(driver)
     web_dev_serv_page.open()
@@ -44,6 +47,7 @@ def test_web_dev_serv_page_benefits_count_cards_assert(driver):
 
 
 @allure.feature('Проверка данных в FAQ')
+@pytest.mark.prod_test
 def test_web_dev_serv_page_faq_data_assert(driver):
     web_dev_serv_page = WebDevServicesPage(driver)
     web_dev_serv_page.open()

@@ -17,7 +17,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.10'
+        python-version: '3.13'
         
     - name: Install dependencies
       run: |
@@ -45,6 +45,6 @@ jobs:
         to: ${{ secrets.TELEGRAM_CHAT_ID }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
-          🤖 Test Execution Status: ${{ job.status }}
+          Test Execution Status: ${{ job.status }}
           Repository: ${{ github.repository }}
           Branch: ${{ github.ref_name }}

@@ -8,7 +8,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from page_elements.block_count_elements import CountElements
 from page_elements.meta_data_page import MetaData
 from page_elements.popup_element import PopupElement
-from pages.base_page import BasePage
+from pages.base_page import BasePage, put_a_secret
 from test.locators import Locators
 
 
@@ -19,6 +19,7 @@ class WebDevelopPage(BasePage):
         self.team_card_more = None
         self.driver = driver
         self.subURL = os.getenv('WEBSITE_DEV', 'services/website-development/')
+
 
 
     @allure.step("Открытие страницы лендинга по URL: services/website-development/")
@@ -79,24 +80,28 @@ class WebDevelopPage(BasePage):
         return PopupElement(self.driver)
 
     def get_data_card_website(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('WEBSITE_DEV', 'services/website-development/')
+        base_url = put_a_secret()
+        url = base_url + os.getenv('WEBSITE_DEV', 'services/website-development/')
         self.get_data_card_(self.get_card_data, 'data_card_block_packages.json',
                             'web_site_develop_card_data', url)
 
     # метод для карусели адвант
     def get_data_advant_carousel_card(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('WEBSITE_DEV', 'services/website-development/')
+        base_url = put_a_secret()
+        url = base_url + os.getenv('WEBSITE_DEV', 'services/website-development/')
         self.get_data_advant_carousel(self.get_data_advant_section_carousel, 'advant_section_carousel.json',
                                       'advant_section_website', url)
 
     # получение данных с карточек с отзывами
     def get_data_review(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('WEBSITE_DEV', 'services/website-development/')
+        base_url = put_a_secret()
+        url = base_url + os.getenv('WEBSITE_DEV', 'services/website-development/')
         self.get_data_review_(self.get_reviews_data_from_page, 'carousel_of_review.json', 'reviews-wrapper', url)
 
     # метод для faq
     def get_data_faq_card(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('WEBSITE_DEV', 'services/website-development/')
+        base_url = put_a_secret()
+        url = base_url + os.getenv('WEBSITE_DEV', 'services/website-development/')
         self.get_data_card_with_type_project(
             'faq_block_data.json',
             self.get_data_faq_tiles_new,
@@ -108,7 +113,8 @@ class WebDevelopPage(BasePage):
 
     # метод для черно-белых карточек
     def get_data_card_tiles_website(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('WEBSITE_DEV', 'services/website-development/')
+        base_url = put_a_secret()
+        url = base_url + os.getenv('WEBSITE_DEV', 'services/website-development/')
         self.get_data_card_with_type_project(
             'data_card_block_packages.json',
             self.get_data_faq_tiles_new,

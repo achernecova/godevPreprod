@@ -38,10 +38,11 @@ class ProjectServiceElement:
         "button_more_b2b_locator": (By.XPATH, "//*[@class='service-item']//a[@href='https://dev.godev.agency/services/website-development/b2b/']"),
         "button_more_section_outstaff": (By.XPATH, "//*[@class='section-header type-base ']//a"),
 
-        "button_project_sls_locator": (By.XPATH, "//*[@href= 'https://dev.godev.agency/projects/swift-logistic-solutions/']"),
-        "button_project_find_a_builder_locator": (By.XPATH, "//*[@href= 'https://dev.godev.agency/projects/find-a-builder/']"),
-        "button_project_vegan_hotel_locator": (By.XPATH, "//*[@href= 'https://dev.godev.agency/projects/vegan-hotel/']"),
-        "button_project_euro_VPN_locator": (By.XPATH, "//*[@href= 'https://dev.godev.agency/projects/information-security-service/']"),
+        "button_project_sls_locator": (By.XPATH, "//*[contains(@href, 'swift-logistic-solutions/')]"),
+        "button_project_find_a_builder_locator": (By.XPATH, "//*[contains(@href, 'find-a-builder/')]"),
+        "button_project_vegan_hotel_locator": (By.XPATH, "//*[contains(@href, 'vegan-hotel')]"),
+        "button_project_euro_VPN_locator": (By.XPATH, "//*[contains(@href, 'information-security-service/')]"),
+        "button_project_mint_locator": (By.XPATH, "//*[contains(@href, 'mint-links/')]")
     }
 
     def close_modal_popup(self):
@@ -50,7 +51,6 @@ class ProjectServiceElement:
 
     def test_click_card_and_open_page(self, card_type):
         self.close_modal_popup()
-
         card_mapping = {
             "website_dev": (self.click_button_more_web_site_dev_card, WebDevelopPage),
             "support": (self.click_button_more_supp_card, SupportPage),
@@ -65,20 +65,16 @@ class ProjectServiceElement:
             "sls": (self.click_project_sls, ProjectPage),
             "find_a_builder": (self.click_project_find_a_builder, ProjectPage),
             "vegan_hotel": (self.click_project_vegan_hotel, ProjectPage),
-            "euro_VPN": (self.click_project_euro_VPN, ProjectPage)
+            "euro_VPN": (self.click_project_euro_vpn, ProjectPage)
         }
-
         if card_type not in card_mapping:
             raise ValueError("Неверный тип карточки: {}".format(card_type))
-
         click_method, page_class = card_mapping[card_type]
-
         try:
             click_method()  # вызываем метод клика
         except Exception as e:
             logging.error(f"Ошибка при клике на карточку {card_type}: {e}")
             raise
-
         page = page_class(self.driver)
         return page
 
@@ -148,7 +144,7 @@ class ProjectServiceElement:
             raise
 
 
-    def click_project_euro_VPN(self):
+    def click_project_euro_vpn(self):
         try:
             button_project_euro = self.wait_for_element(Locators.button_project_euro_VPN_locator)
             self.scroll_to_element(button_project_euro)

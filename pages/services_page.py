@@ -10,16 +10,15 @@ from page_elements.menu_element import MenuElement
 from page_elements.meta_data_page import MetaData
 from page_elements.popup_element import PopupElement
 
-from pages.base_page import BasePage
+from pages.base_page import BasePage, put_a_secret
 from test.locators import Locators
 
 
 class ServicesPage(BasePage):
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver = driver
-        self.subURL = os.getenv('SERVICES_PAGE', 'services/')
 
+    def __init__(self, driver, base_url=None):
+        super().__init__(driver, base_url)  # Передаем base_url в базовый класс
+        self.subURL = os.getenv('SERVICES_PAGE', 'services/')
 
     @allure.step("Открытие страницы лендинга по URL: services/")
     def open(self, sub_url=None):
@@ -64,7 +63,9 @@ class ServicesPage(BasePage):
 
 
     def get_data_card_app_and_web_services_service(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('SERVICES_PAGE', 'services/')
+        # Получаем базовый URL с помощью функции put_a_secret
+        base_url = put_a_secret()
+        url = base_url + os.getenv('SERVICES_PAGE', 'services/')
         self.get_data_card_with_type_project(
             'section_how_it_staff_tiles.json',
             self.get_card_data_tiles_card,
@@ -75,7 +76,9 @@ class ServicesPage(BasePage):
             url)
 
     def get_data_card_app_and_web_services_advant(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('SERVICES_PAGE', 'services/')
+        # Получаем базовый URL с помощью функции put_a_secret
+        base_url = put_a_secret()
+        url = base_url + os.getenv('SERVICES_PAGE', 'services/')
         self.get_data_card_with_type_project(
             'section_how_it_staff_tiles.json',
             self.get_card_data_tiles_card,

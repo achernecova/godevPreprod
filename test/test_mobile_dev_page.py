@@ -6,6 +6,7 @@ from pages.mobile_dev_page import MobileDevPage
 # тест с мета-тегами вынесен в main_page_test
 
 @feature('Успешная отправка заявки из блока со сплошным текстом')
+@pytest.mark.prod_test
 def test_mobile_dev_page_add_request_in_card_select(driver):
     mobile_page = MobileDevPage(driver)
     mobile_page.open()
@@ -17,6 +18,7 @@ def test_mobile_dev_page_add_request_in_card_select(driver):
 
 @pytest.mark.fill_form_request_faq
 @feature('Успешная отправка заявки из FAQ')
+@pytest.mark.prod_test
 def test_mobile_dev_page_add_request_in_faq(driver):
     mobile_page = MobileDevPage(driver)
     mobile_page.open()
@@ -36,6 +38,7 @@ def test_mobile_dev_page_count_card_advantages(driver):
 
 
 @feature('Проверка данных в карточках блока Benefits for business from creating a mobile application и We specialize in')
+@pytest.mark.prod_test
 def test_mobile_page_why_do_you_need_data_assert(driver):
     mobile_page = MobileDevPage(driver)
     mobile_page.open()
@@ -43,6 +46,7 @@ def test_mobile_page_why_do_you_need_data_assert(driver):
 
 
 @feature('Проверка данных в FAQ')
+@pytest.mark.prod_test
 def test_mobile_page_faq_data_assert(driver):
     mobile_page = MobileDevPage(driver)
     mobile_page.open()
@@ -57,6 +61,7 @@ def test_mobile_page_what_we_do_title_assert(driver):
 
 
 @feature('Проверка текста в блоке What we do')
+@pytest.mark.prod_test
 def test_mobile_page_what_we_do_text_assert(driver):
     mobile_page = MobileDevPage(driver)
     mobile_page.open()
@@ -76,6 +81,7 @@ def test_mobile_dev_page_add_request_in_dev_coast(driver):
 
 
 @feature('Проверка данных в карточках блока Stages of creating a mobile application')
+@pytest.mark.prod_test
 def test_support_page_benefits_count_cards_assert(driver):
     mobile_page = MobileDevPage(driver)
     mobile_page.open()
@@ -97,6 +103,7 @@ def test_mobile_page_stages_of_creating_title_assert(driver):
 
 
 @feature('Проверка текста в блоке Stages of creating')
+@pytest.mark.prod_test
 def test_mobile_page_stages_of_creating_text_assert(driver):
     mobile_page = MobileDevPage(driver)
     mobile_page.open()

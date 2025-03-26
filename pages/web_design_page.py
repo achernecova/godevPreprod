@@ -5,8 +5,9 @@ import allure
 import requests
 from bs4 import BeautifulSoup
 
+from page_elements.block_count_elements import CountElements
 from page_elements.popup_element import PopupElement
-from pages.base_page import BasePage
+from pages.base_page import BasePage, put_a_secret
 from test.locators import Locators
 from utils.data_loader import load_file
 
@@ -30,7 +31,8 @@ class WebDesignPage(BasePage):
         logging.info(f"Открываем страницу: {sub_url}")
         super().open(sub_url)  # Вызов метода open() из базового класса с под-URL
 
-
+    def get_count_elements(self):
+        return CountElements(self.driver)
 
     # переделываем метод
     def get_data_card_design(self):
@@ -38,7 +40,9 @@ class WebDesignPage(BasePage):
         data = load_file('data_card_block_packages.json')
 
         # Получаем данные из блока карусели на странице
-        card_data_data_from_page = self.get_card_data(os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('DESIGN_PAGE', 'services/website-design-and-development-services/'))
+        base_url = put_a_secret()
+        card_data_data_from_page = self.get_card_data(base_url + os.getenv('DESIGN_PAGE', 'services/website-design-and-development-services/'))
+        #card_data_data_from_page = self.get_card_data(os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('DESIGN_PAGE', 'services/website-design-and-development-services/'))
 
         # Выводим полученные данные с веб-страницы
         print("Полученные данные с веб-страницы:")
@@ -96,7 +100,8 @@ class WebDesignPage(BasePage):
 
     # метод для черно-белых карточек с кружками и порядковыми номерами
     def get_data_card_how_it_staff_design(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('DESIGN_PAGE', 'services/website-design-and-development-services/')
+        base_url = put_a_secret()
+        url = base_url + os.getenv('DESIGN_PAGE', 'services/website-design-and-development-services/')
         self.get_data_card_with_type_project(
             'section_how_it_staff_tiles.json',
             self.get_card_data_tiles_card,
@@ -110,7 +115,8 @@ class WebDesignPage(BasePage):
 
 # метод для faq
     def get_data_faq_card(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('DESIGN_PAGE', 'services/website-design-and-development-services/')
+        base_url = put_a_secret()
+        url = base_url + os.getenv('DESIGN_PAGE', 'services/website-design-and-development-services/')
         self.get_data_card_with_type_project(
             'faq_block_data.json',
             self.get_data_faq_tiles_new,

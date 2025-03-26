@@ -11,16 +11,18 @@ from utils.data_loader import load_service_data_review
 # тест с мета-тегами вынесен в main_page_test
 
 @feature('Количество элементов в блоке')
+@pytest.mark.prod_test
 def test_main_page_count_card_reviews(driver):
     reviews_page_test = ReviewsPage(driver)
     reviews_page_test.open()
     blocks = reviews_page_test.get_count_elements()
     blocks.count_cards_assert("swiper_slide", 3)
 
+
     # Загрузка данных из JSON-файла
-filtered_data = load_service_data_review()
 @feature('Открытие страниц проектов')
-@pytest.mark.parametrize("card_type, expected_url, expected_title", filtered_data)
+@pytest.mark.prod_test
+@pytest.mark.parametrize("card_type, expected_url, expected_title", load_service_data_review())
 def test_reviews_page_click_services_and_project_and_open_pages(driver, card_type, expected_url, expected_title):
     reviews_page_test = ReviewsPage(driver)
     reviews_page_test.open()

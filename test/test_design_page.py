@@ -7,34 +7,27 @@ from pages.web_design_page import WebDesignPage
 
 # тест с мета-тегами вынесен в main_page_test
 
-@allure.feature('Количество элементов в блоке')
-def test_design_page_benefits_count_cards_assert(driver):
-    design_page_test = CMSPage(driver)
-    design_page_test.open()
-    blocks = design_page_test.get_count_elements()
-    blocks.count_cards_assert('types_of_websites_count_card', 4)
-
-
 @allure.feature('Проверка данных в карточках блока Website packages')
 def test_design_page_data_card_packages(driver):
     design_page_test = WebDesignPage(driver)
     design_page_test.open()
     design_page_test.get_data_card_design()
 
-
+@pytest.mark.prod_test
 @allure.feature('Проверка данных в карточках блока Custom design solutions')
 def test_design_page_why_do_you_need_data_assert(driver):
     design_page_test = WebDesignPage(driver)
     design_page_test.open()
     design_page_test.get_data_card_how_it_staff_design()
 
-
+@pytest.mark.prod_test
 @allure.feature('Проверка данных в FAQ')
 def test_design_page_faq_data_assert(driver):
     design_page_test = WebDesignPage(driver)
     design_page_test.open()
     design_page_test.get_data_faq_card()
 
+@pytest.mark.prod_test
 @pytest.mark.fill_form_request_faq
 @allure.feature('Успешная отправка заявки из FAQ')
 def test_design_page_add_request_in_faq(driver):
@@ -84,7 +77,7 @@ def test_design_page_web_site_design_title_assert(driver):
     if errors:
         pytest.fail("\n".join(errors))
 
-
+@pytest.mark.prod_test
 @allure.feature('Проверка заголовка в блоке Custom design solutions')
 def test_design_page_custom_design_solutions_title_assert(driver):
     design_page_test = WebDesignPage(driver)

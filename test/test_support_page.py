@@ -1,4 +1,3 @@
-
 import allure
 import pytest
 from allure_commons._allure import feature
@@ -18,11 +17,13 @@ def test_support_page_count_card_packages(driver):
 
 
 @feature('Количество элементов в блоке')
+@pytest.mark.prod_test
 def test_support_page_count_card_benefits(driver):
     support_page_test = SupportPage(driver)
     support_page_test.open()
     blocks = support_page_test.get_count_elements()
     blocks.count_cards_assert("types_of_websites_count_card", 8)
+
 
 @feature('Успешная отправка заявки')
 def test_support_page_add_request(driver):
@@ -34,10 +35,10 @@ def test_support_page_add_request(driver):
     assert popup_element_test.popup_success_displayed() == True, "Окно не появилось"
 
 
-filtered_data = load_service_data_support()
 # Загрузка данных из JSON-файла
+@pytest.mark.prod_test
 @allure.feature('Открытие страниц проектов')
-@pytest.mark.parametrize("card_type, expected_url, expected_title", filtered_data)
+@pytest.mark.parametrize("card_type, expected_url, expected_title", load_service_data_support())
 def test_support_page_click_services_and_project_and_open_pages(driver, card_type, expected_url, expected_title):
     support_page_test = SupportPage(driver)
     support_page_test.open()
@@ -54,8 +55,6 @@ def test_support_page_benefits_count_cards_assert(driver):
     support_page_test.get_data_card_tiles_support()
 
 
-
-
 @allure.feature('Проверка данных в карточках блока Why do you need maintenance?')
 def test_support_page_why_do_you_need_data_assert(driver):
     support_page_test = SupportPage(driver)
@@ -64,13 +63,16 @@ def test_support_page_why_do_you_need_data_assert(driver):
 
 
 @allure.feature('Проверка данных в FAQ')
+@pytest.mark.prod_test
 def test_support_page_faq_data_assert(driver):
     support_page_test = SupportPage(driver)
     support_page_test.open()
     support_page_test.get_data_faq_card()
 
+
 @pytest.mark.fill_form_request_faq
 @allure.feature('Успешная отправка заявки из FAQ')
+@pytest.mark.prod_test
 def test_support_page_add_request_in_faq(driver):
     support_page_test = SupportPage(driver)
     support_page_test.open()

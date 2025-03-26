@@ -5,17 +5,15 @@ import allure
 
 from page_elements.block_count_elements import CountElements
 from page_elements.meta_data_page import MetaData
-from pages.base_page import BasePage
+from pages.base_page import BasePage, put_a_secret
 from test.locators import Locators
 
 
 class ProjectPage(BasePage):
 
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver = driver
+    def __init__(self, driver, base_url=None):
+        super().__init__(driver, base_url)  # Передаем base_url в базовый класс
         self.subURL = os.getenv('PROJECT_PAGE', 'projects/')
-
 
     @allure.step("Открытие мобильной страницы по URL: projects/")
     def open(self, sub_url=None):
@@ -50,6 +48,7 @@ class ProjectPage(BasePage):
 
         # получение данных с карточек с отзывами
     def get_data_review(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('PROJECT_PAGE', 'projects/')
+        base_url = put_a_secret()
+        url = base_url + os.getenv('LANDING', 'services/development-of-a-landing-page/')
         self.get_data_review_(self.get_reviews_data_from_page, 'carousel_of_review.json',
                                   'reviews-wrapper', url)

@@ -14,11 +14,10 @@ from pages.base_page import BasePage
 
 
 class ReviewsPage(BasePage):
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver = driver
-        self.subURL = os.getenv('REVIEWS_PAGE', 'reviews/')  # Значение по умолчанию
 
+    def __init__(self, driver, base_url=None):
+        super().__init__(driver, base_url)  # Передаем base_url в базовый класс
+        self.subURL = os.getenv('REVIEWS_PAGE', 'reviews/')  # Значение по умолчанию
 
     @allure.step("Открытие страницы лендинга по URL: reviews/")
     def open(self, sub_url=None):

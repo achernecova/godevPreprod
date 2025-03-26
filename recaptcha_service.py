@@ -3,6 +3,7 @@ import requests
 
 class RecaptchaService:
     @staticmethod
+    # проверка под рекапчу
     def get_recaptcha_token(driver):
         try:
             token = driver.execute_script("""

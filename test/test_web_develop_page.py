@@ -17,6 +17,7 @@ def test_web_develop_page_count_card_how_me_make(driver):
 
 
 @feature('Количество элементов в блоке Types of websites we work with')
+@pytest.mark.prod_test
 def test_web_develop_page_count_card_types_of_websites(driver):
     web_dev_page = WebDevelopPage(driver)
     web_dev_page.open()
@@ -26,6 +27,7 @@ def test_web_develop_page_count_card_types_of_websites(driver):
 
     # скрытие констант в фикстуру
 @feature('Переходы на страницы из карточек')
+@pytest.mark.prod_test
 def test_web_dev_page_click_more_packages_and_data_pages(driver, test_data_cards):
     index, page_url, page_title = test_data_cards
     web_dev_page_test = WebDevelopPage(driver)
@@ -34,9 +36,9 @@ def test_web_dev_page_click_more_packages_and_data_pages(driver, test_data_cards
 
 
 #загрузка данных из json файла с фильтрацией
-filtered_data=load_service_data_web_dev()
 @allure.feature('Открытие страниц проектов')
-@pytest.mark.parametrize("card_type, expected_url, expected_title", filtered_data)
+@pytest.mark.parametrize("card_type, expected_url, expected_title", load_service_data_web_dev())
+@pytest.mark.prod_test
 def test_web_dev_click_services_and_project_and_open_pages(driver, card_type, expected_url, expected_title):
     web_dev_page_test = WebDevelopPage(driver)
     web_dev_page_test.open()
@@ -47,6 +49,7 @@ def test_web_dev_click_services_and_project_and_open_pages(driver, card_type, ex
 
 
 @allure.feature('Проверка данных в карточках блока Website Packages')
+@pytest.mark.prod_test
 def test_web_develop_page_data_card_packages_new(driver):
     web_dev_page_test = WebDevelopPage(driver)
     web_dev_page_test.open()
@@ -54,6 +57,7 @@ def test_web_develop_page_data_card_packages_new(driver):
 
 
 @allure.feature('Проверка данных в карточках блока Types of websites we work with')
+@pytest.mark.prod_test
 def test_web_develop_page_benefits_count_cards_assert(driver):
     web_dev_page_test = WebDevelopPage(driver)
     web_dev_page_test.open()
@@ -75,6 +79,7 @@ def test_web_develop_page_count_card_reviews(driver):
 
 
 @allure.feature('Проверка данных в FAQ')
+@pytest.mark.prod_test
 def test_web_develop_page_faq_data_assert(driver):
     web_dev_page_test = WebDevelopPage(driver)
     web_dev_page_test.open()

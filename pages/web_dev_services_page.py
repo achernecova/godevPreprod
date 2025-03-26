@@ -6,14 +6,13 @@ import allure
 from page_elements.block_count_elements import CountElements
 from page_elements.meta_data_page import MetaData
 from page_elements.popup_element import PopupElement
-from pages.base_page import BasePage
+from pages.base_page import BasePage, put_a_secret
 
 
 class WebDevServicesPage(BasePage):
 
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver = driver
+    def __init__(self, driver, base_url=None):
+        super().__init__(driver, base_url)  # Передаем base_url в базовый класс
         self.subURL = os.getenv('WEB_DEV', 'services/web-development/')
 
     def get_popup(self):
@@ -38,7 +37,8 @@ class WebDevServicesPage(BasePage):
 
         # метод для черно-белых карточек
     def get_data_card_tiles_webdev(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('WEB_DEV', 'services/web-development/')
+        base_url = put_a_secret()
+        url = base_url + os.getenv('WEB_DEV', 'services/web-development/')
         self.get_data_card_with_type_project(
             'data_card_block_packages.json',
             self.get_data_faq_tiles_new,
@@ -50,7 +50,8 @@ class WebDevServicesPage(BasePage):
 
 # метод для faq
     def get_data_faq_card(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('WEB_DEV', 'services/web-development/')
+        base_url = put_a_secret()
+        url = base_url + os.getenv('WEB_DEV', 'services/web-development/')
         self.get_data_card_with_type_project(
             'faq_block_data.json',
             self.get_data_faq_tiles_new,

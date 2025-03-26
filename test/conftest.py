@@ -21,6 +21,9 @@ def pytest_addoption(parser):
 def driver(request):
     chrome_options = Options()
 
+    # Установка стратегии загрузки страницы
+    chrome_options.page_load_strategy = 'eager'  # Ожидание загрузки DOM
+
     # Проверяем условия для headless режима
     run_headless = (
             request.config.getoption('--headless') or  # параметр --headless
@@ -76,92 +79,100 @@ def verify_recaptcha(response):
         print(f"Error during reCAPTCHA verification: {e}")
         return False
 
-
+def put_a_secret():
+    # Получаем значение окружения
+    environment = os.getenv('ENVIRONMENT', 'production')  # Значение по умолчанию - development (второе значение - production)
+    # Определяем базовый URL в зависимости от окружения
+    if environment == 'production':
+        base_url = os.getenv('PROD_PAGE', 'https://godev.agency/')  # Значение по умолчанию для прод окружения
+    else:
+        base_url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/')  # Значение по умолчанию для дев окружения
+    return base_url
 
 @pytest.fixture(params=[
     {
         "page": "main",
         "title": "Web Development Company in USA | Web Design, App & Web Development Services – Godev",
         "description": "Godev is a leading web development company in the USA. We specialize in custom web design, web applications, app and web development services",
-        "canonical": os.getenv('MAIN_PAGE', 'https://dev.godev.agency/')
+        "canonical": put_a_secret()
     },
     {
         "page": "services",
         "title": "IT services for you and your business",
         "description": "In godev studio you can order the creation of a website, portal or application of any complexity. We use a wide technology stack",
-        "canonical": os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('SERVICES_PAGE', 'services/')
+        "canonical": put_a_secret() + os.getenv('SERVICES_PAGE', 'services/')
     },
     {
         "page": "cms",
         "title": "Custom CMS Development Services in USA: Company for Your Website Needs",
         "description": "Unlock your website's potential with our custom CMS development services in the USA. Tailored solutions to meet your business needs, backed by years of Godev's experience",
-        "canonical": os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('CMS_PAGE', 'services/website-development/cms/')
+        "canonical": put_a_secret() + os.getenv('CMS_PAGE', 'services/website-development/cms/')
     },
     {
         "page": "b2b",
         "title": "B2B Ecommerce Website Development Services in USA: Design Strategies for Success with Godev",
         "description": "Transform your B2B ecommerce website with Godev's expert design strategies. Our web development services create high-converting platforms for success",
-        "canonical": os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('B2B_PAGE', 'services/website-development/b2b/')
+        "canonical": put_a_secret() + os.getenv('B2B_PAGE', 'services/website-development/b2b/')
     },
     {
         "page": "mobile",
         "title": "Mobile App Development Services in USA, Leading Mobile Application Development Company Godev",
         "description": "Transform your ideas into reality with our mobile app development services. As a leading mobile app development company, we specialize in custom solutions for iOS and Android, including cross-platform apps",
-        "canonical": os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('MOBILE_PAGE', 'services/mobile-development/')
+        "canonical": put_a_secret() + os.getenv('MOBILE_PAGE', 'services/mobile-development/')
     },
-    {
-        "page": "blog",
-        "title": "",
-        "description": "",
-        "canonical": os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('BLOG_PAGE', 'blog/')
-    },
+    #{
+        #"page": "blog",
+        #"title": "",
+        #"description": "",
+        #"canonical": put_a_secret() + os.getenv('BLOG_PAGE', 'blog/')
+    #},
     {
         "page": "framework",
         "title": "Web Development on Frameworks in the USA: website development in Godev",
         "description": "Explore top web development frameworks in the USA with Godev. Save time and enhance coding efficiency for your projects by leveraging powerful software infrastructure!",
-        "canonical": os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('FRAMEWORK_PAGE', 'services/website-development/framework/')
+        "canonical": put_a_secret() + os.getenv('FRAMEWORK_PAGE', 'services/website-development/framework/')
     },
     {
         "page": "outstaff",
         "title": "IT staff augmentation company in USA, cost of outsorce tech teams and software developers",
         "description": "IT staff augmentation – hire tech teams and software developers for your projects with lower cost in USA. Software, databases, websites, applications, microservices, mobile applications",
-        "canonical": os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('OUTSTAFFING', 'services/outstaffing-and-outsourcing-of-it-specialists/')
+        "canonical": put_a_secret() + os.getenv('OUTSTAFFING', 'services/outstaffing-and-outsourcing-of-it-specialists/')
     },
     {
         "page": "project_page",
         "title": "Web Development and Designs Portfolio - Godev",
         "description": "Godev's portfolio consist of completed projects in Design and Web Development. We help clients grow and prosper for over 10 years",
-        "canonical": os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('PROJECT_PAGE', 'projects/')
+        "canonical": put_a_secret() + os.getenv('PROJECT_PAGE', 'projects/')
     },
     {
         "page": "reviews",
         "title": "Godev Reviews | Web development in USA",
         "description": "Reviews from our clients about web development with Godev",
-        "canonical": os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('REVIEWS_PAGE', 'reviews/')
+        "canonical": put_a_secret() + os.getenv('REVIEWS_PAGE', 'reviews/')
     },
     {
         "page": "support",
         "title": "IT maintenance and support services in USA",
         "description": "Discover top-notch IT maintenance and support services in the USA, ensuring your software and applications run smoothly with timely updates and expert assistance Godev",
-        "canonical": os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('SUPPORT_PAGE', 'services/tech-support/')
+        "canonical": put_a_secret() + os.getenv('SUPPORT_PAGE', 'services/tech-support/')
     },
     {
         "page": "web_dev_serv",
         "title": "Web Development Services in USA, Custom Website and Web App Development Solutions | Godev",
         "description": "Looking for expert web development services in the USA? Godev offers high-quality, custom website development and responsive web design solutions tailored to your needs.",
-        "canonical": os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('WEB_DEV', 'services/web-development/')
+        "canonical": put_a_secret() + os.getenv('WEB_DEV', 'services/web-development/')
     },
     {
         "page": "web_dev",
         "title": "Website Development Company in USA, Leading Web Design and Development Services Godev",
         "description": "Discover Godev, a leading web development company in the USA, offering top-notch web design and development services to elevate your online business. Professional web developers with 10+ years of experience.",
-        "canonical": os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('WEBSITE_DEV', 'services/website-development/')
+        "canonical": put_a_secret() + os.getenv('WEBSITE_DEV', 'services/website-development/')
     },
     {
         "page": "landing",
         "title": "Mastering Landing Page Design in USA, Top Development Services in Godev",
         "description": "Unlock the secrets to effective landing page design in the USA with Godev's top development services. Generate more leads and enhance conversions today!",
-        "canonical": os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('LANDING', 'services/development-of-a-landing-page/')
+        "canonical": put_a_secret() + os.getenv('LANDING', 'services/development-of-a-landing-page/')
     }
 
 ])
@@ -192,17 +203,17 @@ def pytest_runtest_makereport(item, call):
 
 
 @pytest.fixture(params=[
-        ("1", os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('E_COM_PAGE', 'services/website-development/e-commerce/'), "E-commerce web development for scalable business growth"),
-        ("2", os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('B2B_PAGE', 'services/website-development/b2b/'), "B2B e-commerce website development"),
-        ("3", os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('FRAMEWORK_PAGE', 'services/website-development/framework/'), "What is a framework and why it’s essential for web development")
+        ("1", put_a_secret() + os.getenv('E_COM_PAGE', 'services/website-development/e-commerce/'), "E-commerce web development for scalable business growth"),
+        ("2", put_a_secret() + os.getenv('B2B_PAGE', 'services/website-development/b2b/'), "B2B e-commerce website development"),
+        ("3", put_a_secret() + os.getenv('FRAMEWORK_PAGE', 'services/website-development/framework/'), "What is a framework and why it’s essential for web development")
     ])
 def test_data(request):
     return request.param
 
 @pytest.fixture(params=[
-    ("1", os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('B2B_PAGE', 'services/website-development/b2b/'), "B2B e-commerce website development"),
-    ("2", os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('CMS_PAGE', 'services/website-development/cms/'), "Custom CMS development service"),
-    ("3", os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('FRAMEWORK_PAGE', 'services/website-development/framework/'), "What is a framework and why it’s essential for web development")
+    ("1", put_a_secret() + os.getenv('B2B_PAGE', 'services/website-development/b2b/'), "B2B e-commerce website development"),
+    ("2", put_a_secret() + os.getenv('CMS_PAGE', 'services/website-development/cms/'), "Custom CMS development service"),
+    ("3", put_a_secret() + os.getenv('FRAMEWORK_PAGE', 'services/website-development/framework/'), "What is a framework and why it’s essential for web development")
 ])
 def test_data_cards(request):
     return request.param
@@ -212,5 +223,5 @@ def test_data_cards(request):
 load_dotenv()
 
 class URLs:
-    MAIN_PAGE = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/')
+    MAIN_PAGE = put_a_secret()
     PROD_PAGE = 'https://godev.agency/'

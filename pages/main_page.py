@@ -11,7 +11,7 @@ from page_elements.menu_element import MenuElement
 from page_elements.meta_data_page import MetaData
 from page_elements.popup_element import PopupElement
 
-from pages.base_page import BasePage
+from pages.base_page import BasePage, put_a_secret
 from test.locators import Locators
 from utils.data_loader import load_file
 
@@ -120,19 +120,19 @@ class MainPage(BasePage):
 
     # получение данных с карточек с отзывами
     def get_data_review(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/')
+        base_url = put_a_secret()
         self.get_data_review_(self.get_reviews_data_from_page, 'carousel_of_review.json',
-                              'reviews-wrapper', url)
+                              'reviews-wrapper', base_url)
 
     # метод для карусели адвант
     def get_data_advant_carousel_card(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/')
+        base_url = put_a_secret()
         self.get_data_advant_carousel(self.get_data_advant_section_carousel, 'advant_section_carousel.json',
-                                      'advant_section', url)
+                                      'advant_section', base_url)
 
     # метод для черно-белых карточек
     def get_data_card_tiles_main(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/')  # Укажите нужный URL
+        base_url = put_a_secret()
         self.get_data_card_with_type_project(
             'data_card_block_packages.json',
             self.get_data_faq_tiles_new,
@@ -140,11 +140,11 @@ class MainPage(BasePage):
             "//*[contains(@class, 'tile w-')]",
             ".//h3",
             ".//span",
-            url)
+            base_url)
 
     # метод для черно-белых карточек с кружками и порядковыми номерами
     def get_data_card_how_it_staff_main(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/')  # Укажите нужный URL
+        base_url = put_a_secret()
         self.get_data_card_with_type_project(
             'section_how_it_staff_tiles.json',
             self.get_card_data_tiles_card,
@@ -152,7 +152,7 @@ class MainPage(BasePage):
             "//*[@class='card']",
             './/p',
             ".//h3[@class='card-title']",
-            url)
+            base_url)
 
     @allure.step(
         "Получаем заголовок блока")
@@ -208,7 +208,7 @@ class MainPage(BasePage):
 
 
     def get_data_card_app_and_web_services_main(self):
-        url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/')  # Укажите нужный URL
+        base_url = put_a_secret()
         self.get_data_card_with_type_project(
             'section_how_it_staff_tiles.json',
             self.get_card_data_tiles_card,
@@ -216,4 +216,4 @@ class MainPage(BasePage):
             "//*[@class='service-item']",
             ".//*[@class='service-descr']",
             './/h3',
-            url)
+            base_url)

@@ -6,9 +6,8 @@ from utils.data_loader import load_service_data_review
 
 # тест с мета-тегами вынесен в main_page_test
 
-filtered_data = load_service_data_review()
 @feature('Открытие страниц проектов')
-@pytest.mark.parametrize("card_type, expected_url, expected_title", filtered_data)
+@pytest.mark.parametrize("card_type, expected_url, expected_title", load_service_data_review())
 def test_project_page_click_services_and_project_and_open_pages(driver, card_type, expected_url, expected_title):
     project_page_test = ProjectPage(driver)
     project_page_test.open()

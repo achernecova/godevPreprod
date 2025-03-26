@@ -27,7 +27,7 @@ def test_design_page_faq_data_assert(driver):
     design_page_test.open()
     design_page_test.get_data_faq_card()
 
-@pytest.mark.prod_test
+
 @pytest.mark.fill_form_request_faq
 @allure.feature('Успешная отправка заявки из FAQ')
 def test_design_page_add_request_in_faq(driver):

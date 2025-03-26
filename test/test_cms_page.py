@@ -81,7 +81,7 @@ def test_b2b_page_add_request_success(driver):
     form_page_test.add_request_success()
     assert form_page_test.popup_success_displayed() == True, 'Окно подтверждения не появилось'
 
-@pytest.mark.prod_test
+
 @pytest.mark.fill_form_request_footer
 @allure.feature('Успешная отправка заявки из футера')
 #@patch('path.to.your.recaptcha_verification_function', return_value=True)

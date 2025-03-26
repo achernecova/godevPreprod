@@ -72,7 +72,6 @@ def test_support_page_faq_data_assert(driver):
 
 @pytest.mark.fill_form_request_faq
 @allure.feature('Успешная отправка заявки из FAQ')
-@pytest.mark.prod_test
 def test_support_page_add_request_in_faq(driver):
     support_page_test = SupportPage(driver)
     support_page_test.open()

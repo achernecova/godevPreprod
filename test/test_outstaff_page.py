@@ -76,7 +76,6 @@ def test_outstaff_page_faq_data_assert(driver):
 
 @pytest.mark.fill_form_request_faq
 @feature('Успешная отправка заявки из FAQ')
-@pytest.mark.prod_test
 def test_outstaff_dev_page_add_request_in_faq(driver):
     outstaff_page_test = WebOutstaffPage(driver)
     outstaff_page_test.open()

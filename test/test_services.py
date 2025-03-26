@@ -50,7 +50,6 @@ def test_landing_page_why_do_you_need_data_assert(driver):
 
 
 @feature('Успешная отправка заявки из баннера')
-@pytest.mark.prod_test
 def test_add_request_success_services_page(driver):
     services_page_test = ServicesPage(driver)
     services_page_test.open()

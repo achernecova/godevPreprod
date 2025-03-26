@@ -39,7 +39,7 @@ def test_landing_page_benefits_count_cards_assert(driver):
     landing_page_test.open()
     landing_page_test.get_data_card_rates_landing()
 
-@pytest.mark.prod_test
+
 @feature('Заявка из блока Rates')
 def test_landing_page_add_request_assert(driver):
     landing_page_test = LandingPage(driver)

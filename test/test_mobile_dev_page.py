@@ -18,7 +18,6 @@ def test_mobile_dev_page_add_request_in_card_select(driver):
 
 @pytest.mark.fill_form_request_faq
 @feature('Успешная отправка заявки из FAQ')
-@pytest.mark.prod_test
 def test_mobile_dev_page_add_request_in_faq(driver):
     mobile_page = MobileDevPage(driver)
     mobile_page.open()

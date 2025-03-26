@@ -27,7 +27,6 @@ def test_add_request_success_main_page(driver):
 
 @pytest.mark.fill_form_request_footer
 @feature('Успешная отправка заявки из футера')
-@pytest.mark.prod_test
 def test_fill_form_request_footer_main_page(driver):
     main_page_test = MainPage(driver)
     main_page_test.open()

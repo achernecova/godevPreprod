@@ -8,6 +8,7 @@ from pages.main_page import MainPage
 from pages.mobile_dev_page import MobileDevPage
 from pages.project_page import ProjectPage
 from pages.reviews_page import ReviewsPage
+from pages.saas_page import SAASPage
 from pages.services_page import ServicesPage
 from pages.support_pages import SupportPage
 from pages.web_dev_services_page import WebDevServicesPage
@@ -31,7 +32,8 @@ def get_page_instance(page_name, driver):
         "web_dev_serv": WebDevServicesPage,
         "web_dev": WebDevelopPage,
         "landing": LandingPage,
-        #"d2c": D2C
+        #"d2c": D2C,
+        "saas": SAASPage
     }
     try:
         return page_classes[page_name](driver)

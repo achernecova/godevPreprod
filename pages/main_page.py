@@ -23,13 +23,11 @@ class MainPage(BasePage):
         super().__init__(driver)
         self.driver = driver
 
-
     @allure.step(
         "Кликаем по кнопке в баннере")
     def click_button_banner(self):
         click_button_banner = self.driver.find_element(*Locators.click_button_banner)
         click_button_banner.click()
-
 
     @allure.step(
         "Кликаем по кнопке Get in touch")
@@ -52,7 +50,6 @@ class MainPage(BasePage):
         )
         # клик по кнопке через js
         self.driver.execute_script("arguments[0].click();", click_button_banner)
-
 
     @allure.step("Открытие главной страницы")
     def open(self):
@@ -100,7 +97,6 @@ class MainPage(BasePage):
         assert self.get_url() == page_url, f"Ожидался заголовок '{page_url}', но получен '{self.get_url()}'"
         assert self.title_page.text == page_title, f"Ожидался заголовок '{page_title}', но получен '{self.title_page.text}'"
 
-
     @allure.step(
         "Проверяем заголовок из карусели")
     def get_data_title_carousel(self):
@@ -116,7 +112,6 @@ class MainPage(BasePage):
         # проверяем данные
         assert reviews_wrapper['title'] in title_block_from_page, \
             f"Заголовок не найден на странице: {reviews_wrapper['title']}"
-
 
     # получение данных с карточек с отзывами
     def get_data_review(self):
@@ -165,7 +160,7 @@ class MainPage(BasePage):
     @allure.step(
         "Проверяем текст из карусели")
     def get_text_block(self, locator):
-        #self.scroll_new(locator)
+        # self.scroll_new(locator)
         text = self.get_text_block_from_page_all(locator)
         return text
 
@@ -179,33 +174,28 @@ class MainPage(BasePage):
     def get_title_block_it_staff(self):
         return self.get_title_block(Locators.title_block_custom_design_solutions_locator)
 
-
     def get_text_block_it_staff(self):
         return self.get_text_block(Locators.text_block_it_staff_locator)
 
     @allure.step(
         "тянем заголовок из блока Web Development Process")
-    def get_title_block_web_dev_process (self):
+    def get_title_block_web_dev_process(self):
         return self.get_title_block(Locators.title_block_website_dev_locator)
-
 
     @allure.step(
         "тянем текст из блока Web Development Process")
-    def get_text_block_web_dev_process (self):
+    def get_text_block_web_dev_process(self):
         return self.get_text_block(Locators.text_block_website_dev_locator)
-
 
     @allure.step(
         "тянем заголовок из блока Digital Agency Godev")
-    def get_title_block_digital_agency_godev (self):
+    def get_title_block_digital_agency_godev(self):
         return self.get_title_block(Locators.title_block_digital_agency_godev_locator)
-
 
     @allure.step(
         "тянем текст из блока Digital Agency Godev")
-    def get_text_block_digital_agency_godev (self):
+    def get_text_block_digital_agency_godev(self):
         return self.get_text_block(Locators.text_block_digital_agency_godev_locator)
-
 
     def get_data_card_app_and_web_services_main(self):
         base_url = put_a_secret()

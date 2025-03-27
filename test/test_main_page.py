@@ -5,6 +5,7 @@ from pages.main_page import MainPage
 from utils.data_loader import load_package_data_main
 from utils.page_factory import get_page_instance
 
+
 # Загрузка данных из JSON-файла с фильтрацией
 @pytest.mark.parametrize('package_data', load_package_data_main())
 @pytest.mark.prod_test
@@ -94,8 +95,9 @@ def test_page_meta_data(driver, meta_data):
     assert form_page_test.get_canonical_ceo_page() == meta_data[
         'canonical'], f"Получен Canonical:  {form_page_test.get_canonical_ceo_page()}"
 
-
     # скрытие констант в фикстуру
+
+
 @link(url='https://team-v5ka.testit.software/projects/664/tests/907',
       name='Отображение блока App and Web Development Services и переходы на страницы')
 @feature('Открытие страниц услуг')
@@ -120,12 +122,14 @@ def test_main_page_why_do_you_need_data_assert(driver):
     main_page_test.open()
     main_page_test.get_data_card_how_it_staff_main()
 
+
 @pytest.mark.prod_test
 @feature('Проверка данных в карточках блока Web Development Process')
 def test_main_page_web_development_process_data_assert(driver):
     main_page_test = MainPage(driver)
     main_page_test.open()
     main_page_test.get_data_advant_carousel_card()
+
 
 @pytest.mark.prod_test
 @feature('Проверка заголовка и текста в блоке App and Web Development Services')
@@ -142,6 +146,7 @@ def test_main_page_app_and_web_title_assert(driver):
         # Если есть ошибки, выводим их
     if errors:
         pytest.fail("\n".join(errors))
+
 
 @pytest.mark.prod_test
 @feature('Проверка заголовка и текста в блоке IT staff augmentation')
@@ -175,6 +180,7 @@ def test_main_page_web_dev_process_title_assert(driver):
     if errors:
         pytest.fail("\n".join(errors))
 
+
 @pytest.mark.prod_test
 @feature('Проверка заголовка и текста в блоке Digital Agency Godev')
 def test_main_page_digital_agency_godev_title_assert(driver):
@@ -191,11 +197,10 @@ def test_main_page_digital_agency_godev_title_assert(driver):
     if errors:
         pytest.fail("\n".join(errors))
 
+
 @pytest.mark.prod_test
 @feature('Проверка данных в карточках блока App and Web Development Services')
 def test_landing_page_why_do_you_need_data_assert(driver):
     main_page_test = MainPage(driver)
     main_page_test.open()
     main_page_test.get_data_card_app_and_web_services_main()
-
-

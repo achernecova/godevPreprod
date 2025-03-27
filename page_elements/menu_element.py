@@ -16,7 +16,8 @@ class MenuElement(BasePage):
         "menu_project_locator": (By.XPATH, "//*[@class='menu-wrapper']//a[contains(@href, '/projects/')]"),
         "menu_reviews_locator": (By.XPATH, "//*[@class='menu-wrapper']//a[contains(@href, '/reviews/')]"),
         "menu_contacts_locator": (By.XPATH, "//*[@class='menu-wrapper']//a[contains(@href, '/contacts/')]"),
-        "submenu_outstaff_outsource_locator": (By.XPATH, "//*[contains(@href, '/services/outstaffing-and-outsourcing-of-it-specialists/')]"),
+        "submenu_outstaff_outsource_locator": (
+            By.XPATH, "//*[contains(@href, '/services/outstaffing-and-outsourcing-of-it-specialists/')]"),
         "submenu_mobile_development_locator": (By.XPATH, "//*[contains(@href, '/services/mobile-development/')]"),
         "submenu_web_site_dev_locator": (By.XPATH, "//*[contains(@href, '/services/website-development/')]"),
         "submenu_web_development_locator": (By.XPATH, "//*[contains(@href, '/services/web-development/')]"),
@@ -102,7 +103,6 @@ class MenuElement(BasePage):
         action.move_to_element(submenu_web_site_dev_locator).perform()
         self._click_element(self.locators["submenu_b2b_locator"])
 
-
     def click_submenu_landing(self):
         menu_service_locator = self.wait_for_element(self.locators["menu_service_locator"])
         submenu_web_site_dev_locator = self.wait_for_element(self.locators["submenu_web_site_dev_locator"])
@@ -111,4 +111,4 @@ class MenuElement(BasePage):
         action.move_to_element(submenu_web_site_dev_locator).perform()
         element = self.driver.find_element(*Locators.button_landing_locator)
         element.click()
-        #self._click_element(element)
+        # self._click_element(element)

@@ -336,6 +336,60 @@
       }
     ]
   },
+  "saas_card_data": {
+    "title": "Team and specialists",
+    "descriptions": [
+      {
+        "project_type": "Backend",
+        "exp": "3+ years of experience",
+        "level": "middle / middle+ / senior",
+        "price": "30$/ hour",
+        "index": "1",
+        "text": "Symfony, Laravel, Yii, Zend, Codeigniter, CakePHP, Golang, C#, Python, Git , Node.js, MySQL, PostgreSQL, MongoDB, Rest, Docker"
+      },
+      {
+        "project_type": "Mobile",
+        "exp": "3+ years of experience",
+        "level": "middle / middle+ / senior",
+        "price": "35$/ hour",
+        "index": "2",
+        "text": "React Native, Flutter"
+      },
+      {
+        "project_type": "Frontend",
+        "exp": "3+ years of experience",
+        "level": "middle / middle+ / senior",
+        "price": "30$/ hour",
+        "index": "3",
+        "text": "JavaScript, TypeScript, React.js, Vue.js, Angular, Java, Spring, Spring Boot, HTML 5, CSS 3, LESS/SASS/SCSS"
+      },
+      {
+        "project_type": "Analysts",
+        "exp": "3+ years of experience",
+        "level": "middle / middle+ / senior",
+        "price": "26$/ hour",
+        "index": "4",
+        "text": "Atlassian (Confluence, Jira), redmine, UML, BPMB: draw.io,  postman, soapUi, dataGrip, Balsamiq"
+      },
+      {
+        "project_type": "Design",
+        "exp": "3+ years of experience",
+        "level": "middle / middle+ / senior",
+        "price": "22$/ hour",
+        "index": "5",
+        "text": "Figma, Illustrator, Photoshop, Sketch"
+      },
+      {
+        "project_type": "Testers",
+        "exp": "3+ years of experience",
+        "level": "middle / middle+ / senior",
+        "price": "28$/ hour",
+        "index": "6",
+        "text": "Selenium/Selenide, testing API (SOAP/REST), autotesting"
+      }
+    ]
+  },
+
   "tiles_section_card_data_e_com": {
     "title": "Comprehensive E-commerce services",
     "text_title": "At Godev, we provide end-to-end ecommerce web development services tailored to meet the unique needs of your business",
@@ -710,6 +764,69 @@
       }
     ]
   },
+  "tiles_section_card_data_landing": {
+    "title": "Godev’s advantages",
+    "text_title": "Godev specializes in creating landing pages for your business that drive results. Here’s what sets us apart:",
+    "descriptions": [
+      {
+        "index": "1",
+        "project_type": "Comprehensive services",
+        "text": "From design to development, we offer end-to-end landing page design services and support to ensure success"
+      },
+      {
+        "index": "2",
+        "project_type": "Integration-ready pages",
+        "text": "Our pages are compatible with CRMs, ecommerce platforms, and other tools, ensuring smooth implementation in your operations"
+      },
+      {
+        "index": "3",
+        "project_type": "Timely turnaround times",
+        "text": "As a trusted landing page development agency, we deliver results efficiently while maintaining exceptional quality"
+      },
+      {
+        "index": "4",
+        "project_type": "Custom solutions",
+        "text": "Whether for PPC landing pages or standalone projects, we personalize each page to match your business requirements and amplify your brand"
+      },
+      {
+        "index": "5",
+        "project_type": "Expertise and precision",
+        "text": "Our team of landing page design experts combines creativity and technical skills to deliver high-converting landing pages tailored to your specific needs"
+      }
+    ]
+  },
+  "tiles_section_card_data_saas": {
+    "title": "Types of ready-made applications that we work with",
+    "text_title": "Our SaaS development services cater to a wide range of needs across various industries. Whether you’re building a new SaaS product or enhancing an existing SaaS solution, we deliver customized solutions that fit your requirements",
+    "descriptions": [
+      {
+        "index": "1",
+        "project_type": "Custom SaaS applications",
+        "text": "Turn your business idea into reality with tailored application development. From MVP prototypes to long-term upgrades, we support your vision every step of the way"
+      },
+      {
+        "index": "2",
+        "project_type": "Project management tools",
+        "text": "Boost team productivity with cloud-based project management tools. These apps include advanced features like task automation, progress tracking, and real-time collaboration"
+      },
+      {
+        "index": "3",
+        "project_type": "Ecommerce SaaS platforms",
+        "text": "Transform online shopping experiences with scalable SaaS applications that support subscription models, inventory management, and personalized marketing"
+      },
+      {
+        "index": "4",
+        "project_type": "Healthcare SaaS solutions",
+        "text": "Enhance patient care and operational efficiency with web applications for the healthcare industry. Our solutions include electronic medical records (EMRs), telehealth platforms, and compliance-ready systems"
+      },
+      {
+        "index": "5",
+        "project_type": "B2B SaaS platforms",
+        "text": "Streamline business operations with powerful B2B SaaS applications that offer automation, analytics, and seamless integration with third-party systems like APIs and CRMs"
+      }
+    ]
+  },
+
   "tile_squad": {
     "title_section": "Boost your business with a landing page",
     "descriptions": [
@@ -746,37 +863,6 @@
     ]
   },
 
-  "tiles_section_card_data_landing": {
-    "title": "Godev’s advantages",
-    "text_title": "Godev specializes in creating landing pages for your business that drive results. Here’s what sets us apart:",
-    "descriptions": [
-      {
-        "index": "1",
-        "project_type": "Comprehensive services",
-        "text": "From design to development, we offer end-to-end landing page design services and support to ensure success"
-      },
-      {
-        "index": "2",
-        "project_type": "Integration-ready pages",
-        "text": "Our pages are compatible with CRMs, ecommerce platforms, and other tools, ensuring smooth implementation in your operations"
-      },
-      {
-        "index": "3",
-        "project_type": "Timely turnaround times",
-        "text": "As a trusted landing page development agency, we deliver results efficiently while maintaining exceptional quality"
-      },
-      {
-        "index": "4",
-        "project_type": "Custom solutions",
-        "text": "Whether for PPC landing pages or standalone projects, we personalize each page to match your business requirements and amplify your brand"
-      },
-      {
-        "index": "5",
-        "project_type": "Expertise and precision",
-        "text": "Our team of landing page design experts combines creativity and technical skills to deliver high-converting landing pages tailored to your specific needs"
-      }
-    ]
-  },
   "card_data_rates_landing": {
     "title": "Rates",
     "descriptions": [

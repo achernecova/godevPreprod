@@ -89,7 +89,7 @@ def load_file(file_name: str):
 
 def put_a_secret_loader():
     # Получаем значение окружения
-    environment = os.getenv('ENVIRONMENT', 'production')  # Значение по умолчанию - 'development'
+    environment = os.getenv('ENVIRONMENT', 'development')  # Значение по умолчанию - 'development'
     # Определяем базовый URL в зависимости от окружения
     if environment == 'production':
         base_url = os.getenv('PROD_PAGE', 'https://godev.agency/')  # Значение по умолчанию для прод окружения

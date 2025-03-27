@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 
 class Locators:
     click_button_banner = (By.XPATH, "//*[@class='banner']//button")
-    button_banner_page = (By.XPATH,"//*[@class='banner has-descr']//button")
+    button_banner_page = (By.XPATH, "//*[@class='banner has-descr']//button")
     title_page = (By.XPATH, '//h1')
     title_element = (By.XPATH, "//*[@class='section-title half slider-controls']")
     close_modal = (By.XPATH, "//*[@class='close-modal']")
@@ -16,7 +16,6 @@ class Locators:
     team_card = (By.XPATH, "//*[@class='price-frameworks']")
     button_in_card_select_locator = (By.XPATH, "//*[@class='info-card selected']//button")
     button_in_faq_locator = (By.XPATH, "//*[@class='faq-section']//button")
-    #button_in_faq_locator = (By.XPATH, "//*[text()='Ask a Question']")
     input_name_locator = (By.XPATH, "//*[@class='request-offer-inputs']//input[@name='name']")
     input_email_locator = (By.XPATH, "//*[@class='request-offer-inputs']//input[@name='email']")
     input_comment_locator = (By.XPATH, "//*[@class='form-textarea']//*[@placeholder='Comment']")
@@ -30,8 +29,8 @@ class Locators:
     get_text_block_type_section = (By.XPATH, "//*[@class='type-section']//*[contains(@class, 'section-descr')]")
     get_title_block = (By.XPATH, "//*[@class='type-section']//h2")
     price_left_title_locator = (By.XPATH, "(//*[@class='price-frameworks__left']//*[@class='price-frameworks__title'])")
-    price_left_text_locator =  (By.XPATH, "//*[@class='price-frameworks__left']//*[@class='price-frameworks__text']")
-    price_right_title_locator =  (By.XPATH, "//*[@class='price-frameworks__right']//*[@class='price-frameworks__title']")
+    price_left_text_locator = (By.XPATH, "//*[@class='price-frameworks__left']//*[@class='price-frameworks__text']")
+    price_right_title_locator = (By.XPATH, "//*[@class='price-frameworks__right']//*[@class='price-frameworks__title']")
     price_right_text_locator = (By.XPATH, "//*[@class='price-frameworks__right']//*[@class='price-frameworks__text']")
     section_form_element_locator = (By.XPATH, "//section[@class='section-form']")
     topping_click_locator = (By.XPATH, "//label[@class='topping'][@for='t1']")
@@ -52,28 +51,34 @@ class Locators:
     button_rates_locator = (By.XPATH, "(//a[@class='button open-modal'])[1]")
     title_rates_locator = (By.XPATH, "//h2[@class='section-title max-content']")
     title_convenient_locator = (By.XPATH, "//*[@class='work']//*[@class='section-title max-content']")
-
     title_convenient_card_locator = (By.XPATH, "//*[@class='work']//*[@class='h3']")
 
     title_block_app_and_web_development_services_locator = (By.XPATH, "//section[@id='services']//h2")
-    text_block_app_and_web_development_services_locator = (By.XPATH, "//section[@id='services']//*[contains(@class, 'section-descr')]")
+    text_block_app_and_web_development_services_locator = (
+    By.XPATH, "//section[@id='services']//*[contains(@class, 'section-descr')]")
 
     title_block_website_dev_locator = (By.XPATH, "//section[@class='advant-section']//h2")
-    text_block_website_dev_locator = (By.XPATH, "//section[@class='advant-section']//*[contains(@class, 'section-descr ')]")
+    text_block_website_dev_locator = (
+    By.XPATH, "//section[@class='advant-section']//*[contains(@class, 'section-descr ')]")
 
     title_block_stages_of_creating_locator = (By.XPATH, "//*[@class='tiles-section']//h2")
-    text_block_stages_of_creating_locator = (By.XPATH, "//*[@class='tiles-section']//*[contains(@class, 'section-descr ')]")
+    text_block_stages_of_creating_locator = (
+    By.XPATH, "//*[@class='tiles-section']//*[contains(@class, 'section-descr ')]")
 
     title_block_website_design_locator = (By.XPATH, "//section[@id='projects']//h2")
     text_block_website_design_locator = (By.XPATH, "//section[@id='projects']//*[contains(@class, 'section-descr')]")
 
-    title_block_custom_design_solutions_locator = (By.XPATH, "//*[@class='how-it-staff']//*[@class='section-title half']")
-    text_block_custom_design_solutions_locator = (By.XPATH, "//*[@class='how-it-staff']//*[@class='section-descr fs16px half']")
+    title_block_custom_design_solutions_locator = (
+    By.XPATH, "//*[@class='how-it-staff']//*[@class='section-title half']")
+    text_block_custom_design_solutions_locator = (
+    By.XPATH, "//*[@class='how-it-staff']//*[@class='section-descr fs16px half']")
     text_block_it_staff_locator = (By.XPATH, "//*[@class='how-it-staff']//*[contains(@class, 'section-descr')]")
-    title_block_digital_agency_godev_locator = (By.XPATH, "//section[@class='tiles-section']//*[contains(@class, 'section-title half')]")
-    text_block_digital_agency_godev_locator = (By.XPATH, "//section[@class='tiles-section']//*[contains(@class, 'section-descr ')]")
+    title_block_digital_agency_godev_locator = (
+    By.XPATH, "//section[@class='tiles-section']//*[contains(@class, 'section-title half')]")
+    text_block_digital_agency_godev_locator = (
+    By.XPATH, "//section[@class='tiles-section']//*[contains(@class, 'section-descr ')]")
     button_get_in_touch_locator = (By.XPATH, "(//button[@class='get-in-touch-btn open-modal'])[1]")
-    block_get_in_touch_locator = (By.XPATH,"(//*[@class='get-in-touch-wrapper'])[1]")
+    block_get_in_touch_locator = (By.XPATH, "(//*[@class='get-in-touch-wrapper'])[1]")
 
     XPATH_MAP = {
         "blocks": "//*[@class='web-dev-services']",
@@ -112,15 +117,15 @@ class Locators:
 
     @staticmethod
     def get_team_card_more_locator(index):
-        return (By.XPATH, f"(//*[@class='team-card']//a[@class='more'])[{index}]")
+        return By.XPATH, f"(//*[@class='team-card']//a[@class='more'])[{index}]"
 
     @staticmethod
     def get_data_with_attr_and_index_locator(attr, index):
-        return (By.XPATH, f"(//*[@class='team-card']//*[@class='{attr}'])[{index + 1}]")
+        return By.XPATH, f"(//*[@class='team-card']//*[@class='{attr}'])[{index + 1}]"
 
     @staticmethod
     def get_click_block_class_and_index_locator(block_class, index):
-        return (By.XPATH, f"(//*[contains(@class, '{block_class}')])[{index}]")
+        return By.XPATH, f"(//*[contains(@class, '{block_class}')])[{index}]"
 
     @staticmethod
     def get_check_packages_data_not_experience_locator(index):
@@ -130,21 +135,20 @@ class Locators:
 
     @staticmethod
     def get_project_locator(index):
-        return (By.XPATH, f"(//*[@class='projects-title'])[{index}]")
+        return By.XPATH, f"(//*[@class='projects-title'])[{index}]"
 
     @staticmethod
     def get_button_more_locator(index):
-        return (By.XPATH, f"(//*[contains(@class, 'tile ')]//a[@class='more'])[{index}]")
+        return By.XPATH, f"(//*[contains(@class, 'tile ')]//a[@class='more'])[{index}]"
 
     @staticmethod
     def check_packages_data_services_title_locator(index):
-        return (By.XPATH, f"(//*[@class='card-title'])[1 + {index}]")
+        return By.XPATH, f"(//*[@class='card-title'])[1 + {index}]"
 
     @staticmethod
     def check_packages_data_services_price_locator(index):
-        return (By.XPATH, f"(//*[@class='price'])[1 + {index}]")
+        return By.XPATH, f"(//*[@class='price'])[1 + {index}]"
 
     @staticmethod
     def get_type_section(tree):
         return tree.xpath("//*[@class='advant-card-content']")
-

@@ -1,9 +1,7 @@
-import argparse
-import logging
 import os
-import pytest
+
 import allure
-import requests
+import pytest
 from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -59,29 +57,10 @@ def driver(request):
     d.quit()
 
 
-def verify_recaptcha(response):
-    secret_key = 'YOUR_SECRET_KEY'
-    payload = {
-        'secret': secret_key,
-        'response': response
-    }
-
-    try:
-        response = requests.post('https://www.google.com/recaptcha/api/siteverify', data=payload)
-        result = response.json()
-
-        if result.get('success') and result.get('score', 0) >= 0.5:
-            return True
-        else:
-            return False
-    except requests.RequestException as e:
-        # Логирование ошибки
-        print(f"Error during reCAPTCHA verification: {e}")
-        return False
 
 def put_a_secret():
     # Получаем значение окружения
-    environment = os.getenv('ENVIRONMENT', 'production')  # Значение по умолчанию - development (второе значение - production)
+    environment = os.getenv('ENVIRONMENT', 'development')  # Значение по умолчанию - development (второе значение - production)
     # Определяем базовый URL в зависимости от окружения
     if environment == 'production':
         base_url = os.getenv('PROD_PAGE', 'https://godev.agency/')  # Значение по умолчанию для прод окружения
@@ -173,6 +152,12 @@ def put_a_secret():
         "title": "Mastering Landing Page Design in USA, Top Development Services in Godev",
         "description": "Unlock the secrets to effective landing page design in the USA with Godev's top development services. Generate more leads and enhance conversions today!",
         "canonical": put_a_secret() + os.getenv('LANDING', 'services/development-of-a-landing-page/')
+    },
+    {
+        "page": "saas",
+        "title": "SaaS Development Services in USA: Hire Expert Developers for Application Development in Godev",
+        "description": "Unlock your business potential with our SaaS development services in the USA. Hire expert developers to create scalable, user-friendly applications tailored for your clients",
+        "canonical": put_a_secret() + os.getenv('SAAS', 'saas/')
     }
 
 ])
@@ -225,3 +210,4 @@ load_dotenv()
 class URLs:
     MAIN_PAGE = put_a_secret()
     PROD_PAGE = 'https://godev.agency/'
+

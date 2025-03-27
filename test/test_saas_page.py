@@ -1,12 +1,10 @@
 import allure
 import pytest
-import json
 
 from allure_commons._allure import feature
 
 from pages.saas_page import SAASPage
 from utils.data_loader import load_service_data_review
-from browsermobproxy import Server
 
 
 

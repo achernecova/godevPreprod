@@ -1,0 +1,15 @@
+Найдено 6 элементов с классами, содержащими 'accordeon-body'
+Полученные данные с веб-страницы:
+{'project_type': 'What frameworks does Godev specialize in?', 'text': 'Godev specializes in a variety of web frameworks, including Django, Ruby on Rails, Laravel, Angular, and ASP.NET, among others'}
+{'project_type': 'Why should I use a web development framework?', 'text': 'Utilizing a web development framework accelerates the development process, enhances application performance, and ensures code consistency, making it easier to maintain and scale your application'}
+{'project_type': 'Can Godev handle both front-end and back-end development?', 'text': 'Yes, Godev has expertise in both front-end frameworks like Angular and back-end frameworks like Django and Laravel, providing comprehensive development services'}
+{'project_type': 'How does outsourcing with Godev save time and cost?', 'text': 'By leveraging our experienced team and efficient development practices, we reduce the time and resources you need to invest in building and maintaining an in-house team, leading to cost savings and faster project completion'}
+{'project_type': 'Does Godev offer custom solutions?', 'text': 'Absolutely. Services are customized to meet your specific requirements, ensuring that the final product aligns with your vision and business needs'}
+{'project_type': 'What kind of support does Godev provide after project completion?', 'text': 'Godev offers ongoing support and maintenance services, including updates, bug fixes, and enhancements, ensuring your application remains up-to-date and functions seamlessly'}
+Данные из JSON:
+{'project_type': 'What frameworks does Godev specialize in?', 'text': 'Godev specializes in a variety of web frameworks, including Django, Ruby on Rails, Laravel, Angular, and ASP.NET, among others'}
+{'project_type': 'Why should I use a web development framework?', 'text': 'Utilizing a web development framework accelerates the development process, enhances application performance, and ensures code consistency, making it easier to maintain and scale your application'}
+{'project_type': 'Can Godev handle both front-end and back-end development?', 'text': 'Yes, Godev has expertise in both front-end frameworks like Angular and back-end frameworks like Django and Laravel, providing comprehensive development services'}
+{'project_type': 'How does outsourcing with Godev save time and cost?', 'text': 'By leveraging our experienced team and efficient development practices, we reduce the time and resources you need to invest in building and maintaining an in-house team, leading to cost savings and faster project completion'}
+{'project_type': 'Does Godev offer custom solutions?', 'text': 'Absolutely. Services are customized to meet your specific requirements, ensuring that the final product aligns with your vision and business needs'}
+{'project_type': 'What kind of support does Godev provide after project completion?', 'text': 'Godev offers ongoing support and maintenance services, including updates, bug fixes, and enhancements, ensuring your application remains up-to-date and functions seamlessly'}

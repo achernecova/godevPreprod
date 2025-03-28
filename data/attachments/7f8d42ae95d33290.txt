@@ -1,0 +1,13 @@
+Найдено 5 элементов с классами, содержащими 'accordeon-body'
+Полученные данные с веб-страницы:
+{'project_type': 'How quickly do you react on emerging issues?', 'text': 'Within 1-2 hours on average; in case of high specialist workload, the maximum waiting time will be 6 hours. We initiate the resolution of major problems within a few minutes.'}
+{'project_type': 'How do you maintain the confidentiality of transmitted data?', 'text': 'We use the copy of the project and make the necessary corrections to the testing copy without access. We can also sign an NDA according to your desire.'}
+{'project_type': 'Can your actions result in website breakage? If so, how will you correct the damage?', 'text': 'Such situation is highly unlikely since all work is conducted on the test server. If a failure occurred, we would join and correct the errors without delay.'}
+{'project_type': 'How does website support contribute to business development?', 'text': 'Our support ensures uninterrupted operation of your resource, providing a comfortable and secure experience for visitors. Regular updates guarantee the site’s compliance with modern tendencies.'}
+{'project_type': 'If I need to make changes to the website, but the time in the rate is over, what should I do?', 'text': 'The cost of an extra working hour is fixed for every rate. Therefore, your tasks will be completed in agreed-upon time for an additional fee.'}
+Данные из JSON:
+{'project_type': 'How quickly do you react on emerging issues?', 'text': 'Within 1-2 hours on average; in case of high specialist workload, the maximum waiting time will be 6 hours. We initiate the resolution of major problems within a few minutes.'}
+{'project_type': 'How do you maintain the confidentiality of transmitted data?', 'text': 'We use the copy of the project and make the necessary corrections to the testing copy without access. We can also sign an NDA according to your desire.'}
+{'project_type': 'Can your actions result in website breakage? If so, how will you correct the damage?', 'text': 'Such situation is highly unlikely since all work is conducted on the test server. If a failure occurred, we would join and correct the errors without delay.'}
+{'project_type': 'How does website support contribute to business development?', 'text': 'Our support ensures uninterrupted operation of your resource, providing a comfortable and secure experience for visitors. Regular updates guarantee the site’s compliance with modern tendencies.'}
+{'project_type': 'If I need to make changes to the website, but the time in the rate is over, what should I do?', 'text': 'The cost of an extra working hour is fixed for every rate. Therefore, your tasks will be completed in agreed-upon time for an additional fee.'}

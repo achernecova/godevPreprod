@@ -1,0 +1,14 @@
+Полученные данные с веб-страницы:
+{'exp': '3+ years of experience', 'level': 'middle / middle+ / senior', 'project_type': 'Backend', 'price': '30$/ hour', 'text': 'Symfony, Laravel, Yii, Zend, Codeigniter, CakePHP, Golang, C#, Python, Git , Node.js, MySQL, PostgreSQL, MongoDB, Rest, Docker'}
+{'exp': '3+ years of experience', 'level': 'middle / middle+ / senior', 'project_type': 'Mobile', 'price': '35$/ hour', 'text': 'React Native, Flutter'}
+{'exp': '3+ years of experience', 'level': 'middle / middle+ / senior', 'project_type': 'Frontend', 'price': '30$/ hour', 'text': 'JavaScript, TypeScript, React.js, Vue.js, Angular, Java, Spring, Spring Boot, HTML 5, CSS 3, LESS/SASS/SCSS'}
+{'exp': '3+ years of experience', 'level': 'middle / middle+ / senior', 'project_type': 'Analysts', 'price': '26$/ hour', 'text': 'Atlassian (Confluence, Jira), redmine, UML, BPMB: draw.io,  postman, soapUi, dataGrip, Balsamiq'}
+{'exp': '3+ years of experience', 'level': 'middle / middle+ / senior', 'project_type': 'Design', 'price': '22$/ hour', 'text': 'Figma, Illustrator, Photoshop, Sketch'}
+{'exp': '3+ years of experience', 'level': 'middle / middle+ / senior', 'project_type': 'Testers', 'price': '28$/ hour', 'text': 'Selenium/Selenide, testing API (SOAP/REST), autotesting'}
+Данные из JSON:
+{'project_type': 'Backend', 'exp': '3+ years of experience', 'level': 'middle / middle+ / senior', 'price': '30$/ hour', 'index': '1', 'text': 'Symfony, Laravel, Yii, Zend, Codeigniter, CakePHP, Golang, C#, Python, Git , Node.js, MySQL, PostgreSQL, MongoDB, Rest, Docker'}
+{'project_type': 'Mobile', 'exp': '3+ years of experience', 'level': 'middle / middle+ / senior', 'price': '35$/ hour', 'index': '2', 'text': 'React Native, Flutter'}
+{'project_type': 'Frontend', 'exp': '3+ years of experience', 'level': 'middle / middle+ / senior', 'price': '30$/ hour', 'index': '3', 'text': 'JavaScript, TypeScript, React.js, Vue.js, Angular, Java, Spring, Spring Boot, HTML 5, CSS 3, LESS/SASS/SCSS'}
+{'project_type': 'Analysts', 'exp': '3+ years of experience', 'level': 'middle / middle+ / senior', 'price': '26$/ hour', 'index': '4', 'text': 'Atlassian (Confluence, Jira), redmine, UML, BPMB: draw.io,  postman, soapUi, dataGrip, Balsamiq'}
+{'project_type': 'Design', 'exp': '3+ years of experience', 'level': 'middle / middle+ / senior', 'price': '22$/ hour', 'index': '5', 'text': 'Figma, Illustrator, Photoshop, Sketch'}
+{'project_type': 'Testers', 'exp': '3+ years of experience', 'level': 'middle / middle+ / senior', 'price': '28$/ hour', 'index': '6', 'text': 'Selenium/Selenide, testing API (SOAP/REST), autotesting'}

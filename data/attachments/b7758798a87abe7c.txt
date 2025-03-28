@@ -1,0 +1,17 @@
+Найдено 7 элементов с классами, содержащими 'accordeon-body'
+Полученные данные с веб-страницы:
+{'project_type': 'Customized web design', 'text': 'We create visually appealing and user-friendly designs that reflect your brand identity and enhance user experience'}
+{'project_type': 'Digital marketing support', 'text': 'Our services extend to digital marketing, helping you reach a broader audience and drive engagement through targeted campaigns'}
+{'project_type': 'Ongoing support and maintenance', 'text': 'Our commitment doesn’t end with the launch; we provide continuous support and maintenance to keep your website running smoothly'}
+{'project_type': 'Search engine optimization (SEO)', 'text': 'We implement effective SEO strategies to improve your website’s visibility and attract more qualified leads'}
+{'project_type': 'Security', 'text': 'We prioritize the security of your website, implementing robust measures to protect sensitive data and ensure compliance with industry standards'}
+{'project_type': 'Seamless integration', 'text': 'Our solutions ensure smooth integration with existing systems, including payment gateways, inventory management, and CRM platforms, streamlining your operations'}
+{'project_type': 'Scalability', 'text': 'Our solutions are designed to grow with your business, accommodating increased traffic and expanding product lines without compromising performance'}
+Данные из JSON:
+{'index': '1', 'project_type': 'Customized web design', 'text': 'We create visually appealing and user-friendly designs that reflect your brand identity and enhance user experience'}
+{'index': '2', 'project_type': 'Digital marketing support', 'text': 'Our services extend to digital marketing, helping you reach a broader audience and drive engagement through targeted campaigns'}
+{'index': '3', 'project_type': 'Ongoing support and maintenance', 'text': 'Our commitment doesn’t end with the launch; we provide continuous support and maintenance to keep your website running smoothly'}
+{'index': '4', 'project_type': 'Search engine optimization (SEO)', 'text': 'We implement effective SEO strategies to improve your website’s visibility and attract more qualified leads'}
+{'index': '5', 'project_type': 'Security', 'text': 'We prioritize the security of your website, implementing robust measures to protect sensitive data and ensure compliance with industry standards'}
+{'index': '6', 'project_type': 'Seamless integration', 'text': 'Our solutions ensure smooth integration with existing systems, including payment gateways, inventory management, and CRM platforms, streamlining your operations'}
+{'index': '7', 'project_type': 'Scalability', 'text': 'Our solutions are designed to grow with your business, accommodating increased traffic and expanding product lines without compromising performance'}

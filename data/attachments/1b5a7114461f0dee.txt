@@ -1,0 +1,13 @@
+Найдено 5 элементов с классами, содержащими 'swiper-slide grabbable // advant-card'
+Полученные данные с веб-страницы:
+{'advant_title': 'Discovery phase', 'advant_text': 'We analyze your requirements, validate your business idea, and create a detailed roadmap. Our team of analysts ensures that your goals are clear and achievable'}
+{'advant_title': 'Product design and prototype', 'advant_text': 'Collaborating with UX designers, we develop a visually appealing and intuitive prototype. This step allows us to refine the design and confirm the user experience before moving to full-scale development'}
+{'advant_title': 'Application development', 'advant_text': 'Using an agile approach, our development team builds your SaaS product incrementally. With a focus on scalable functionality and efficient coding, we ensure your app meets market demands'}
+{'advant_title': 'Integration and testing', 'advant_text': 'We integrate APIs and third-party tools while performing rigorous testing to guarantee a seamless production environment. Our quality assurance measures ensure the final product is reliable and error-free'}
+{'advant_title': 'Deployment and maintenance', 'advant_text': 'Your app is deployed into the production environment, ensuring it is fully operational and accessible to users. We provide ongoing support, updates, and upgrades to keep your product up-to-date and competitive'}
+Данные из JSON:
+{'advant_title': 'Discovery phase', 'advant_text': 'We analyze your requirements, validate your business idea, and create a detailed roadmap. Our team of analysts ensures that your goals are clear and achievable'}
+{'advant_title': 'Product design and prototype', 'advant_text': 'Collaborating with UX designers, we develop a visually appealing and intuitive prototype. This step allows us to refine the design and confirm the user experience before moving to full-scale development'}
+{'advant_title': 'Application development', 'advant_text': 'Using an agile approach, our development team builds your SaaS product incrementally. With a focus on scalable functionality and efficient coding, we ensure your app meets market demands'}
+{'advant_title': 'Integration and testing', 'advant_text': 'We integrate APIs and third-party tools while performing rigorous testing to guarantee a seamless production environment. Our quality assurance measures ensure the final product is reliable and error-free'}
+{'advant_title': 'Deployment and maintenance', 'advant_text': 'Your app is deployed into the production environment, ensuring it is fully operational and accessible to users. We provide ongoing support, updates, and upgrades to keep your product up-to-date and competitive'}

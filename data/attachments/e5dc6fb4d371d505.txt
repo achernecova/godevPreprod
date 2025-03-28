@@ -1,0 +1,11 @@
+Найдено 4 элементов с классами, содержащими 'accordeon-body'
+Полученные данные с веб-страницы:
+{'project_type': 'How much does it cost to develop a website with Godev?', 'text': 'The final cost of each project is individual, as there are numerous factors affecting the amount of work that has to be done. Feel free to contact our project management department to discuss custom web development services for your project'}
+{'project_type': 'How can a web app be optimized for SEO?', 'text': 'Our web application creation process involves optimizing the contents of every page to make your business discoverable in search engines, helping you to generate leads.'}
+{'project_type': 'Which programming languages can Godev work with?', 'text': 'Our team of experienced programmers can deliver professional web development services with all popular programming languages and frameworks.'}
+{'project_type': 'What happens if I decide to implement a new feature after a website or web app is delivered?', 'text': 'Godev offers full-scale web development services and ongoing support. Our specialists are always ready to assist with integrating additional functionality.'}
+Данные из JSON:
+{'project_type': 'How much does it cost to develop a website with Godev?', 'text': 'The final cost of each project is individual, as there are numerous factors affecting the amount of work that has to be done. Feel free to contact our project management department to discuss custom web development services for your project'}
+{'project_type': 'How can a web app be optimized for SEO?', 'text': 'Our web application creation process involves optimizing the contents of every page to make your business discoverable in search engines, helping you to generate leads.'}
+{'project_type': 'Which programming languages can Godev work with?', 'text': 'Our team of experienced programmers can deliver professional web development services with all popular programming languages and frameworks.'}
+{'project_type': 'What happens if I decide to implement a new feature after a website or web app is delivered?', 'text': 'Godev offers full-scale web development services and ongoing support. Our specialists are always ready to assist with integrating additional functionality.'}

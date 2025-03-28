@@ -1,0 +1,19 @@
+Найдено 8 элементов с классами, содержащими 'accordeon-body'
+Полученные данные с веб-страницы:
+{'project_type': 'Analysis of the market and competitors', 'text': 'We begin by defining the scope of your e-commerce project and identifying your business goals. This helps create a solid foundation for the development phase'}
+{'project_type': 'Technical specification', 'text': 'We describe the structure, design and functionality. Identification of important points'}
+{'project_type': 'Prototype', 'text': 'Consideration of architecture and logic'}
+{'project_type': 'Design', 'text': 'We will create a unique UX/UI interface design that meets your requirements and those of your business sector. Our team is committed to developing a user-friendly and engaging application design that will provide a seamless user experience'}
+{'project_type': 'Development', 'text': 'Frontend and backend development. Using core mobile technologies, we start building your app on the selected development platform. We focus on scalability, functionality, and performance'}
+{'project_type': 'Testing', 'text': 'Once the app is developed, we conduct comprehensive testing to ensure that it is bug-free and performs well under various conditions'}
+{'project_type': 'Deployment', 'text': 'After testing, we launch the app on the App Store and Google Play, ensuring it’s accessible to your users'}
+{'project_type': 'Support', 'text': 'After the launch, we offer continuous support and maintenance, ensuring your app remains updated and functional over time'}
+Данные из JSON:
+{'index': '1', 'project_type': 'Analysis of the market and competitors', 'text': 'We begin by defining the scope of your e-commerce project and identifying your business goals. This helps create a solid foundation for the development phase'}
+{'index': '2', 'project_type': 'Technical specification', 'text': 'We describe the structure, design and functionality. Identification of important points'}
+{'index': '3', 'project_type': 'Prototype', 'text': 'Consideration of architecture and logic'}
+{'index': '4', 'project_type': 'Design', 'text': 'We will create a unique UX/UI interface design that meets your requirements and those of your business sector. Our team is committed to developing a user-friendly and engaging application design that will provide a seamless user experience'}
+{'index': '5', 'project_type': 'Development', 'text': 'Frontend and backend development. Using core mobile technologies, we start building your app on the selected development platform. We focus on scalability, functionality, and performance'}
+{'index': '6', 'project_type': 'Testing', 'text': 'Once the app is developed, we conduct comprehensive testing to ensure that it is bug-free and performs well under various conditions'}
+{'index': '7', 'project_type': 'Deployment', 'text': 'After testing, we launch the app on the App Store and Google Play, ensuring it’s accessible to your users'}
+{'index': '8', 'project_type': 'Support', 'text': 'After the launch, we offer continuous support and maintenance, ensuring your app remains updated and functional over time'}

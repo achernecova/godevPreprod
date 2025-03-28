@@ -1,0 +1,13 @@
+Найдено 5 элементов с классами, содержащими 'accordeon-body'
+Полученные данные с веб-страницы:
+{'project_type': 'Custom SaaS applications', 'text': 'Turn your business idea into reality with tailored application development. From MVP prototypes to long-term upgrades, we support your vision every step of the way'}
+{'project_type': 'Project management tools', 'text': 'Boost team productivity with cloud-based project management tools. These apps include advanced features like task automation, progress tracking, and real-time collaboration'}
+{'project_type': 'Ecommerce SaaS platforms', 'text': 'Transform online shopping experiences with scalable SaaS applications that support subscription models, inventory management, and personalized marketing'}
+{'project_type': 'Healthcare SaaS solutions', 'text': 'Enhance patient care and operational efficiency with web applications for the healthcare industry. Our solutions include electronic medical records (EMRs), telehealth platforms, and compliance-ready systems'}
+{'project_type': 'B2B SaaS platforms', 'text': 'Streamline business operations with powerful B2B SaaS applications that offer automation, analytics, and seamless integration with third-party systems like APIs and CRMs'}
+Данные из JSON:
+{'index': '1', 'project_type': 'Custom SaaS applications', 'text': 'Turn your business idea into reality with tailored application development. From MVP prototypes to long-term upgrades, we support your vision every step of the way'}
+{'index': '2', 'project_type': 'Project management tools', 'text': 'Boost team productivity with cloud-based project management tools. These apps include advanced features like task automation, progress tracking, and real-time collaboration'}
+{'index': '3', 'project_type': 'Ecommerce SaaS platforms', 'text': 'Transform online shopping experiences with scalable SaaS applications that support subscription models, inventory management, and personalized marketing'}
+{'index': '4', 'project_type': 'Healthcare SaaS solutions', 'text': 'Enhance patient care and operational efficiency with web applications for the healthcare industry. Our solutions include electronic medical records (EMRs), telehealth platforms, and compliance-ready systems'}
+{'index': '5', 'project_type': 'B2B SaaS platforms', 'text': 'Streamline business operations with powerful B2B SaaS applications that offer automation, analytics, and seamless integration with third-party systems like APIs and CRMs'}

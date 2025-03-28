@@ -1,0 +1,11 @@
+Найдено 4 элементов с классами, содержащими //*[@class='card']
+Полученные данные с веб-страницы:
+{'project_type': 'Identify the needs', 'text': 'The first step in the staff augmentation process is assessing the specific needs of your project. This helps determine the programming skills and expertise required for successful project completion'}
+{'project_type': 'Selection of candidates', 'text': 'Godev taps into its vast network of IT professionals to find candidates who precisely match your project’s requirements. These candidates are carefully vetted to ensure they possess the necessary skills and experience'}
+{'project_type': 'Integration with your team', 'text': 'Once the right candidates are chosen, they are seamlessly integrated into your existing team. They work alongside your in-house staff, following your company’s processes and using your preferred tools and technologies'}
+{'project_type': 'Ongoing support', 'text': 'Throughout the project, Godev provides continuous support to ensure the augmented staff meets your expectations and aligns with your business needs. If needed, we are ready to provide additional resources or replace team members'}
+Данные из JSON:
+{'project_type': 'Identify the needs', 'text': 'The first step in the staff augmentation process is assessing the specific needs of your project. This helps determine the programming skills and expertise required for successful project completion'}
+{'project_type': 'Selection of candidates', 'text': 'Godev taps into its vast network of IT professionals to find candidates who precisely match your project’s requirements. These candidates are carefully vetted to ensure they possess the necessary skills and experience'}
+{'project_type': 'Integration with your team', 'text': 'Once the right candidates are chosen, they are seamlessly integrated into your existing team. They work alongside your in-house staff, following your company’s processes and using your preferred tools and technologies'}
+{'project_type': 'Ongoing support', 'text': 'Throughout the project, Godev provides continuous support to ensure the augmented staff meets your expectations and aligns with your business needs. If needed, we are ready to provide additional resources or replace team members'}

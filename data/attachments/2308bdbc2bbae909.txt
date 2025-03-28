@@ -1,0 +1,9 @@
+Компания: {'Swift Logistics System'}
+Автор: {'Natalie'}
+Текст отзыва: {'We have been looking for a decent developer for our project for quite a while. It was especially important, as the software in question would be deeply integrated into the company’s operations. Godev has nailed the task: they analyzed our business processes, helped us with creating the software requirements specification, suggested some practical ideas, and finalized the project in a very reasonable time frame. These are highly qualified developers with a responsible approach to their projects. The professionalism and flexibility of the Godev team allow us to optimally resolve all our tasks. Godev has a great process management culture. The responsiveness, the very scrupulous attention to detail, and a positive approach make this company stand out. It feels great to have such a competent partner that you can always rely on. We are glad to recommend the development and marketing services.'}
+Компания: {'Techstar'}
+Автор: {'Tatiana'}
+Текст отзыва: {'We made the order more than a year ago, as we needed to fix a couple of issues with our site. Since then, we have been only increasing our collaboration. We have enjoyed the option to contact the developers at any time with minor issues without any fees or fixed monthly hours. The work is always professional and reliable. Thanks to Pavel and the colleagues for your help and understanding!'}
+Компания: {'Eurovpn'}
+Автор: {'Andrew'}
+Текст отзыва: {'Honestly, I was ready for some pitfalls or low-quality work, but I was pleasantly surprised with the result. The web design quality was amazing. The project was also completed quickly and all my notes and requests were taken into account. Definitely willing to recommend the service!'}

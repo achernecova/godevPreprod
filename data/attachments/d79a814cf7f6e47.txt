@@ -1,0 +1,11 @@
+Найдено 4 элементов с классами, содержащими //*[@class='work-card']
+Полученные данные с веб-страницы:
+{'project_type': 'FTE', 'text': 'Acquire full-time equivalent staff'}
+{'project_type': 'T&M', 'text': 'Hourly wage'}
+{'project_type': 'Mixed', 'text': 'if acquired employees are insufficient'}
+{'project_type': 'Project work', 'text': 'Involve a specialist with required skills for a specific project'}
+Данные из JSON:
+{'project_type': 'FTE', 'text': 'Acquire full-time equivalent staff'}
+{'project_type': 'T&M', 'text': 'Hourly wage'}
+{'project_type': 'Mixed', 'text': 'if acquired employees are insufficient'}
+{'project_type': 'Project work', 'text': 'Involve a specialist with required skills for a specific project'}

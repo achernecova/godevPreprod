@@ -1,0 +1,15 @@
+Найдено 6 элементов с классами, содержащими 'swiper-slide grabbable // advant-card'
+Полученные данные с веб-страницы:
+{'advant_title': 'Analysis', 'advant_text': 'Identification of the goals and objectives of your business, analysis of the market, competitors and target audience'}
+{'advant_title': 'Prototype', 'advant_text': 'Thinking over the structure of the project and creating the prototype'}
+{'advant_title': 'Design', 'advant_text': 'Thinking over the concept, creating the icons, illustrations and logos'}
+{'advant_title': 'Development', 'advant_text': 'Translating design into code'}
+{'advant_title': 'Testing', 'advant_text': 'Evaluation of performance, mistake exclusion'}
+{'advant_title': 'Launch and support', 'advant_text': 'Installation on domain and hosting, connecting services, introduction of digital instruments in your business'}
+Данные из JSON:
+{'advant_title': 'Analysis', 'advant_text': 'Identification of the goals and objectives of your business, analysis of the market, competitors and target audience'}
+{'advant_title': 'Prototype', 'advant_text': 'Thinking over the structure of the project and creating the prototype'}
+{'advant_title': 'Design', 'advant_text': 'Thinking over the concept, creating the icons, illustrations and logos'}
+{'advant_title': 'Development', 'advant_text': 'Translating design into code'}
+{'advant_title': 'Testing', 'advant_text': 'Evaluation of performance, mistake exclusion'}
+{'advant_title': 'Launch and support', 'advant_text': 'Installation on domain and hosting, connecting services, introduction of digital instruments in your business'}

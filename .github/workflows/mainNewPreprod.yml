@@ -36,7 +36,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install selenium webdriver-manager
+        pip install selenium webdriver-manager allure-pytest
         echo "Installed packages:"
         pip list
 
@@ -54,12 +54,20 @@ jobs:
         echo "Starting tests..."
         if [ "${{ github.event.inputs.test_tag }}" != "" ]; then
           echo "Running tests with tag: ${{ github.event.inputs.test_tag }}"
-          pytest -v -m "${{ github.event.inputs.test_tag }}" --headless --tb=long --full-trace --capture=tee-sys | tee test_output.log || true
+          pytest -v -m "${{ github.event.inputs.test_tag }}" --headless --tb=long --full-trace --capture=tee-sys --alluredir=allure-results | tee test_output.log || true
         else
           echo "Running all tests"
-          pytest -v --headless --tb=long --full-trace --capture=tee-sys | tee test_output.log || true
+          pytest -v --headless --tb=long --full-trace --capture=tee-sys --alluredir=allure-results | tee test_output.log || true
         fi
-        
+
+    - name: Generate Allure Report
+      uses: simple-elf/allure-report-action@master
+      if: always()
+      with:
+        allure_results: allure-results
+        allure_history: allure-history
+        keep_reports: 20
+
     - name: Store test results
       if: always()
       uses: actions/upload-artifact@v4
@@ -71,14 +79,6 @@ jobs:
           test_output.log
         retention-days: 30
 
-    - name: Generate Allure Report
-      uses: simple-elf/allure-report-action@master
-      if: always()
-      with:
-        allure_results: allure-results
-        allure_history: allure-history
-        keep_reports: 20
-        
     - name: Store Allure Report
       uses: actions/upload-artifact@v4
       if: always()

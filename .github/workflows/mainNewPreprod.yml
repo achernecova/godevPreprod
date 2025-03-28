@@ -114,7 +114,7 @@ jobs:
           
           ${{ job.status == 'success' && ' All tests passed!' || ' Some tests failed!' }}
           
-          Allure Report: ${{ github.server_url }}/${{ github.repository }}/allure-report/
+          Allure Report: https://achernecova.github.io/godevPreprod/
           
           Triggered by: ${{ github.actor }}
           

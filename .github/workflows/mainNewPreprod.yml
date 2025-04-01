@@ -52,6 +52,7 @@ jobs:
          HEADLESS: true
        run: |
          echo "Starting tests..."
+         echo "Input test tag: ${{ github.event.inputs.test_tag }}"
          if [ "${{ github.event.inputs.test_tag }}" != "" ]; then
            echo "Running tests with tag: ${{ github.event.inputs.test_tag }}"
            pytest -v -m "${{ github.event.inputs.test_tag }}" --headless --tb=long --full-trace --capture=tee-sys | tee test_output.log || true

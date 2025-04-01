@@ -8,7 +8,7 @@ from utils.page_factory import get_page_instance
 
 # Загрузка данных из JSON-файла с фильтрацией
 @pytest.mark.parametrize('package_data', load_package_data_main())
-@pytest.mark.prod_test
+@pytest.mark.short_test
 def test_main_page_data_card_packages(driver, package_data):
     main_page_test = MainPage(driver)
     main_page_test.open()
@@ -48,7 +48,7 @@ def test_main_page_add_request_header(driver):
 
 @link(url='https://team-v5ka.testit.software/projects/664/tests/759', name='Отображение блока Customer Reviews')
 @feature('Количество элементов в блоке')
-@pytest.mark.prod_test
+@pytest.mark.short_test
 def test_main_page_count_card_reviews(driver):
     main_page_test = MainPage(driver)
     main_page_test.open()

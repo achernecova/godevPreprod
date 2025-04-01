@@ -1,9 +1,0 @@
-Найдено 3 элементов с классами, содержащими 'tarif-item '
-Полученные данные с веб-страницы:
-{'project_type': 'Basic', 'price': '$1400', 'text': 'Perfect for small business and presentation of goods or services'}
-{'project_type': 'Professional', 'price': '$1990', 'text': 'Suitable for boosting sales or validation of the hypothesis'}
-{'project_type': 'Individual', 'price': 'In person', 'text': 'A solution for those who are not fit the standard rates'}
-Данные из JSON:
-{'project_type': 'Basic', 'price': '$1400', 'text': 'Perfect for small business and presentation of goods or services'}
-{'project_type': 'Professional', 'price': '$1990', 'text': 'Suitable for boosting sales or validation of the hypothesis'}
-{'project_type': 'Individual', 'price': 'In person', 'text': 'A solution for those who are not fit the standard rates'}

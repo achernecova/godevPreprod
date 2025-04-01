@@ -1,8 +1,0 @@
-Полученные данные с веб-страницы:
-{'level': 'mobile friendly / UX / UI', 'project_type': 'Website design', 'price': '22 $/ hour'}
-{'level': 'landing / e-commerce / portals', 'project_type': 'Web development', 'price': '660 $from'}
-{'level': 'affordable price', 'project_type': 'CMS WordPress', 'price': '390 $from'}
-Данные из JSON:
-{'index': '1', 'project_type': 'Website design', 'level': 'mobile friendly / UX / UI', 'price': '22 $/ hour', 'text': 'Figma, Illustrator, Photoshop, Sketch'}
-{'index': '2', 'project_type': 'Web development', 'level': 'landing / e-commerce / portals', 'price': '660 $from', 'text': 'Frameworks, Golang, Python, PHP, CMS, JavaScript, HTML 5, CSS 3'}
-{'index': '3', 'project_type': 'CMS WordPress', 'level': 'affordable price', 'price': '390 $from', 'text': 'REST API, WPGraphQL'}

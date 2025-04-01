@@ -1,7 +1,0 @@
-Найдено 6 элементов с классом 'team-card'
-direction: Backend, level: middle / middle+ / senior, exp: 3+ years of experience, price: 30$/ hour, text: Symfony, Laravel, Yii, Zend, Codeigniter, CakePHP, Golang, C#, Python, Git , Node.js, MySQL, PostgreSQL, MongoDB, Rest, Docker
-direction: Mobile, level: middle / middle+ / senior, exp: 3+ years of experience, price: 35$/ hour, text: React Native, Flutter
-direction: Frontend, level: middle / middle+ / senior, exp: 3+ years of experience, price: 30$/ hour, text: JavaScript, TypeScript, React.js, Vue.js, Angular, Java, Spring, Spring Boot, HTML 5, CSS 3, LESS/SASS/SCSS
-direction: Analysts, level: middle / middle+ / senior, exp: 3+ years of experience, price: 26$/ hour, text: Atlassian (Confluence, Jira), redmine, UML, BPMB: draw.io,  postman, soapUi, dataGrip, Balsamiq
-direction: Design, level: middle / middle+ / senior, exp: 3+ years of experience, price: 22$/ hour, text: Figma, Illustrator, Photoshop, Sketch
-direction: Testers, level: middle / middle+ / senior, exp: 3+ years of experience, price: 28$/ hour, text: Selenium/Selenide, testing API (SOAP/REST), autotesting

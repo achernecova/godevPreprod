@@ -15,107 +15,119 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      ENVIRONMENT: ${{ secrets.MAIN_PAGE }}
     if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.event.pull_request == null)
-    
+
     steps:
-    - uses: actions/checkout@v3
-    
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.13'
-        
-    - name: Debug information
-      run: |
-        echo "Current directory: $(pwd)"
-        echo "Directory contents: $(ls -la)"
-        echo "Python version: $(python --version)"
-        echo "Event name: ${{ github.event_name }}"
-        
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install selenium webdriver-manager
-        echo "Installed packages:"
-        pip list
+      - uses: actions/checkout@v3
 
-    - name: Install Chrome
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y chromium-browser
-        echo "Chrome version: $(chromium-browser --version)"
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.13'
 
-    - name: Run tests
-      env:
-        CI: true
-        HEADLESS: true
-      run: |
-        echo "Starting tests..."
-        if [ "${{ github.event.inputs.test_tag }}" != "" ]; then
-          echo "Running tests with tag: ${{ github.event.inputs.test_tag }}"
-          pytest -v -m "${{ github.event.inputs.test_tag }}" --headless --tb=long --full-trace --capture=tee-sys | tee test_output.log || true
-        else
-          echo "Running all tests"
-          pytest -v --headless --tb=long --full-trace --capture=tee-sys | tee test_output.log || true
-        fi
-        
-    - name: Store test results
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: test-results
-        path: |
-          test-results/
-          allure-results/
-          test_output.log
-        retention-days: 30
+      - name: Debug information
+        run: |
+          echo "Current directory: $(pwd)"
+          echo "Directory contents: $(ls -la)"
+          echo "Python version: $(python --version)"
+          echo "Event name: ${{ github.event_name }}"
 
-    - name: Generate Allure Report
-      uses: simple-elf/allure-report-action@master
-      if: always()
-      with:
-        allure_results: allure-results
-        allure_history: allure-history
-        keep_reports: 20
-        
-    - name: Store Allure Report
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: allure-report
-        path: allure-report/
-        retention-days: 30
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install selenium webdriver-manager allure-pytest
+          echo "Installed packages:"
+          pip list
 
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      if: github.ref == 'refs/heads/main'
-      with:
-        github_token: ${{ secrets.MY_GITHUB_TOKEN }}
-        publish_dir: ./allure-report
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y chromium-browser
+          echo "Chrome version: $(chromium-browser --version)"
 
-    - name: Send Telegram Notification
-      if: always()
-      uses: appleboy/telegram-action@master
-      with:
-        to: ${{ secrets.TELEGRAM_CHAT_ID }}
-        token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: |
-          🤖 Test Execution Report
-          
-          Repository: ${{ github.repository }}
-          Branch: ${{ github.ref_name }}
-          
-          Status: ${{ job.status }}
-          
-          Commit Message: ${{ github.event.head_commit.message }}
-          
-          Test Results: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          
-          ${{ job.status == 'success' && ' All tests passed!' || ' Some tests failed!' }}
-          
-          Allure Report: ${{ github.server_url }}/${{ github.repository }}/allure-report/
-          
-          Triggered by: ${{ github.actor }}
-          
-          Time: ${{ github.event.head_commit.timestamp }}
+      - name: Run tests
+        env:
+          CI: true
+          HEADLESS: true
+        run: |
+          echo "Starting tests..."
+          if [ "${{ github.event.inputs.test_tag }}" != "" ]; then
+            echo "Running tests with tag: ${{ github.event.inputs.test_tag }}"
+            pytest -v -m "${{ github.event.inputs.test_tag }}" --headless --tb=long --full-trace --capture=tee-sys --alluredir=allure-results | tee test_output.log || true
+          else
+            echo "Running all tests"
+            pytest -v --headless --tb=long --full-trace --capture=tee-sys --alluredir=allure-results | tee test_output.log || true
+          fi
+
+      - name: Generate Allure Report
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        with:
+          allure_results: allure-results
+          allure_history: allure-history
+          keep_reports: 20
+
+      - name: Store test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: |
+            test-results/
+            allure-results/
+            test_output.log
+          retention-days: 30
+
+      - name: Store Allure Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: allure-report
+          path: allure-report/
+          retention-days: 30
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.MY_GITHUB_TOKEN }}
+          publish_dir: ./allure-report
+
+      - name: Analyze test results and Send Telegram Notification
+        if: always()
+        id: notify
+        run: |
+          if grep -q "failed" test_output.log || grep -q "defects" allure-results/*.json; then
+            echo "status=failure" >> $GITHUB_ENV
+          else
+            echo "status=success" >> $GITHUB_ENV
+          fi
+
+      - name: Send Telegram Notification
+        if: always()
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            🤖 Test Execution Report
+            
+            Repository: ${{ github.repository }}
+            Branch: ${{ github.ref_name }}
+            
+            Status: ${{ env.status }}
+            
+            Commit Message: ${{ github.event.head_commit.message }}
+            
+            Test Results: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            
+            ${{ env.status == 'success' && 'All tests passed!' || 'Some tests failed!' }}
+            
+            Allure Report: https://achernecova.github.io/godevPreprod/
+            
+            Triggered by: ${{ github.actor }}
+            
+            Time: ${{ github.event.head_commit.timestamp }}

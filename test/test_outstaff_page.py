@@ -79,7 +79,7 @@ def test_outstaff_page_faq_data_assert(driver):
 def test_outstaff_dev_page_add_request_in_faq(driver):
     outstaff_page_test = WebOutstaffPage(driver)
     outstaff_page_test.open()
-    outstaff_page_test.click_button_in_faq()
+    outstaff_page_test.click_button_in_faq_web()
     popup_modal_page = outstaff_page_test.get_popup()
     popup_modal_page.add_request_success()
     success = popup_modal_page.popup_success_displayed()

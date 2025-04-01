@@ -272,7 +272,7 @@ class WebOutstaffPage(BasePage):
         return title
 
     @allure.step("Клик по кнопке Ask a Question в блоке FAQ")
-    def click_button_in_faq(self):
+    def click_button_in_faq_web(self):
         # ждем видимость блока
         element = WebDriverWait(self.driver, 10).until(
             EC.visibility_of_element_located(Locators.button_in_faq_locator)

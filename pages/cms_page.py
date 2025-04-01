@@ -34,6 +34,7 @@ class CMSPage(BasePage):
         return MetaData(self.driver)
 
     def click_button_banner(self):
+        self.scroll_new(Locators.button_banner_page)
         click_button_banner = self.driver.find_element(*Locators.button_banner_page)
         click_button_banner.click()
 

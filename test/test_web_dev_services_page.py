@@ -55,7 +55,7 @@ def test_web_dev_serv_page_faq_data_assert(driver):
 
 @pytest.mark.fill_form_request_faq
 @feature('Успешная отправка заявки из FAQ')
-def test_outstaff_dev_page_add_request_in_faq(driver):
+def test_web_dev_page_add_request_in_faq(driver):
     web_dev_serv_page = WebDevServicesPage(driver)
     web_dev_serv_page.open()
     web_dev_serv_page.click_button_in_faq()

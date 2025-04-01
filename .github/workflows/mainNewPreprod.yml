@@ -6,7 +6,7 @@ on:
        test_tag:
          description: 'Test tag to run (leave empty to run all tests)'
          required: false
-         default: 'short_test'
+         default: "short_test"
    push:
      branches: [ main ]
    pull_request:

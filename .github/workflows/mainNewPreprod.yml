@@ -52,9 +52,15 @@ jobs:
          HEADLESS: true
        run: |
          echo "Starting tests..."
-         echo "Input test tag: ${{ github.event.inputs.test_tag }}"
-         pytest -v -m "short_test" --headless --tb=long --full-trace --capture=tee-sys | tee test_output.log || true
-        
+         input_test_tag="${{ github.event.inputs.test_tag }}"
+         if [ -n "$input_test_tag" ]; then
+           echo "Running tests with tag: $input_test_tag"
+           pytest -v -m "$input_test_tag" --headless --tb=long --full-trace --capture=tee-sys | tee test_output.log || true
+         else
+           echo "Running all tests"
+           pytest -v --headless --tb=long --full-trace --capture=tee-sys | tee test_output.log || true
+         fi
+
      - name: Generate Allure Report
        uses: simple-elf/allure-report-action@master
        if: always()
@@ -73,7 +79,7 @@ jobs:
            allure-results/
            test_output.log
          retention-days: 30
-        
+
      - name: Store Allure Report
        uses: actions/upload-artifact@v4
        if: always()
@@ -93,7 +99,6 @@ jobs:
        if: always()
        id: notify
        run: |
-         # Поиск строк с "defect" или "failed" в логе пользователей
          if grep -q "failed" test_output.log || grep -q "defects" allure-results/*.json; then
             echo "status=failure" >> $GITHUB_ENV
          else

@@ -31,14 +31,14 @@ jobs:
         echo "Directory contents: $(ls -la)"
         echo "Python version: $(python --version)"
         echo "Event name: ${{ github.event_name }}"
-        echo "test_tag: ${{ github.test_tag }}"
+        echo "test_tag: ${{ github.event.inputs.test_tag }}"  # Исправлено здесь
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install selenium webdriver-manager allure-pytest  # Убедитесь, что allure-pytest установлен
-        echo "Installed packages: ${{ github.event_name }}"
+        echo "Installed packages:"
         pip list
 
     - name: Install Chrome
@@ -46,7 +46,6 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y chromium-browser
         echo "Chrome version: $(chromium-browser --version)"
-
 
     - name: Run tests
       env:
@@ -109,12 +108,12 @@ jobs:
         message: |
           🤖 Test Execution Report
 
-          Repository: ${{ github.repository }}
-          Branch: ${{ github.ref_name }}
+          Repository : ${{ github.repository }}
+          Branch : ${{ github.ref_name }}
 
-          Status: ${{ job.status }}
+          Status : ${{ job.status }}
 
-          Commit Message: ${{ github.event.head_commit.message }}
+          Commit Message : ${{ github.event.head_commit.message }}
 
           Test Results URL : ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 

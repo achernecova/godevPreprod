@@ -47,16 +47,23 @@ jobs:
         sudo apt-get install -y chromium-browser
         echo "Chrome version: $(chromium-browser --version)"
 
+
     - name: Run tests
       env:
         CI: true
         HEADLESS: true
       run: |
         echo "Running tests with tag: '${{ github.event.inputs.test_tag }}'"
+    
+        # Отладочный вывод значения test_tag
         TEST_TAG="${{ github.event.inputs.test_tag }}"
+        echo "DEBUG: TEST_TAG is set to '$TEST_TAG'"
+
         if [ -z "$TEST_TAG" ]; then
+          echo "No specific test tag provided. Running all tests."
           pytest -v --headless --tb=long --full-trace --capture=tee-sys --alluredir=allure-results | tee test_output.log || true
         else
+          echo "Running tests with tag '$TEST_TAG'."
           pytest -v -m "$TEST_TAG" --headless --tb=long --full-trace --capture=tee-sys --alluredir=allure-results | tee test_output.log || true
         fi
 

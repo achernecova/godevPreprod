@@ -128,6 +128,8 @@ jobs:
           ${{ job.status == 'success' && ' All tests passed!' || ' Some tests failed!' }}
 
           Allure Report URL : https://achernecova.github.io/godevPreprod/
+          
+          Test Output Log URL : ${{ github.server_url }}/${{ github.repository }}/suites/${{ github.run_id }}/artifacts/test_output.log
 
           Triggered by : ${{ github.actor }}
 

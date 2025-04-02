@@ -6,15 +6,16 @@ on:
       test_tag:
         description: 'Test tag to run (leave empty to run all tests)'
         required: false
-        default: 'short_test'
+        default: 'short_test'  # Значение по умолчанию для ручного запуска
   push:
-    branches: [ main ]
+    branches: [ main ]  # Запуск при пуше в ветку main
   pull_request:
-    branches: [ main ]
+    branches: [ main ]  # Запуск при создании pull request в ветку main
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    # Условие для запуска job: если это ручной запуск или пуш/мерж в ветку main
     if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.event.pull_request == null)
 
     steps:
@@ -31,7 +32,7 @@ jobs:
         echo "Directory contents: $(ls -la)"
         echo "Python version: $(python --version)"
         echo "Event name: ${{ github.event_name }}"
-        echo "test_tag: ${{ github.event.inputs.test_tag }}"  # Исправлено здесь
+        echo "test_tag: ${{ github.event.inputs.test_tag }}"  # Вывод значения test_tag
 
     - name: Install dependencies
       run: |
@@ -47,25 +48,25 @@ jobs:
         sudo apt-get install -y chromium-browser
         echo "Chrome version: $(chromium-browser --version)"
 
-
     - name: Run tests
       env:
         CI: true
         HEADLESS: true
       run: |
-        echo "Running tests with tag: '${{ github.event.inputs.test_tag }}'"
-    
-        # Отладочный вывод значения test_tag
+        # Установка переменной TEST_TAG из входных параметров или значения по умолчанию
         TEST_TAG="${{ github.event.inputs.test_tag }}"
-        echo "DEBUG: TEST_TAG is set to '$TEST_TAG'"
-
-        if [ -z "$TEST_TAG" ]; then
-          echo "No specific test tag provided. Running all tests."
-          pytest -v --headless --tb=long --full-trace --capture=tee-sys --alluredir=allure-results | tee test_output.log || true
-        else
-          echo "Running tests with tag '$TEST_TAG'."
+        
+        if [[ "${{ github.event_name }}" == "push" || "${{ github.event_name }}" == "pull_request" ]]; then
+          # Если это пуш или PR, используем значение по умолчанию для test_tag, если оно не указано вручную.
+          if [ -z "$TEST_TAG" ]; then 
+            TEST_TAG="short_test"
+          fi 
+          echo "Running tests with default tag '$TEST_TAG'."
           pytest -v -m "$TEST_TAG" --headless --tb=long --full-trace --capture=tee-sys --alluredir=allure-results | tee test_output.log || true
-        fi
+        else 
+          echo "Running tests with tag '$TEST_TAG'."
+          pytest -v -m "$TEST_TAG" --headless --tb=long --full-trace --capture=tee-sys --alluredir=allure-results | tee test_output.log || true 
+        fi 
 
     - name: Check allure-results directory  # Проверяем содержимое папки allure-results
       run: |

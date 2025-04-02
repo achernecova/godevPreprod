@@ -47,14 +47,19 @@ jobs:
         sudo apt-get install -y chromium-browser
         echo "Chrome version: $(chromium-browser --version)"
 
+
     - name: Run tests
       env:
         CI: true
         HEADLESS: true
       run: |
-        echo "${{ github.event.inputs.test_tag }}"
-        # Добавляем параметр --alluredir для указания директории для результатов Allure
-        pytest -v -m "short_test" --headless --tb=long --full-trace --capture=tee-sys --alluredir=allure-results | tee test_output.log || true
+        echo "Running tests with tag: '${{ github.event.inputs.test_tag }}'"
+        TEST_TAG="${{ github.event.inputs.test_tag }}"
+        if [ -z "$TEST_TAG" ]; then
+          pytest -v --headless --tb=long --full-trace --capture=tee-sys --alluredir=allure-results | tee test_output.log || true
+        else
+          pytest -v -m "$TEST_TAG" --headless --tb=long --full-trace --capture=tee-sys --alluredir=allure-results | tee test_output.log || true
+        fi
 
     - name: Check allure-results directory  # Проверяем содержимое папки allure-results
       run: |

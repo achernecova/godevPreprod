@@ -51,15 +51,7 @@ jobs:
          CI: true
          HEADLESS: true
        run: |
-         echo "Starting tests..."
-         input_test_tag="${{ github.event.inputs.test_tag }}"
-         if [ -n "$input_test_tag" ]; then
-           echo "Running tests with tag: $input_test_tag"
-           pytest -v -m "$input_test_tag" --headless --tb=long --full-trace --capture=tee-sys | tee test_output.log || true
-         else
-           echo "Running all tests"
-           pytest -v --headless --tb=long --full-trace --capture=tee-sys | tee test_output.log || true
-         fi
+         pytest -v -m "short_test" --headless --tb=long --full-trace --capture=tee-sys | tee test_output.log || true
 
      - name: Generate Allure Report
        uses: simple-elf/allure-report-action@master

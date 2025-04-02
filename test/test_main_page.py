@@ -15,7 +15,7 @@ def test_main_page_data_card_packages(driver, package_data):
     main_page_test.check_packages_data(package_data.project_type, package_data.experience, package_data.bullits,
                                        package_data.price, package_data.text)
 
-
+@pytest.mark.short_test
 @feature('Успешная отправка заявки из баннера')
 def test_add_request_success_main_page(driver):
     main_page_test = MainPage(driver)
@@ -25,7 +25,7 @@ def test_add_request_success_main_page(driver):
     form_page_test.add_request_success()
     assert form_page_test.popup_success_displayed() == True, 'Окно подтверждения не появилось'
 
-
+@pytest.mark.short_test
 @pytest.mark.fill_form_request_footer
 @feature('Успешная отправка заявки из футера')
 def test_fill_form_request_footer_main_page(driver):
@@ -35,7 +35,7 @@ def test_fill_form_request_footer_main_page(driver):
     form_page_test.fill_form()
     assert form_page_test.popup_success_displayed() == True, 'Окно подтверждения не появилось'
 
-
+@pytest.mark.short_test
 @feature('Успешная отправка заявки из блока Get in touch')
 def test_main_page_add_request_header(driver):
     main_page_test = MainPage(driver)

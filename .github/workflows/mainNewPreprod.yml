@@ -52,7 +52,7 @@ jobs:
         HEADLESS: true
       run: |
         echo "${{ github.event.inputs.test_tag }}"
-        pytest -v -m "short_test" --headless --tb=long --full-trace --capture=tee-sys | tee test_output.log || true
+        pytest -v -m "short_test" --headless --tb=long --full-trace --capture=tee-sys --alluredir=allure-results | tee test_output.log || true
 
     - name: Generate Allure Report
       uses: simple-elf/allure-report-action@master

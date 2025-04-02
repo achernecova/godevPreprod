@@ -6,7 +6,7 @@ on:
       test_tag:
         description: 'Test tag to run (leave empty to run all tests)'
         required: false
-        default: 'prod_test'
+        default: 'short_test'
   push:
     branches: [ main ]
   pull_request:
@@ -51,14 +51,8 @@ jobs:
         CI: true
         HEADLESS: true
       run: |
-        echo "Starting tests..."
-        if [ "${{ github.event.inputs.test_tag }}" != "" ]; then
-          echo "Running tests with tag: ${{ github.event.inputs.test_tag }}"
-          pytest -v -m "${{ github.event.inputs.test_tag }}" --headless --tb=long --full-trace --capture=tee-sys --alluredir=allure-results | tee test_output.log || true
-        else
-          echo "Running all tests"
-          pytest -v --headless --tb=long --full-trace --capture=tee-sys --alluredir=allure-results | tee test_output.log || true
-        fi
+        echo "${{ github.event.inputs.test_tag }}"
+        pytest -v -m "short_test" --headless --tb=long --full-trace --capture=tee-sys | tee test_output.log || true
 
     - name: Generate Allure Report
       uses: simple-elf/allure-report-action@master

@@ -65,6 +65,24 @@ class PopupElement(BasePage):
     @allure.step("Полное заполнение заявки")
     def add_request_success(self):
         # self.close_modal_popup()
+        self.click_button_in_banner()
+        self.click_topping_dev_banner()
+        self.click_topping_analysts_banner()
+        self.input_name_in_banner()
+        self.input_email_in_banner()
+        self.input_comment_in_banner()
+        self.click_button_in_banner()
+
+    @allure.step("Клик по кнопке Get in touch")
+    def click_button_get_in_touch(self):
+        self.scroll_new(Locators.button_get_in_touch_locator)
+        button_get_in_touch = self.driver.find_element(*Locators.button_get_in_touch_locator)
+        self.driver.execute_script("arguments[0].click();", button_get_in_touch)
+
+
+    @allure.step("Полное заполнение заявки из блока Get in touch")
+    def add_request_success_get_in_touch(self):
+        self.click_button_get_in_touch()
         self.click_topping_dev_banner()
         self.click_topping_analysts_banner()
         self.input_name_in_banner()

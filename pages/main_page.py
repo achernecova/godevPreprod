@@ -27,6 +27,7 @@ class MainPage(BasePage):
         "Кликаем по кнопке в баннере")
     def click_button_banner(self):
         click_button_banner = self.driver.find_element(*Locators.click_button_banner)
+        self.scroll_new(Locators.click_button_banner)
         click_button_banner.click()
 
     @allure.step(

@@ -40,9 +40,8 @@ def test_fill_form_request_footer_main_page(driver):
 def test_main_page_add_request_header(driver):
     main_page_test = MainPage(driver)
     main_page_test.open()
-    main_page_test.click_button_get_in_touch()
     popup_element_test = main_page_test.get_popup_element()
-    popup_element_test.add_request_success()
+    popup_element_test.add_request_success_get_in_touch()
     assert popup_element_test.popup_success_displayed() == True, 'Окно подтверждения не появилось'
 
 

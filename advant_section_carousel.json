@@ -33,6 +33,7 @@
       }
     ]
   },
+
   "advant_section_outstaff": {
     "title": "Benefits of team augmentation services",
     "text_title": "The staff augmentation model offers numerous advantages that appeal to companies of all sizes. Here are the key benefits:",
@@ -243,36 +244,73 @@
     "title": "Work process",
     "descriptions": [
       {
+        "advant_title": "Control Over Brand Image",
+        "advant_text": "D2C businesses maintain full control over their branding and marketing strategies, ensuring consistent messaging across all sales channels"
+      },
+      {
+        "advant_title": "Higher Profit Margins",
+        "advant_text": "By eliminating intermediaries, brands can retain a larger portion of the profits, as there are no wholesale discounts or retailer markups involved"
+      },
+      {
+        "advant_title": "Direct Customer Feedback",
+        "advant_text": "Engaging directly with consumers enables brands to gather valuable insights and adapt their offerings to meet customer needs effectively"
+      },
+      {
+        "advant_title": "Personalized Marketing",
+        "advant_text": "With direct access to customer data, D2C companies can implement targeted marketing campaigns, enhancing conversion rates and customer loyalty"
+      },
+      {
+        "advant_title": "Faster Time to Market",
+        "advant_text": "Without the need to coordinate with wholesalers, brands can launch new products more swiftly, staying ahead of market trends"
+      },
+      {
+        "advant_title": "Inventory Control",
+        "advant_text": "D2C businesses can manage their inventory more efficiently, reducing the risk of overstocking or stockouts"
+      },
+      {
+        "advant_title": "Enhanced Customer Relationships",
+        "advant_text": "Direct interactions foster stronger relationships, leading to increased customer satisfaction and repeat purchases"
+      },
+      {
+        "advant_title": "Data Ownership",
+        "advant_text": "Brands have full ownership of customer data, facilitating informed decision-making and strategic planning"
+      }
+    ]
+  },
+  "advant_section_d2c_icons": {
+    "title": "Direct to Consumer vs. Retail",
+    "descriptions": [
+      {
         "advant_title": "Pricing Flexibility",
-        "advant_text": "D2C brands can set their own prices without retailer influence, allowing for competitive pricing strategies."
+        "advant_text": "D2C brands can set their own prices without retailer influence, allowing for competitive pricing strategies"
       },
       {
         "advant_title": "Customer Experience",
-        "advant_text": "Selling directly enables brands to curate the entire customer journey, from browsing to post-purchase support, ensuring a seamless experience."
+        "advant_text": "Selling directly enables brands to curate the entire customer journey, from browsing to post-purchase support, ensuring a seamless experience"
       },
       {
         "advant_title": "Brand Loyalty",
-        "advant_text": "Direct engagement fosters stronger brand loyalty, as customers feel a personal connection with the brand."
+        "advant_text": "Direct engagement fosters stronger brand loyalty, as customers feel a personal connection with the brand"
       },
       {
         "advant_title": "Omnichannel Opportunities",
-        "advant_text": "D2C models can integrate various sales channels, including online stores, mobile apps, and physical pop-ups, providing a cohesive shopping experience."
+        "advant_text": "D2C models can integrate various sales channels, including online stores, mobile apps, and physical pop-ups, providing a cohesive shopping experience"
       },
       {
         "advant_title": "Agility in Operations",
-        "advant_text": "Without the constraints of retail partnerships, D2C brands can quickly adapt to market changes and consumer preferences."
+        "advant_text": "Without the constraints of retail partnerships, D2C brands can quickly adapt to market changes and consumer preferences"
       },
       {
         "advant_title": "Cost Savings",
-        "advant_text": "Eliminating retailer fees and commissions results in cost savings that can be reinvested into the business."
+        "advant_text": "Eliminating retailer fees and commissions results in cost savings that can be reinvested into the business"
       },
       {
         "advant_title": "Direct Marketing",
-        "advant_text": "Brands can communicate directly with consumers through personalized emails, social media, and other digital marketing channels."
-      },
+        "advant_text": "Brands can communicate directly with consumers through personalized emails, social media, and other digital marketing channels"
+      } ,
       {
         "advant_title": "Innovation",
-        "advant_text": "D2C companies often lead in innovation, introducing unique products and services that cater directly to consumer demands."
+        "advant_text": "D2C companies often lead in innovation, introducing unique products and services that cater directly to consumer demands"
       }
     ]
   },
@@ -362,44 +400,6 @@
       {
        "advant_title": "Transparent costs",
        "advant_text": "We provide a clear breakdown of the cost of services, so you know exactly what you’re investing in"
-     }
-    ]
-  },
-
-  "advant_card_d2c": {
-    "title": "Direct to Consumer vs. Wholesale:",
-    "descriptions": [
-      {
-       "advant_title": "Control Over Brand Image.",
-       "advant_text": "D2C businesses maintain full control over their branding and marketing strategies, ensuring consistent messaging across all sales channels."
-     },
-      {
-       "advant_title": "Higher Profit Margins.",
-       "advant_text": "By eliminating intermediaries, brands can retain a larger portion of the profits, as there are no wholesale discounts or retailer markups involved."
-     },
-      {
-       "advant_title": "Direct Customer Feedback.",
-       "advant_text": "Engaging directly with consumers enables brands to gather valuable insights and adapt their offerings to meet customer needs effectively."
-     },
-      {
-       "advant_title": "Personalized Marketing.",
-       "advant_text": "With direct access to customer data, D2C companies can implement targeted marketing campaigns, enhancing conversion rates and customer loyalty."
-     },
-      {
-       "advant_title": "Faster Time to Market.",
-       "advant_text": "Without the need to coordinate with wholesalers, brands can launch new products more swiftly, staying ahead of market trends."
-     },
-      {
-       "advant_title": "Inventory Control.",
-       "advant_text": "D2C businesses can manage their inventory more efficiently, reducing the risk of overstocking or stockouts."
-     },
-      {
-       "advant_title": "Enhanced Customer Relationships.",
-       "advant_text": "Direct interactions foster stronger relationships, leading to increased customer satisfaction and repeat purchases."
-     },
-      {
-       "advant_title": "Data Ownership.",
-       "advant_text": "Brands have full ownership of customer data, facilitating informed decision-making and strategic planning."
      }
     ]
   }

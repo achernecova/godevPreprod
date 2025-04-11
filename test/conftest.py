@@ -196,6 +196,16 @@ def test_data(request):
     return request.param
 
 @pytest.fixture(params=[
+        ("1", put_a_secret() + os.getenv('E_COM_PAGE', 'services/website-development/e-commerce/'), "E-commerce web development for scalable business growth"),
+        ("2", put_a_secret() + os.getenv('LANDING', 'services/development-of-a-landing-page/'), "Mastering landing page design in the USA"),
+        ("3", put_a_secret() + os.getenv('B2B_PAGE', 'services/website-development/b2b/'), "B2B e-commerce website development"),
+        ("4", put_a_secret() + os.getenv('FRAMEWORK_PAGE', 'services/website-development/framework/'), "What is a framework and why it’s essential for web development")
+    ])
+def test_data_d2c(request):
+    return request.param
+
+
+@pytest.fixture(params=[
     ("1", put_a_secret() + os.getenv('B2B_PAGE', 'services/website-development/b2b/'), "B2B e-commerce website development"),
     ("2", put_a_secret() + os.getenv('CMS_PAGE', 'services/website-development/cms/'), "Custom CMS development service"),
     ("3", put_a_secret() + os.getenv('FRAMEWORK_PAGE', 'services/website-development/framework/'), "What is a framework and why it’s essential for web development")

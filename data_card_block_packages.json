@@ -389,6 +389,84 @@
       }
     ]
   },
+  "d2c_card_data": {
+    "title": "Customer Reviews",
+    "descriptions": [
+      {
+        "project_type": "E-Commerce",
+        "exp": "3+ years of experience",
+        "level": "business / security / design",
+        "price": "30 $/ hour",
+        "index": "1",
+        "text": "We can integrate e-commerce elements into existing websites or develop a brand-new site that will allow your customers to order directly from you"
+      },
+      {
+        "project_type": "Corporate",
+        "exp": "3+ years of experience",
+        "level": "design / affordable price",
+        "price": "35 $/ hour",
+        "index": "2",
+        "text": "We develop corporate websites that will introduce visitors to your business in order to establish a web presence for your company"
+      },
+      {
+        "project_type": "Landing",
+        "exp": "3+ years of experience",
+        "level": "design / affordable price",
+        "price": "30 $/ hour",
+        "index": "3",
+        "text": "We perform a thorough analysis of your business to develop a landing page that will be specifically tailored for your target audience, resulting in better lead generation"
+      },
+      {
+        "project_type": "Online shops",
+        "exp": "3+ years of experience",
+        "level": "business / security / design",
+        "price": "660 $from",
+        "index": "4",
+        "text": "Our developers can create full-fledged online shops that would either feature only your business or allow you to invite other vendors to offer their goods and services there"
+      },
+      {
+        "project_type": "Web portals",
+        "exp": "3+ years of experience",
+        "level": "workload / security / design",
+        "price": "2000 $from",
+        "index": "5",
+        "text": "We create web portals that provide the users with all the required information, and we focus on making navigation as easy as possible"
+      },
+      {
+        "project_type": "B2B sites",
+        "exp": "3+ years of experience",
+        "level": "business / security / design",
+        "price": "3300 $from",
+        "index": "6",
+        "text": "Our team can develop a B2B website for any needs ranging from communication to performing transactions between the companies"
+      },
+      {
+        "project_type": "WordPress",
+        "exp": "3+ years of experience",
+        "level": "design / affordable price",
+        "price": "390 $from",
+        "index": "7",
+        "text": "We can make your custom website on WordPress, which will allow you to easily access the admin panel and modify it based on your needs later as well as to seamlessly update the content of your site"
+      },
+      {
+        "project_type": "Framework-Based sites",
+        "exp": "3+ years of experience",
+        "level": "workload / security / design",
+        "price": "33 $/ hour",
+        "index": "8",
+        "text": "Depending on your project, our developers can use any of the popular frameworks to make an advanced and comprehensive website tailored for your business"
+      },
+      {
+        "project_type": "Joomla",
+        "exp": "3+ years of experience",
+        "level": "design / affordable price",
+        "price": "650 $from",
+        "index": "9",
+        "text": "Similar to WordPress, we can make a website on Joomla, adding customized elements and configuring the CMS for you"
+      }
+    ]
+  },
+
 
   "tiles_section_card_data_e_com": {
     "title": "Comprehensive E-commerce services",
@@ -724,43 +802,88 @@
     "descriptions": [
       {
         "index": "1",
-        "project_type": "Tailored Solutions. ",
+        "project_type": "Tailored Solutions",
         "text": "We understand that each brand is unique. Our team crafts customized strategies to meet your specific needs and goals."
       },
       {
         "index": "2",
-        "project_type": "Expertise in Web Design. ",
+        "project_type": "Expertise in Web Design",
         "text": "Our experienced designers create visually appealing and user-friendly interfaces that enhance the customer journey."
       },
       {
         "index": "3",
-        "project_type": "Comprehensive Digital Marketing Services. ",
+        "project_type": "Comprehensive Digital Marketing Services",
         "text": "From SEO to social media campaigns, we offer a full suite of services to boost your online presence and conversion rates."
       },
       {
         "index": "4",
-        "project_type": "Focus on Conversion Optimization.",
+        "project_type": "Focus on Conversion Optimization",
         "text": "We implement proven techniques to maximize conversion rates, turning visitors into loyal customers."
       },
       {
         "index": "5",
-        "project_type": "Seamless Integration.",
+        "project_type": "Seamless Integration",
         "text": "Our solutions integrate smoothly with various sales channels, ensuring a cohesive brand experience."
       },
       {
         "index": "6",
-        "project_type": "Scalable Platforms.",
+        "project_type": "Scalable Platforms",
         "text": "We build ecommerce websites that grow with your business, accommodating increasing traffic and expanding product lines."
       },
       {
         "index": "7",
-        "project_type": "Ongoing Support.",
+        "project_type": "Ongoing Support",
         "text": "Our commitment doesn't end at launch. We provide continuous support to ensure your platform remains up-to-date and efficient."
       },
       {
         "index": "8",
-        "project_type": "Proven Track Record.",
+        "project_type": "Proven Track Record",
         "text": "With a portfolio of successful projects, we have a history of delivering results that exceed client expectations."
+      }
+    ]
+  },
+  "tiles_icon_card_data_d2c": {
+    "title": "D2C eCommerce Platforms",
+    "descriptions": [
+      {
+        "index": "1",
+        "project_type": "Shopify",
+        "text": "A user-friendly platform offering customizable templates and a range of apps to enhance functionality"
+      },
+      {
+        "index": "2",
+        "project_type": "BigCommerce",
+        "text": "Known for its scalability and robust features, BigCommerce supports businesses aiming for rapid growth"
+      },
+      {
+        "index": "3",
+        "project_type": "WooCommerce",
+        "text": "A flexible, open-source platform that integrates seamlessly with WordPress, ideal for content-driven eCommerce sites"
+      },
+      {
+        "index": "4",
+        "project_type": "Magento",
+        "text": "A powerful platform suitable for large enterprises requiring extensive customization and control"
+      },
+      {
+        "index": "5",
+        "project_type": "Squarespace",
+        "text": "Offers aesthetically pleasing designs and is suitable for small to medium-sized businesses seeking simplicity"
+      },
+      {
+        "index": "6",
+        "project_type": "Wix eCommerce",
+        "text": "Provides an intuitive drag-and-drop interface, making it accessible for beginners"
+      },
+      {
+        "index": "7",
+        "project_type": "PrestaShop",
+        "text": "An open-source platform that offers a range of features and customization options for growing businesses"
+      },
+      {
+        "index": "8",
+        "project_type": "Salesforce Commerce Cloud",
+        "text": "A robust solution for enterprises looking for advanced features and integration capabilities"
       }
     ]
   },

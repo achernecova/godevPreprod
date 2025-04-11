@@ -426,10 +426,10 @@ class BasePage:
         # Извлечение всех элементов с классами, содержащими 'card'
         team_data = []
         type_section = tree.xpath(locator_block)  # Используем XPath для поиска классов
-        logging.info(f"Найдено {len(type_section)} элементов с классами, содержащими 'accordeon-body'")
-        print(f"Найдено {len(type_section)} элементов с классами, содержащими 'accordeon-body'")
+        logging.info(f"Найдено {len(type_section)} элементов с классами, содержащими '{locator_block}'")
+        print(f"Найдено {len(type_section)} элементов с классами, содержащими '{locator_block}'")
         if not type_section:
-            logging.warning("Не найдено элементов с классами, содержащими 'accordeon-body'")
+            logging.warning(f"Не найдено элементов с классами, содержащими '{locator_block}'")
             return team_data  # Возвращаем пустой список, если ничего не найдено
         for section in type_section:
             # Извлечение project_type из текущего элемента
@@ -494,6 +494,45 @@ class BasePage:
             })
         return team_data
 
+
+    # метод для извлечения данных для карточек из карусели
+    @allure.step("Получаем данные из карточек карусели c icons")
+    def get_data_advant_section_carousel_icons(self, url):
+        response = requests.get(url)
+        response.raise_for_status()  # Проверка на ошибки
+        tree = html.fromstring(response.content)  # Используем lxml для парсинга
+        # Извлечение всех элементов с классами, содержащими 'card'
+        team_data = []
+        type_section = tree.xpath(
+            "//*[@class='advant-section']//*[contains(@class, ' swiper icons')]")  # Используем XPath для поиска классов
+        logging.info(f"Найдено {len(type_section)} элементов с классами, содержащими ' swiper icons'")
+        print(f"Найдено {len(type_section)} элементов с классами, содержащими ' swiper icons // advant-card'")
+        if not type_section:
+            logging.warning("Не найдено элементов с классами, содержащими ' swiper icons // advant-card'")
+            return team_data  # Возвращаем пустой список, если ничего не найдено
+        for section in type_section:
+            # Извлечение project_type из текущего элемента
+            project_type_element = section.xpath(".//*[@class='advant-title']")  # Используем XPath
+            project_type = project_type_element[0].text_content().strip() if project_type_element else 'Не найдено'
+            # Извлечение text из элементов span внутри текущего элемента
+            text_section = section.xpath(".//span")  # Используем XPath
+            text = text_section[0].text_content().strip() if text_section else 'Не найдено'
+            # Обрабатываем
+            text = text.replace('\u2028', '')  # Удаляем символ разрыва строки
+            text = (text.replace('\x80\x99', '')
+                    .replace('Â\xa0', '’')
+                    .replace('â', '’'))
+            text = (text.replace('\n', ' ')
+                    .replace('\r', '')
+                    .replace('\xa0', ' '))
+            logging.info(f"advant_title: {project_type}, advant_text: {text}")
+            team_data.append({
+                'advant_title': project_type,
+                'advant_text': text
+            })
+        return team_data
+
+
     # делаем универсальный метод куда передаем параметры: урл, data[] (т.е.название блока из json)
     # метод для карусели адвант
     @allure.step("Проверка данных из блока для карусели advant")
@@ -520,6 +559,9 @@ class BasePage:
                 for review in card_data_from_page
             )
             assert found, f"Данные из JSON не найдены на странице для: {desc['advant_title']} | {desc['advant_text']} "
+
+
+
 
     @allure.step("Получаем заголовок блока")
     def get_title_block_from_page_all(self, locator):
@@ -596,6 +638,82 @@ class BasePage:
             })
         return team_data
 
+    # метод для извлечения данных для карточек из карусели с серебряными картинками
+    @allure.step("Получаем данные из карточек карусели")
+    def get_data_advant_section_carousel_d2c(self, url):
+        response = requests.get(url)
+        response.raise_for_status()  # Проверка на ошибки
+        tree = html.fromstring(response.content)  # Используем lxml для парсинга
+        # Извлечение всех элементов с классами, содержащими 'card'
+        team_data = []
+        type_section = tree.xpath(
+            "//*[contains(@class, 'advant-slider swiper images')]//*[@class='advant-card']")  # Используем XPath для поиска классов
+        logging.info(f"Найдено {len(type_section)} элементов с классами, содержащими 'advant-slider swiper images'")
+        print(f"Найдено {len(type_section)} элементов с классами, содержащими 'advant-slider swiper images // advant-card'")
+        if not type_section:
+            logging.warning("Не найдено элементов с классами, содержащими 'swiper-slide grabbable // advant-card'")
+            return team_data  # Возвращаем пустой список, если ничего не найдено
+        for section in type_section:
+            # Извлечение project_type из текущего элемента
+            project_type_element = section.xpath(".//*[@class='advant-title']")  # Используем XPath
+            project_type = project_type_element[0].text_content().strip() if project_type_element else 'Не найдено'
+            # Извлечение text из элементов span внутри текущего элемента
+            text_section = section.xpath(".//span")  # Используем XPath
+            text = text_section[0].text_content().strip() if text_section else 'Не найдено'
+            # Обрабатываем
+            text = text.replace('\u2028', '')  # Удаляем символ разрыва строки
+            text = (text.replace('\x80\x99', '')
+                    .replace('Â\xa0', '’')
+                    .replace('â', '’'))
+            text = (text.replace('\n', ' ')
+                    .replace('\r', '')
+                    .replace('\xa0', ' '))
+            logging.info(f"advant_title: {project_type}, advant_text: {text}")
+            team_data.append({
+                'advant_title': project_type,
+                'advant_text': text
+            })
+        return team_data
+
+        # метод для извлечения данных для карточек из карусели с серебряными картинками
+
+    @allure.step("Получаем данные из карточек карусели")
+    def get_data_advant_section_carousel_d2c_icons(self, url):
+        response = requests.get(url)
+        response.raise_for_status()  # Проверка на ошибки
+        tree = html.fromstring(response.content)  # Используем lxml для парсинга
+        # Извлечение всех элементов с классами, содержащими 'card'
+        team_data = []
+        type_section = tree.xpath(
+            "//*[contains(@class, 'advant-slider swiper icons')]//*[@class='advant-card']")  # Используем XPath для поиска классов
+        logging.info(f"Найдено {len(type_section)} элементов с классами, содержащими 'advant-slider swiper images'")
+        print(
+            f"Найдено {len(type_section)} элементов с классами, содержащими 'advant-slider swiper images // advant-card'")
+        if not type_section:
+            logging.warning("Не найдено элементов с классами, содержащими 'swiper-slide grabbable // advant-card'")
+            return team_data  # Возвращаем пустой список, если ничего не найдено
+        for section in type_section:
+            # Извлечение project_type из текущего элемента
+            project_type_element = section.xpath(".//*[@class='advant-title']")  # Используем XPath
+            project_type = project_type_element[0].text_content().strip() if project_type_element else 'Не найдено'
+            # Извлечение text из элементов span внутри текущего элемента
+            text_section = section.xpath(".//span")  # Используем XPath
+            text = text_section[0].text_content().strip() if text_section else 'Не найдено'
+            # Обрабатываем
+            text = text.replace('\u2028', '')  # Удаляем символ разрыва строки
+            text = (text.replace('\x80\x99', '')
+                    .replace('Â\xa0', '’')
+                    .replace('â', '’'))
+            text = (text.replace('\n', ' ')
+                    .replace('\r', '')
+                    .replace('\xa0', ' '))
+            logging.info(f"advant_title: {project_type}, advant_text: {text}")
+            team_data.append({
+                'advant_title': project_type,
+                'advant_text': text
+            })
+        return team_data
+
 
 def setup_logging():
     logging.basicConfig(
@@ -618,3 +736,6 @@ def put_a_secret():
     else:
         base_url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/')  # Значение по умолчанию для дев окружения
     return base_url
+
+
+

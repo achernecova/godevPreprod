@@ -1,5 +1,0 @@
-Индекс маппинг: {'E-Commerce': 0, 'Corporate': 1, 'Landing': 2, 'Online shops': 3, 'Web portals': 4, 'B2B sites': 5, 'WordPress': 6, 'Framework-Based sites': 7, 'Joomla': 8}
-Locator for attr 'spec fs24' at index 8: ('xpath', "(//*[@class='team-card']//*[@class='spec fs24'])[9]")
-Locator for attr 'exp' at index 8: ('xpath', "(//*[@class='team-card']//*[@class='exp'])[9]")
-Locator for attr 'level' at index 8: ('xpath', "(//*[@class='team-card']//*[@class='level'])[9]")
-Locator for attr 'price' at index 8: ('xpath', "(//*[@class='team-card']//*[@class='price'])[9]")

@@ -1,1 +1,1 @@
-{"total":8,"items":[{"uid":"3c0eb905e82ce20566c4b4cc94d3d20c","name":"Успешная отправка заявки из баннера","statistic":{"failed":0,"broken":0,"skipped":0,"passed":1,"unknown":0,"total":1}},{"uid":"e5da1b561ba64a2ed4ead8287086c0cd","name":"Успешная отправка заявки из футера","statistic":{"failed":0,"broken":0,"skipped":0,"passed":1,"unknown":0,"total":1}},{"uid":"0fa58405fe32dfd6de98adfa54f6bba8","name":"Успешная отправка заявки из блока Get in touch","statistic":{"failed":0,"broken":0,"skipped":0,"passed":1,"unknown":0,"total":1}}]}
+{"total":0,"items":[]}

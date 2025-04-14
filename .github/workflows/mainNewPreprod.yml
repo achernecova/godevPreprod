@@ -133,6 +133,8 @@ jobs:
 
           Test Results URL : ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
+          Artifacts URL : ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
           Allure Report URL : https://achernecova.github.io/godevPreprod/
 
           Triggered by : ${{ github.actor }}

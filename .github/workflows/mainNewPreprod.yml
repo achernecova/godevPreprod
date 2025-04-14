@@ -110,9 +110,9 @@ jobs:
     - name: Check test results status  # Проверка статуса тестов
       run: |
         if grep -q "failed" test_output.log; then
-          echo "test_status=failure" >> $GITHUB_ENV  # ставим переменную окружения на failure, если есть ошибки
+          echo "test_status=failure" >> $GITHUB_ENV  # Установите переменную окружения на failure, если есть ошибки
         else
-          echo "test_status=success" >> $GITHUB_ENV  # ставим переменную окружения на success, если ошибок нет
+          echo "test_status=success" >> $GITHUB_ENV  # Установите переменную окружения на success, если ошибок нет
         fi
 
     - name: Send Telegram Notification
@@ -132,6 +132,8 @@ jobs:
           Commit Message : ${{ github.event.head_commit.message }}
 
           Test Results URL : ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+          Artifacts URL : ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
           Allure Report URL : https://achernecova.github.io/godevPreprod/
 

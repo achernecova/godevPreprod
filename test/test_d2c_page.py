@@ -72,3 +72,26 @@ def test_main_page_count_card_reviews(driver):
     d2c_page_test = D2CPage(driver)
     d2c_page_test.open()
     d2c_page_test.get_data_review_d2c()
+
+
+
+
+@pytest.mark.short_test
+@feature('Успешная отправка заявки из баннера')
+def test_add_request_success_d2c_page(driver):
+    d2c_page_test = D2CPage(driver)
+    d2c_page_test.open()
+    d2c_page_test.click_button_banner()
+    form_page_test = d2c_page_test.get_popup_element()
+    form_page_test.add_request_success()
+    assert form_page_test.popup_success_displayed() == True, 'Окно подтверждения не появилось'
+
+@pytest.mark.short_test
+@pytest.mark.fill_form_request_footer
+@feature('Успешная отправка заявки из футера')
+def test_fill_form_request_footer_d2c_page(driver):
+    d2c_page_test = D2CPage(driver)
+    d2c_page_test.open()
+    form_page_test = d2c_page_test.get_form_page()
+    form_page_test.fill_form()
+    assert form_page_test.popup_success_displayed() == True, 'Окно подтверждения не появилось'

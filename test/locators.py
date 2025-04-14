@@ -80,6 +80,8 @@ class Locators:
     button_get_in_touch_locator = (By.XPATH, "(//button[@class='get-in-touch-btn open-modal'])[1]")
     block_get_in_touch_locator = (By.XPATH, "(//*[@class='get-in-touch-wrapper'])[1]")
 
+    block_cards_best_frameworks_item = (By.XPATH, "//*[contains(@class, 'best-frameworks__item ')]")
+
     XPATH_MAP = {
         "blocks": "//*[@class='web-dev-services']",
         "benefits": "//*[@class='advant-card']",

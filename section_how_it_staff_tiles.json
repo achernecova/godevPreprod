@@ -299,6 +299,29 @@
     ]
   },
 
+    "how_it_staff_react": {
+    "title": "Advantages of React",
+    "text_section": "Businesses worldwide choose React for its unparalleled flexibility, performance, and developer-friendly ecosystem. Here’s why it’s a top choice for modern web development:",
+    "descriptions": [
+      {
+       "project_type": "Virtual DOM",
+       "text": "React’s efficient rendering minimizes browser load, ensuring faster updates and smoother interactions for users"
+     },
+      {
+       "project_type": "Reusable components",
+       "text": "Speed up development by reusing UI elements across projects, reducing redundancy and maintenance costs"
+     },
+      {
+       "project_type": "Strong community support",
+       "text": "Access a vast library of open-source tools, plugins, and resources to extend your application’s capabilities"
+     },
+      {
+       "project_type": "SEO-friendly",
+       "text": "Frameworks like Next.js enable server-side rendering, improving search engine visibility for React web applications"
+     }
+    ]
+  },
+
     "app_and_web_services_main": {
     "title": "App and Web Development Services",
     "text_section": "With a development team of 80 in-house specialists, we provide a variety of services related to online business practices, starting from web design and ending with creating brand-new downloadable apps",
@@ -346,6 +369,28 @@
       {
        "project_type": "B2B sites",
        "text": "In the rapidly evolving digital landscape, a robust B2B website is essential for businesses aiming to enhance their online presence and drive growth. At Godev, a leading B2B eCommerce agency in the USA, we specialize in crafting tailored web development solutions that align with your business objectives"
+     }
+    ]
+  },
+    "app_and_web_services_react": {
+    "title": "What we do",
+    "text_section": "Godev’s React development services cover every stage of the software lifecycle, ensuring your project aligns with industry standards and exceeds user expectations. Our solutions are built to solve real-world challenges while delivering measurable ROI",
+    "descriptions": [
+      {
+       "project_type": "Custom web application development",
+       "text": "We build responsive, feature-rich React web applications tailored to your industry, audience, and business goals. Whether it’s an e-commerce platform, SaaS tool, or interactive dashboard, we prioritize performance and usability"
+     },
+      {
+       "project_type": "UI/UX-centric solutions",
+       "text": "Our React experts focus on creating intuitive interfaces that enhance user satisfaction. By integrating modern design principles with React’s component-based architecture, we ensure consistency across all devices"
+     },
+      {
+       "project_type": "Legacy system migration",
+       "text": "Transition outdated systems to ReactJS without disrupting operations. We modernize codebases, improve security, and optimize workflows for future scalability"
+     },
+      {
+       "project_type": "Cross-platform mobile apps",
+       "text": "Using React Native, we develop mobile applications that share codebases with web projects, reducing costs and ensuring brand consistency"
      }
     ]
   },
@@ -443,6 +488,48 @@
       {
        "project_type": "Quality assurance",
        "text": "Professional outsourcing firms implement rigorous testing and quality control measures, reducing the likelihood of bugs and enhancing reliability"
+     }
+    ]
+  },
+  "advantages_of_outsourcing_react": {
+    "title": "Why partner with us?",
+    "descriptions": [
+      {
+       "project_type": "Accelerated time-to-market",
+       "text": "Our agile development approach ensures rapid iteration, testing, and deployment, helping you stay ahead of competitors"
+     },
+      {
+       "project_type": "Scalable architecture",
+       "text": "We design ReactJS applications that grow with your business, ensuring long-term flexibility and ease of updates"
+     },
+      {
+       "project_type": "End-to-end expertise",
+       "text": "From design and development to support and maintenance, we provide comprehensive services to keep your project thriving"
+     }
+    ]
+  },
+    "best_framework_card_blocks_react": {
+    "title": "Technologies we use with ReactJS",
+    "descriptions": [
+      {
+       "project_type": "Next.js",
+       "text": "Leverage server-side rendering and static site generation for faster load times, improved SEO, and enhanced user experiences"
+     },
+      {
+       "project_type": "TypeScript",
+       "text": "Add type safety to your ReactJS application, reducing runtime errors and simplifying collaboration across teams"
+     },
+      {
+       "project_type": "GraphQL",
+       "text": "Optimize data fetching with precise queries, minimizing over-fetching and under-fetching in API interactions"
+     },
+      {
+       "project_type": "State management (Redux, Context API)",
+       "text": "Manage complex application states efficiently, ensuring smooth data flow and real-time updates"
+     },
+      {
+       "project_type": "Testing suites (Jest, Cypress)",
+       "text": "Ensure reliability with comprehensive unit, integration, and end-to-end testing"
      }
     ]
   },

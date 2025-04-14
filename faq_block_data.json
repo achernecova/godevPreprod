@@ -251,5 +251,27 @@
        "text": "Front-end development refers to the client-side of a website, which includes everything that users interact with directly. This involves using HTML, CSS, and JavaScript to create the visual aspects of a web application. On the other hand, back-end development deals with server-side logic and database management. It involves programming languages like Python, PHP, and Ruby, which facilitate the creation of robust server-side applications. These languages and frameworks enable developers to build APIs that allow the front-end to communicate effectively with the server, ensuring that data is processed, stored, and retrieved as needed. This collaboration between front-end and back-end is crucial for delivering dynamic content and a responsive user experience."
      }
     ]
+  },
+
+    "faq_reactjs": {
+    "title": "Custom design solutions",
+    "descriptions": [
+          {
+       "project_type": "How long does it take to develop a ReactJS application?",
+       "text": " Timelines depend on project complexity, scope, and customization. A minimum viable product (MVP) can be delivered in 4–8 weeks, while enterprise-grade solutions may take 6+ months. We follow agile development principles to deliver functional increments rapidly, ensuring transparency and adaptability"
+     },
+      {
+       "project_type": "Do you provide dedicated ReactJS developers for hire?",
+       "text": " Yes. Whether you need to hire a single React developer or an entire development team, we offer flexible engagement models. Our experts integrate seamlessly with your workflow, providing expertise in ReactJS, React Native, and full-stack web development"
+     },
+      {
+       "project_type": "What industries do you serve?",
+       "text": " We’ve delivered ReactJS applications for fintech, healthcare, e-commerce, logistics, and SaaS. Our solutions are adaptable to any industry requiring scalable, high-performance web applications"
+     },
+      {
+       "project_type": "How do you ensure code quality?",
+       "text": " We enforce strict coding standards, conduct peer reviews, and use automated testing tools like Jest and Cypress. Every React web project includes documentation, ensuring maintainability and smooth knowledge transfer"
+     }
+    ]
   }
 }

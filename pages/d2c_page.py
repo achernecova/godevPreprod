@@ -37,8 +37,8 @@ class D2CPage(BasePage):
         return MetaData(self.driver)
 
     def click_button_banner(self):
-        self.scroll_new(Locators.button_banner_page)
-        click_button_banner = self.driver.find_element(*Locators.button_banner_page)
+        self.scroll_new(Locators.click_button_banner)
+        click_button_banner = self.driver.find_element(*Locators.click_button_banner)
         click_button_banner.click()
 
     def get_popup_element(self):
@@ -87,7 +87,7 @@ class D2CPage(BasePage):
         self.get_data_advant_carousel(self.get_data_advant_section_carousel_d2c, 'advant_section_carousel.json',
                                           'advant_section_d2c', url)
 
-        # метод для карусели адвант
+        # метод для карусели адвант с иконками
     def get_data_advant_carousel_card_icons(self):
         base_url = put_a_secret()
         url = base_url + os.getenv('D2C', 'services/website-development/d2c/')

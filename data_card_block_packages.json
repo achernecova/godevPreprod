@@ -949,6 +949,27 @@
       }
     ]
   },
+  "tiles_section_card_data_react": {
+    "title": "Why choose Godev",
+    "text_title": "As a leading ReactJS development company, we blend technical expertise with a client-first mindset to deliver exceptional results",
+    "descriptions": [
+      {
+        "index": "1",
+        "project_type": "Experienced React developers",
+        "text": "Our ReactJS developers have 8+ years of experience building complex applications for industries like fintech, healthcare, and logistics"
+      },
+      {
+        "index": "2",
+        "project_type": "Transparent processes",
+        "text": "We follow agile development methodologies, providing regular updates and involving you in key decisions"
+      },
+      {
+        "index": "3",
+        "project_type": "Post-Launch  support",
+        "text": "Beyond deployment, we offer support and maintenance to address bugs, implement updates, and ensure peak performance"
+      }
+    ]
+  },
 
   "tile_squad": {
     "title_section": "Boost your business with a landing page",

@@ -61,7 +61,7 @@ def test_web_develop_page_data_card_packages_new(driver):
 def test_web_develop_page_benefits_count_cards_assert(driver):
     web_dev_page_test = WebDevelopPage(driver)
     web_dev_page_test.open()
-    web_dev_page_test.get_data_card_tiles_website()
+    web_dev_page_test.get_data_card("tiles_website")
 
 
 @feature('Проверка данных в Benefits of team augmentation services')
@@ -83,7 +83,7 @@ def test_web_develop_page_count_card_reviews(driver):
 def test_web_develop_page_faq_data_assert(driver):
     web_dev_page_test = WebDevelopPage(driver)
     web_dev_page_test.open()
-    web_dev_page_test.get_data_faq_card()
+    web_dev_page_test.get_data_card("faq_website")
 
 
 @pytest.mark.fill_form_request_faq

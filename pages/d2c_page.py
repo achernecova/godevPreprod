@@ -51,9 +51,12 @@ class D2CPage(BasePage):
         from page_elements.project_service_element import ProjectServiceElement
         return ProjectServiceElement(self.driver)
 
-    def get_data_card_d2c(self):
+    def get_base_url(self):
         base_url = put_a_secret()
-        url = base_url + os.getenv('D2C', 'services/website-development/d2c/')
+        return base_url + self.subURL
+
+    def get_data_card_d2c(self):
+        url = self.get_base_url()
         self.get_data_card_(self.get_card_data, 'data_card_block_packages.json',
                             'd2c_card_data', url)
 
@@ -82,50 +85,63 @@ class D2CPage(BasePage):
 
         # метод для карусели адвант
     def get_data_advant_carousel_card(self):
-        base_url = put_a_secret()
-        url = base_url + os.getenv('D2C', 'services/website-development/d2c/')
+        url = self.get_base_url()
         self.get_data_advant_carousel(self.get_data_advant_section_carousel_d2c, 'advant_section_carousel.json',
                                           'advant_section_d2c', url)
 
         # метод для карусели адвант с иконками
     def get_data_advant_carousel_card_icons(self):
-        base_url = put_a_secret()
-        url = base_url + os.getenv('D2C', 'services/website-development/d2c/')
+        url = self.get_base_url()
         self.get_data_advant_carousel(self.get_data_advant_section_carousel_d2c_icons, 'advant_section_carousel.json',
                                           'advant_section_d2c_icons', url)
 
-    def get_data_card_tiles_d2c(self):
-        base_url = put_a_secret()
-        url = base_url + os.getenv('D2C', 'services/website-development/d2c/')
-        self.get_data_card_with_type_project(
-            'data_card_block_packages.json',
-            self.get_data_faq_tiles_new,
-            'tiles_icon_card_data_d2c',
-            "//*[@class='tiles icons']//*[contains(@class, 'tile w-')]",
-            ".//h3",
-            ".//span",
-            url)
-
-    def get_data_card_tiles_d2c_icon(self):
-        base_url = put_a_secret()
-        url = base_url + os.getenv('D2C', 'services/website-development/d2c/')
-        self.get_data_card_with_type_project(
-            'data_card_block_packages.json',
-            self.get_data_faq_tiles_new,
-            'tiles_section_card_data_d2c',
-            "//*[@class='tiles images']//*[contains(@class, 'tile w-')]",
-            ".//h3",
-            ".//span",
-            url)
-
     def get_data_review_d2c(self):
-        base_url = put_a_secret()
-        url = base_url + os.getenv('D2C', 'services/website-development/d2c/')
+        url = self.get_base_url()
         self.driver.get(url)
         # Явное ожидание, что элемент с классом 'reviews-wrapper' появится на странице
         WebDriverWait(self.driver, 20).until(
             EC.presence_of_element_located((By.CLASS_NAME, 'reviews-wrapper'))
         )
-        # После этого можно извлекать данные, как и раньше
+        # Извлекаем данные
         self.get_data_review_(self.get_reviews_data_from_page, 'carousel_of_review.json',
                               'reviews-wrapper', url)
+
+
+
+    def get_data_card(self, card_type):
+        config = {
+            'tiles_icon_d2c': {
+                'file_load': 'data_card_block_packages.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'tiles_icon_card_data_d2c',
+                'locator_block': "//*[@class='tiles icons']//*[contains(@class, 'tile w-')]",
+                'locator_element': ".//h3",
+                'locator_section': ".//span",
+            },
+            'tiles_img_d2c': {
+                'file_load': 'data_card_block_packages.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'tiles_section_card_data_d2c',
+                'locator_block': "//*[@class='tiles images']//*[contains(@class, 'tile w-')]",
+                'locator_element': ".//h3",
+                'locator_section': ".//span",
+            }
+        }
+
+        if card_type not in config:
+            raise ValueError(f"Такого блока не существует: {card_type}")
+        # забираем нужный блок из списка config
+        conf = config[card_type]
+        url = self.get_base_url()
+        # грузим данные, забирая конкретные параметры из нужного блока (отдаем файл, какой метод, ключ, локаторы)
+        self.get_data_card_with_type_project(
+            conf['file_load'],
+            conf['url_method'],
+            conf['json_key'],
+            conf['locator_block'],
+            conf['locator_element'],
+            conf['locator_section'],
+            url
+        )
+
+

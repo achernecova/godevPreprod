@@ -18,9 +18,8 @@ class CMSPage(BasePage):
         self.driver = driver
         self.subURL = os.getenv('CMS_PAGE', 'services/website-development/cms/')  # Значение по умолчанию
 
-    @allure.step("Открытие страницы лендинга по URL: services/website-development/cms/")
+    @allure.step("Открытие страницы цмс по URL: services/website-development/cms/")
     def open(self, sub_url=None):
-        """Открывает мобильную страницу. Если sub_url не передан, используется subURL по умолчанию."""
         if sub_url is None:  # Если sub_url не указан, используем стандартный
             sub_url = self.subURL
         allure.step(f"Открытие мобильной страницы по URL: {sub_url}")
@@ -48,13 +47,16 @@ class CMSPage(BasePage):
         from page_elements.project_service_element import ProjectServiceElement
         return ProjectServiceElement(self.driver)
 
-    def get_data_card_cms(self):
+    def get_base_url(self):
         base_url = put_a_secret()
-        url = base_url + os.getenv('CMS_PAGE', 'services/website-development/cms/')
+        return base_url + self.subURL
+
+    def get_data_card_cms(self):
+        url = self.get_base_url()
         self.get_data_card_(self.get_card_data, 'data_card_block_packages.json',
                             'cms_card_data', url)
 
-    def get_data_card_tiles_cms(self):
+    """ def get_data_card_tiles_cms(self):
         base_url = put_a_secret()
         url = base_url + os.getenv('CMS_PAGE', 'services/website-development/cms/')
         self.get_data_card_with_type_project(
@@ -78,3 +80,40 @@ class CMSPage(BasePage):
             './/p',
             ".//h3[@class='card-title']",
             url)
+    """
+
+    def get_data_card(self, card_type):
+        config = {
+            'tiles_cms': {
+                'file_load': 'data_card_block_packages.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'tiles_section_card_data_cms',
+                'locator_block': "//*[contains(@class, 'tile w-')]",
+                'locator_element': ".//h3",
+                'locator_section': ".//span",
+            },
+            'how_it_staff_cms': {
+                'file_load': 'section_how_it_staff_tiles.json',
+                'url_method': self.get_card_data_tiles_card,
+                'json_key': 'how_it_staff_cms',
+                'locator_block': "//*[@class='card']",
+                'locator_element': './/p',
+                'locator_section': ".//h3[@class='card-title']",
+            }
+        }
+
+        if card_type not in config:
+            raise ValueError(f"Такого блока не существует: {card_type}")
+        # забираем нужный блок из списка config
+        conf = config[card_type]
+        url = self.get_base_url()
+        # грузим данные, забирая конкретные параметры из нужного блока (отдаем файл, какой метод, ключ, локаторы)
+        self.get_data_card_with_type_project(
+            conf['file_load'],
+            conf['url_method'],
+            conf['json_key'],
+            conf['locator_block'],
+            conf['locator_element'],
+            conf['locator_section'],
+            url
+        )

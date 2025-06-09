@@ -58,43 +58,50 @@ class SupportPage(BasePage):
             print(f"Error clicking button: {str(e)}")
             raise  # Повторно выбрасываем исключение для дальнейшей обработки
 
-# метод для черно-белых карточек
-    def get_data_card_tiles_support(self):
-        # Получаем базовый URL с помощью функции put_a_secret
-        base_url = put_a_secret()
-        url = base_url + os.getenv('SUPPORT_PAGE', 'services/tech-support/')
-        self.get_data_card_with_type_project(
-            'data_card_block_packages.json',
-            self.get_data_faq_tiles_new,
-            'tiles_section_card_data_support',
-            "//*[contains(@class, 'tile w-')]",
-            ".//h3",
-            ".//span",
-            url)
 
-
-# метод для черно-белых карточек с кружками и порядковыми номерами
-    def get_data_card_how_it_staff_support(self):
-        base_url = put_a_secret()
-        url = base_url + os.getenv('SUPPORT_PAGE', 'services/tech-support/')
+    def get_data_card(self, card_type):
+        config = {
+            'card_tiles_support': { # для черно-белых карточек
+                'file_load': 'data_card_block_packages.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'tiles_section_card_data_support',
+                'locator_block': "//*[contains(@class, 'tile w-')]",
+                'locator_element': ".//h3",
+                'locator_section': ".//span",
+            },
+            'how_it_staff_support': { # для черно-белых карточек с кружками и порядковыми номерами
+                'file_load': 'section_how_it_staff_tiles.json',
+                'url_method': self.get_card_data_tiles_card,
+                'json_key': 'how_it_staff_support',
+                'locator_block': "//*[@class='card']",
+                'locator_element': './/p',
+                'locator_section': ".//h3[@class='card-title']",
+            },
+            'faq_card_support': { # для faq
+                'file_load': 'faq_block_data.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'faq_support',
+                'locator_block': "//*[@class='accordeon-body']",
+                'locator_element': ".//*[@class='accordeon-question']",
+                'locator_section': ".//*[@class='accordeon-subject-text']",
+            }
+        }
+        if card_type not in config:
+            raise ValueError(f"Такого блока не существует: {card_type}")
+        # забираем нужный блок из списка config
+        conf = config[card_type]
+        url = self.get_base_url()
+        # грузим данные, забирая конкретные параметры из нужного блока (отдаем файл, какой метод, ключ, локаторы)
         self.get_data_card_with_type_project(
-            'section_how_it_staff_tiles.json',
-            self.get_card_data_tiles_card,
-            'how_it_staff_support',
-            "//*[@class='card']",
-            './/p',
-            ".//h3[@class='card-title']",
-            url)
+            conf['file_load'],
+            conf['url_method'],
+            conf['json_key'],
+            conf['locator_block'],
+            conf['locator_element'],
+            conf['locator_section'],
+            url
+        )
 
-# метод для faq
-    def get_data_faq_card(self):
+    def get_base_url(self):
         base_url = put_a_secret()
-        url = base_url + os.getenv('SUPPORT_PAGE', 'services/tech-support/')
-        self.get_data_card_with_type_project(
-            'faq_block_data.json',
-            self.get_data_faq_tiles_new,
-            'faq_support',
-            "//*[@class='accordeon-body']",
-            ".//*[@class='accordeon-question']",
-            ".//*[@class='accordeon-subject-text']",
-            url)
+        return base_url + self.subURL

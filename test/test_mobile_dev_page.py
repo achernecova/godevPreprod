@@ -41,7 +41,7 @@ def test_mobile_dev_page_count_card_advantages(driver):
 def test_mobile_page_why_do_you_need_data_assert(driver):
     mobile_page = MobileDevPage(driver)
     mobile_page.open()
-    mobile_page.get_data_card_how_it_staff_mobile()
+    mobile_page.get_data_card("how_it_staff_mobile")
 
 
 @feature('Проверка данных в FAQ')
@@ -49,7 +49,7 @@ def test_mobile_page_why_do_you_need_data_assert(driver):
 def test_mobile_page_faq_data_assert(driver):
     mobile_page = MobileDevPage(driver)
     mobile_page.open()
-    mobile_page.get_data_faq_card()
+    mobile_page.get_data_card("faq_card_mobile")
 
 @feature('Проверка заголовка в блоке What we do')
 def test_mobile_page_what_we_do_title_assert(driver):
@@ -84,7 +84,7 @@ def test_mobile_dev_page_add_request_in_dev_coast(driver):
 def test_support_page_benefits_count_cards_assert(driver):
     mobile_page = MobileDevPage(driver)
     mobile_page.open()
-    mobile_page.get_data_card_tiles_mobile()
+    mobile_page.get_data_card("card_tiles_mobile")
 
 
 @feature('Проверка данных в карточках блока Advantages of cooperation with us')

@@ -41,73 +41,78 @@ class LandingPage(BasePage):
         return PopupElement(self.driver)
 
 
-        # метод для цветных карточек
-    @allure.step("Получение данных из блока Boost your business with a landing page")
-    def get_data_card_tile_squad(self):
-        # Получаем базовый URL с помощью функции put_a_secret
-        base_url = put_a_secret()
-        url = base_url + os.getenv('LANDING', 'services/development-of-a-landing-page/')
+    def get_data_card(self, card_type):
+        config = {
+            'tile_squad_landing': { # для цветных карточек
+                'file_load': 'data_card_block_packages.json',
+                'url_method': self.get_card_data_tiles_card,
+                'json_key': 'tile_squad',
+                'locator_block': "//*[@class='tile-squad-item card']",
+                'locator_element': ".//h3",
+                'locator_section': ".//*[@class='tile-squad-descr']",
+            },
+            'how_it_staff_landing': { # для черно-белых карточек с кружками и порядковыми номерами
+                'file_load': 'section_how_it_staff_tiles.json',
+                'url_method': self.get_card_data_tiles_card,
+                'json_key': 'how_it_staff_landing',
+                'locator_block': "//*[@class='card']",
+                'locator_element': './/p',
+                'locator_section': ".//h3[@class='card-title']",
+            },
+            'tiles_landing': { # для черно-белых карточек
+                'file_load': 'data_card_block_packages.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'tiles_section_card_data_landing',
+                'locator_block': "//*[contains(@class, 'tile w-')]",
+                'locator_element': ".//h3",
+                'locator_section': ".//span",
+            }
+        }
+
+        if card_type not in config:
+            raise ValueError(f"Такого блока не существует: {card_type}")
+        # забираем нужный блок из списка config
+        conf = config[card_type]
+        url = self.get_base_url()
+        # грузим данные, забирая конкретные параметры из нужного блока (отдаем файл, какой метод, ключ, локаторы)
         self.get_data_card_with_type_project(
-            'data_card_block_packages.json',
-            self.get_card_data_tiles_card,
-            'tile_squad',
-            "//*[@class='tile-squad-item card']",
-            './/h3',
-            ".//*[@class='tile-squad-descr']",
-            url)
+            conf['file_load'],
+            conf['url_method'],
+            conf['json_key'],
+            conf['locator_block'],
+            conf['locator_element'],
+            conf['locator_section'],
+            url
+        )
 
 
-        # метод для черно-белых карточек с кружками и порядковыми номерами
-    def get_data_card_how_it_staff_landing(self):
-        # Получаем базовый URL с помощью функции put_a_secret
+
+
+
+
+    def get_base_url(self):
         base_url = put_a_secret()
-        url = base_url + os.getenv('LANDING', 'services/development-of-a-landing-page/')
-        self.get_data_card_with_type_project(
-            'section_how_it_staff_tiles.json',
-            self.get_card_data_tiles_card,
-            'how_it_staff_landing',
-            "//*[@class='card']",
-            './/p',
-            ".//h3[@class='card-title']",
-            url)
-
+        return base_url + self.subURL
 
         # метод для карусели адвант
     def get_data_advant_carousel_card(self):
         # Получаем базовый URL с помощью функции put_a_secret
-        base_url = put_a_secret()
-        url = base_url + os.getenv('LANDING', 'services/development-of-a-landing-page/')
+        url = self.get_base_url()
         self.get_data_advant_carousel(self.get_data_advant_section_carousel,'advant_section_carousel.json', 'advant_section_landing', url)
-
-
-        # метод для черно-белых карточек
-    def get_data_card_tiles_landing(self):
-        # Получаем базовый URL с помощью функции put_a_secret
-        base_url = put_a_secret()
-        url = base_url + os.getenv('LANDING', 'services/development-of-a-landing-page/')
-        self.get_data_card_with_type_project(
-            'data_card_block_packages.json',
-            self.get_data_faq_tiles_new,
-            'tiles_section_card_data_landing',
-            "//*[contains(@class, 'tile w-')]",
-            ".//h3",
-            ".//span",
-            url)
 
 
         # метод для карточек в блоке rates
     def get_data_card_rates_landing(self):
         # Получаем базовый URL с помощью функции put_a_secret
-        base_url = put_a_secret()
-        url = base_url + os.getenv('LANDING', 'services/development-of-a-landing-page/')
+        url = self.get_base_url()
         self.get_data_card_with_type_project_rates(self.get_card_data_rates, 'data_card_block_packages.json',
                                                  'card_data_rates_landing', url)
 
-        # получение данных с карточек с отзывами
 
+        # получение данных с карточек с отзывами
     def get_data_review_landing(self):
-        base_url = put_a_secret()
-        url = base_url + os.getenv('LANDING', 'services/development-of-a-landing-page/')
+        # Получаем базовый URL с помощью функции put_a_secret
+        url = self.get_base_url()
         self.driver.get(url)
         # Явное ожидание, что элемент с классом 'reviews-wrapper' появится на странице
         WebDriverWait(self.driver, 20).until(

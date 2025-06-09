@@ -21,7 +21,8 @@ def test_saas_page_team_abd_spec_data_card_packages(driver):
 def test_saas_type_of_ready_data_cards_assert(driver):
     saas_page_test = SAASPage(driver)
     saas_page_test.open()
-    saas_page_test.get_data_card_tiles_saas()
+    #saas_page_test.get_data_card_tiles_saas()
+    saas_page_test.get_data_card("card_tiles_saas")
 
 
 @allure.feature('Успешная отправка заявки')
@@ -58,7 +59,7 @@ def test_saas_page_click_services_and_project_and_open_pages(driver, card_type, 
 def test_saas_page_benefits_saas_model_data_assert(driver):
     saas_page_test = SAASPage(driver)
     saas_page_test.open()
-    saas_page_test.get_data_card_how_it_staff_saas()
+    saas_page_test.get_data_card("how_it_staff_saas")
 
 
 @allure.feature('Проверка данных в FAQ')
@@ -66,7 +67,7 @@ def test_saas_page_benefits_saas_model_data_assert(driver):
 def test_web_dev_serv_page_faq_data_assert(driver):
     saas_page_test = SAASPage(driver)
     saas_page_test.open()
-    saas_page_test.get_data_faq_card()
+    saas_page_test.get_data_card("faq_card_saas")
 
 
 @pytest.mark.fill_form_request_faq

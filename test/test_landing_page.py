@@ -9,14 +9,14 @@ from utils.data_loader import load_service_data_review
 def test_landing_page_web_development_process_data_assert(driver):
     landing_page_test = LandingPage(driver)
     landing_page_test.open()
-    landing_page_test.get_data_card_tile_squad()
+    landing_page_test.get_data_card("tile_squad_landing")
 
 
 @feature('Проверка данных в карточках блока How a landing page helps your business')
 def test_landing_page_why_do_you_need_data_assert(driver):
     landing_page_test = LandingPage(driver)
     landing_page_test.open()
-    landing_page_test.get_data_card_how_it_staff_landing()
+    landing_page_test.get_data_card("how_it_staff_landing")
 
 @pytest.mark.prod_test
 @feature('Проверка данных в карточках блока Work process')
@@ -30,7 +30,7 @@ def test_landing_page_web_development_process_data_assert(driver):
 def test_landing_page_benefits_count_cards_assert(driver):
     landing_page_test = LandingPage(driver)
     landing_page_test.open()
-    landing_page_test.get_data_card_tiles_landing()
+    landing_page_test.get_data_card("tiles_landing")
 
 @pytest.mark.prod_test
 @feature('Проверка данных в карточках блока Rates')

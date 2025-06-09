@@ -99,6 +99,10 @@ class EComPage(BasePage):
 
             assert found, f"Данные из JSON не найдены на странице для: {desc['project_type']} | {desc['level']} | {desc['price']} "
 
+    def get_base_url(self):
+        base_url = put_a_secret()
+        return base_url + self.subURL
+
     def get_card_data(self, url):
         response = requests.get(url)
         response.raise_for_status()  # Проверка на ошибки
@@ -129,8 +133,7 @@ class EComPage(BasePage):
 
         # метод для черно-белых карточек
     def get_data_card_tiles_e_com(self):
-        base_url = put_a_secret()
-        url = base_url + os.getenv('E_COM_PAGE', 'services/website-development/e-commerce/')
+        url = self.get_base_url()
         self.get_data_card_with_type_project(
             'data_card_block_packages.json',
             self.get_data_faq_tiles_new,
@@ -142,7 +145,6 @@ class EComPage(BasePage):
 
     # метод для карусели адвант
     def get_data_advant_carousel_card(self):
-        base_url = put_a_secret()
-        url = base_url + os.getenv('E_COM_PAGE', 'services/website-development/e-commerce/')
+        url = self.get_base_url()
         self.get_data_advant_carousel(self.get_data_advant_section_carousel, 'advant_section_carousel.json',
                                       'advant_section_e_com', url)

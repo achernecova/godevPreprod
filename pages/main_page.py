@@ -1,6 +1,7 @@
 import logging
 import os
 import time
+from time import sleep
 
 import allure
 from selenium.webdriver.support.wait import WebDriverWait
@@ -26,9 +27,10 @@ class MainPage(BasePage):
     @allure.step(
         "Кликаем по кнопке в баннере")
     def click_button_banner(self):
-        click_button_banner = self.driver.find_element(*Locators.click_button_banner)
-        self.scroll_new(Locators.click_button_banner)
+        click_button_banner = self.driver.find_element(*Locators.button_banner_services)
+        self.scroll_new(Locators.button_banner_services)
         click_button_banner.click()
+        sleep(10)
 
     @allure.step(
         "Кликаем по кнопке Get in touch")

@@ -47,14 +47,14 @@ def test_b2b_page_data_card_packages(driver):
 def test_b2b_page_benefits_data_cards_assert(driver):
     b2b_page_test = B2BPage(driver)
     b2b_page_test.open()
-    b2b_page_test.get_data_card_tiles_b2b()
+    b2b_page_test.get_data_card("card_tiles_b2b")
 
 @pytest.mark.prod_test
 @allure.feature('Проверка данных в карточках блока B2B e-commerce platforms')
 def test_b2b_page_why_do_you_need_data_assert(driver):
     b2b_page_test = B2BPage(driver)
     b2b_page_test.open()
-    b2b_page_test.get_data_card_how_it_staff_b2b()
+    b2b_page_test.get_data_card("how_it_staff_b2b")
 
 
 @allure.feature('Успешная отправка заявки')

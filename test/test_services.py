@@ -38,7 +38,7 @@ def test_main_page_app_and_web_title_assert(driver):
 def test_landing_page_why_do_you_need_data_assert(driver):
     services_page_test = ServicesPage(driver)
     services_page_test.open()
-    services_page_test.get_data_card_app_and_web_services_service()
+    services_page_test.get_data_card("app_and_web_services_service")
 
 
 @feature('Проверка данных в карточках блока Advantages of working with us')
@@ -46,7 +46,7 @@ def test_landing_page_why_do_you_need_data_assert(driver):
 def test_landing_page_why_do_you_need_data_assert(driver):
     services_page_test = ServicesPage(driver)
     services_page_test.open()
-    services_page_test.get_data_card_app_and_web_services_advant()
+    services_page_test.get_data_card("app_and_web_services_advant")
 
 
 @feature('Успешная отправка заявки из баннера')

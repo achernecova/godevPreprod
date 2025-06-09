@@ -273,5 +273,22 @@
        "text": " We enforce strict coding standards, conduct peer reviews, and use automated testing tools like Jest and Cypress. Every React web project includes documentation, ensuring maintainability and smooth knowledge transfer"
      }
     ]
+  },
+   "faq_symfony": {
+    "title": "Custom design solutions",
+    "descriptions": [
+          {
+       "project_type": "How long does it take to develop a Symfony application?",
+       "text": "Timelines vary based on complexity, but most projects range from 3–9 months. We provide a detailed estimate after the discovery phase"
+     },
+      {
+       "project_type": "Can Symfony integrate with legacy systems?",
+       "text": "Yes — our developers excel at integrating Symfony with older platforms using RESTful APIs or custom middleware"
+     },
+      {
+       "project_type": "Do you offer dedicated hiring models?",
+       "text": "Absolutely. You can hire Symfony developers exclusively for your project, retaining full control over tasks and priorities"
+     }
+    ]
   }
 }

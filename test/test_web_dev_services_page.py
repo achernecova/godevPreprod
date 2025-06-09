@@ -42,7 +42,7 @@ def test_web_dev_serv_page_data_card_packages(driver, index, project_type, price
 def test_web_dev_serv_page_benefits_count_cards_assert(driver):
     web_dev_serv_page = WebDevServicesPage(driver)
     web_dev_serv_page.open()
-    web_dev_serv_page.get_data_card_tiles_webdev()
+    web_dev_serv_page.get_data_card("card_tiles_web_dev_services")
 
 
 
@@ -51,7 +51,7 @@ def test_web_dev_serv_page_benefits_count_cards_assert(driver):
 def test_web_dev_serv_page_faq_data_assert(driver):
     web_dev_serv_page = WebDevServicesPage(driver)
     web_dev_serv_page.open()
-    web_dev_serv_page.get_data_faq_card()
+    web_dev_serv_page.get_data_card("faq_card_web_dev_services")
 
 @pytest.mark.fill_form_request_faq
 @feature('Успешная отправка заявки из FAQ')

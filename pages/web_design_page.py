@@ -34,6 +34,10 @@ class WebDesignPage(BasePage):
     def get_count_elements(self):
         return CountElements(self.driver)
 
+    def get_base_url(self):
+        base_url = put_a_secret()
+        return base_url + self.subURL
+
     # переделываем метод
     def get_data_card_design(self):
         # Загрузите данные из JSON
@@ -97,34 +101,41 @@ class WebDesignPage(BasePage):
 
         return team_data
 
+    def get_data_card(self, card_type):
+        config = {
+            'accordeon_faq_design': {
+                'file_load': 'faq_block_data.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'faq_design',
+                'locator_block': "//*[@class='accordeon-body']",
+                'locator_element': ".//*[@class='accordeon-question']",
+                'locator_section': ".//*[@class='accordeon-subject-text']",
+            },
+            'how_it_staff_design': {
+                'file_load': 'section_how_it_staff_tiles.json',
+                'url_method': self.get_card_data_tiles_card,
+                'json_key': 'how_it_staff_design',
+                'locator_block': "//*[@class='card']",
+                'locator_element': './/p',
+                'locator_section': ".//h3[@class='card-title']",
+            }
+        }
 
-    # метод для черно-белых карточек с кружками и порядковыми номерами
-    def get_data_card_how_it_staff_design(self):
-        base_url = put_a_secret()
-        url = base_url + os.getenv('DESIGN_PAGE', 'services/website-design-and-development-services/')
+        if card_type not in config:
+            raise ValueError(f"Такого блока не существует: {card_type}")
+        # забираем нужный блок из списка config
+        conf = config[card_type]
+        url = self.get_base_url()
+        # грузим данные, забирая конкретные параметры из нужного блока (отдаем файл, какой метод, ключ, локаторы)
         self.get_data_card_with_type_project(
-            'section_how_it_staff_tiles.json',
-            self.get_card_data_tiles_card,
-            'how_it_staff_design',
-            "//*[@class='card']",
-            './/p',
-            ".//h3[@class='card-title']",
-            url)
-
-
-
-# метод для faq
-    def get_data_faq_card(self):
-        base_url = put_a_secret()
-        url = base_url + os.getenv('DESIGN_PAGE', 'services/website-design-and-development-services/')
-        self.get_data_card_with_type_project(
-            'faq_block_data.json',
-            self.get_data_faq_tiles_new,
-            'faq_design',
-            "//*[@class='accordeon-body']",
-            ".//*[@class='accordeon-question']",
-            ".//*[@class='accordeon-subject-text']",
-            url)
+            conf['file_load'],
+            conf['url_method'],
+            conf['json_key'],
+            conf['locator_block'],
+            conf['locator_element'],
+            conf['locator_section'],
+            url
+        )
 
     # Метод для получения заголовка блока
     def get_title_block_website_dev(self):

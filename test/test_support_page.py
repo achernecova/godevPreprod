@@ -52,14 +52,14 @@ def test_support_page_click_services_and_project_and_open_pages(driver, card_typ
 def test_support_page_benefits_count_cards_assert(driver):
     support_page_test = SupportPage(driver)
     support_page_test.open()
-    support_page_test.get_data_card_tiles_support()
+    support_page_test.get_data_card("card_tiles_support")
 
 
 @allure.feature('Проверка данных в карточках блока Why do you need maintenance?')
 def test_support_page_why_do_you_need_data_assert(driver):
     support_page_test = SupportPage(driver)
     support_page_test.open()
-    support_page_test.get_data_card_how_it_staff_support()
+    support_page_test.get_data_card("how_it_staff_support")
 
 
 @allure.feature('Проверка данных в FAQ')
@@ -67,7 +67,7 @@ def test_support_page_why_do_you_need_data_assert(driver):
 def test_support_page_faq_data_assert(driver):
     support_page_test = SupportPage(driver)
     support_page_test.open()
-    support_page_test.get_data_faq_card()
+    support_page_test.get_data_card("faq_card_support")
 
 
 @pytest.mark.fill_form_request_faq

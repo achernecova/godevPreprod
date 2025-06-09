@@ -58,21 +58,21 @@ def test_outstaff_team_and_spec_assert_data(driver):
 def test_outstaff_page_benefits_count_cards_assert(driver):
     outstaff_page_test = WebOutstaffPage(driver)
     outstaff_page_test.open()
-    outstaff_page_test.get_data_card_tiles_outstaff()
+    outstaff_page_test.get_data_card("card_tiles_outstaff")
 
 
 @feature('Проверка данных в карточках блока How IT staff augmentation works')
 def test_support_page_why_do_you_need_data_assert(driver):
     outstaff_page_test = WebOutstaffPage(driver)
     outstaff_page_test.open()
-    outstaff_page_test.get_data_card_how_it_staff_outstaff()
+    outstaff_page_test.get_data_card("how_it_staff_outstaff")
 
 
 @feature('Проверка данных в FAQ')
 def test_outstaff_page_faq_data_assert(driver):
     outstaff_page_test = WebOutstaffPage(driver)
     outstaff_page_test.open()
-    outstaff_page_test.get_data_faq_card_new()
+    outstaff_page_test.get_data_card("faq_outstaff")
 
 @pytest.mark.fill_form_request_faq
 @feature('Успешная отправка заявки из FAQ')
@@ -94,7 +94,7 @@ def test_outstaff_page_web_development_process_data_assert(driver):
 
 
 @feature('Успешная отправка заявки из блока Get in touch')
-def test_main_page_add_request_header(driver):
+def test_outstaff_page_add_request_header(driver):
     outstaff_page_test = WebOutstaffPage(driver)
     outstaff_page_test.open()
     outstaff_page_test.click_button_get_in_touch()
@@ -118,6 +118,6 @@ def test_outstaff_page_convenient_assert(driver):
 def test_main_page_convenient_data_assert(driver):
     outstaff_page_test = WebOutstaffPage(driver)
     outstaff_page_test.open()
-    outstaff_page_test.get_data_card_convenient_outstaff()
+    outstaff_page_test.get_data_card("convenient_of_outstaffing")
 
 

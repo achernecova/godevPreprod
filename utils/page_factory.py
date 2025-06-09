@@ -12,6 +12,7 @@ from pages.reviews_page import ReviewsPage
 from pages.saas_page import SAASPage
 from pages.services_page import ServicesPage
 from pages.support_pages import SupportPage
+from pages.symfony_page import SymfonyPage
 from pages.web_dev_services_page import WebDevServicesPage
 from pages.web_develop_page import WebDevelopPage
 from pages.web_outstaff_page import WebOutstaffPage
@@ -35,7 +36,8 @@ def get_page_instance(page_name, driver):
         "landing": LandingPage,
         "d2c": D2CPage,
         "saas": SAASPage,
-        "reactjs": ReactjsPage
+        "reactjs": ReactjsPage,
+        "symfony": SymfonyPage
     }
     try:
         return page_classes[page_name](driver)

@@ -6,20 +6,15 @@ from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-
-# Фикстура для создания драйвера браузера
 def pytest_addoption(parser):
     parser.addoption('--headless',
                      action='store_true',
                      default=None,
                      help='Run tests in headless mode')
 
-
 @pytest.fixture(scope='function', autouse=True)
 def driver(request):
     chrome_options = Options()
-
-    # Установка стратегии загрузки страницы
     chrome_options.page_load_strategy = 'eager'  # Ожидание загрузки DOM
 
     # Проверяем условия для headless режима
@@ -47,16 +42,11 @@ def driver(request):
         chrome_options.add_argument('--disable-dev-tools')
 
     # Инициализация драйвера
-    d = webdriver.Chrome(options=chrome_options)
-
-    if not run_headless:
-        d.maximize_window()
-
-    d.implicitly_wait(3)
-    yield d
-    d.quit()
-
-
+    try:
+        d = webdriver.Chrome(options=chrome_options)
+        yield d  # Возвращаем драйвер тестам
+    finally:
+        d.quit()  # Закрываем драйвер после завершения тестов
 
 def put_a_secret():
     # Получаем значение окружения
@@ -158,6 +148,18 @@ def put_a_secret():
         "title": "SaaS Development Services in USA: Hire Expert Developers for Application Development in Godev",
         "description": "Unlock your business potential with our SaaS development services in the USA. Hire expert developers to create scalable, user-friendly applications tailored for your clients",
         "canonical": put_a_secret() + os.getenv('SAAS', 'saas/')
+    },
+    {
+        "page": "symfony",
+        "title": "Hire Expert Symfony Developers | Leading Symfony Development Company Godev",
+        "description": "Hire expert Symfony developers at Godev for scalable web applications. Our Symfony development services ensure efficient and secure solutions tailored to your needs.",
+        "canonical": put_a_secret() + os.getenv('SYMFONY', 'services/website-development/symfony/')
+    },
+    {
+        "page": "reactjs",
+        "title": "Top ReactJS Development Services Company Godev | Hire Expert React Developers",
+        "description": "Unlock the potential of your project with Godev, a top ReactJS development company. Hire expert React developers for scalable web and mobile app solutions today!",
+        "canonical": put_a_secret() + os.getenv('REACTJS', 'services/web-development/reactjs/')
     }
 
 ])

@@ -34,29 +34,41 @@ class WebDevServicesPage(BasePage):
     def get_count_elements(self):
         return CountElements(self.driver)
 
-
-        # метод для черно-белых карточек
-    def get_data_card_tiles_webdev(self):
-        base_url = put_a_secret()
-        url = base_url + os.getenv('WEB_DEV', 'services/web-development/')
+    def get_data_card(self, card_type):
+        config = {
+            'card_tiles_web_dev_services': { # для черно-белых карточек
+                'file_load': 'data_card_block_packages.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'tiles_section_card_data_webdev',
+                'locator_block': "//*[contains(@class, 'tile w-')]",
+                'locator_element': ".//h3",
+                'locator_section': ".//span",
+            },
+            'faq_card_web_dev_services': { # для faq
+                'file_load': 'faq_block_data.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'faq_web_dev',
+                'locator_block': "//*[@class='accordeon-body']",
+                'locator_element': ".//*[@class='accordeon-question']",
+                'locator_section': ".//*[@class='accordeon-subject-text']",
+            }
+        }
+        if card_type not in config:
+            raise ValueError(f"Такого блока не существует: {card_type}")
+        # забираем нужный блок из списка config
+        conf = config[card_type]
+        url = self.get_base_url()
+        # грузим данные, забирая конкретные параметры из нужного блока (отдаем файл, какой метод, ключ, локаторы)
         self.get_data_card_with_type_project(
-            'data_card_block_packages.json',
-            self.get_data_faq_tiles_new,
-            'tiles_section_card_data_webdev',
-            "//*[contains(@class, 'tile w-')]",
-            ".//h3",
-            ".//span",
-            url)
+            conf['file_load'],
+            conf['url_method'],
+            conf['json_key'],
+            conf['locator_block'],
+            conf['locator_element'],
+            conf['locator_section'],
+            url
+        )
 
-# метод для faq
-    def get_data_faq_card(self):
+    def get_base_url(self):
         base_url = put_a_secret()
-        url = base_url + os.getenv('WEB_DEV', 'services/web-development/')
-        self.get_data_card_with_type_project(
-            'faq_block_data.json',
-            self.get_data_faq_tiles_new,
-            'faq_web_dev',
-            "//*[@class='accordeon-body']",
-            ".//*[@class='accordeon-question']",
-            ".//*[@class='accordeon-subject-text']",
-            url)
+        return base_url + self.subURL

@@ -86,14 +86,14 @@ def test_framework_page_table_data_assert(driver, index, price_left_title, price
 def test_framework_page_why_do_you_need_data_assert(driver):
     framework_page_test = FrameworkPage(driver)
     framework_page_test.open()
-    framework_page_test.get_data_card_how_it_staff_framework()
+    framework_page_test.get_data_card("how_it_staff_frame")
 
 @pytest.mark.prod_test
 @allure.feature('Проверка данных в FAQ')
 def test_framework_page_faq_data_assert(driver):
     framework_page_test = FrameworkPage(driver)
     framework_page_test.open()
-    framework_page_test.get_data_faq_card_new()
+    framework_page_test.get_data_card("faq_frame")
 
 
 @pytest.mark.fill_form_request_faq
@@ -112,7 +112,7 @@ def test_framework_page_add_request_in_faq(driver):
 def test_framework_page_why_do_you_need_data_assert(driver):
     framework_page_test = FrameworkPage(driver)
     framework_page_test.open()
-    framework_page_test.get_data_card_advant_of_outsource_frame()
+    framework_page_test.get_data_card("advant_frame")
 
 
 @allure.feature('Проверка данных в карточках карусели Limitations of frameworks')

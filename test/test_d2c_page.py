@@ -56,7 +56,7 @@ def test_d2c_page_web_limitations_of_frameworks_data_assert_icons(driver):
 def test_d2c_page_d2c_ecommerce_platform_cards_assert(driver):
     d2c_page_test = D2CPage(driver)
     d2c_page_test.open()
-    d2c_page_test.get_data_card_tiles_d2c()
+    d2c_page_test.get_data_card("tiles_icon_d2c")
 
 
 @pytest.mark.prod_test
@@ -64,7 +64,8 @@ def test_d2c_page_d2c_ecommerce_platform_cards_assert(driver):
 def test_d2c_page_our_advant_assert(driver):
     d2c_page_test = D2CPage(driver)
     d2c_page_test.open()
-    d2c_page_test.get_data_card_tiles_d2c_icon()
+    d2c_page_test.get_data_card("tiles_img_d2c")
+
 
 @pytest.mark.prod_test
 @allure.feature('Проверка данных в карусели с отзывами')
@@ -75,7 +76,7 @@ def test_main_page_count_card_reviews(driver):
 
 
 
-
+# не работает
 @pytest.mark.short_test
 @feature('Успешная отправка заявки из баннера')
 def test_add_request_success_d2c_page(driver):

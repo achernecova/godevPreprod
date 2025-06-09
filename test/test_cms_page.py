@@ -62,14 +62,14 @@ def test_cms_page_data_card_packages(driver):
 def test_cms_page_benefits_count_cards_assert(driver):
     cms_page_test = CMSPage(driver)
     cms_page_test.open()
-    cms_page_test.get_data_card_tiles_cms()
+    cms_page_test.get_data_card('tiles_cms')
 
 
 @allure.feature('Проверка данных в карточках блока Developing a website based on an existing CMS')
 def test_cms_page_why_do_you_need_data_assert(driver):
     cms_page_test = CMSPage(driver)
     cms_page_test.open()
-    cms_page_test.get_data_card_how_it_staff_cms()
+    cms_page_test.get_data_card('how_it_staff_cms')
 
 
 @allure.feature('Успешная отправка заявки')

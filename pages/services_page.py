@@ -62,28 +62,41 @@ class ServicesPage(BasePage):
         return title
 
 
-    def get_data_card_app_and_web_services_service(self):
-        # Получаем базовый URL с помощью функции put_a_secret
-        base_url = put_a_secret()
-        url = base_url + os.getenv('SERVICES_PAGE', 'services/')
+    def get_data_card(self, card_type):
+        config = {
+            'app_and_web_services_advant': { # для черно-белых карточек
+                'file_load': 'section_how_it_staff_tiles.json',
+                'url_method': self.get_card_data_tiles_card,
+                'json_key': 'advantages_of_working_with_us',
+                'locator_block': "//*[@class='adv-item']",
+                'locator_element': ".//*[@class='adv-item_descr']",
+                'locator_section': ".//*[@class='adv-item_title']//span",
+            },
+            'app_and_web_services_service': {
+                'file_load': 'section_how_it_staff_tiles.json',
+                'url_method': self.get_card_data_tiles_card,
+                'json_key': 'app_and_web_services_service',
+                'locator_block': "//*[@class='service-item']",
+                'locator_element': ".//*[@class='service-descr']" ,
+                'locator_section': './/h3',
+            }
+        }
+        if card_type not in config:
+            raise ValueError(f"Такого блока не существует: {card_type}")
+        # забираем нужный блок из списка config
+        conf = config[card_type]
+        url = self.get_base_url()
+        # грузим данные, забирая конкретные параметры из нужного блока (отдаем файл, какой метод, ключ, локаторы)
         self.get_data_card_with_type_project(
-            'section_how_it_staff_tiles.json',
-            self.get_card_data_tiles_card,
-            'app_and_web_services_service',
-            "//*[@class='service-item']",
-            ".//*[@class='service-descr']" ,
-            './/h3' ,
-            url)
+            conf['file_load'],
+            conf['url_method'],
+            conf['json_key'],
+            conf['locator_block'],
+            conf['locator_element'],
+            conf['locator_section'],
+            url
+        )
 
-    def get_data_card_app_and_web_services_advant(self):
-        # Получаем базовый URL с помощью функции put_a_secret
+    def get_base_url(self):
         base_url = put_a_secret()
-        url = base_url + os.getenv('SERVICES_PAGE', 'services/')
-        self.get_data_card_with_type_project(
-            'section_how_it_staff_tiles.json',
-            self.get_card_data_tiles_card,
-            'advantages_of_working_with_us',
-            "//*[@class='adv-item']",
-            ".//*[@class='adv-item_descr']" ,
-            ".//*[@class='adv-item_title']//span" ,
-            url)
+        return base_url + self.subURL

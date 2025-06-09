@@ -44,7 +44,7 @@ class BasePage:
             logging.error(f"Element {locator} not found or not clickable.")
 
     def scroll_new(self, locator):
-        self.close_modal_popup()
+        #self.close_modal_popup()
         WebDriverWait(self.driver, 10).until(
             EC.visibility_of_element_located(locator)  # Ждем, пока элемент станет видимым
         )
@@ -438,6 +438,8 @@ class BasePage:
             project_type = project_type.replace('â', '’')
             project_type = str(project_type.replace('\u2028', '')
                                .replace('\x80\x99', '')
+                                .replace('’\x80\x94 ', ' — ')
+                                .replace('’\x80\x93', '–')
                                .replace('Â\xa0', ' '))  # Удаляем символ разрыва строки
             # Извлечение text из элементов p внутри текущего элемента
             text_section = section.xpath(locator_section)  # Используем XPath
@@ -446,7 +448,9 @@ class BasePage:
             text = text.replace('\u2028', '')  # Удаляем символ разрыва строки
             text = (text.replace('\x80\x99', '')
                     .replace('Â\xa0', '’')
-                    .replace('â', '’'))
+                    .replace('â', '’')
+                    .replace('’\x80\x94 ', '— ')
+                    .replace('’\x80\x93', '–'))
             text = (text.replace('\n', ' ')
                     .replace('\r', '')
                     .replace('\xa0', ' '))
@@ -575,9 +579,13 @@ class BasePage:
             logging.error('Ошибка!!! Заголовок не найден.')
             return 'Ошибка!!!'
 
+    def click_button_new(self):
+        button = self.scroll_new(Locators.button_banner_services)
+        button.click()
+
     def click_button_in_faq(self):
         try:
-            button = self.scroll_new(Locators.button_in_faq_locator)
+            button = self.scroll_new(Locators.button_banner_services)
             if button and button.is_displayed() and button.is_enabled():
                 self.driver.execute_script("arguments[0].click();", button)  # Используем JavaScript для клика
             else:

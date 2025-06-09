@@ -50,33 +50,47 @@ class B2BPage(BasePage):
         click_button_banner.click()
 
     def get_data_card_b2b(self):
-        base_url = put_a_secret()
-        url = base_url + os.getenv('B2B_PAGE', 'services/website-development/b2b/')
+        url = self.get_base_url()
         self.get_data_card_(self.get_card_data, 'data_card_block_packages.json',
                                              'b2b_card_data', url)
 
-# метод для черно-белых карточек
-    def get_data_card_tiles_b2b(self):
-        base_url = put_a_secret()
-        url = base_url + os.getenv('B2B_PAGE', 'services/website-development/b2b/')
-        self.get_data_card_with_type_project(
-            'data_card_block_packages.json',
-            self.get_data_faq_tiles_new,
-            'tiles_section_card_data_b2b',
-            "//*[contains(@class, 'tile w-')]",
-            ".//h3",
-            ".//span",
-            url)
 
-# метод для черно-белых карточек с кружками и порядковыми номерами
-    def get_data_card_how_it_staff_b2b(self):
-        base_url = put_a_secret()
-        url = base_url + os.getenv('B2B_PAGE', 'services/website-development/b2b/')
+    def get_data_card(self, card_type):
+        config = {
+            'how_it_staff_b2b': { # для черно-белых карточек с кружками и порядковыми номерами
+                'file_load': 'section_how_it_staff_tiles.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'how_it_staff_b2b',
+                'locator_block': "//*[@class='card']",
+                'locator_element': ".//h3[@class='card-title']",
+                'locator_section': './/p',
+            },
+            'card_tiles_b2b': { # для черно-белых карточек
+                'file_load': 'data_card_block_packages.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'tiles_section_card_data_b2b',
+                'locator_block': "//*[contains(@class, 'tile w-')]",
+                'locator_element': ".//h3",
+                'locator_section': ".//span",
+            }
+        }
+        if card_type not in config:
+            raise ValueError(f"Такого блока не существует: {card_type}")
+        # забираем нужный блок из списка config
+        conf = config[card_type]
+        url = self.get_base_url()
+        # грузим данные, забирая конкретные параметры из нужного блока (отдаем файл, какой метод, ключ, локаторы)
         self.get_data_card_with_type_project(
-            'section_how_it_staff_tiles.json',
-            self.get_data_faq_tiles_new,
-            'how_it_staff_b2b',
-            "//*[@class='card']",
-            ".//h3[@class='card-title']",
-            './/p',
-            url)
+            conf['file_load'],
+            conf['url_method'],
+            conf['json_key'],
+            conf['locator_block'],
+            conf['locator_element'],
+            conf['locator_section'],
+            url
+        )
+
+
+    def get_base_url(self):
+        base_url = put_a_secret()
+        return base_url + self.subURL

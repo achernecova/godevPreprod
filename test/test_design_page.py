@@ -18,14 +18,15 @@ def test_design_page_data_card_packages(driver):
 def test_design_page_why_do_you_need_data_assert(driver):
     design_page_test = WebDesignPage(driver)
     design_page_test.open()
-    design_page_test.get_data_card_how_it_staff_design()
+    design_page_test.get_data_card("how_it_staff_design")
 
 @pytest.mark.prod_test
 @allure.feature('Проверка данных в FAQ')
 def test_design_page_faq_data_assert(driver):
     design_page_test = WebDesignPage(driver)
     design_page_test.open()
-    design_page_test.get_data_faq_card()
+    #design_page_test.get_data_faq_card()
+    design_page_test.get_data_card("accordeon_faq_design")
 
 
 @pytest.mark.fill_form_request_faq

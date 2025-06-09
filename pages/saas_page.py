@@ -17,14 +17,14 @@ class SAASPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
-        self.subURL = os.getenv('SAAS', 'saas/')  # Значение по умолчанию
+        self.subURL = os.getenv('SAAS', 'services/saas/')  # Значение по умолчанию
 
 
     def get_popup(self):
         return PopupElement(self.driver)
 
 
-    @allure.step("Открытие страницы лендинга по URL: saas/")
+    @allure.step("Открытие страницы лендинга по URL: services/saas/")
     def open(self, sub_url=None):
         """Открывает мобильную страницу. Если sub_url не передан, используется subURL по умолчанию."""
         if sub_url is None:  # Если sub_url не указан, используем стандартный
@@ -55,54 +55,59 @@ class SAASPage(BasePage):
         click_button_banner.click()
 
     def get_data_card_saas(self):
-        base_url = put_a_secret()
-        url = base_url + os.getenv('SAAS', 'saas/')
+        url = self.get_base_url()
         self.get_data_card_(self.get_card_data, 'data_card_block_packages.json',
                                              'saas_card_data', url)
 
-# метод для черно-белых карточек
-    def get_data_card_tiles_saas(self):
-        base_url = put_a_secret()
-        url = base_url + os.getenv('SAAS', 'saas/')
-        self.get_data_card_with_type_project(
-            'data_card_block_packages.json',
-            self.get_data_faq_tiles_new,
-            'tiles_section_card_data_saas',
-            "//*[contains(@class, 'tile w-')]",
-            ".//h3",
-            ".//span",
-            url)
-
-# метод для черно-белых карточек с кружками и порядковыми номерами
-    def get_data_card_how_it_staff_saas(self):
-        base_url = put_a_secret()
-        url = base_url + os.getenv('SAAS', 'saas/')
-        self.get_data_card_with_type_project(
-            'section_how_it_staff_tiles.json',
-            self.get_data_faq_tiles_new,
-            'how_it_staff_saas',
-            "//*[@class='card']",
-            ".//h3[@class='card-title']",
-            './/p',
-            url)
-
     # метод для карусели адвант
     def get_data_advant_carousel_card(self):
-        base_url = put_a_secret()
-        url = base_url + os.getenv('SAAS', 'saas/')
+        url = self.get_base_url()
         self.get_data_advant_carousel(self.get_data_advant_section_carousel, 'advant_section_carousel.json',
                                       'advant_section_saas', url)
 
-        # метод для faq
-    def get_data_faq_card(self):
-        base_url = put_a_secret()
-        url = base_url + os.getenv('SAAS', 'saas/')
+    def get_data_card(self, card_type):
+        config = {
+            'card_tiles_saas': { # для черно-белых карточек
+                'file_load': 'data_card_block_packages.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'tiles_section_card_data_saas',
+                'locator_block': "//*[contains(@class, 'tile w-')]",
+                'locator_element': ".//h3",
+                'locator_section': ".//span",
+            },
+            'how_it_staff_saas': { # для черно-белых карточек с кружками и порядковыми номерами
+                'file_load': 'section_how_it_staff_tiles.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'how_it_staff_saas',
+                'locator_block': "//*[@class='card']",
+                'locator_element': ".//h3[@class='card-title']",
+                'locator_section': './/p',
+            },
+            'faq_card_saas': { # для faq
+                'file_load': 'faq_block_data.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'faq_web_saas',
+                'locator_block': "//*[@class='accordeon-body']",
+                'locator_element': ".//*[@class='accordeon-question']",
+                'locator_section': ".//*[@class='accordeon-subject-text']",
+            }
+        }
+        if card_type not in config:
+            raise ValueError(f"Такого блока не существует: {card_type}")
+        # забираем нужный блок из списка config
+        conf = config[card_type]
+        url = self.get_base_url()
+        # грузим данные, забирая конкретные параметры из нужного блока (отдаем файл, какой метод, ключ, локаторы)
         self.get_data_card_with_type_project(
-            'faq_block_data.json',
-            self.get_data_faq_tiles_new,
-            'faq_web_saas',
-            "//*[@class='accordeon-body']",
-            ".//*[@class='accordeon-question']",
-            ".//*[@class='accordeon-subject-text']",
-            url)
+            conf['file_load'],
+            conf['url_method'],
+            conf['json_key'],
+            conf['locator_block'],
+            conf['locator_element'],
+            conf['locator_section'],
+            url
+        )
 
+    def get_base_url(self):
+        base_url = put_a_secret()
+        return base_url + self.subURL

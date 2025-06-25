@@ -221,7 +221,7 @@
     "descriptions": [
       {
         "index": "1",
-        "direction": "Backend",
+        "project_type": "Backend",
         "exp": "3+ years of experience",
         "level": "middle / middle+ / senior",
         "price": "30$/ hour",
@@ -229,7 +229,7 @@
       },
       {
         "index": "2",
-        "direction": "Mobile",
+        "project_type": "Mobile",
         "exp": "3+ years of experience",
         "level": "middle / middle+ / senior",
         "price": "35$/ hour",
@@ -237,7 +237,7 @@
       },
       {
         "index": "3",
-        "direction": "Frontend",
+        "project_type": "Frontend",
         "exp": "3+ years of experience",
         "level": "middle / middle+ / senior",
         "price": "30$/ hour",
@@ -245,7 +245,7 @@
       },
       {
         "index": "4",
-        "direction": "Analysts",
+        "project_type": "Analysts",
         "exp": "3+ years of experience",
         "level": "middle / middle+ / senior",
         "price": "26$/ hour",
@@ -253,7 +253,7 @@
       },
       {
         "index": "5",
-        "direction": "Design",
+        "project_type": "Design",
         "exp": "3+ years of experience",
         "level": "middle / middle+ / senior",
         "price": "22$/ hour",
@@ -261,7 +261,7 @@
       },
       {
         "index": "6",
-        "direction": "Testers",
+        "project_type": "Testers",
         "exp": "3+ years of experience",
         "level": "middle / middle+ / senior",
         "price": "28$/ hour",
@@ -599,7 +599,7 @@
   },
   "tiles_section_card_data_b2b": {
     "title": "Benefits of a B2B e-commerce solution from Godev",
-    "text_title": "Partnering with Godev for your B2B eCommerce development offers numerous advantages:",
+    "text_section": "Partnering with Godev for your B2B eCommerce development offers numerous advantages:",
     "descriptions": [
       {
         "index": "1",

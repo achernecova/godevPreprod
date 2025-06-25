@@ -40,12 +40,6 @@ class ServicesPage(BasePage):
     def get_meta_data(self):
         return MetaData(self.driver)
 
-
-    def click_button_banner(self):
-        click_button_banner = self.driver.find_element(*Locators.button_banner_services)
-        click_button_banner.click()
-
-
     def get_popup_element(self):
         return PopupElement(self.driver)
 
@@ -55,48 +49,8 @@ class ServicesPage(BasePage):
     def get_count_elements(self):
         return CountElements(self.driver)
 
-
     # тянем данные из названия блока Services
     def get_title_block_app_and_web_development_services(self):
         title = self.get_title_block_from_page_all(Locators.title_block_app_and_web_development_services_locator)
         return title
 
-
-    def get_data_card(self, card_type):
-        config = {
-            'app_and_web_services_advant': { # для черно-белых карточек
-                'file_load': 'section_how_it_staff_tiles.json',
-                'url_method': self.get_card_data_tiles_card,
-                'json_key': 'advantages_of_working_with_us',
-                'locator_block': "//*[@class='adv-item']",
-                'locator_element': ".//*[@class='adv-item_descr']",
-                'locator_section': ".//*[@class='adv-item_title']//span",
-            },
-            'app_and_web_services_service': {
-                'file_load': 'section_how_it_staff_tiles.json',
-                'url_method': self.get_card_data_tiles_card,
-                'json_key': 'app_and_web_services_service',
-                'locator_block': "//*[@class='service-item']",
-                'locator_element': ".//*[@class='service-descr']" ,
-                'locator_section': './/h3',
-            }
-        }
-        if card_type not in config:
-            raise ValueError(f"Такого блока не существует: {card_type}")
-        # забираем нужный блок из списка config
-        conf = config[card_type]
-        url = self.get_base_url()
-        # грузим данные, забирая конкретные параметры из нужного блока (отдаем файл, какой метод, ключ, локаторы)
-        self.get_data_card_with_type_project(
-            conf['file_load'],
-            conf['url_method'],
-            conf['json_key'],
-            conf['locator_block'],
-            conf['locator_element'],
-            conf['locator_section'],
-            url
-        )
-
-    def get_base_url(self):
-        base_url = put_a_secret()
-        return base_url + self.subURL

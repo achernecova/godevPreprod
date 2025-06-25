@@ -48,15 +48,3 @@ class SymfonyPage(BasePage):
     def get_popup(self):
         return PopupElement(self.driver)
 
-        # метод для faq
-    def get_data_faq_card(self):
-        base_url = put_a_secret()
-        url = base_url + os.getenv('SYMFONY', 'services/website-development/symfony/')
-        self.get_data_card_with_type_project(
-            'faq_block_data.json',
-            self.get_data_faq_tiles_new,
-            'faq_symfony',
-            "//*[@class='accordeon-body']",
-            ".//*[@class='accordeon-question']",
-            ".//*[@class='accordeon-subject-text']",
-            url)

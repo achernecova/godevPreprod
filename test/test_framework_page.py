@@ -63,7 +63,7 @@ def test_e_com_page_click_services_and_project_and_open_pages(driver, card_type,
     framework_page_test = FrameworkPage(driver)
     framework_page_test.open()
     project_element = framework_page_test.get_project_service_element()
-    page = project_element.test_click_card_and_open_page(card_type)
+    page = project_element.click_card_and_open_page(card_type)
     assert driver.current_url == expected_url, f"Ожидался URL '{expected_url}', но получен '{driver.current_url}'"
     assert page.get_title_page() == expected_title, f"Получен Title: {page.get_title_page()}"
 
@@ -95,6 +95,12 @@ def test_framework_page_faq_data_assert(driver):
     framework_page_test.open()
     framework_page_test.get_data_card("faq_frame")
 
+@pytest.mark.prod_test
+@allure.feature('Проверка данных в карточках блока Advantages of outsourcing for web')
+def test_framework_page_why_do_you_need_data_assert(driver):
+    framework_page_test = FrameworkPage(driver)
+    framework_page_test.open()
+    framework_page_test.get_data_card("advant_frame")
 
 @pytest.mark.fill_form_request_faq
 @allure.feature('Успешная отправка заявки из FAQ')
@@ -107,13 +113,6 @@ def test_framework_page_add_request_in_faq(driver):
     success = popup_modal_page.popup_success_displayed()
     assert success == True, f"Не появилось окно успешности "
 
-@pytest.mark.prod_test
-@allure.feature('Проверка данных в карточках блока Advantages of outsourcing for web')
-def test_framework_page_why_do_you_need_data_assert(driver):
-    framework_page_test = FrameworkPage(driver)
-    framework_page_test.open()
-    framework_page_test.get_data_card("advant_frame")
-
 
 @allure.feature('Проверка данных в карточках карусели Limitations of frameworks')
 def test_framework_page_web_limitations_of_frameworks_data_assert(driver):
@@ -121,9 +120,3 @@ def test_framework_page_web_limitations_of_frameworks_data_assert(driver):
     framework_page_test.open()
     framework_page_test.get_data_advant_carousel_card()
 
-@pytest.mark.prod_test
-@allure.feature('Проверка данных в карточках блока Why choose Godev')
-def test_framework_page_why_choose_data_assert(driver):
-    framework_page_test = FrameworkPage(driver)
-    framework_page_test.open()
-    framework_page_test.get_data_advant_carousel_card()

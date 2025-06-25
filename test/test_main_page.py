@@ -1,5 +1,6 @@
 from time import sleep
 
+import allure
 import pytest
 from allure_commons._allure import link, feature
 
@@ -23,9 +24,9 @@ def test_add_request_success_main_page(driver):
     main_page_test = MainPage(driver)
     main_page_test.open()
     main_page_test.click_button_banner()
-    #form_page_test = main_page_test.get_popup_element()
-    #form_page_test.add_request_success()
-    #assert form_page_test.popup_success_displayed() == True, 'Окно подтверждения не появилось'
+    form_page_test = main_page_test.get_popup_element()
+    form_page_test.add_request_success()
+    assert form_page_test.popup_success_displayed() == True, 'Окно подтверждения не появилось'
 
 @pytest.mark.short_test
 @pytest.mark.fill_form_request_footer
@@ -114,14 +115,14 @@ def test_main_page_click_more_packages_and_data_pages(driver, test_data):
 def test_main_page_benefits_count_cards_assert(driver):
     main_page_test = MainPage(driver)
     main_page_test.open()
-    main_page_test.get_data_card_tiles_main()
+    main_page_test.get_data_card("tiles_main")
 
 
 @feature('Проверка данных в карточках блока IT staff augmentation')
 def test_main_page_why_do_you_need_data_assert(driver):
     main_page_test = MainPage(driver)
     main_page_test.open()
-    main_page_test.get_data_card_how_it_staff_main()
+    main_page_test.get_data_card("how_it_staff_main")
 
 
 @pytest.mark.prod_test
@@ -204,4 +205,64 @@ def test_main_page_digital_agency_godev_title_assert(driver):
 def test_landing_page_why_do_you_need_data_assert(driver):
     main_page_test = MainPage(driver)
     main_page_test.open()
-    main_page_test.get_data_card_app_and_web_services_main()
+    #main_page_test.get_data_card_app_and_web_services_main()
+    main_page_test.get_data_card('section_it_staff_main')
+
+
+
+@pytest.mark.parametrize("block_name, locator_name", [
+    ("banner_title", "banner_title"),
+    ("block_header", "title_block_app_and_web_development_services_locator"),
+    ("mini_text_block", "text_block_app_and_web_development_services_locator"),
+    ("block_header", "project_title"),
+    ("block_header", "technologies_title"),
+    ("header_tiles_card", "header_app_and_web_locator"),
+    ("text_tiles_card", "text_app_and_web_locator"),
+    ("choose_number", "choose_smg_number"),
+    ("block_header", "title_block_website_dev_locator"),
+    ("text_block", "text_block_website_dev_locator"),
+    ("block_header", "color_text_block_locator"),
+    ("block_header", "title_block_custom_design_solutions_locator"),
+    ("mini_text_block", "text_block_it_staff_locator"),
+    ("header_tiles_card", "tiles_card_title_locator"),
+    ("text_tiles_card", "tiles_card_text_locator"),
+    ("header_tiles_card", "block_get_in_touch_text"),
+    ("text_tiles_card", "button_more_in_card_block"),
+    ("block_header", "header_review_block"),
+    ("text_tiles_card", "text_review"),
+    ("block_header", "card_mini_tile_header"),
+    ("text_block", "header_mini_tile_in_card"),
+    ("mini_text_block", "choose_smg_text"),
+])
+@allure.feature('Проверка шрифтов в блоках')
+def test_fonts(driver, block_name, locator_name):
+    page = MainPage(driver)
+    page.open()
+
+    # Получаем атрибуты
+    attributes = page.get_font_attributes1(locator_name, block_name)
+    errors = []
+
+    # Выполняем проверки и добавляем ошибки в список
+    if attributes["color"] != attributes["expected_color"]:
+        errors.append(
+            f"Цвет не соответствует для {locator_name}: "
+            f"ожидалось {attributes['expected_color']}, получено {attributes['color']}"
+        )
+
+    if attributes["expected_font_family"] not in attributes["font_family"]:
+        errors.append(
+            f"Шрифт не соответствует для {locator_name}: "
+            f"ожидалось включение '{attributes['expected_font_family']}', "
+            f"получено '{attributes['font_family']}'"
+        )
+
+    if attributes["font_size"] != attributes["expected_font_size"]:
+        errors.append(
+            f"Размер шрифта не соответствует для {locator_name}: "
+            f"ожидалось {attributes['expected_font_size']}, получено {attributes['font_size']}"
+        )
+
+    # Если есть ошибки, выбрасываем исключение
+    if errors:
+        pytest.fail("; ".join(errors))

@@ -1,5 +1,6 @@
 import logging
 import os
+from time import sleep
 
 import allure
 import requests
@@ -27,6 +28,390 @@ class BasePage:
         logging.info(f"Открываем страницу: {full_url}")
         self.driver.get(full_url)
 
+    def get_base_url(self):
+        base_url = put_a_secret()
+        sub_url = getattr(self, 'subURL', '')
+        return base_url + sub_url
+
+    """
+    Новый метод для связывания данных на странице (в карточках) и в json
+    how_it_staff_b2b - блок с черно-белыми карточками с кружками и порядковыми номерами
+    card_tiles_b2b - блок с черно-белыми 3д карточками
+    ...
+    """
+    def get_data_card(self, card_type):
+        config = {
+            'tiles_cms': {
+                'file_load': 'data_card_block_packages.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'tiles_section_card_data_cms',
+                'locator_block': "//*[contains(@class, 'tile w-')]",
+                'locator_element': ".//h3",
+                'locator_section': ".//span",
+            },
+            'how_it_staff_cms': {
+                'file_load': 'section_how_it_staff_tiles.json',
+                'url_method': self.get_card_data_tiles_card,
+                'json_key': 'how_it_staff_cms',
+                'locator_block': "//*[@class='card']",
+                'locator_element': './/p',
+                'locator_section': ".//h3[@class='card-title']",
+            },
+            'section_it_staff_main': {
+                'file_load': 'section_how_it_staff_tiles.json',
+                'url_method': self.get_card_data_tiles_card,
+                'json_key': 'app_and_web_services_main',
+                'locator_block': "//*[@class='service-item']",
+                'locator_element': ".//*[@class='service-descr']",
+                'locator_section': './/h3'
+            },
+            'tiles_main': {
+                'file_load': 'data_card_block_packages.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'tiles_section_card_data_main',
+                'locator_block': "//*[contains(@class, 'tile w-')]",
+                'locator_element': ".//h3",
+                'locator_section': ".//span"
+            },
+            'how_it_staff_main': {
+                'file_load': 'section_how_it_staff_tiles.json',
+                'url_method': self.get_card_data_tiles_card,
+                'json_key': 'how_it_staff_main',
+                'locator_block': "//*[@class='card']",
+                'locator_element': './/p',
+                'locator_section': ".//h3[@class='card-title']"
+            },
+            'how_it_staff_b2b': {
+                'file_load': 'section_how_it_staff_tiles.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'how_it_staff_b2b',
+                'locator_block': "//*[@class='card']",
+                'locator_element': ".//h3[@class='card-title']",
+                'locator_section': './/p',
+            },
+            'card_tiles_b2b': {
+                'file_load': 'data_card_block_packages.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'tiles_section_card_data_b2b',
+                'locator_block': "//*[contains(@class, 'tile w-')]",
+                'locator_element': ".//h3",
+                'locator_section': ".//span",
+            },
+            'tiles_icon_d2c': {
+                'file_load': 'data_card_block_packages.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'tiles_icon_card_data_d2c',
+                'locator_block': "//*[@class='tiles icons']//*[contains(@class, 'tile w-')]",
+                'locator_element': ".//h3",
+                'locator_section': ".//span",
+            },
+            'tiles_img_d2c': {
+                'file_load': 'data_card_block_packages.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'tiles_section_card_data_d2c',
+                'locator_block': "//*[@class='tiles images']//*[contains(@class, 'tile w-')]",
+                'locator_element': ".//h3",
+                'locator_section': ".//span",
+            },
+            'accordeon_faq_design': {
+                'file_load': 'faq_block_data.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'faq_design',
+                'locator_block': "//*[@class='accordeon-body']",
+                'locator_element': ".//*[@class='accordeon-question']",
+                'locator_section': ".//*[@class='accordeon-subject-text']",
+            },
+            'how_it_staff_design': {
+                'file_load': 'section_how_it_staff_tiles.json',
+                'url_method': self.get_card_data_tiles_card,
+                'json_key': 'how_it_staff_design',
+                'locator_block': "//*[@class='card']",
+                'locator_element': './/p',
+                'locator_section': ".//h3[@class='card-title']",
+            },
+            'tiles_e_com': { # метод для черно-белых карточек
+                'file_load': 'data_card_block_packages.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'tiles_section_card_data_e_com',
+                'locator_block': "//*[contains(@class, 'tile w-')]",
+                'locator_element': ".//h3",
+                'locator_section': ".//span",
+            },
+            'faq_frame': {
+                'file_load': 'faq_block_data.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'faq_framework',
+                'locator_block': "//*[@class='accordeon-body']",
+                'locator_element': ".//*[@class='accordeon-question']",
+                'locator_section': ".//*[@class='accordeon-subject-text']",
+            },
+            'advant_frame': {
+                'file_load': 'section_how_it_staff_tiles.json',
+                'url_method': self.get_card_data_tiles_card,
+                'json_key': 'advantages_of_outsourcing_framework',
+                'locator_block': "//*[@class='advantages-outsourcing__item']",
+                'locator_element': ".//*[@class='advantages-outsourcing__text']",
+                'locator_section': ".//*[@class='advantages-outsourcing__title']",
+            },
+            'how_it_staff_frame': {
+                'file_load': 'section_how_it_staff_tiles.json',
+                'url_method': self.get_card_data_tiles_card,
+                'json_key': 'how_it_staff_framework',
+                'locator_block': "//*[@class='card']",
+                'locator_element': './/p',
+                'locator_section': ".//h3[@class='card-title']",
+            },
+            'tile_squad_landing': {  # для цветных карточек
+                'file_load': 'data_card_block_packages.json',
+                'url_method': self.get_card_data_tiles_card,
+                'json_key': 'tile_squad',
+                'locator_block': "//*[@class='tile-squad-item card']",
+                'locator_element': ".//h3",
+                'locator_section': ".//*[@class='tile-squad-descr']",
+            },
+            'how_it_staff_landing': {  # для черно-белых карточек с кружками и порядковыми номерами
+                'file_load': 'section_how_it_staff_tiles.json',
+                'url_method': self.get_card_data_tiles_card,
+                'json_key': 'how_it_staff_landing',
+                'locator_block': "//*[@class='card']",
+                'locator_element': './/p',
+                'locator_section': ".//h3[@class='card-title']",
+            },
+            'tiles_landing': {  # для черно-белых карточек
+                'file_load': 'data_card_block_packages.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'tiles_section_card_data_landing',
+                'locator_block': "//*[contains(@class, 'tile w-')]",
+                'locator_element': ".//h3",
+                'locator_section': ".//span",
+            },
+            'card_tiles_mobile': {  # для черно-белых карточек
+                'file_load': 'data_card_block_packages.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'tiles_section_card_data_mobile',
+                'locator_block': "//*[contains(@class, 'tile w-')]",
+                'locator_element': ".//h3",
+                'locator_section': ".//span",
+            },
+            'how_it_staff_mobile': {  # для черно-белых карточек с кружками и порядковыми номерами
+                'file_load': 'section_how_it_staff_tiles.json',
+                'url_method': self.get_card_data_tiles_card,
+                'json_key': 'how_it_staff_mobile',
+                'locator_block': "//*[@class='card']",
+                'locator_element': './/p',
+                'locator_section': ".//h3[@class='card-title']",
+            },
+            'faq_card_mobile': {  # для faq
+                'file_load': 'faq_block_data.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'faq_mobile',
+                'locator_block': "//*[@class='accordeon-body']",
+                'locator_element': ".//*[@class='accordeon-question']",
+                'locator_section': ".//*[@class='accordeon-subject-text']",
+            },
+            'card_tiles_outstaff': {  # для черно-белых карточек
+                'file_load': 'data_card_block_packages.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'tiles_section_card_data_outstaff',
+                'locator_block': "//*[contains(@class, 'tile w-')]",
+                'locator_element': ".//h3",
+                'locator_section': ".//span",
+            },
+            'how_it_staff_outstaff': {  # для черно-белых карточек с кружками и порядковыми номерами
+                'file_load': 'section_how_it_staff_tiles.json',
+                'url_method': self.get_card_data_tiles_card,
+                'json_key': 'how_it_staff_outstaff',
+                'locator_block': "//*[@class='card']",
+                'locator_element': './/p',
+                'locator_section': ".//h3[@class='card-title']",
+            },
+            'convenient_of_outstaff': {  # для черно-белых карточек
+                'file_load': 'section_how_it_staff_tiles.json',
+                'url_method': self.get_card_data_tiles_card,
+                'json_key': 'convenient_of_outstaffing',
+                'locator_block': "//*[@class='work-card']",
+                'locator_element': ".//span[not(@class)]",
+                'locator_section': ".//span[@class='h3']",
+            },
+            'faq_outstaff': {  # для faq
+                'file_load': 'faq_block_data.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'faq_outstaff',
+                'locator_block': "//*[@class='accordeon-body']",
+                'locator_element': ".//*[@class='accordeon-question']",
+                'locator_section': ".//*[@class='accordeon-subject-text']",
+            },
+            'tiles_react': {  # для черно-белых карточек
+                'file_load': 'data_card_block_packages.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'tiles_section_card_data_react',
+                'locator_block': "//*[contains(@class, 'tile w-')]",
+                'locator_element': ".//h3",
+                'locator_section': ".//span",
+            },
+            'how_it_staff_react': {  # для черно-белых карточек с кружками и порядковыми номерами
+                'file_load': 'section_how_it_staff_tiles.json',
+                'url_method': self.get_card_data_tiles_card,
+                'json_key': 'how_it_staff_react',
+                'locator_block': "//*[@class='card']",
+                'locator_element': './/p',
+                'locator_section': ".//h3[@class='card-title']",
+            },
+            'app_and_web_services_react': {
+                'file_load': 'section_how_it_staff_tiles.json',
+                'url_method': self.get_card_data_tiles_card,
+                'json_key': 'app_and_web_services_react',
+                'locator_block': "//*[@class='service-item']",
+                'locator_element': ".//*[@class='service-descr']",
+                'locator_section': './/h3',
+            },
+            'advant_of_outsource_react': {
+                'file_load': 'section_how_it_staff_tiles.json',
+                'url_method': self.get_card_data_tiles_card,
+                'json_key': 'advantages_of_outsourcing_react',
+                'locator_block': "//*[@class='advantages-outsourcing__item']",
+                'locator_element': ".//*[@class='advantages-outsourcing__text']",
+                'locator_section': ".//*[@class='advantages-outsourcing__title']",
+            },
+            'card_best_framework_react': {  # для черно-белых карточек с кружками и порядковыми номерами
+                'file_load': 'section_how_it_staff_tiles.json',
+                'url_method': self.get_card_data_tiles_card,
+                'json_key': 'best_framework_card_blocks_react',
+                'locator_block': "//*[contains(@class, 'best-frameworks__item ')]",
+                'locator_element': ".//*[@class='best-frameworks__item-text']",
+                'locator_section': ".//*[@class='best-frameworks__item-title']",
+            },
+            'faq_card_react': {  # для faq
+                'file_load': 'faq_block_data.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'faq_reactjs',
+                'locator_block': "//*[@class='accordeon-body']",
+                'locator_element': ".//*[@class='accordeon-question']",
+                'locator_section': ".//*[@class='accordeon-subject-text']",
+            },
+            'card_tiles_saas': {  # для черно-белых карточек
+                'file_load': 'data_card_block_packages.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'tiles_section_card_data_saas',
+                'locator_block': "//*[contains(@class, 'tile w-')]",
+                'locator_element': ".//h3",
+                'locator_section': ".//span",
+            },
+            'how_it_staff_saas': {  # для черно-белых карточек с кружками и порядковыми номерами
+                'file_load': 'section_how_it_staff_tiles.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'how_it_staff_saas',
+                'locator_block': "//*[@class='card']",
+                'locator_element': ".//h3[@class='card-title']",
+                'locator_section': './/p',
+            },
+            'faq_card_saas': {  # для faq
+                'file_load': 'faq_block_data.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'faq_web_saas',
+                'locator_block': "//*[@class='accordeon-body']",
+                'locator_element': ".//*[@class='accordeon-question']",
+                'locator_section': ".//*[@class='accordeon-subject-text']",
+            },
+            'app_and_web_services_advant': {  # для черно-белых карточек
+                'file_load': 'section_how_it_staff_tiles.json',
+                'url_method': self.get_card_data_tiles_card,
+                'json_key': 'advantages_of_working_with_us',
+                'locator_block': "//*[@class='adv-item']",
+                'locator_element': ".//*[@class='adv-item_descr']",
+                'locator_section': ".//*[@class='adv-item_title']//span",
+            },
+            'app_and_web_services_service': {
+                'file_load': 'section_how_it_staff_tiles.json',
+                'url_method': self.get_card_data_tiles_card,
+                'json_key': 'app_and_web_services_service',
+                'locator_block': "//*[@class='service-item']",
+                'locator_element': ".//*[@class='service-descr']",
+                'locator_section': './/h3',
+            },
+            'card_tiles_support': {  # для черно-белых карточек
+                'file_load': 'data_card_block_packages.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'tiles_section_card_data_support',
+                'locator_block': "//*[contains(@class, 'tile w-')]",
+                'locator_element': ".//h3",
+                'locator_section': ".//span",
+            },
+            'how_it_staff_support': {  # для черно-белых карточек с кружками и порядковыми номерами
+                'file_load': 'section_how_it_staff_tiles.json',
+                'url_method': self.get_card_data_tiles_card,
+                'json_key': 'how_it_staff_support',
+                'locator_block': "//*[@class='card']",
+                'locator_element': './/p',
+                'locator_section': ".//h3[@class='card-title']",
+            },
+            'faq_card_support': {  # для faq
+                'file_load': 'faq_block_data.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'faq_support',
+                'locator_block': "//*[@class='accordeon-body']",
+                'locator_element': ".//*[@class='accordeon-question']",
+                'locator_section': ".//*[@class='accordeon-subject-text']",
+            },
+            'faq_card_symfony': {  # для faq
+                'file_load': 'faq_block_data.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'faq_symfony',
+                'locator_block': "//*[@class='accordeon-body']",
+                'locator_element': ".//*[@class='accordeon-question']",
+                'locator_section': ".//*[@class='accordeon-subject-text']",
+            },
+            'card_tiles_web_dev_services': {  # для черно-белых карточек
+                'file_load': 'data_card_block_packages.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'tiles_section_card_data_webdev',
+                'locator_block': "//*[contains(@class, 'tile w-')]",
+                'locator_element': ".//h3",
+                'locator_section': ".//span",
+            },
+            'faq_card_web_dev_services': {  # для faq
+                'file_load': 'faq_block_data.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'faq_web_dev',
+                'locator_block': "//*[@class='accordeon-body']",
+                'locator_element': ".//*[@class='accordeon-question']",
+                'locator_section': ".//*[@class='accordeon-subject-text']",
+            },
+            'tiles_website': {  # для черно-белых карточек
+                'file_load': 'data_card_block_packages.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'tiles_section_card_data_website',
+                'locator_block': "//*[contains(@class, 'tile w-')]",
+                'locator_element': ".//h3",
+                'locator_section': ".//span",
+            },
+            'faq_website': {  # для faq
+                'file_load': 'faq_block_data.json',
+                'url_method': self.get_data_faq_tiles_new,
+                'json_key': 'faq_website_dev',
+                'locator_block': "//*[@class='accordeon-body']",
+                'locator_element': ".//*[@class='accordeon-question']",
+                'locator_section': ".//*[@class='accordeon-subject-text']",
+            }
+        }
+
+        if card_type not in config:
+            raise ValueError(f"Такого блока не существует: {card_type}")
+
+        conf = config[card_type]
+        url = self.get_base_url()
+
+        self.get_data_card_with_type_project(
+            conf['file_load'],
+            conf['url_method'],
+            conf['json_key'],
+            conf['locator_block'],
+            conf['locator_element'],
+            conf['locator_section'],
+            url
+        )
+
+
     @allure.step("Закрытие окна кеш-куки")
     def close_modal_popup(self):
         close_modal = self.driver.find_element(*Locators.close_modal)
@@ -44,7 +429,6 @@ class BasePage:
             logging.error(f"Element {locator} not found or not clickable.")
 
     def scroll_new(self, locator):
-        #self.close_modal_popup()
         WebDriverWait(self.driver, 10).until(
             EC.visibility_of_element_located(locator)  # Ждем, пока элемент станет видимым
         )
@@ -58,25 +442,30 @@ class BasePage:
     # Метод для скролла до элемента
     @allure.step("Скролл до элемента")
     def scroll_to_element(self, locator):
-        # Ждем, пока элемент станет видимым
-        WebDriverWait(self.driver, 10).until(
-            EC.visibility_of_element_located(locator)  # Убедитесь, что элемент доступен
+        # Ждём, пока элемент станет видимым
+        element = WebDriverWait(self.driver, 10).until(
+            EC.visibility_of_element_located(locator)
         )
-        # Находим элемент
-        element = self.driver.find_element(*locator)
-        # Прокручиваем страницу до элемента
-        position = element.location['y']
-        self.driver.execute_script("window.scrollTo(0, arguments[0]);", position)
-        # Дополнительное ожидание для элемента
+        # Прокручиваем элемент в центр окна браузера
+        self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
+        # Ждём, пока элемент станет кликабельным
         WebDriverWait(self.driver, 10).until(
-            EC.element_to_be_clickable(locator)  # Находим элемент снова
+            EC.element_to_be_clickable(locator)
         )
-        # Проверяем видимость элемента
-        WebDriverWait(self.driver, 10).until(
-            lambda driver: driver.execute_script("return arguments[0].getBoundingClientRect().top >= 0;", element)
-        )
-        # Клик по кнопке через js
-        # self.driver.execute_script("arguments[0].click();", click_button)
+        # Дополнительно можно проверить, что элемент виден в viewport
+        WebDriverWait(self.driver, 5).until(lambda d: self.is_element_in_viewport(element))
+
+    def is_element_in_viewport(self, element):
+        # Возвращает True, если элемент видим в viewport
+        return self.driver.execute_script(
+            """
+            var elem = arguments[0],
+                box = elem.getBoundingClientRect(),
+                cx = box.left + box.width / 2,
+                cy = box.top + box.height / 2,
+                e = document.elementFromPoint(cx, cy);
+            return e === elem || elem.contains(e);
+            """, element)
 
     @allure.step("Ожидаем пока элемент станет видимым")
     def wait_for_element(self, locator, timeout=10):
@@ -278,7 +667,7 @@ class BasePage:
 
     # переделываем метод
     @staticmethod
-    def get_data_card_(url_method, file_load, json_key, url):
+    def get_data_card_name_price_text_button_more(url_method, file_load, json_key, url):
         # Загрузите данные из JSON
         data = load_file(file_load)
         # Получаем данные из блока карусели на странице
@@ -564,9 +953,6 @@ class BasePage:
             )
             assert found, f"Данные из JSON не найдены на странице для: {desc['advant_title']} | {desc['advant_text']} "
 
-
-
-
     @allure.step("Получаем заголовок блока")
     def get_title_block_from_page_all(self, locator):
         method, value = locator
@@ -579,17 +965,20 @@ class BasePage:
             logging.error('Ошибка!!! Заголовок не найден.')
             return 'Ошибка!!!'
 
-    def click_button_new(self):
-        button = self.scroll_new(Locators.button_banner_services)
-        button.click()
-
+    @allure.step("Клик по кнопке Ask a Question в блоке FAQ")
     def click_button_in_faq(self):
+        self.click_body_element()
+        element = self.driver.find_element(*Locators.button_in_faq_locator)
         try:
-            button = self.scroll_new(Locators.button_banner_services)
-            if button and button.is_displayed() and button.is_enabled():
-                self.driver.execute_script("arguments[0].click();", button)  # Используем JavaScript для клика
-            else:
-                print("Button is not available for clicking.")
+            # Прокрутка к элементу (используем уже найденный элемент)
+            self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
+
+            # Находим и закрываем модальное окно (важно, чтобы это не мешало клику на основной кнопке)
+            button_close_modal = WebDriverWait(self.driver, 10).until(
+                EC.element_to_be_clickable(Locators.close_modal)
+            )
+            button_close_modal.click()
+            element.click()  # Кликаем на уже найденный элемент
         except Exception as e:
             print(f"Error clicking button: {str(e)}")
             raise  # Повторно выбрасываем исключение для дальнейшей обработки
@@ -722,6 +1111,58 @@ class BasePage:
             })
         return team_data
 
+    def click_body_element(self):
+        element = self.driver.find_element(*Locators.body_element)
+        element.click()
+
+    """
+    Метод для клика по кнопку Get in touch в баннере (в верху страницы).
+    После оптимизации - скрипты запускаются только по клику в любую область экрана. 
+    Чтобы обойти это - используем клик по любой области экрана, иначе скрипты не запускаются и селениум не видит кнопки, 
+    соответственно выбрасывает исключение
+    click_body_element() - метод для клика в пустой области страницы.
+    Locators.close_modal - специально делаем метод для ожидания кликабельности окна куков, чтобы убедиться, что у нас запустились скрипты. Не удалять!         
+    """
+    @allure.step("Кликаем по кнопке в баннере")
+    def click_button_banner(self):
+        self.click_body_element()
+        # Находим элемент с помощью правильного метода
+        click_button_banner = self.driver.find_element(*Locators.button_banner_page_locator)
+
+        # Используем новый метод для прокрутки
+        self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", click_button_banner)
+
+        # Находим элемент и ждем его кликабельности
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(Locators.close_modal)
+        )
+        # Кликаем по элементу
+        self.driver.execute_script("arguments[0].click();", click_button_banner)
+
+    def get_title_block(self, locator):
+        self.click_body_element()
+        wait = WebDriverWait(self.driver, 15)
+        try:
+            # Ждем появления элемента и его видимости
+            title_element = wait.until(EC.visibility_of_element_located(locator))
+            # Скроллим к элементу
+            self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", title_element)
+            # Получаем текст элемента
+            title = self.get_title_block_from_page_all(locator)
+            print(title)
+            return title
+        except TimeoutException:
+            print("Элемент не найден или не стал видимым за отведенное время.")
+            raise
+
+    def get_text_block(self, locator):
+        self.click_body_element()
+        self.scroll_to_element(locator)
+        text = self.get_text_block_from_page_all(locator)
+        return text
+
+
+
 
 def setup_logging():
     logging.basicConfig(
@@ -744,6 +1185,4 @@ def put_a_secret():
     else:
         base_url = os.getenv('MAIN_PAGE', 'https://dev.godev.agency/')  # Значение по умолчанию для дев окружения
     return base_url
-
-
 

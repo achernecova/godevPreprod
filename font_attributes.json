@@ -1,0 +1,21 @@
+{
+  "home_page": {
+    "card_benefits_b2b": {
+      "color": "rgba(0, 0, 0, 1)",
+      "font_family": "robotoflex-h2, sans-serif",
+      "font_size": "56px"
+    },
+    "footer_link": {
+      "color": "rgba(255, 255, 255, 1)",
+      "font_family": "Arial, sans-serif",
+      "font_size": "14px"
+    }
+  },
+  "product_page": {
+    "product_title": {
+      "color": "rgba(34, 34, 34, 1)",
+      "font_family": "Roboto, sans-serif",
+      "font_size": "24px"
+    }
+  }
+}

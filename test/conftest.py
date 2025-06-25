@@ -15,7 +15,7 @@ def pytest_addoption(parser):
 @pytest.fixture(scope='function', autouse=True)
 def driver(request):
     chrome_options = Options()
-    chrome_options.page_load_strategy = 'eager'  # Ожидание загрузки DOM
+    chrome_options.page_load_strategy = 'normal'  # Ожидание загрузки DOM eager
 
     # Проверяем условия для headless режима
     run_headless = (
@@ -159,6 +159,12 @@ def put_a_secret():
         "page": "reactjs",
         "title": "Top ReactJS Development Services Company Godev | Hire Expert React Developers",
         "description": "Unlock the potential of your project with Godev, a top ReactJS development company. Hire expert React developers for scalable web and mobile app solutions today!",
+        "canonical": put_a_secret() + os.getenv('REACTJS', 'services/web-development/reactjs/')
+    },
+    {
+        "page": "about",
+        "title": "About us",
+        "description": "",
         "canonical": put_a_secret() + os.getenv('REACTJS', 'services/web-development/reactjs/')
     }
 

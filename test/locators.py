@@ -2,7 +2,16 @@ from selenium.webdriver.common.by import By
 
 
 class Locators:
-    click_button_banner = (By.XPATH, "//*[@class='banner']//button")
+    body_element = (By.TAG_NAME, "body")
+    banner_title = (By.XPATH, "//*[@class='banner-title']") # локатор заголовка в баннере
+    project_title = (By.XPATH, "//*[@id='projects']//h2") # локатор заголовка в блоке с проектами
+    technologies_title = (By.XPATH, "//*[@class='technology-section wide']//h2") # локатор заголовка технологии
+
+    simple_section_title = (By.XPATH, "//*[@class='simple-section']//h2") # локатор заголовка блока simple - заголовок+текст+справа картинка
+    simple_section_text = (By.XPATH, "//*[@class='simple-section']//*[@class='simple-section__text']") # локатор текста блока simple - заголовок+текст+справа картинка
+
+    button_banner_page_locator = (By.XPATH, "//*[@class='wrapper']//button")
+    click_button_banner_locator = (By.XPATH, "//*[@class='banner']//button")
     button_banner_page = (By.XPATH, "//*[@class='banner has-descr']//button")
     title_page = (By.XPATH, '//h1')
     title_element = (By.XPATH, "//*[@class='section-title half slider-controls']")
@@ -20,7 +29,7 @@ class Locators:
     input_email_locator = (By.XPATH, "//*[@class='request-offer-inputs']//input[@name='email']")
     input_comment_locator = (By.XPATH, "//*[@class='form-textarea']//*[@placeholder='Comment']")
     button_click_locator = (By.XPATH, "//*[@class='request-offer-bottom']//button")
-    button_banner_services = (By.XPATH, "//*[@class='banner-button button open-modal']")
+    button_banner_services = (By.XPATH, "//*[@class='banner-button button open-modal']") # текст кнопки в баннере
     topping_dev_button_locator = (By.XPATH, "//label[@class='topping'][@for='t11']")
     topping_analysts_locator = (By.XPATH, "//label[@class='topping'][@for='t14']")
     button_request = (By.XPATH, "(//button[@class='button outsource-button open-modal'])[1]")
@@ -41,6 +50,17 @@ class Locators:
     phone_input_locator = (By.XPATH, "//*[@class='section-form']//*[@name='phone']")
     submit_button_locator = (By.XPATH, "//*[@class='section-form']//*[@class='button']")
 
+    team_card_header_title = (By.XPATH, "//*[@class='team-card-title']//*[@class='exp']") # срок работы направления из черных карточек с ценой, текстом и буллитом
+    team_card_name = (By.XPATH, "//*[@class='team-card']//*[@class='spec fs24']") # заголовок направления из черных карточек с ценой, текстом и буллитом
+    team_card_text_in_card = (By.XPATH, "//*[@class='team-card']//p") # текст направления из черных карточек с ценой, текстом и буллитом
+
+    tiles_card_3d_header = (By.XPATH, "//*[@class='tiles images']//h3") # заголовок 3д карточки
+    tiles_card_3d_text = (By.XPATH, "//*[@class='tiles images']//span") # текст 3д карточки
+
+
+    tiles_card_title_locator = (By.XPATH, "//h3[@class='card-title']") # заголовок карточки с точкой и порядковым номером
+    tiles_card_text_locator = (By.XPATH, "//*[@class='card-descr']//p") # текст карточки с точкой и порядковым номером
+
     button_project_mint_link_locator = (By.XPATH, "//*[contains(@href, 'mint-links/')]")
     button_project_sls_locator = (By.XPATH, "//*[contains(@href, 'swift-logistic-solutions/')]")
     button_project_find_a_builder_locator = (By.XPATH, "//*[contains(@href, 'find-a-builder/')]")
@@ -53,26 +73,35 @@ class Locators:
     title_convenient_locator = (By.XPATH, "//*[@class='work']//*[@class='section-title max-content']")
     title_convenient_card_locator = (By.XPATH, "//*[@class='work']//*[@class='h3']")
 
-    title_block_app_and_web_development_services_locator = (By.XPATH, "//section[@id='services']//h2")
+    header_app_and_web_locator = (By.XPATH, "//*[@class='service-list']//h3") # заголовок карточки блока с черно-зелеными карточками, текстом и серебряными картинками
+    text_app_and_web_locator = (By.XPATH,
+                                  "//*[@class='service-list']//*[@class='service-descr']")  # текст карточки блока с черно-зелеными карточками, текстом и серебряными картинками
+
+    choose_smg_number = (By.XPATH, "//*[@class='chooise-item_title']//span") # локатор для цифры блока Why choose us
+    choose_smg_text = (By.XPATH, "//*[@class='chooise-item_descr']//span") # локатор для текста под цифрами блока Why choose us
+
+    color_text_block_locator = (By.XPATH, "//*[@class='color-text-wrapper']//p") # локатор для блока с черно-бело-цветным текстом
+
+    title_block_app_and_web_development_services_locator = (By.XPATH, "//section[@id='services']//h2") # заголовок блока с черно-зелеными карточками, текстом и серебряными картинками
     text_block_app_and_web_development_services_locator = (
-    By.XPATH, "//section[@id='services']//*[contains(@class, 'section-descr')]")
+    By.XPATH, "//section[@id='services']//*[contains(@class, 'section-descr')]") # текст блока с черно-зелеными карточками, текстом и серебряными картинками
 
-    title_block_website_dev_locator = (By.XPATH, "//section[@class='advant-section']//h2")
+    title_block_website_dev_locator = (By.XPATH, "//*[contains(@class, 'advant-section')]//h2") # заголовок блока со слайдером и карточками с синими значками
     text_block_website_dev_locator = (
-    By.XPATH, "//section[@class='advant-section']//*[contains(@class, 'section-descr ')]")
+    By.XPATH, "//*[@class='advant']//*[contains(@class, 'section-descr ')]") # текст блока со слайдером и карточками с синими значками
 
-    title_block_stages_of_creating_locator = (By.XPATH, "//*[@class='tiles-section']//h2")
+    title_block_stages_of_creating_locator = (By.XPATH, "//*[@class='tiles-section']//h2") # заголовок блока с черными 3д карточками
     text_block_stages_of_creating_locator = (
-    By.XPATH, "//*[@class='tiles-section']//*[contains(@class, 'section-descr ')]")
+    By.XPATH, "//*[@class='tiles-section']//*[contains(@class, 'section-descr ')]") # текст блока с черными 3д карточками
 
     title_block_website_design_locator = (By.XPATH, "//section[@id='projects']//h2")
     text_block_website_design_locator = (By.XPATH, "//section[@id='projects']//*[contains(@class, 'section-descr')]")
 
     title_block_custom_design_solutions_locator = (
-    By.XPATH, "//*[@class='how-it-staff']//*[@class='section-title half']")
+    By.XPATH, "//*[@class='how-it-staff']//*[@class='section-title half']") # заголовок блока с черными карточками с точкой и порядковым номером
     text_block_custom_design_solutions_locator = (
-    By.XPATH, "//*[@class='how-it-staff']//*[@class='section-descr fs16px half']")
-    text_block_it_staff_locator = (By.XPATH, "//*[@class='how-it-staff']//*[contains(@class, 'section-descr')]")
+    By.XPATH, "//*[@class='how-it-staff']//*[@class='section-descr fs16px half']") # текст блока с черными карточками с точкой и порядковым номером
+    text_block_it_staff_locator = (By.XPATH, "//*[@class='how-it-staff']//*[contains(@class, 'section-descr')]") # текст блока с черными карточками с точкой и порядковым номером
     title_block_digital_agency_godev_locator = (
     By.XPATH, "//section[@class='tiles-section']//*[contains(@class, 'section-title half')]")
     text_block_digital_agency_godev_locator = (
@@ -81,6 +110,15 @@ class Locators:
     block_get_in_touch_locator = (By.XPATH, "(//*[@class='get-in-touch-wrapper'])[1]")
 
     block_cards_best_frameworks_item = (By.XPATH, "//*[contains(@class, 'best-frameworks__item ')]")
+
+    block_get_in_touch_text = (By.XPATH, "//*[@class='get-in-touch']//*[@class='get-in-touch-text']//p") # локатор для блока со сплошным текстом (первый какой найдется)
+    button_more_in_card_block = (By.XPATH, "//*[@class='team-card']//a") # локатор для кнопок More в черно-белых карточках с ценами и буллитами
+
+    header_review_block = (By.XPATH, "//*[@class='reviews-wrapper']//h2") # локатор для заголовка блока отзывов
+    text_review = (By.XPATH, "//*[@class='review-text']") # локатор для текста в карточках отзывов
+
+    card_mini_tile_header = (By.XPATH, "//*[@class='work']//h2") # локатор для заголовка с мини-плиткой
+    header_mini_tile_in_card = (By.XPATH, "//*[@class='work-cards compact']//span") # локатор заголовка в карточках с мини-плиткой
 
     XPATH_MAP = {
         "blocks": "//*[@class='web-dev-services']",

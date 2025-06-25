@@ -42,10 +42,7 @@ class FormPage:
 
 
     def fill_form(self):
-        sleep(5)
         self.get_form_section()
-        close_modal = self.driver.find_element(*Locators.close_modal)
-        close_modal.click()
         topping_click = self.driver.find_element(*Locators.topping_click_locator)
         topping_click.click()
         name_input = self.driver.find_element(*Locators.name_input_locator)
@@ -54,13 +51,15 @@ class FormPage:
         email_input.send_keys('TEST' + self.fake.email())
         message_input = self.driver.find_element(*Locators.message_input_locator)
         message_input.send_keys('TEST' + self.fake.text(max_nb_chars=300))
-        #submit_button = self.driver.find_element(*Locators.submit_button_locator)
-        #submit_button.click()
 
         # Находим элемент и ждем его кликабельности
         submit_button = WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable(Locators.submit_button_locator)
         )
+        element = self.driver.find_element("tag name", "body")
+        element.click()
+
+        self.close_modal_if_present()
         # Прокрутка элемента в видимую часть окна
         self.driver.execute_script("arguments[0].scrollIntoView();", submit_button)
         # Проверка, кликабельность элемента и выполнение клика через JavaScript
@@ -69,7 +68,19 @@ class FormPage:
         except Exception as e:
             print(f"Ошибка: {str(e)}")
 
-
+    def close_modal_if_present(self, timeout=3):
+        try:
+            modal = WebDriverWait(self.driver, timeout).until(
+                EC.visibility_of_element_located(Locators.close_modal)
+            )
+            modal.click()
+            # Можно добавить ожидание исчезновения модального окна
+            WebDriverWait(self.driver, 5).until(
+                EC.invisibility_of_element_located(Locators.close_modal)
+            )
+        except TimeoutException:
+            # Модальное окно не появилось — ничего делать не надо
+            pass
 
     def popup_success_displayed(self, timeout=20):
         try:

@@ -21,7 +21,7 @@ def test_fill_form_request_footer_symfony_page(driver):
 def test_symfony_page_faq_data_assert(driver):
     symfony_page_test = SymfonyPage(driver)
     symfony_page_test.open()
-    symfony_page_test.get_data_faq_card()
+    symfony_page_test.get_data_card("faq_card_symfony")
 
 
 @pytest.mark.fill_form_request_faq

@@ -2,6 +2,8 @@ import logging
 import os
 
 import allure
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
 
 from page_elements.block_count_elements import CountElements
 from page_elements.form_page import FormPage
@@ -9,7 +11,8 @@ from page_elements.meta_data_page import MetaData
 from page_elements.popup_element import PopupElement
 from pages.base_page import BasePage, put_a_secret
 from test.locators import Locators
-
+from selenium.webdriver.support import expected_conditions as EC
+from utils.data_loader import load_file
 
 class CMSPage(BasePage):
 
@@ -32,11 +35,6 @@ class CMSPage(BasePage):
     def get_meta_data(self):
         return MetaData(self.driver)
 
-    def click_button_banner(self):
-        self.scroll_new(Locators.button_banner_page)
-        click_button_banner = self.driver.find_element(*Locators.button_banner_page)
-        click_button_banner.click()
-
     def get_popup_element(self):
         return PopupElement(self.driver)
 
@@ -47,73 +45,44 @@ class CMSPage(BasePage):
         from page_elements.project_service_element import ProjectServiceElement
         return ProjectServiceElement(self.driver)
 
-    def get_base_url(self):
-        base_url = put_a_secret()
-        return base_url + self.subURL
-
     def get_data_card_cms(self):
         url = self.get_base_url()
-        self.get_data_card_(self.get_card_data, 'data_card_block_packages.json',
+        self.get_data_card_name_price_text_button_more(self.get_card_data, 'data_card_block_packages.json',
                             'cms_card_data', url)
 
-    """ def get_data_card_tiles_cms(self):
-        base_url = put_a_secret()
-        url = base_url + os.getenv('CMS_PAGE', 'services/website-development/cms/')
-        self.get_data_card_with_type_project(
-            'data_card_block_packages.json',
-            self.get_data_faq_tiles_new,
-            'tiles_section_card_data_cms',
-            "//*[contains(@class, 'tile w-')]",
-            ".//h3",
-            ".//span",
-            url)
-
-    # метод для черно-белых карточек с кружками и порядковыми номерами
-    def get_data_card_how_it_staff_cms(self):
-        base_url = put_a_secret()
-        url = base_url + os.getenv('CMS_PAGE', 'services/website-development/cms/')
-        self.get_data_card_with_type_project(
-            'section_how_it_staff_tiles.json',
-            self.get_card_data_tiles_card,
-            'how_it_staff_cms',
-            "//*[@class='card']",
-            './/p',
-            ".//h3[@class='card-title']",
-            url)
     """
+    Метод для определения атрибутов шрифта блока: цвет, сам шрифт, размер
+    click_body_element() - метод для клика в пустой области страницы.
+    Тянем данные из json файла, в который внесены все шрифты с атрибутикой. 
+    Вытаскиваем данные со страницы через обращения к атрибутам (например, value_of_css_property) 
+    """
+    @allure.step(
+        "загружаем данные из json и тянем данные со страницы через обращение к атрибутам элемента")
+    def get_font_attributes1(self, locator, block_name):
+        # Загружаем данные из JSON в методе get_font_attributes
+        font_data = load_file('attribute_font.json')
+        data = font_data[block_name]
 
-    def get_data_card(self, card_type):
-        config = {
-            'tiles_cms': {
-                'file_load': 'data_card_block_packages.json',
-                'url_method': self.get_data_faq_tiles_new,
-                'json_key': 'tiles_section_card_data_cms',
-                'locator_block': "//*[contains(@class, 'tile w-')]",
-                'locator_element': ".//h3",
-                'locator_section': ".//span",
-            },
-            'how_it_staff_cms': {
-                'file_load': 'section_how_it_staff_tiles.json',
-                'url_method': self.get_card_data_tiles_card,
-                'json_key': 'how_it_staff_cms',
-                'locator_block': "//*[@class='card']",
-                'locator_element': './/p',
-                'locator_section': ".//h3[@class='card-title']",
-            }
+        self.click_body_element()
+        element = self.driver.find_element(*getattr(Locators, locator))
+        self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
+
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(Locators.close_modal)
+        )
+
+        # Получаем атрибуты
+        color = element.value_of_css_property("color")
+        font_family = element.value_of_css_property("font-family")
+        font_size = element.value_of_css_property("font-size")
+
+        # Возвращаем атрибуты и ожидаемые значения
+        return {
+            "color": color,
+            "font_family": font_family,
+            "font_size": font_size,
+            "expected_color": data['expected_color'],
+            "expected_font_family": data['expected_font_family'],
+            "expected_font_size": data['expected_font_size']
         }
 
-        if card_type not in config:
-            raise ValueError(f"Такого блока не существует: {card_type}")
-        # забираем нужный блок из списка config
-        conf = config[card_type]
-        url = self.get_base_url()
-        # грузим данные, забирая конкретные параметры из нужного блока (отдаем файл, какой метод, ключ, локаторы)
-        self.get_data_card_with_type_project(
-            conf['file_load'],
-            conf['url_method'],
-            conf['json_key'],
-            conf['locator_block'],
-            conf['locator_element'],
-            conf['locator_section'],
-            url
-        )

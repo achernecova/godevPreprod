@@ -40,60 +40,6 @@ class LandingPage(BasePage):
     def get_popup_element(self):
         return PopupElement(self.driver)
 
-
-    def get_data_card(self, card_type):
-        config = {
-            'tile_squad_landing': { # для цветных карточек
-                'file_load': 'data_card_block_packages.json',
-                'url_method': self.get_card_data_tiles_card,
-                'json_key': 'tile_squad',
-                'locator_block': "//*[@class='tile-squad-item card']",
-                'locator_element': ".//h3",
-                'locator_section': ".//*[@class='tile-squad-descr']",
-            },
-            'how_it_staff_landing': { # для черно-белых карточек с кружками и порядковыми номерами
-                'file_load': 'section_how_it_staff_tiles.json',
-                'url_method': self.get_card_data_tiles_card,
-                'json_key': 'how_it_staff_landing',
-                'locator_block': "//*[@class='card']",
-                'locator_element': './/p',
-                'locator_section': ".//h3[@class='card-title']",
-            },
-            'tiles_landing': { # для черно-белых карточек
-                'file_load': 'data_card_block_packages.json',
-                'url_method': self.get_data_faq_tiles_new,
-                'json_key': 'tiles_section_card_data_landing',
-                'locator_block': "//*[contains(@class, 'tile w-')]",
-                'locator_element': ".//h3",
-                'locator_section': ".//span",
-            }
-        }
-
-        if card_type not in config:
-            raise ValueError(f"Такого блока не существует: {card_type}")
-        # забираем нужный блок из списка config
-        conf = config[card_type]
-        url = self.get_base_url()
-        # грузим данные, забирая конкретные параметры из нужного блока (отдаем файл, какой метод, ключ, локаторы)
-        self.get_data_card_with_type_project(
-            conf['file_load'],
-            conf['url_method'],
-            conf['json_key'],
-            conf['locator_block'],
-            conf['locator_element'],
-            conf['locator_section'],
-            url
-        )
-
-
-
-
-
-
-    def get_base_url(self):
-        base_url = put_a_secret()
-        return base_url + self.subURL
-
         # метод для карусели адвант
     def get_data_advant_carousel_card(self):
         # Получаем базовый URL с помощью функции put_a_secret

@@ -36,11 +36,6 @@ class D2CPage(BasePage):
     def get_meta_data(self):
         return MetaData(self.driver)
 
-    def click_button_banner(self):
-        self.scroll_new(Locators.click_button_banner)
-        click_button_banner = self.driver.find_element(*Locators.click_button_banner)
-        click_button_banner.click()
-
     def get_popup_element(self):
         return PopupElement(self.driver)
 
@@ -51,37 +46,33 @@ class D2CPage(BasePage):
         from page_elements.project_service_element import ProjectServiceElement
         return ProjectServiceElement(self.driver)
 
-    def get_base_url(self):
-        base_url = put_a_secret()
-        return base_url + self.subURL
-
-    def get_data_card_d2c(self):
-        url = self.get_base_url()
-        self.get_data_card_(self.get_card_data, 'data_card_block_packages.json',
-                            'd2c_card_data', url)
-
     @allure.step(
         "Проверяем заголовок и урл после клика по кнопке More")
     def click_more_packages_and_data_pages(self, index, page_url, page_title):
         logging.info('move cursor to element')
         locator = Locators.get_team_card_more_locator(index)
-        self.close_modal_popup()
+        self.click_body_element()
+        # Находим элемент и ждем его кликабельности
+        close_element = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(Locators.close_modal)
+        )
+        close_element.click()
+
         self.scroll_to_element(locator)  # Передаем локатор на скролл
-        time.sleep(3)
+
         # Явное ожидание, что элемент станет кликабельным
         WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable(locator)
         )
-
-        self.team_card_more = self.driver.find_element(*locator)  # Найти элемент
-        self.driver.execute_script("arguments[0].click();", self.team_card_more)
+        team_card_more = self.driver.find_element(*locator)  # Найти элемент
+        self.driver.execute_script("arguments[0].click();", team_card_more)
 
         # Получаем заголовок страницы
-        self.title_page = self.driver.find_element(*Locators.title_page)
+        title_page = self.driver.find_element(*Locators.title_page)
 
         # Проверяем совпадение URL и заголовка
         assert self.get_url() == page_url, f"Ожидался заголовок '{page_url}', но получен '{self.get_url()}'"
-        assert self.title_page.text == page_title, f"Ожидался заголовок '{page_title}', но получен '{self.title_page.text}'"
+        assert title_page.text == page_title, f"Ожидался заголовок '{page_title}', но получен '{title_page.text}'"
 
         # метод для карусели адвант
     def get_data_advant_carousel_card(self):
@@ -95,6 +86,11 @@ class D2CPage(BasePage):
         self.get_data_advant_carousel(self.get_data_advant_section_carousel_d2c_icons, 'advant_section_carousel.json',
                                           'advant_section_d2c_icons', url)
 
+    def get_data_card_d2c(self):
+        url = self.get_base_url()
+        self.get_data_card_name_price_text_button_more(self.get_card_data, 'data_card_block_packages.json',
+                            'd2c_card_data', url)
+
     def get_data_review_d2c(self):
         url = self.get_base_url()
         self.driver.get(url)
@@ -107,41 +103,5 @@ class D2CPage(BasePage):
                               'reviews-wrapper', url)
 
 
-
-    def get_data_card(self, card_type):
-        config = {
-            'tiles_icon_d2c': {
-                'file_load': 'data_card_block_packages.json',
-                'url_method': self.get_data_faq_tiles_new,
-                'json_key': 'tiles_icon_card_data_d2c',
-                'locator_block': "//*[@class='tiles icons']//*[contains(@class, 'tile w-')]",
-                'locator_element': ".//h3",
-                'locator_section': ".//span",
-            },
-            'tiles_img_d2c': {
-                'file_load': 'data_card_block_packages.json',
-                'url_method': self.get_data_faq_tiles_new,
-                'json_key': 'tiles_section_card_data_d2c',
-                'locator_block': "//*[@class='tiles images']//*[contains(@class, 'tile w-')]",
-                'locator_element': ".//h3",
-                'locator_section': ".//span",
-            }
-        }
-
-        if card_type not in config:
-            raise ValueError(f"Такого блока не существует: {card_type}")
-        # забираем нужный блок из списка config
-        conf = config[card_type]
-        url = self.get_base_url()
-        # грузим данные, забирая конкретные параметры из нужного блока (отдаем файл, какой метод, ключ, локаторы)
-        self.get_data_card_with_type_project(
-            conf['file_load'],
-            conf['url_method'],
-            conf['json_key'],
-            conf['locator_block'],
-            conf['locator_element'],
-            conf['locator_section'],
-            url
-        )
 
 

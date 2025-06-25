@@ -43,7 +43,7 @@ def test_support_page_click_services_and_project_and_open_pages(driver, card_typ
     support_page_test = SupportPage(driver)
     support_page_test.open()
     click_element_test = support_page_test.get_project_service_element()
-    page = click_element_test.test_click_card_and_open_page(card_type)
+    page = click_element_test.click_card_and_open_page(card_type)
     assert driver.current_url == expected_url, f"Ожидался URL '{expected_url}', но получен '{driver.current_url}'"
     assert page.get_title_page() == expected_title, f"Получен Title: {page.get_title_page()}"
 

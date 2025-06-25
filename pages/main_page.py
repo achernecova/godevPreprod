@@ -4,6 +4,7 @@ import time
 from time import sleep
 
 import allure
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from page_elements.block_count_elements import CountElements
@@ -23,36 +24,6 @@ class MainPage(BasePage):
     def __init__(self, driver: object) -> object:
         super().__init__(driver)
         self.driver = driver
-
-    @allure.step(
-        "Кликаем по кнопке в баннере")
-    def click_button_banner(self):
-        click_button_banner = self.driver.find_element(*Locators.button_banner_services)
-        self.scroll_new(Locators.button_banner_services)
-        click_button_banner.click()
-        sleep(10)
-
-    @allure.step(
-        "Кликаем по кнопке Get in touch")
-    def click_button_get_in_touch(self):
-        # ждем видимость блока
-        element = WebDriverWait(self.driver, 10).until(
-            EC.visibility_of_element_located(Locators.block_get_in_touch_locator)
-        )
-        # крутим страницу попиксельно до элемента
-        position = element.location['y']
-        self.driver.execute_script("window.scrollTo(0, arguments[0]);", position)
-        # Дополнительное ожидание видимости кнопки
-        click_button_banner = WebDriverWait(self.driver, 10).until(
-            EC.element_to_be_clickable(Locators.button_get_in_touch_locator)
-        )
-        # дополнительно проверяем видимость
-        WebDriverWait(self.driver, 10).until(
-            lambda driver: driver.execute_script("return arguments[0].getBoundingClientRect().top >= 0;",
-                                                 click_button_banner)
-        )
-        # клик по кнопке через js
-        self.driver.execute_script("arguments[0].click();", click_button_banner)
 
     @allure.step("Открытие главной страницы")
     def open(self):
@@ -82,13 +53,13 @@ class MainPage(BasePage):
     def click_more_packages_and_data_pages(self, index, page_url, page_title):
         logging.info('move cursor to element')
         locator = Locators.get_team_card_more_locator(index)
-        self.close_modal_popup()
         self.scroll_to_element(locator)  # Передаем локатор на скролл
-        time.sleep(3)
+
         # Явное ожидание, что элемент станет кликабельным
-        WebDriverWait(self.driver, 10).until(
+        button = WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable(locator)
         )
+        WebDriverWait(self.driver, 5).until(lambda d: self.is_element_in_viewport(button))
 
         self.team_card_more = self.driver.find_element(*locator)  # Найти элемент
         self.driver.execute_script("arguments[0].click();", self.team_card_more)
@@ -99,6 +70,7 @@ class MainPage(BasePage):
         # Проверяем совпадение URL и заголовка
         assert self.get_url() == page_url, f"Ожидался заголовок '{page_url}', но получен '{self.get_url()}'"
         assert self.title_page.text == page_title, f"Ожидался заголовок '{page_title}', но получен '{self.title_page.text}'"
+
 
     @allure.step(
         "Проверяем заголовок из карусели")
@@ -128,30 +100,6 @@ class MainPage(BasePage):
         self.get_data_advant_carousel(self.get_data_advant_section_carousel, 'advant_section_carousel.json',
                                       'advant_section', base_url)
 
-    # метод для черно-белых карточек
-    def get_data_card_tiles_main(self):
-        base_url = put_a_secret()
-        self.get_data_card_with_type_project(
-            'data_card_block_packages.json',
-            self.get_data_faq_tiles_new,
-            'tiles_section_card_data_main',
-            "//*[contains(@class, 'tile w-')]",
-            ".//h3",
-            ".//span",
-            base_url)
-
-    # метод для черно-белых карточек с кружками и порядковыми номерами
-    def get_data_card_how_it_staff_main(self):
-        base_url = put_a_secret()
-        self.get_data_card_with_type_project(
-            'section_how_it_staff_tiles.json',
-            self.get_card_data_tiles_card,
-            'how_it_staff_main',
-            "//*[@class='card']",
-            './/p',
-            ".//h3[@class='card-title']",
-            base_url)
-
     @allure.step(
         "Получаем заголовок блока")
     def get_title_block(self, locator):
@@ -163,7 +111,6 @@ class MainPage(BasePage):
     @allure.step(
         "Проверяем текст из карусели")
     def get_text_block(self, locator):
-        # self.scroll_new(locator)
         text = self.get_text_block_from_page_all(locator)
         return text
 
@@ -200,13 +147,38 @@ class MainPage(BasePage):
     def get_text_block_digital_agency_godev(self):
         return self.get_text_block(Locators.text_block_digital_agency_godev_locator)
 
-    def get_data_card_app_and_web_services_main(self):
-        base_url = put_a_secret()
-        self.get_data_card_with_type_project(
-            'section_how_it_staff_tiles.json',
-            self.get_card_data_tiles_card,
-            'app_and_web_services_main',
-            "//*[@class='service-item']",
-            ".//*[@class='service-descr']",
-            './/h3',
-            base_url)
+    """
+    Метод для определения атрибутов шрифта блока: цвет, сам шрифт, размер
+    click_body_element() - метод для клика в пустой области страницы.
+    Тянем данные из json файла, в который внесены все шрифты с атрибутикой. 
+    Вытаскиваем данные со страницы через обращения к атрибутам (например, value_of_css_property("color"))
+    """
+    @allure.step(
+        "загружаем данные из json и тянем данные со страницы через обращение к атрибутам элемента")
+    def get_font_attributes1(self, locator, block_name):
+        # Загружаем данные из JSON в методе get_font_attributes
+        font_data = load_file('attribute_font.json')
+        data = font_data[block_name]
+
+        self.click_body_element()
+        element = self.driver.find_element(*getattr(Locators, locator))
+        self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
+
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(Locators.close_modal)
+        )
+
+        # Получаем атрибуты
+        color = element.value_of_css_property("color")
+        font_family = element.value_of_css_property("font-family")
+        font_size = element.value_of_css_property("font-size")
+
+        # Возвращаем атрибуты и ожидаемые значения
+        return {
+            "color": color,
+            "font_family": font_family,
+            "font_size": font_size,
+            "expected_color": data['expected_color'],
+            "expected_font_family": data['expected_font_family'],
+            "expected_font_size": data['expected_font_size']
+        }

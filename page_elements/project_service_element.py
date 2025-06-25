@@ -28,7 +28,7 @@ class ProjectServiceElement:
     locators = {
         "button_banner_locator": (By.XPATH, "//*[@class='banner']//button"),
         "topping_dev_button": (By.XPATH, "//label[@class='topping'][@for='t11']"),
-        "button_more_mobile_locator": (By.XPATH, "//*[@class='service-item']//a[@href='https://dev.godev.agency/services/mobile-development/']"),
+        "button_more_mobile_locator": (By.XPATH, "//*[@class='service-item']//a[contains(@href, '/services/mobile-development/')]"),
         "button_more_web_site_dev_locator": (By.XPATH, "//*[@class='service-item']//a[@href='https://dev.godev.agency/services/website-development/']"),
         "button_more_supp_locator": (By.XPATH, "//*[@class='service-item']//a[@href='https://dev.godev.agency/services/tech-support/']"),
         "button_more_web_dev_locator": (By.XPATH, "//*[@class='service-item']//a[@href='https://dev.godev.agency/services/web-development/']"),
@@ -45,12 +45,21 @@ class ProjectServiceElement:
         "button_project_mint_locator": (By.XPATH, "//*[contains(@href, 'mint-links/')]")
     }
 
+    """
+    Метод для закрытия модалки куков
+    """
     def close_modal_popup(self):
         close_modal = self.driver.find_element(*Locators.close_modal)
         close_modal.click()
 
-    def test_click_card_and_open_page(self, card_type):
-        self.close_modal_popup()
+    """
+    Метод для открытия страниц проектов
+    card_mapping - словарь страниц: 
+        - "website_dev", "support" и т.д. - ключи 
+        - (self.click_button_more_web_site_dev_card, WebDevelopPage) и т.д. - значения (из 2х элементов: метода click_button_more_web_site_dev_card и класса страницы WebDevelopPage)
+    В зависимости от параметра card_type - вызываем клик по указанному проекту. Открываем страницу.  
+    """
+    def click_card_and_open_page(self, card_type):
         card_mapping = {
             "website_dev": (self.click_button_more_web_site_dev_card, WebDevelopPage),
             "support": (self.click_button_more_supp_card, SupportPage),

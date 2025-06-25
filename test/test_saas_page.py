@@ -7,23 +7,12 @@ from pages.saas_page import SAASPage
 from utils.data_loader import load_service_data_review
 
 
-
 @pytest.mark.prod_test
 @allure.feature('Проверка данных в карточках блока Team and specialists')
 def test_saas_page_team_abd_spec_data_card_packages(driver):
     saas_page_test = SAASPage(driver)
     saas_page_test.open()
     saas_page_test.get_data_card_saas()
-
-
-@pytest.mark.prod_test
-@allure.feature('Проверка данных в карточках блока Types of ready-made')
-def test_saas_type_of_ready_data_cards_assert(driver):
-    saas_page_test = SAASPage(driver)
-    saas_page_test.open()
-    #saas_page_test.get_data_card_tiles_saas()
-    saas_page_test.get_data_card("card_tiles_saas")
-
 
 @allure.feature('Успешная отправка заявки')
 def test_saas_page_add_request_success(driver):
@@ -49,7 +38,7 @@ def test_saas_page_click_services_and_project_and_open_pages(driver, card_type, 
     saas_page_test = SAASPage(driver)
     saas_page_test.open()
     project_element = saas_page_test.get_project_service_element()
-    page = project_element.test_click_card_and_open_page(card_type)
+    page = project_element.click_card_and_open_page(card_type)
     assert driver.current_url == expected_url, f"Ожидался URL '{expected_url}', но получен '{driver.current_url}'"
     assert page.get_title_page() == expected_title, f'Получен Title: {page.get_title_page()}'
 
@@ -69,6 +58,12 @@ def test_web_dev_serv_page_faq_data_assert(driver):
     saas_page_test.open()
     saas_page_test.get_data_card("faq_card_saas")
 
+@pytest.mark.prod_test
+@allure.feature('Проверка данных в карточках блока Types of ready-made')
+def test_saas_type_of_ready_data_cards_assert(driver):
+    saas_page_test = SAASPage(driver)
+    saas_page_test.open()
+    saas_page_test.get_data_card("card_tiles_saas")
 
 @pytest.mark.fill_form_request_faq
 @feature('Успешная отправка заявки из FAQ')

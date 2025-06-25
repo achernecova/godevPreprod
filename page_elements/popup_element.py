@@ -2,6 +2,7 @@ import re
 
 import allure
 from faker import Faker
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
 from pages.base_page import BasePage
@@ -45,17 +46,9 @@ class PopupElement(BasePage):
 
     @allure.step("Клик по кнопке Get in touch в баннере")
     def click_button_in_banner(self):
-        # Находим элемент и ждем его кликабельности
-        button_click = WebDriverWait(self.driver, 10).until(
-            EC.element_to_be_clickable(Locators.button_click_locator)
-        )
-        # Прокрутка элемента в видимую часть окна
-        self.driver.execute_script("arguments[0].scrollIntoView();", button_click)
-        # Проверка, кликабельность элемента и выполнение клика через JavaScript
-        try:
-            self.driver.execute_script("arguments[0].click();", button_click)
-        except Exception as e:
-            print(f"Ошибка: {str(e)}")
+        click_button = self.driver.find_element(*Locators.button_click_locator)
+        self.driver.execute_script("arguments[0].click();", click_button)
+
 
     @allure.step("Клик по буллиту Аналитика")
     def click_topping_analysts_banner(self):
@@ -64,8 +57,6 @@ class PopupElement(BasePage):
 
     @allure.step("Полное заполнение заявки")
     def add_request_success(self):
-        # self.close_modal_popup()
-        self.click_button_in_banner()
         self.click_topping_dev_banner()
         self.click_topping_analysts_banner()
         self.input_name_in_banner()
@@ -75,9 +66,25 @@ class PopupElement(BasePage):
 
     @allure.step("Клик по кнопке Get in touch")
     def click_button_get_in_touch(self):
-        self.scroll_new(Locators.button_get_in_touch_locator)
-        button_get_in_touch = self.driver.find_element(*Locators.button_get_in_touch_locator)
-        self.driver.execute_script("arguments[0].click();", button_get_in_touch)
+        element = self.driver.find_element("tag name", "body")
+        element.click()
+        # Находим элемент и ждем его кликабельности
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(Locators.close_modal)
+        )
+
+        # Ждём кликабельность кнопки
+        button = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(Locators.button_get_in_touch_locator)
+        )
+        # Скроллим к кнопке
+        self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", button)
+
+        # Ожидаем, что кнопка окажется в зоне видимости viewport
+        WebDriverWait(self.driver, 5).until(lambda d: self.is_element_in_viewport(button))
+        # Кликаем через JS
+        self.driver.execute_script("arguments[0].click();", button)
+
 
 
     @allure.step("Полное заполнение заявки из блока Get in touch")

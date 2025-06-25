@@ -18,19 +18,18 @@ def test_landing_page_why_do_you_need_data_assert(driver):
     landing_page_test.open()
     landing_page_test.get_data_card("how_it_staff_landing")
 
+@feature('Проверка данных в карточках блока Godev’s advantages')
+def test_landing_page_benefits_count_cards_assert(driver):
+    landing_page_test = LandingPage(driver)
+    landing_page_test.open()
+    landing_page_test.get_data_card("tiles_landing")
+
 @pytest.mark.prod_test
 @feature('Проверка данных в карточках блока Work process')
 def test_landing_page_web_development_process_data_assert(driver):
     landing_page_test = LandingPage(driver)
     landing_page_test.open()
     landing_page_test.get_data_advant_carousel_card()
-
-
-@feature('Проверка данных в карточках блока Godev’s advantages')
-def test_landing_page_benefits_count_cards_assert(driver):
-    landing_page_test = LandingPage(driver)
-    landing_page_test.open()
-    landing_page_test.get_data_card("tiles_landing")
 
 @pytest.mark.prod_test
 @feature('Проверка данных в карточках блока Rates')
@@ -65,7 +64,7 @@ def test_services_page_click_services_and_project_and_open_pages(driver, card_ty
     landing_page_test = LandingPage(driver)
     landing_page_test.open()
     project_element = landing_page_test.get_project_service_element()
-    page = project_element.test_click_card_and_open_page(card_type)
+    page = project_element.click_card_and_open_page(card_type)
     assert driver.current_url == expected_url, f"Ожидался URL '{expected_url}', но получен '{driver.current_url}'"
     assert page.get_title_page() == expected_title, f"Получен Title: {page.get_title_page()}"
 

@@ -1,6 +1,5 @@
 import logging
 import os
-import re
 
 import allure
 import requests
@@ -68,11 +67,11 @@ class EComPage(BasePage):
         data = load_file('data_card_block_packages.json')
 
         base_url = put_a_secret()
-        url = base_url + os.getenv('LANDING', 'services/development-of-a-landing-page/')
+        url = base_url + self.subURL
 
         # Получаем данные из блока карусели на странице
-        card_data_data_from_page = self.get_card_data(
-            url + os.getenv('E_COM_PAGE', 'services/website-development/e-commerce/'))
+        card_data_data_from_page = self.get_card_data_ecom(
+            url + self.subURL)
 
         # Выводим полученные данные с веб-страницы
         print("Полученные данные с веб-страницы:")
@@ -99,11 +98,7 @@ class EComPage(BasePage):
 
             assert found, f"Данные из JSON не найдены на странице для: {desc['project_type']} | {desc['level']} | {desc['price']} "
 
-    def get_base_url(self):
-        base_url = put_a_secret()
-        return base_url + self.subURL
-
-    def get_card_data(self, url):
+    def get_card_data_ecom(self, url):
         response = requests.get(url)
         response.raise_for_status()  # Проверка на ошибки
         soup = BeautifulSoup(response.text, 'html.parser')
@@ -131,17 +126,6 @@ class EComPage(BasePage):
 
         return team_data
 
-        # метод для черно-белых карточек
-    def get_data_card_tiles_e_com(self):
-        url = self.get_base_url()
-        self.get_data_card_with_type_project(
-            'data_card_block_packages.json',
-            self.get_data_faq_tiles_new,
-            'tiles_section_card_data_e_com',
-            "//*[contains(@class, 'tile w-')]",
-            ".//h3",
-            ".//span",
-            url)
 
     # метод для карусели адвант
     def get_data_advant_carousel_card(self):

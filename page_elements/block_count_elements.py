@@ -39,6 +39,13 @@ class CountElements:
         "popular_news": "//*[contains(@class, 'swiper-slide grabbable ')]"
     }
 
+
+    """
+    Метод для проверки кол-ва карточек в передаваемом блоке.
+    Определяем карточку (идем в класс Locators и смотрим в словаре карточку которая была передана). 
+    Ищем через  find_elements локатор карточки, которую передали на предыдущем шаге.
+    Вычисляем через встроенный len кол-во карточек. И ассертим с данными, которые передали параметром из теста.
+    """
     def count_cards_assert(self, project_type, expected_count):
         xpath = Locators.get_xpath(project_type)
         cards = self.driver.find_elements(By.XPATH, xpath)

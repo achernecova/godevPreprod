@@ -200,6 +200,7 @@
 
     "how_it_staff_b2b": {
     "title": "B2B e-commerce platforms",
+    "text_section": "Selecting the appropriate e-commerce platform is crucial for the success of your B2B web development project. Our expertise encompasses a range of platforms, each offering unique advantages",
     "descriptions": [
           {
        "project_type": "Magento",
@@ -248,6 +249,7 @@
 
     "how_it_staff_design": {
     "title": "Custom design solutions",
+    "text_section": "We create customized designs that are tailored to reflect your brand’s identity with a heavy focus on individually adapting them for every client. The resulting project represents the key values of the business, while also pleasing its visitors with appealing aesthetics",
     "descriptions": [
           {
        "project_type": "UX / UI",
@@ -268,6 +270,37 @@
       {
        "project_type": "Innovative visual elements",
        "text": "Our team is always on the lookout for innovations, and we carefully implement them to achieve a modern feeling and fresh aesthetics of any project"
+     }
+    ]
+  },
+
+    "website_development_design": {
+    "title": "Website development",
+    "text_section": "Our website development services include crafting customized sites and web apps. Godev can build the website from scratch or rework an existing platform to make it optimized for lead generation",
+    "descriptions": [
+          {
+       "project_type": "Content managing systems",
+       "text": "We can integrate all popular Content managing systems into your website or build a custom CMS to create an efficient workflow for posting content on your platform"
+     },
+      {
+       "project_type": "Popular frameworks",
+       "text": "Our web development company works with all popular frameworks based on different programming languages to ensure we can provide the best solutions for your business"
+     },
+      {
+       "project_type": "Custom architecture",
+       "text": "When building a website, Godev lays the foundation that ensures optimal performance, smooth integration of internal systems, and potential for scaling in the future"
+     },
+      {
+       "project_type": "Performance optimization",
+       "text": "Our specialists test and optimize the website to reduce the loading times and allow for efficient data usage, resulting in reduced bounce rates and better engagement"
+     },
+      {
+       "project_type": "Frontend and backend development",
+       "text": "We have dedicated teams working on frontend and backend development, ensuring that your website is easy to use and manage. Godev builds visually appealing, comfortable platforms with top-notch usability, while also offering thought-out architecture that allows for efficient business processes"
+     },
+      {
+       "project_type": "Ongoing support and maintenance",
+       "text": "After delivering a website, we provide 24/7 support and maintenance handling all the technical aspects of operating it. Our specialists are always on call to sort out any bugs and issues in no time"
      }
     ]
   },
@@ -369,6 +402,10 @@
       {
        "project_type": "B2B sites",
        "text": "In the rapidly evolving digital landscape, a robust B2B website is essential for businesses aiming to enhance their online presence and drive growth. At Godev, a leading B2B eCommerce agency in the USA, we specialize in crafting tailored web development solutions that align with your business objectives"
+     },
+      {
+       "project_type": "Godev specializes in the IT industry",
+       "text": "Having 14 years of experience under our belt, we have turned into masters of website development, implementation, and maintenance. We provide a diverse set of IT services, fulfilling tasks of any complexity and volume — from e-commerce sites to portals of heavy loads — and offering IT staff outsourcing services"
      }
     ]
   },
@@ -554,5 +591,9 @@
        "text": "Involve a specialist with required skills for a specific project"
      }
     ]
+  },
+    "website_design": {
+    "title": "Website design",
+    "text_section": "Godev keeps up with all the main industry trends and we always strive to provide individual results to each client. Our team does its best to both follow the general industry trends to match the expectations of the customers, where the resulting design also has a unique twist to it"
   }
 }

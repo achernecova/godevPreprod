@@ -1,9 +1,13 @@
 import logging
 import os
 
+from selenium.common import TimeoutException
+from selenium.webdriver.support import expected_conditions as EC
+
 import allure
 import requests
 from bs4 import BeautifulSoup
+from selenium.webdriver.support.wait import WebDriverWait
 
 from page_elements.block_count_elements import CountElements
 from page_elements.popup_element import PopupElement
@@ -34,9 +38,67 @@ class WebDesignPage(BasePage):
     def get_count_elements(self):
         return CountElements(self.driver)
 
-    def get_base_url(self):
-        base_url = put_a_secret()
-        return base_url + self.subURL
+
+    @allure.step("Получение и проверка заголовка и текста из блоков")
+    def get_data_title_and_text_in_blocks(self, block_name):
+        # Конфигурация для разных блоков
+        config = {
+            'website_development_design': {
+                'file_load': 'section_how_it_staff_tiles.json',
+                'title_method': self.get_title_block_website_dev,
+                'text_method': self.get_text_block_website_dev,
+                'json_keys': {
+                    'title': 'website_development_design',
+                    'text_section': 'website_development_design'
+                }
+            },
+            'website_design': {
+                'file_load': 'section_how_it_staff_tiles.json',
+                'title_method': self.get_title_block_website_design,
+                'text_method': self.get_text_block_website_design,
+                'json_keys': {
+                    'title': 'website_design',
+                    'text_section': 'website_design'
+                }
+            },
+            'custom_design_solutions': {
+                'file_load': 'section_how_it_staff_tiles.json',
+                'title_method': self.get_title_block_custom_design_solutions,
+                'text_method': self.get_text_block_custom_design_solutions,
+                'json_keys': {
+                    'title': 'how_it_staff_design',
+                    'text_section': 'how_it_staff_design'
+                }
+            }
+        }
+
+        if block_name not in config:
+            raise ValueError(f"Неизвестный блок: {block_name}")
+        conf = config[block_name]
+
+        # Загрузка данных из файла
+        data = load_file(conf['file_load'])
+
+        # Получение данных со страницы
+        title_data = conf['title_method']()
+        text_data = conf['text_method']()
+
+        print(f"Заголовок со страницы: {title_data}")
+        print(f"Текст со страницы: {text_data}")
+
+        # Получение ожидаемых данных из JSON
+        json_key = conf['json_keys']['title']
+        title_data_json = data[json_key]['title']
+        text_section_key = conf['json_keys']['title']
+        text_data_json = data[text_section_key]['text_section']
+
+        print(f"Ожидаемый заголовок из JSON: {title_data_json}")
+        print(f"Ожидаемый текст из JSON: {text_data_json}")
+
+        # Проверка совпадения
+        assert title_data == title_data_json, f"Заголовок на странице не совпадает с данными из json"
+        assert text_data == text_data_json, f"Текст на странице не совпадает с данными из json"
+
 
     # переделываем метод
     def get_data_card_design(self):
@@ -45,8 +107,7 @@ class WebDesignPage(BasePage):
 
         # Получаем данные из блока карусели на странице
         base_url = put_a_secret()
-        card_data_data_from_page = self.get_card_data(base_url + os.getenv('DESIGN_PAGE', 'services/website-design-and-development-services/'))
-        #card_data_data_from_page = self.get_card_data(os.getenv('MAIN_PAGE', 'https://dev.godev.agency/') + os.getenv('DESIGN_PAGE', 'services/website-design-and-development-services/'))
+        card_data_data_from_page = self.get_card_data_design(base_url + self.subURL)
 
         # Выводим полученные данные с веб-страницы
         print("Полученные данные с веб-страницы:")
@@ -73,7 +134,7 @@ class WebDesignPage(BasePage):
 
             assert found, f"Данные из JSON не найдены на странице для: {desc['project_type']} | {desc['level']} | {desc['price']}"
 
-    def get_card_data(self, url):
+    def get_card_data_design(self, url):
         response = requests.get(url)
         response.raise_for_status()  # Проверка на ошибки
         soup = BeautifulSoup(response.text, 'html.parser')
@@ -101,82 +162,30 @@ class WebDesignPage(BasePage):
 
         return team_data
 
-    def get_data_card(self, card_type):
-        config = {
-            'accordeon_faq_design': {
-                'file_load': 'faq_block_data.json',
-                'url_method': self.get_data_faq_tiles_new,
-                'json_key': 'faq_design',
-                'locator_block': "//*[@class='accordeon-body']",
-                'locator_element': ".//*[@class='accordeon-question']",
-                'locator_section': ".//*[@class='accordeon-subject-text']",
-            },
-            'how_it_staff_design': {
-                'file_load': 'section_how_it_staff_tiles.json',
-                'url_method': self.get_card_data_tiles_card,
-                'json_key': 'how_it_staff_design',
-                'locator_block': "//*[@class='card']",
-                'locator_element': './/p',
-                'locator_section': ".//h3[@class='card-title']",
-            }
-        }
-
-        if card_type not in config:
-            raise ValueError(f"Такого блока не существует: {card_type}")
-        # забираем нужный блок из списка config
-        conf = config[card_type]
-        url = self.get_base_url()
-        # грузим данные, забирая конкретные параметры из нужного блока (отдаем файл, какой метод, ключ, локаторы)
-        self.get_data_card_with_type_project(
-            conf['file_load'],
-            conf['url_method'],
-            conf['json_key'],
-            conf['locator_block'],
-            conf['locator_element'],
-            conf['locator_section'],
-            url
-        )
-
     # Метод для получения заголовка блока
     def get_title_block_website_dev(self):
-        # Сначала сделаем скролл к элементу
-        self.scroll_to_element(Locators.title_block_website_dev_locator)
-        title = self.get_title_block_from_page_all(Locators.title_block_website_dev_locator)
-        return title
+        return self.get_title_block(Locators.title_block_website_dev_locator)
 
 
     # тянем данные из названия блока App and Web Development Services
     def get_text_block_website_dev(self):
-        self.scroll_to_element(Locators.text_block_website_dev_locator)
-        text = self.get_text_block_from_page_all(Locators.text_block_website_dev_locator)
-        return text
+        return self.get_text_block(Locators.text_block_website_dev_locator)
 
 
     # Метод для получения заголовка блока
     def get_title_block_website_design(self):
-        # Сначала сделаем скролл к элементу
-        self.scroll_to_element(Locators.title_block_website_design_locator)
-        title = self.get_title_block_from_page_all(Locators.title_block_website_design_locator)
-        return title
+        return self.get_title_block(Locators.title_block_website_design_locator)
 
 
     # тянем данные из названия блока App and Web Development Services
     def get_text_block_website_design(self):
-        self.scroll_to_element(Locators.text_block_website_design_locator)
-        text = self.get_text_block_from_page_all(Locators.text_block_website_design_locator)
-        return text
-
+        return self.get_text_block(Locators.text_block_website_design_locator)
 
     # Метод для получения заголовка блока
     def get_title_block_custom_design_solutions(self):
-        # Сначала сделаем скролл к элементу
-        self.scroll_to_element(Locators.title_block_custom_design_solutions_locator)
-        title = self.get_title_block_from_page_all(Locators.title_block_custom_design_solutions_locator)
-        return title
+        return self.get_title_block(Locators.title_block_custom_design_solutions_locator)
 
 
-    # тянем данные из названия блока App and Web Development Services
+    # тянем данные из текста блока design_solutions
     def get_text_block_custom_design_solutions(self):
-        self.scroll_to_element(Locators.text_block_custom_design_solutions_locator)
-        text = self.get_text_block_from_page_all(Locators.text_block_custom_design_solutions_locator)
-        return text
+        return self.get_text_block(Locators.text_block_custom_design_solutions_locator)

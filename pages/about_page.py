@@ -2,34 +2,32 @@ import logging
 import os
 
 import allure
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
 
 from page_elements.block_count_elements import CountElements
 from page_elements.form_page import FormPage
 from page_elements.meta_data_page import MetaData
 from page_elements.popup_element import PopupElement
-
 from pages.base_page import BasePage, put_a_secret
 from test.locators import Locators
+from selenium.webdriver.support import expected_conditions as EC
+from utils.data_loader import load_file
 
+class AboutPage(BasePage):
 
-class SupportPage(BasePage):
+    def __init__(self, driver):
+        super().__init__(driver)
+        self.driver = driver
+        self.subURL = os.getenv('ABOUT', 'about-us/')  # Значение по умолчанию
 
-    def __init__(self, driver, base_url=None):
-        super().__init__(driver, base_url)  # Передаем base_url в базовый класс
-        self.subURL = os.getenv('SUPPORT_PAGE', 'services/tech-support/')
-
-    def get_popup(self):
-        return PopupElement(self.driver)
-
-    @allure.step("Открытие страницы лендинга по URL: services/tech-support/")
+    @allure.step("Открытие страницы About по URL: about-us/")
     def open(self, sub_url=None):
-        """Открывает мобильную страницу. Если sub_url не передан, используется subURL по умолчанию."""
         if sub_url is None:  # Если sub_url не указан, используем стандартный
             sub_url = self.subURL
         allure.step(f"Открытие мобильной страницы по URL: {sub_url}")
         logging.info(f"Открываем страницу: {sub_url}")
         super().open(sub_url)  # Вызов метода open() из базового класса с под-URL
-
 
     def get_form_page(self):
         return FormPage(self.driver)
@@ -47,14 +45,13 @@ class SupportPage(BasePage):
         from page_elements.project_service_element import ProjectServiceElement
         return ProjectServiceElement(self.driver)
 
-    def click_button_tariff_table(self):
-        try:
-            button_tariff = self.scroll_to_element(Locators.button_tariff)
-            if button_tariff and button_tariff.is_displayed() and button_tariff.is_enabled():
-                self.driver.execute_script("arguments[0].click();", button_tariff)  # Используем JavaScript для клика
-            else:
-                print("Button is not available for clicking.")
-        except Exception as e:
-            print(f"Error clicking button: {str(e)}")
-            raise  # Повторно выбрасываем исключение для дальнейшей обработки
-
+    @allure.step("Получаем заголовок блока")
+    def get_header_block_left_img(self):
+        title_element = self.driver.find_element(Locators.simple_section_title)
+        if title_element is not None:
+            title_text = title_element.text.strip()
+            logging.info(f"Заголовок на странице: '{title_text}'")
+            return title_text
+        else:
+            logging.error('Ошибка!!! Заголовок не найден.')
+            return 'Ошибка!!!'

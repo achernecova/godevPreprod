@@ -1,0 +1,336 @@
+{
+  "id": 370449,
+  "lot": {
+    "id": 1685,
+    "url": "https://platform223-develop-corp-corp.roseltorg.tech/#msp_lotinfo/1554/1685",
+    "guid": "98f833a5-978b-473a-8932-10b32cf3c603",
+    "name": "Новый лот",
+    "ownerId": 4395,
+    "currency": "643",
+    "creatorId": 4371,
+    "guarantee": true,
+    "startPrice": "55555",
+    "exchangeInfo": {
+      "exchangeRate": null,
+      "exchangeRateDate": null
+    },
+    "ordinalNumber": 1,
+    "commodityPrice": null,
+    "applicationSupplySumm": 0,
+    "initialSumVATIncluded": false,
+    "applicationSupplyNeeded": false,
+    "contractConcludingParameters": {
+      "branchInfo": [],
+      "contractExecutionTerm": null,
+      "contractConcludingTerms": null,
+      "concludeContractWithBranch": false,
+      "contractExecutionStartDate": null,
+      "specifySendingContractToWinnerAndSigningTerm": false
+    }
+  },
+  "name": "Договор №370449",
+  "price": "5000000.00",
+  "state": "ContractDraft",
+  "placer": {
+    "iko": "57707704692772501001",
+    "inn": "7707704692",
+    "kpp": "772501001",
+    "ogrn": "4303953495730",
+    "okfs": "15",
+    "okpo": "61702070",
+    "okato": "45286565000",
+    "okopf": "39",
+    "phone": "-111",
+    "region": "Москва",
+    "comType": "fz_223",
+    "fullName": "АО «Оборонэнерго»",
+    "okfsName": "Собственность общественных и религиозных организаций (объединений)",
+    "timeZone": {
+      "name": "МСК (СГВ+3) Москва, Волгоград",
+      "offset": 0
+    },
+    "okopfName": "Юридические лица, являющиеся коммерческими организациями",
+    "shortName": "АО «Оборонэнерго»",
+    "legalAddress": "г Москва",
+    "postalAddress": "test"
+  },
+  "ownerId": 4395,
+  "withVAT": true,
+  "customer": {
+    "id": 4395,
+    "iko": "57707704692772501001",
+    "inn": "7707704692",
+    "kpp": "772501001",
+    "ogrn": "4303953495730",
+    "okfs": "15",
+    "okpo": "61702070",
+    "okato": "45286565000",
+    "okopf": "39",
+    "phone": "-111",
+    "region": "Москва",
+    "fullName": "АО «Оборонэнерго»",
+    "okfsName": "Собственность общественных и религиозных организаций (объединений)",
+    "timeZone": {
+      "name": "МСК (СГВ+3) Москва, Волгоград",
+      "offset": 0
+    },
+    "okopfName": "Юридические лица, являющиеся коммерческими организациями",
+    "shortName": "АО «Оборонэнерго»",
+    "legalAddress": "г Москва",
+    "postalAddress": "test",
+    "organizationId": 4395,
+    "customerRemoteId": "10007946"
+  },
+  "settings": {
+    "reminder": {
+      "platformCode": "contract"
+    }
+  },
+  "supplier": {
+    "inn": "2209297972",
+    "kpp": "224751001",
+    "type": "legal_organization",
+    "place": 1,
+    "price": "49999.5",
+    "supplierId": 4489,
+    "initialPrice": null,
+    "priceWithVAT": "49999.5",
+    "supplierName": "ООО \"ТЕСТ\"",
+    "applicationId": 2558,
+    "guaranteePart": null,
+    "guaranteeType": "account",
+    "pricePrevious": null,
+    "selectedPrice": null,
+    "supplierUserId": 3510,
+    "priceWithoutVAT": "45454.09",
+    "applicationItems": [
+      {
+        "id": 1449,
+        "registry": {
+          "code": null,
+          "number": null,
+          "numberTnved": null
+        },
+        "lotItemId": 16178,
+        "countryOfOrigin": [
+          {
+            "code": "643",
+            "name": "Российская Федерация"
+          }
+        ]
+      }
+    ],
+    "applicationNumber": 2558,
+    "applicationUniqueId": "1615569641",
+    "initialPriceWithoutVAT": null,
+    "applicationSignDateTime": "2025-04-14T23:20:53+03:00",
+    "requirementsDeclarationOfConformity": null
+  },
+  "direction": "forward",
+  "guarantee": false,
+  "customerId": 4395,
+  "platformId": "corp",
+  "supplierId": 4489,
+  "publishedAt": null,
+  "termination": false,
+  "applications": [
+    {
+      "inn": "1175477812",
+      "kpp": "117943793",
+      "place": 2,
+      "price": "52777.25",
+      "guarantee": null,
+      "supplierId": 4514,
+      "initialPrice": null,
+      "priceWithVAT": "52777.25",
+      "supplierInfo": {
+        "inn": "1175477812",
+        "kpp": "117943793",
+        "place": 2,
+        "price": "52777.25",
+        "supplierId": 4514,
+        "initialPrice": null,
+        "priceWithVAT": "52777.25",
+        "supplierName": "АО \"ELK-1905-8\"",
+        "guaranteePart": null,
+        "guaranteeType": null,
+        "pricePrevious": null,
+        "selectedPrice": null,
+        "supplierUserId": 3208,
+        "priceWithoutVAT": "43981.04",
+        "applicationItems": [
+          {
+            "id": 1448,
+            "registry": {
+              "code": null,
+              "number": null,
+              "numberTnved": null
+            },
+            "lotItemId": 16178,
+            "countryOfOrigin": [
+              {
+                "code": "643",
+                "name": "Российская Федерация"
+              }
+            ]
+          }
+        ],
+        "applicationNumber": 2557,
+        "applicationUniqueId": "1782871287",
+        "initialPriceWithoutVAT": null,
+        "applicationSignDateTime": "2025-04-14T23:20:30+03:00",
+        "requirementsDeclarationOfConformity": null
+      },
+      "applicationId": 2557,
+      "selectedPrice": null,
+      "supplierUserId": 3208,
+      "priceWithoutVAT": "43981.04",
+      "applicationNumber": 2557,
+      "applicationUniqueId": "1782871287",
+      "initialPriceWithoutVAT": null,
+      "applicationSignDateTime": "2025-04-14T23:20:30+03:00"
+    },
+    {
+      "inn": "2209297972",
+      "kpp": "224751001",
+      "place": 1,
+      "price": "49999.5",
+      "guarantee": "account",
+      "supplierId": 4489,
+      "initialPrice": null,
+      "priceWithVAT": "49999.5",
+      "supplierInfo": {
+        "inn": "2209297972",
+        "kpp": "224751001",
+        "place": 1,
+        "price": "49999.5",
+        "supplierId": 4489,
+        "initialPrice": null,
+        "priceWithVAT": "49999.5",
+        "supplierName": "ООО \"ТЕСТ\"",
+        "guaranteePart": null,
+        "guaranteeType": null,
+        "pricePrevious": null,
+        "selectedPrice": null,
+        "supplierUserId": 3510,
+        "priceWithoutVAT": "45454.09",
+        "applicationItems": [
+          {
+            "id": 1449,
+            "registry": {
+              "code": null,
+              "number": null,
+              "numberTnved": null
+            },
+            "lotItemId": 16178,
+            "countryOfOrigin": [
+              {
+                "code": "643",
+                "name": "Российская Федерация"
+              }
+            ]
+          }
+        ],
+        "applicationNumber": 2558,
+        "applicationUniqueId": "1615569641",
+        "initialPriceWithoutVAT": null,
+        "applicationSignDateTime": "2025-04-14T23:20:53+03:00",
+        "requirementsDeclarationOfConformity": null
+      },
+      "applicationId": 2558,
+      "selectedPrice": null,
+      "supplierUserId": 3510,
+      "priceWithoutVAT": "45454.09",
+      "applicationNumber": 2558,
+      "applicationUniqueId": "1615569641",
+      "initialPriceWithoutVAT": null,
+      "applicationSignDateTime": "2025-04-14T23:20:53+03:00"
+    }
+  ],
+  "reminderGuid": "a06fdfe2-1977-11f0-b7d2-cb1f4e56fcd1",
+  "termsHistory": [
+    {
+      "reason": "Преддоговорные переговоры",
+      "newPrice": "5000000.00",
+      "oldPrice": "49999.5",
+      "documentId": 2348,
+      "signatureId": 468,
+      "changeDateTime": "2025-04-15T13:06:30+03:00",
+      "newCommodityPrice": null,
+      "oldCommodityPrice": null,
+      "signatureDateTime": "2025-04-15T13:06:30+03:00"
+    }
+  ],
+  "DocumentsList": [],
+  "finalProtocol": {
+    "guid": "573bb678-2ff3-4ab1-a4ca-4b4373f2433a",
+    "name": "Итоговый протокол",
+    "version": 1,
+    "signDateTime": "2025-04-15T00:28:21+03:00",
+    "registrationNumber": "32500212451-04",
+    "publicationDateTime": "2025-04-15T00:29:54+03:00"
+  },
+  "ownerRemoteId": 10007946,
+  "stampLocation": "top",
+  "guaranteeSupply": {
+    "guaranteeSupplyExtra": null,
+    "guaranteeSupplySummNum": null,
+    "guaranteeSupplyCurrency": null
+  },
+  "customerRemoteId": 10007946,
+  "endExecutionDate": null,
+  "supplierRemoteId": 10006637,
+  "templatePlatform": "msp",
+  "purchaseNoticeInfo": {
+    "id": 1554,
+    "guid": "58652371-f6b8-4b33-a2c6-4a8237f10c74",
+    "name": "Аукцион МСП",
+    "suiz": "3675",
+    "noPublic": false,
+    "emergency": false,
+    "withoutEis": false,
+    "competitive": true,
+    "hidePurchase": false,
+    "purchaseCode": "4510",
+    "purchaseType": "3",
+    "jointPurchase": false,
+    "purchaseMethod": "Аукцион в электронной форме, участниками которого могут быть только субъекты малого и среднего предпринимательства",
+    "signatureFormat": "bes",
+    "forSmallOrMiddle": false,
+    "purchaseMethodETP": "Аукцион МСП",
+    "publicationDateTime": "2025-04-15T00:11:01+03:00",
+    "purchaseNoticeNumber": "32500212451"
+  },
+  "signedByCustomerAt": null,
+  "signedBySupplierAt": null,
+  "stampSettingStatus": "NotStamped",
+  "startExecutionDate": null,
+  "customerSignatureId": null,
+  "positionsTotalPrice": "0.00",
+  "supplierSignatureId": null,
+  "supplierInfoRequired": true,
+  "repudationSignatureId": null,
+  "contractConclusionForm": "ContractInElectronic",
+  "ChangeTermsDocumentList": [
+    {
+      "id": 2348,
+      "url": "/api/v1/documents/0a6960d0-19e1-11f0-922b-53d1246c4ae2",
+      "name": "бланк+заявки.docx",
+      "fileSize": "23120",
+      "createdAt": "2025-04-15T13:04:38+03:00"
+    }
+  ],
+  "summingUpPublishDateTime": "2025-04-15T00:29:54+03:00",
+  "contractConcludingParameters": {
+    "sendingContractToWinnerTerm": null,
+    "signingContractByWinnerTerm": null,
+    "signingContractByCustomerTerm": null,
+    "sendingContractToWinnerTermInNotice": null,
+    "signingContractByWinnerTermInNotice": null,
+    "signingContractByCustomerTermInNotice": null,
+    "specifySendingContractToWinnerAndSigningTerm": false
+  },
+  "customerShareFromPurchasePrice": null,
+  "contractPositionsFilledByWinner": false,
+  "resumeConclusionContractDateTime": null
+}

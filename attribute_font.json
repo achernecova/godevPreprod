@@ -1,0 +1,94 @@
+{
+  "banner_title": {
+    "locators": [
+      "banner_title",
+      ""
+    ],
+    "expected_color": "rgba(255, 255, 255, 1)",
+    "expected_font_family": "robotoflex-h1, sans-serif",
+    "expected_font_size": "76px"
+  },
+  "choose_number": {
+    "locators": [
+      "choose_smg_number",
+      ""
+    ],
+    "expected_color": "rgba(255, 255, 255, 1)",
+    "expected_font_family": "robotoflex-number, sans-serif",
+    "expected_font_size": "80px"
+  },
+  "block_header": {
+    "locators": [
+      "simple_section_title",
+      "title_block_custom_design_solutions_locator",
+      "project_title",
+      "technologies_title",
+      "title_block_stages_of_creating_locator",
+      "title_block_app_and_web_development_services_locator",
+      "title_block_website_dev_locator",
+      "color_text_block_locator",
+      "header_review_block",
+      "card_mini_tile_header"
+    ],
+    "expected_color": "rgba(255, 255, 255, 1)",
+    "expected_font_family": "robotoflex-h2, sans-serif",
+    "expected_font_size": "56px"
+  },
+  "header_tiles_card": {
+    "locators": [
+      "tiles_card_title_locator",
+      "tiles_card_3d_header",
+      "header_app_and_web_locator",
+      "block_get_in_touch_text"
+    ],
+    "expected_color": "rgba(255, 255, 255, 1)",
+    "expected_font_family": "Manrope",
+    "expected_font_size": "36px"
+  },
+  "text_block": {
+    "locators": [
+      "simple_section_text",
+      "team_card_name",
+      "team_card_text_in_card",
+      "text_block_website_dev_locator",
+      "header_mini_tile_in_card"
+    ],
+    "expected_color": "rgba(147, 149, 160, 1)",
+    "expected_font_family": "Manrope",
+    "expected_font_size": "24px"
+  },
+  "text_tiles_card": {
+    "locators": [
+      "text_block_custom_design_solutions_locator",
+      "tiles_card_text_locator",
+      "tiles_card_3d_text",
+      "text_app_and_web_locator",
+      "button_more_in_card_block",
+      "text_review"
+    ],
+    "expected_color": "rgba(255, 255, 255, 1)",
+    "expected_font_family": "Manrope",
+    "expected_font_size": "18px"
+  },
+  "mini_text_block": {
+    "locators": [
+      "text_block_it_staff_locator",
+      "text_block_stages_of_creating_locator",
+      "text_block_app_and_web_development_services_locator",
+      "team_card_header_title",
+      "choose_smg_text"
+    ],
+    "expected_color": "rgba(147, 149, 160, 1)",
+    "expected_font_family": "Manrope",
+    "expected_font_size": "16px"
+  },
+  "button_text": {
+    "locators": [
+      "button_banner_services",
+      "tiles_card_text_locator"
+    ],
+    "expected_color": "rgba(255, 255, 255, 1)",
+    "expected_font_family": "Manrope",
+    "expected_font_size": "20px"
+  }
+}
